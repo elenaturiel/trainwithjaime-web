@@ -23,11 +23,12 @@ const HERO_POSTER = '/hero-poster.jpg'
 
 // ⚠️ SUSTITUIR FOTOS DE LA GALERÍA: /public/gallery-1.jpg … gallery-5.jpg
 const GALLERY = [
-  { src: '/gallery-1.jpg', alt: 'Entrenamiento con Jaime' },
-  { src: '/gallery-2.jpg', alt: 'Entrenamiento de fuerza' },
-  { src: '/gallery-3.jpg', alt: 'Running en Pamplona' },
-  { src: '/gallery-4.jpg', alt: 'Entrenamiento HYROX' },
-  { src: '/gallery-5.jpg', alt: 'Universitarios entrenando' },
+  // `title` = frase que aparece encima de cada foto (cámbiala para que encaje con la foto real).
+  { src: '/gallery-1.jpg', alt: 'Entrenamiento de fuerza con Jaime', title: 'Más peso en la barra, semana a semana' },
+  { src: '/gallery-2.jpg', alt: 'Jaime revisando la técnica de un cliente', title: 'Tu técnica, revisada en vídeo' },
+  { src: '/gallery-3.jpg', alt: 'Running en Pamplona', title: 'Kilómetros con cabeza, no a lo loco' },
+  { src: '/gallery-4.jpg', alt: 'Entrenamiento HYROX', title: 'Llega a tu prueba en tu mejor versión' },
+  { src: '/gallery-5.jpg', alt: 'Universitarios entrenando juntos', title: 'Aquí no entrenas solo' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).
@@ -223,6 +224,13 @@ function Gallery() {
   return (
     <section className="bg-ink py-24 md:py-32">
       <Reveal as="div" className="mx-auto max-w-7xl px-5 md:px-8">
+        <h2 className="max-w-4xl font-display text-5xl uppercase leading-[1.02] md:text-8xl">
+          Entrena con cabeza, nótalo en todo
+        </h2>
+        <p className="mb-12 mt-6 max-w-2xl text-base leading-relaxed text-fg-2 md:mb-16 md:text-lg">
+          Un plan hecho a tu medida, nutrición que cabe en tu presupuesto de estudiante y seguimiento real cada semana.
+          Entre clase y clase, más fuerza en la barra, mejores tiempos en la pista y más energía para el resto del día.
+        </p>
         <Carousel items={GALLERY} label="Galería de fotos" />
       </Reveal>
     </section>
