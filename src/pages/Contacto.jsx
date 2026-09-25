@@ -26,7 +26,7 @@ const FAQ = [
   },
   {
     q: '¿Cómo funciona el seguimiento?',
-    a: 'Revisamos tus marcas y sensaciones y ajustamos el plan. Tienes a Jaime por WhatsApp para dudas.',
+    a: 'Depende del plan: en Rookie, revisión por WhatsApp cada 15 días; en All In y Peak, revisión semanal (All In incluye además una videollamada al mes). Y si te surge una duda antes de entrenar, me escribes.',
   },
   {
     q: '¿Tengo que estar en Pamplona?',
@@ -38,7 +38,8 @@ const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
-function ContactForm({ plan }) {
+function ContactForm({ plan, weeks }) {
+  const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
   const formRef = useRef(null)
   // idle | submitting | success | error
   const [status, setStatus] = useState('idle')
@@ -108,13 +109,13 @@ function ContactForm({ plan }) {
     >
       {plan && (
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          Interesado en: {PLANS[plan]}
+          Interesado en: {planLabel}
         </p>
       )}
 
       {/* Campos ocultos para Formspree */}
       <input type="hidden" name="_subject" value="Nuevo contacto desde la web — Train with Jaime" />
-      {plan && <input type="hidden" name="plan" value={PLANS[plan]} />}
+      {plan && <input type="hidden" name="plan" value={planLabel} />}
       {/* Honeypot anti-spam de Formspree: los humanos no lo ven */}
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
@@ -253,6 +254,8 @@ export default function Contacto() {
   const [params] = useSearchParams()
   const planParam = params.get('plan')
   const plan = planParam && PLANS[planParam] ? planParam : null
+  const weeksParam = params.get('semanas')
+  const weeks = plan === 'peak' && ['8', '10', '12'].includes(weeksParam) ? weeksParam : null
 
   return (
     <>
@@ -264,7 +267,7 @@ export default function Contacto() {
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} />
+              <ContactForm plan={plan} weeks={weeks} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">

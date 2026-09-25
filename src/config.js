@@ -34,4 +34,5 @@ export const PLANS = {
   rookie: 'Rookie',
   allin: 'All In',
   peak: 'Peak',
+  squad: 'Squad discount (Rookie / All In en grupo)',
 }

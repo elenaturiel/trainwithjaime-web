@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
 import CountUp from '../components/CountUp.jsx'
 import PricingCards from '../components/Pricing.jsx'
+import PlanExtras from '../components/PlanExtras.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
@@ -304,6 +305,9 @@ function Pricing() {
           <SectionHeading number="03" eyebrow="Planes" title="Precios" />
         </Reveal>
         <PricingCards />
+        <div className="mt-16 md:mt-24">
+          <PlanExtras />
+        </div>
       </div>
     </section>
   )
