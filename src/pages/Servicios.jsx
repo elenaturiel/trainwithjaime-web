@@ -25,7 +25,8 @@ const SERVICES = [
   {
     Icon: UsersIcon,
     title: 'La comunidad de Train with Jaime',
-    text: 'Todos los clientes entran en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
+    text: 'Train with Jaime tiene su propia plataforma: ahí gestionas tus entrenos y tu nutrición, y además encuentras entradas de blog, recetas, recomendaciones, un espacio para resolver tus dudas y retos. Y todos los clientes entran también en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
+    tags: ['Entrenos', 'Nutrición', 'Blog', 'Recetas', 'Recomendaciones', 'Dudas', 'Retos'],
   },
 ]
 
@@ -48,7 +49,7 @@ export default function Servicios() {
         <section className="bg-ink py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Stagger className="grid gap-5 md:grid-cols-2">
-              {SERVICES.map(({ Icon, title, text }) => (
+              {SERVICES.map(({ Icon, title, text, tags }) => (
                 <StaggerItem
                   key={title}
                   hover
@@ -59,6 +60,18 @@ export default function Servicios() {
                   </span>
                   <h2 className="mt-8 font-display text-4xl uppercase leading-[1.02] md:text-5xl">{title}</h2>
                   <p className="mt-4 leading-relaxed text-fg-2">{text}</p>
+                  {tags && (
+                    <ul className="mt-6 flex flex-wrap gap-2" aria-label="En la plataforma">
+                      {tags.map((t) => (
+                        <li
+                          key={t}
+                          className="rounded-full border border-line bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-fg-2"
+                        >
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </StaggerItem>
               ))}
             </Stagger>
