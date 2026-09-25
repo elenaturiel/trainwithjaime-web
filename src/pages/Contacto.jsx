@@ -1,11 +1,12 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PageHero from '../components/PageHero.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import Button from '../components/Button.jsx'
 import { Reveal } from '../components/Reveal.jsx'
-import { InstagramIcon, MailIcon, PlusIcon, WhatsAppIcon } from '../components/Icons.jsx'
+import { CheckIcon, InstagramIcon, MailIcon, PlusIcon, UsersIcon, WhatsAppIcon } from '../components/Icons.jsx'
+import { normalizeCode, referral } from '../lib/referral.js'
 import {
   EMAIL,
   FORMSPREE_ENDPOINT,
@@ -38,12 +39,41 @@ const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
-function ContactForm({ plan, weeks }) {
+function ContactForm({ plan, weeks, initialCode }) {
   const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
   const formRef = useRef(null)
+  const codeRef = useRef(null)
   // idle | submitting | success | error
   const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState('')
+
+  // Descuento con amigos
+  const [wantsCode, setWantsCode] = useState(plan === 'squad' && !initialCode)
+  const [friendCode, setFriendCode] = useState(initialCode)
+  // { state: 'idle' | 'checking' | 'valid' | 'invalid' | 'unknown', msg }
+  const [codeCheck, setCodeCheck] = useState({ state: 'idle', msg: '' })
+  const [myCode, setMyCode] = useState(null) // código generado para dárselo a un amigo
+  const [myCodeFailed, setMyCodeFailed] = useState(false)
+
+  const successRef = useRef(null)
+  const currentEmail = () => formRef.current?.elements.email?.value || ''
+
+  async function checkFriendCode(value = friendCode) {
+    const code = normalizeCode(value)
+    if (!code) return setCodeCheck({ state: 'idle', msg: '' })
+    setCodeCheck({ state: 'checking', msg: 'Comprobando código…' })
+    const r = await referral('check', { code, email: currentEmail() })
+    if (r.ok) setCodeCheck({ state: 'valid', msg: 'Código válido: tú y tu amigo tenéis el descuento squad.' })
+    else if (r.unavailable)
+      setCodeCheck({ state: 'unknown', msg: 'No podemos comprobarlo ahora; Jaime lo revisará a mano.' })
+    else setCodeCheck({ state: 'invalid', msg: r.error })
+  }
+
+  // Si el código viene en el enlace (?codigo=...), lo comprobamos al entrar.
+  useEffect(() => {
+    if (initialCode) checkFriendCode(initialCode)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -55,16 +85,42 @@ function ContactForm({ plan, weeks }) {
       console.warn('[Contacto] Falta configurar FORMSPREE_FORM_ID en src/config.js')
     }
 
+    const formData = new FormData(formRef.current)
+    const name = formData.get('nombre')
+    const email = formData.get('email')
+
+    // 1) Canjear el código del amigo (solo se puede usar una vez).
+    const code = normalizeCode(friendCode)
+    if (code) {
+      const r = await referral('redeem', { code, email, name })
+      if (!r.ok && !r.unavailable) {
+        setCodeCheck({ state: 'invalid', msg: r.error })
+        setStatus('idle')
+        codeRef.current?.focus()
+        return
+      }
+      formData.append('codigo_amigo_usado', code)
+      formData.append('codigo_amigo_estado', r.ok ? 'válido (canjeado)' : 'SIN VERIFICAR — revisar a mano')
+    }
+
+    // 2) Generar su propio código para dárselo a un amigo.
+    let generated = null
+    if (wantsCode) {
+      const r = await referral('create', { name, email })
+      generated = r.ok ? r.code : null
+      formData.append('codigo_para_su_amigo', generated || 'no se pudo generar — pásale uno a mano')
+    }
+
     try {
-      const formData = new FormData(formRef.current)
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: formData,
       })
       if (res.ok) {
+        setMyCode(generated)
+        setMyCodeFailed(wantsCode && !generated)
         setStatus('success')
-        formRef.current.reset()
         return
       }
       const data = await res.json().catch(() => null)
@@ -78,8 +134,12 @@ function ContactForm({ plan, weeks }) {
   if (status === 'success') {
     return (
       <motion.div
+        ref={successRef}
+        id="contacto-enviado"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
+        // Al enviar, el panel (con el código) puede quedar fuera de pantalla: lo traemos a la vista.
+        onAnimationComplete={() => successRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
         className="flex min-h-[420px] flex-col items-start justify-center rounded-2xl border border-brand/40 bg-panel p-8 md:p-12"
         role="status"
       >
@@ -87,9 +147,23 @@ function ContactForm({ plan, weeks }) {
         <h2 className="mt-6 font-display text-5xl uppercase leading-none md:text-6xl">
           ¡Gracias! Jaime te responde en menos de 24h
         </h2>
+        {myCode && <MyCodeCard code={myCode} />}
+        {myCodeFailed && (
+          <p className="mt-6 text-sm text-fg-2">
+            No hemos podido generar tu código de amigo ahora mismo. Jaime te lo pasará por WhatsApp.
+          </p>
+        )}
+        <HelpNote className="mt-8" />
         <button
           type="button"
-          onClick={() => setStatus('idle')}
+          onClick={() => {
+            setStatus('idle')
+            setFriendCode('')
+            setCodeCheck({ state: 'idle', msg: '' })
+            setWantsCode(false)
+            setMyCode(null)
+            setMyCodeFailed(false)
+          }}
           className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted underline-offset-4 hover:text-fg hover:underline"
         >
           Enviar otro mensaje
@@ -130,7 +204,16 @@ function ContactForm({ plan, weeks }) {
           <label htmlFor="email" className={labelCls}>
             Email
           </label>
-          <input id="email" name="email" type="email" required autoComplete="email" className={inputCls} />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            // El resultado de la comprobación depende de quién eres (tu propio código, ya canjeado por ti…).
+            onBlur={() => friendCode && checkFriendCode()}
+            className={inputCls}
+          />
         </div>
         <div>
           <label htmlFor="whatsapp" className={labelCls}>
@@ -171,6 +254,79 @@ function ContactForm({ plan, weeks }) {
         </div>
       </div>
 
+      {/* Descuento con amigos (squad) */}
+      <fieldset className="mt-8 rounded-xl border border-brand/40 bg-brand/5 p-5 md:p-6">
+        <legend className="flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+          <UsersIcon className="h-4 w-4" /> Descuento con amigos
+        </legend>
+
+        <label className="flex cursor-pointer items-start gap-3">
+          <input
+            type="checkbox"
+            checked={wantsCode}
+            onChange={(e) => setWantsCode(e.target.checked)}
+            className="peer sr-only"
+          />
+          <span
+            aria-hidden="true"
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-ink transition-colors peer-checked:border-accent peer-checked:bg-accent peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
+          >
+            {wantsCode && <CheckIcon className="h-3.5 w-3.5" />}
+          </span>
+          <span>
+            <span className="font-semibold text-fg">¿Vienes con un amigo? Dale este código</span>
+            <span className="mt-1 block text-sm text-muted">
+              Al enviar el formulario te daremos un código único para tu amigo. Cuando se apunte con él, los dos tenéis
+              el descuento squad. Solo sirve para una persona.
+            </span>
+          </span>
+        </label>
+
+        <div className="mt-6 border-t border-line pt-6">
+          <label htmlFor="codigo" className={labelCls}>
+            ¿Te han dado un código? <span className="normal-case tracking-normal text-muted-2">(opcional)</span>
+          </label>
+          <input
+            ref={codeRef}
+            id="codigo"
+            type="text"
+            value={friendCode}
+            onChange={(e) => {
+              setFriendCode(e.target.value)
+              if (codeCheck.state !== 'idle') setCodeCheck({ state: 'idle', msg: '' })
+            }}
+            onBlur={() => checkFriendCode()}
+            placeholder="TWJ-XXXXXX"
+            autoComplete="off"
+            autoCapitalize="characters"
+            spellCheck={false}
+            maxLength={14}
+            aria-invalid={codeCheck.state === 'invalid'}
+            aria-describedby="codigo-estado"
+            className={`${inputCls} font-mono uppercase tracking-widest ${
+              codeCheck.state === 'invalid'
+                ? '!border-red-500'
+                : codeCheck.state === 'valid'
+                  ? '!border-emerald-500'
+                  : ''
+            }`}
+          />
+          <p
+            id="codigo-estado"
+            aria-live="polite"
+            className={`mt-2 min-h-5 text-sm ${
+              codeCheck.state === 'invalid'
+                ? 'text-red-400'
+                : codeCheck.state === 'valid'
+                  ? 'text-emerald-400'
+                  : 'text-muted'
+            }`}
+          >
+            {codeCheck.msg}
+          </p>
+        </div>
+      </fieldset>
+
       <AnimatePresence>
         {status === 'error' && (
           <motion.div
@@ -183,7 +339,7 @@ function ContactForm({ plan, weeks }) {
             <div className="mt-6 flex flex-col gap-3 rounded-lg border border-red-500/40 bg-red-500/10 p-4 text-sm text-fg-2 sm:flex-row sm:items-center sm:justify-between">
               <p>
                 No se ha podido enviar el mensaje{errorMsg ? `: ${errorMsg}` : ''}. Revisa tu conexión e inténtalo de
-                nuevo, o escríbeme por WhatsApp.
+                nuevo, escríbeme por WhatsApp o a {EMAIL}.
               </p>
               <button
                 type="button"
@@ -210,7 +366,63 @@ function ContactForm({ plan, weeks }) {
           'Enviar'
         )}
       </Button>
+
+      <HelpNote className="mt-6" />
     </form>
+  )
+}
+
+function HelpNote({ className = '' }) {
+  return (
+    <p className={`text-sm text-muted ${className}`}>
+      ¿Ha habido algún error o tienes alguna duda? Escríbenos a{' '}
+      <a
+        href={`mailto:${EMAIL}`}
+        className="font-semibold text-fg underline-offset-4 hover:text-accent hover:underline"
+      >
+        {EMAIL}
+      </a>
+    </p>
+  )
+}
+
+// Código generado para que el usuario se lo pase a su amigo.
+function MyCodeCard({ code }) {
+  const [copied, setCopied] = useState(false)
+  const link = `${window.location.origin}/contacto?plan=squad&codigo=${code}`
+  const shareText = `¡Vente a entrenar con Train with Jaime! Pon mi código ${code} al apuntarte y los dos tenemos descuento: ${link}`
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(code)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      /* el usuario puede copiarlo a mano */
+    }
+  }
+
+  return (
+    <div className="mt-8 w-full rounded-xl border border-accent/40 bg-accent/5 p-5 md:p-6">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Tu código para tu amigo</p>
+      <p className="mt-3 select-all font-mono text-3xl font-bold tracking-[0.15em] text-fg md:text-4xl">{code}</p>
+      <p className="mt-2 text-sm text-muted">
+        Guárdalo: solo sirve para una persona. Cuando tu amigo se apunte con él, los dos tenéis el descuento squad.
+      </p>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <Button type="button" variant="secondary" onClick={copy}>
+          {copied ? '¡Copiado!' : 'Copiar código'}
+        </Button>
+        <Button
+          href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
+          target="_blank"
+          rel="noreferrer"
+          variant="brand"
+        >
+          <WhatsAppIcon className="h-5 w-5" /> Enviar por WhatsApp
+        </Button>
+      </div>
+    </div>
   )
 }
 
@@ -256,6 +468,7 @@ export default function Contacto() {
   const plan = planParam && PLANS[planParam] ? planParam : null
   const weeksParam = params.get('semanas')
   const weeks = plan === 'peak' && ['8', '10', '12'].includes(weeksParam) ? weeksParam : null
+  const initialCode = normalizeCode(params.get('codigo') || '')
 
   return (
     <>
@@ -267,7 +480,7 @@ export default function Contacto() {
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} weeks={weeks} />
+              <ContactForm plan={plan} weeks={weeks} initialCode={initialCode} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">
