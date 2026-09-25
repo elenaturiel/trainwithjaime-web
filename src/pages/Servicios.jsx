@@ -25,7 +25,7 @@ const SERVICES = [
   {
     Icon: UsersIcon,
     title: 'La comunidad de Train with Jaime',
-    text: 'Train with Jaime tiene su propia plataforma: ahí gestionas tus entrenos y tu nutrición, y además encuentras entradas de blog, recetas, recomendaciones, un espacio para resolver tus dudas y retos. Y todos los clientes entran también en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
+    text: 'Train with Jaime tiene su propia plataforma, exclusiva para clientes: ahí gestionas tus entrenos y tu nutrición, y además encuentras entradas de blog, recetas, recomendaciones, un espacio para resolver tus dudas y retos. Y todos los clientes entran también en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
     tags: ['Entrenos', 'Nutrición', 'Blog', 'Recetas', 'Recomendaciones', 'Dudas', 'Retos'],
   },
 ]
@@ -107,12 +107,18 @@ export default function Servicios() {
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">03</p>
               <h2 className="mt-4 font-display text-5xl uppercase leading-none">Extras</h2>
               <ul className="mt-8 divide-y divide-line border-y border-line">
-                <li className="py-4 text-fg-2 transition-[color,padding] duration-200 hover:pl-2 hover:text-fg">
-                  Videollamadas adicionales
-                </li>
-                <li className="py-4 text-fg-2 transition-[color,padding] duration-200 hover:pl-2 hover:text-fg">
-                  Sesiones presenciales en Pamplona
-                </li>
+                {[
+                  ['Videollamada extra', '15€'],
+                  ['Sesión presencial en Pamplona', '25€'],
+                ].map(([label, price]) => (
+                  <li
+                    key={label}
+                    className="flex items-baseline justify-between gap-4 py-4 text-fg-2 transition-[color,padding] duration-200 hover:pl-2 hover:text-fg"
+                  >
+                    {label}
+                    <span className="font-display text-3xl leading-none text-fg">{price}</span>
+                  </li>
+                ))}
               </ul>
             </StaggerItem>
             <StaggerItem

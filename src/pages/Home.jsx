@@ -151,14 +151,17 @@ function Hero() {
           Más peso en la barra. Menos tiempo en el 5km. Un plan que se nota en tus marcas, no en tu Instagram.
         </motion.p>
         <motion.div {...item(0.35)} className="mt-10 flex flex-col gap-3 sm:flex-row">
-          {/* Cuando exista la página del test, cambiar a to="/test" */}
-          <Button to="/contacto">
+          <Button to="/test">
             Hazte el test de estudihambre <ArrowIcon className="h-4 w-4" />
           </Button>
           <Button variant="secondary" onClick={() => setVideoOpen(true)}>
             <PlayIcon className="h-4 w-4" /> Ver el vídeo
           </Button>
         </motion.div>
+        <motion.p {...item(0.45)} className="mt-5 text-sm text-fg-2">
+          <span className="font-semibold text-accent">Gratis:</span> primer contacto y asesoramiento con Jaime, sin
+          compromiso.
+        </motion.p>
       </div>
 
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
@@ -168,8 +171,8 @@ function Hero() {
 
 function Stats() {
   const stats = [
-    { value: <CountUp to={40} prefix="+" />, label: 'universitarios' },
     { value: <CountUp to={24.9} decimals={2} suffix="€" />, label: 'desde' },
+    { value: <CountUp to={10} prefix="-" suffix="%" />, label: 'con carné universitario' },
     { value: <CountUp from={100} to={0} suffix="%" />, label: 'postureo' },
   ]
   return (

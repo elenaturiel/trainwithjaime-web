@@ -16,7 +16,7 @@ npm run preview  # sirve /dist en local
 | Qué | Dónde |
 |---|---|
 | ID de Formspree | `src/config.js` → `FORMSPREE_FORM_ID` |
-| Número de WhatsApp | `src/config.js` → `WHATSAPP_NUMBER` (formato `34600123456`) |
+| Datos del titular (aviso legal y privacidad) | `src/config.js` → `LEGAL` |
 | Testimonios (tira superior y cita grande) | `src/config.js` → `TOP_STRIP_TESTIMONIALS`, `FEATURED_TESTIMONIAL` |
 | Vídeo del hero + poster | `public/hero.mp4`, `public/hero-poster.jpg` |
 | Fotos de la galería | `public/gallery-1.jpg` … `gallery-5.jpg` |
@@ -41,6 +41,11 @@ configurar nada, guardando los códigos en memoria (se borran al parar el servid
 datos, el formulario se envía igualmente y el email marca el código como "SIN VERIFICAR" para revisarlo a mano.
 
 > Esta parte usa funciones de Vercel: en Netlify el resto de la web funciona, pero los códigos no.
+
+## Analítica y cookies
+
+La analítica es Vercel Web Analytics y solo se carga si el visitante la acepta en el aviso de cookies. Para ver los
+datos: Vercel → tu proyecto → **Analytics** → **Enable**. Las páginas legales están en `src/pages/legal/`.
 
 ## Despliegue
 

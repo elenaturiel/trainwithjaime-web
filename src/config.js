@@ -7,8 +7,9 @@
 export const FORMSPREE_FORM_ID = 'TU_FORM_ID'
 export const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`
 
-// ⚠️ SUSTITUIR: número de WhatsApp en formato internacional, sin "+", espacios ni guiones.
-export const WHATSAPP_NUMBER = '34600000000'
+// Número de WhatsApp en formato internacional, sin "+", espacios ni guiones.
+export const WHATSAPP_NUMBER = '34684034156'
+export const WHATSAPP_DISPLAY = '+34 684 034 156'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hola Jaime, vengo de la web de Train with Jaime',
 )}`
@@ -28,6 +29,16 @@ export const TOP_STRIP_TESTIMONIALS = [
 export const FEATURED_TESTIMONIAL = {
   quote: '[testimonio real pendiente de confirmar]',
   author: '[nombre pendiente]',
+}
+
+// ⚠️ SUSTITUIR: datos del titular de la web para el aviso legal y la política de privacidad
+// (obligatorios por la LSSI y el RGPD). Mientras estén entre corchetes se ven así en las páginas legales.
+export const LEGAL = {
+  owner: '[Nombre y apellidos del titular]',
+  nif: '[NIF]',
+  address: '[Domicilio completo]',
+  domain: 'trainwithjaime.com',
+  updated: '25 de septiembre de 2026',
 }
 
 export const PLANS = {

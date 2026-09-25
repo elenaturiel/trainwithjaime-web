@@ -96,6 +96,14 @@ function PlanCard({ p }) {
           </li>
         ))}
       </ul>
+      {p.note && (
+        <p className="mt-6 rounded-lg border border-line bg-ink/60 px-4 py-3 text-xs leading-relaxed text-muted">
+          {p.note}{' '}
+          <a href={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent">
+            Hablar con Jaime →
+          </a>
+        </p>
+      )}
       <Button to={href} variant={p.featured ? 'primary' : 'secondary'} className="mt-8 w-full">
         {p.cta} <ArrowIcon className="h-4 w-4" />
       </Button>
@@ -105,10 +113,23 @@ function PlanCard({ p }) {
 
 export default function PricingCards() {
   return (
-    <Stagger className="grid gap-5 md:grid-cols-3 md:items-stretch">
-      {PRICING.map((p) => (
-        <PlanCard key={p.id} p={p} />
-      ))}
-    </Stagger>
+    <>
+      <Stagger className="grid gap-5 md:grid-cols-3 md:items-stretch">
+        {PRICING.map((p) => (
+          <PlanCard key={p.id} p={p} />
+        ))}
+      </Stagger>
+      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-panel p-6 md:flex-row md:items-center md:justify-between md:p-8">
+        <div>
+          <p className="font-display text-3xl uppercase leading-none md:text-4xl">
+            <span className="text-accent">-10%</span> con carné universitario
+          </p>
+          <p className="mt-2 text-sm text-muted">Se verifica al hablar con Jaime. ¿No sabes qué plan elegir?</p>
+        </div>
+        <Button to="/test" variant="secondary">
+          Hazte el test de estudihambre <ArrowIcon className="h-4 w-4" />
+        </Button>
+      </div>
+    </>
   )
 }

@@ -40,12 +40,12 @@ export const PRICING = [
     period: '/pack',
     cta: 'Voy a por mi Peak',
     // Pack cerrado: el precio depende de las semanas elegidas.
-    // ⚠️ REVISAR: precio de 8 semanas = 149€ (el "Desde 149€" del brief) y falta su texto de eventos.
     options: [
-      { weeks: 8, price: '149€', events: '' },
+      { weeks: 8, price: '149€', events: '10K' },
       { weeks: 10, price: '179€', events: 'HYROX, media maratón' },
-      { weeks: 12, price: '209€', events: 'Maratón, trail largo' },
+      { weeks: 12, price: '209€', events: 'Trail corto' },
     ],
+    note: '¿Preparas otra prueba? Consulta con Jaime para entrenamientos de pruebas personalizadas.',
     defaultWeeks: 10,
     features: [
       'Entrenamiento específico para tu evento',

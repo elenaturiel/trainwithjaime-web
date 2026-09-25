@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PageHero from '../components/PageHero.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -14,13 +14,17 @@ import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   PLANS,
+  WHATSAPP_DISPLAY,
   WHATSAPP_URL,
 } from '../config.js'
 
 const GOALS = ['Entrenamiento + nutrición', 'Solo entrenamiento', 'Solo nutrición', 'No lo tengo claro']
 
-// ⚠️ REVISAR: preguntas y respuestas del FAQ = copy provisional, confirmar con Jaime.
 const FAQ = [
+  {
+    q: '¿El primer contacto tiene coste?',
+    a: 'No. El primer contacto y asesoramiento con Jaime es gratis y sin compromiso: le cuentas tu objetivo y te dice qué plan te encaja.',
+  },
   {
     q: '¿Necesito experiencia previa?',
     a: 'No. El plan se adapta a tu nivel, tanto si nunca has pisado un gimnasio como si ya compites.',
@@ -30,8 +34,12 @@ const FAQ = [
     a: 'Depende del plan: en Rookie, revisión por WhatsApp cada 15 días; en All In y Peak, revisión semanal (All In incluye además una videollamada al mes). Y si te surge una duda antes de entrenar, me escribes.',
   },
   {
+    q: '¿Hay descuento para universitarios?',
+    a: 'Sí: un 10% con carné universitario. Se verifica al hablar con Jaime. Y si te apuntas con amigos, tienes también el descuento squad.',
+  },
+  {
     q: '¿Tengo que estar en Pamplona?',
-    a: 'No. Todo el plan funciona online; las sesiones presenciales en Pamplona son un extra opcional.',
+    a: 'No. Todo el plan funciona online; las sesiones presenciales en Pamplona (25€) son un extra opcional.',
   },
 ]
 
@@ -39,7 +47,7 @@ const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
-function ContactForm({ plan, weeks, initialCode }) {
+function ContactForm({ plan, weeks, initialCode, testPlan }) {
   const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
   const formRef = useRef(null)
   const codeRef = useRef(null)
@@ -190,6 +198,7 @@ function ContactForm({ plan, weeks, initialCode }) {
       {/* Campos ocultos para Formspree */}
       <input type="hidden" name="_subject" value="Nuevo contacto desde la web — Train with Jaime" />
       {plan && <input type="hidden" name="plan" value={planLabel} />}
+      {testPlan && <input type="hidden" name="recomendacion_test" value={PLANS[testPlan]} />}
       {/* Honeypot anti-spam de Formspree: los humanos no lo ven */}
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
@@ -257,8 +266,22 @@ function ContactForm({ plan, weeks, initialCode }) {
       {/* Descuento con amigos (squad) */}
       <fieldset className="mt-8 rounded-xl border border-brand/40 bg-brand/5 p-5 md:p-6">
         <legend className="flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-          <UsersIcon className="h-4 w-4" /> Descuento con amigos
+          <UsersIcon className="h-4 w-4" /> Descuentos
         </legend>
+
+        <label className="mb-6 flex cursor-pointer items-start gap-3 border-b border-line pb-6">
+          <input type="checkbox" name="carne_universitario" value="Sí (verificar al hablar)" className="peer sr-only" />
+          <span
+            aria-hidden="true"
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
+          >
+            <CheckIcon className="h-3.5 w-3.5" />
+          </span>
+          <span>
+            <span className="font-semibold text-fg">Tengo carné universitario (-10%)</span>
+            <span className="mt-1 block text-sm text-muted">Jaime lo verifica cuando habléis.</span>
+          </span>
+        </label>
 
         <label className="flex cursor-pointer items-start gap-3">
           <input
@@ -326,6 +349,34 @@ function ContactForm({ plan, weeks, initialCode }) {
           </p>
         </div>
       </fieldset>
+
+      {/* Consentimiento RGPD + información básica de protección de datos */}
+      <label className="mt-8 flex cursor-pointer items-start gap-3">
+        <input type="checkbox" name="acepta_privacidad" value="Sí" required className="peer sr-only" />
+        <span
+          aria-hidden="true"
+          className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-user-invalid:border-red-500"
+        >
+          <CheckIcon className="h-3.5 w-3.5" />
+        </span>
+        <span className="text-sm text-fg-2">
+          He leído y acepto la{' '}
+          <Link
+            to="/privacidad"
+            target="_blank"
+            className="font-semibold text-fg underline underline-offset-4 hover:text-accent"
+          >
+            política de privacidad
+          </Link>
+          .
+        </span>
+      </label>
+      <p className="mt-3 text-xs leading-relaxed text-muted-2">
+        Responsable: Train with Jaime. Finalidad: responder a tu solicitud y, si lo pides, gestionar tu código de amigo.
+        Legitimación: tu consentimiento. No se ceden datos a terceros salvo proveedores necesarios para el servicio.
+        Derechos: acceso, rectificación, supresión y otros, escribiendo a {EMAIL}. Más información en la política de
+        privacidad.
+      </p>
 
       <AnimatePresence>
         {status === 'error' && (
@@ -469,28 +520,33 @@ export default function Contacto() {
   const weeksParam = params.get('semanas')
   const weeks = plan === 'peak' && ['8', '10', '12'].includes(weeksParam) ? weeksParam : null
   const initialCode = normalizeCode(params.get('codigo') || '')
+  const testParam = params.get('test')
+  const testPlan = testParam && PLANS[testParam] ? testParam : null
 
   return (
     <>
       <ScrollSection effect="stack" first>
-        <PageHero eyebrow="Hablemos" title="Contacto" />
+        <PageHero eyebrow="Hablemos" title="Contacto">
+          <strong className="text-accent">El primer contacto es gratis:</strong> cuéntale a Jaime tu objetivo y te
+          asesora sin compromiso.
+        </PageHero>
       </ScrollSection>
 
       <ScrollSection effect="clip" last>
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} weeks={weeks} initialCode={initialCode} />
+              <ContactForm plan={plan} weeks={weeks} initialCode={initialCode} testPlan={testPlan} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">
               <div className="rounded-2xl border border-line bg-panel p-6 md:p-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Directo</p>
                 <h2 className="mt-3 font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
-                {/* ⚠️ SUSTITUIR el número en src/config.js (WHATSAPP_NUMBER) */}
                 <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="brand" className="mt-6 w-full">
                   <WhatsAppIcon className="h-5 w-5" /> Abrir WhatsApp
                 </Button>
+                <p className="mt-3 text-center text-sm text-muted">{WHATSAPP_DISPLAY}</p>
                 <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm">
                   <li>
                     <a

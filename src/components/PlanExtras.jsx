@@ -47,6 +47,9 @@ export default function PlanExtras() {
             evento. Entrenamiento específico, nutrición durante toda la preparación, seguimiento semanal y comunidad
             incluida. Pago único, deadline claro, un solo objetivo: llegar a tu día en tu mejor versión.
           </p>
+          <p className="mt-4 max-w-2xl text-sm text-muted">
+            ¿Preparas otra prueba? Consulta con Jaime para entrenamientos de pruebas personalizadas.
+          </p>
         </div>
         <Button to="/contacto?plan=peak" variant="secondary">
           Voy a por mi Peak <ArrowIcon className="h-4 w-4" />
