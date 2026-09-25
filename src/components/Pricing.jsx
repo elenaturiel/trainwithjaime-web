@@ -9,8 +9,11 @@ export default function PricingCards() {
       {PRICING.map((p) => (
         <StaggerItem
           key={p.id}
+          hover
           className={`relative flex flex-col rounded-2xl border bg-panel p-7 md:p-8 ${
-            p.featured ? 'border-accent/40 bg-panel-2 md:-my-4 md:py-12' : 'border-line'
+            p.featured
+              ? 'border-accent/40 bg-panel-2 hover:border-accent md:-my-4 md:py-12'
+              : 'border-line hover:border-brand/60 hover:bg-panel-2'
           }`}
         >
           {p.featured && (
@@ -34,11 +37,7 @@ export default function PricingCards() {
               </li>
             ))}
           </ul>
-          <Button
-            to={`/contacto?plan=${p.id}`}
-            variant={p.featured ? 'primary' : 'secondary'}
-            className="mt-8 w-full"
-          >
+          <Button to={`/contacto?plan=${p.id}`} variant={p.featured ? 'primary' : 'secondary'} className="mt-8 w-full">
             Elegir {p.name}
           </Button>
         </StaggerItem>

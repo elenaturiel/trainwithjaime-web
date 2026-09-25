@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PageHero from '../components/PageHero.jsx'
+import StackSection from '../components/StackSection.jsx'
 import Button from '../components/Button.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 import { InstagramIcon, MailIcon, PlusIcon, WhatsAppIcon } from '../components/Icons.jsx'
@@ -34,7 +35,7 @@ const FAQ = [
 ]
 
 const inputCls =
-  'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
+  'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
 function ContactForm({ plan }) {
@@ -82,7 +83,9 @@ function ContactForm({ plan }) {
         role="status"
       >
         <p className="font-display text-6xl leading-none text-brand">✓</p>
-        <h2 className="mt-6 font-display text-5xl uppercase leading-none md:text-6xl">¡Gracias! Jaime te responde en menos de 24h</h2>
+        <h2 className="mt-6 font-display text-5xl uppercase leading-none md:text-6xl">
+          ¡Gracias! Jaime te responde en menos de 24h
+        </h2>
         <button
           type="button"
           onClick={() => setStatus('idle')}
@@ -97,7 +100,12 @@ function ContactForm({ plan }) {
   const submitting = status === 'submitting'
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="rounded-2xl border border-line bg-panel p-6 md:p-10" noValidate={false}>
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="rounded-2xl border border-line bg-panel p-6 md:p-10"
+      noValidate={false}
+    >
       {plan && (
         <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
           Interesado en: {PLANS[plan]}
@@ -112,22 +120,45 @@ function ContactForm({ plan }) {
 
       <div className="grid gap-5 md:grid-cols-2">
         <div className="md:col-span-2">
-          <label htmlFor="nombre" className={labelCls}>Nombre</label>
+          <label htmlFor="nombre" className={labelCls}>
+            Nombre
+          </label>
           <input id="nombre" name="nombre" type="text" required autoComplete="name" className={inputCls} />
         </div>
         <div>
-          <label htmlFor="email" className={labelCls}>Email</label>
+          <label htmlFor="email" className={labelCls}>
+            Email
+          </label>
           <input id="email" name="email" type="email" required autoComplete="email" className={inputCls} />
         </div>
         <div>
-          <label htmlFor="whatsapp" className={labelCls}>WhatsApp</label>
-          <input id="whatsapp" name="whatsapp" type="tel" required autoComplete="tel" inputMode="tel" className={inputCls} />
+          <label htmlFor="whatsapp" className={labelCls}>
+            WhatsApp
+          </label>
+          <input
+            id="whatsapp"
+            name="whatsapp"
+            type="tel"
+            required
+            autoComplete="tel"
+            inputMode="tel"
+            className={inputCls}
+          />
         </div>
         <div className="md:col-span-2">
-          <label htmlFor="busca" className={labelCls}>Qué buscas</label>
-          <select id="busca" name="que_buscas" defaultValue={GOALS[0]} className={`${inputCls} appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A93A6' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-12`}>
+          <label htmlFor="busca" className={labelCls}>
+            Qué buscas
+          </label>
+          <select
+            id="busca"
+            name="que_buscas"
+            defaultValue={GOALS[0]}
+            className={`${inputCls} appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A93A6' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-12`}
+          >
             {GOALS.map((g) => (
-              <option key={g} value={g}>{g}</option>
+              <option key={g} value={g}>
+                {g}
+              </option>
             ))}
           </select>
         </div>
@@ -150,7 +181,8 @@ function ContactForm({ plan }) {
           >
             <div className="mt-6 flex flex-col gap-3 rounded-lg border border-red-500/40 bg-red-500/10 p-4 text-sm text-fg-2 sm:flex-row sm:items-center sm:justify-between">
               <p>
-                No se ha podido enviar el mensaje{errorMsg ? `: ${errorMsg}` : ''}. Revisa tu conexión e inténtalo de nuevo, o escríbeme por WhatsApp.
+                No se ha podido enviar el mensaje{errorMsg ? `: ${errorMsg}` : ''}. Revisa tu conexión e inténtalo de
+                nuevo, o escríbeme por WhatsApp.
               </p>
               <button
                 type="button"
@@ -167,7 +199,10 @@ function ContactForm({ plan }) {
       <Button type="submit" disabled={submitting} aria-busy={submitting} className="mt-8 w-full md:w-auto">
         {submitting ? (
           <>
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" aria-hidden="true" />
+            <span
+              className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
+              aria-hidden="true"
+            />
             Enviando…
           </>
         ) : (
@@ -186,10 +221,14 @@ function FaqItem({ q, a }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left font-semibold text-fg"
+        className="group flex w-full items-center justify-between gap-4 py-5 text-left font-semibold text-fg transition-colors duration-150 hover:text-accent"
       >
         {q}
-        <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.2 }} className="shrink-0 text-brand">
+        <motion.span
+          animate={{ rotate: open ? 45 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="shrink-0 text-brand transition-colors group-hover:text-accent"
+        >
           <PlusIcon className="h-5 w-5" />
         </motion.span>
       </button>
@@ -217,47 +256,59 @@ export default function Contacto() {
 
   return (
     <>
-      <PageHero eyebrow="Hablemos" title="Contacto" />
+      <StackSection first>
+        <PageHero eyebrow="Hablemos" title="Contacto" />
+      </StackSection>
 
-      <section className="bg-ink py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-          <Reveal as="div">
-            <ContactForm plan={plan} />
-          </Reveal>
+      <StackSection last>
+        <section className="bg-ink py-20 md:py-28">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+            <Reveal as="div">
+              <ContactForm plan={plan} />
+            </Reveal>
 
-          <Reveal as="aside" className="flex flex-col gap-10">
-            <div className="rounded-2xl border border-line bg-panel p-6 md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Directo</p>
-              <h2 className="mt-3 font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
-              {/* ⚠️ SUSTITUIR el número en src/config.js (WHATSAPP_NUMBER) */}
-              <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="brand" className="mt-6 w-full">
-                <WhatsAppIcon className="h-5 w-5" /> Abrir WhatsApp
-              </Button>
-              <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm">
-                <li>
-                  <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 text-fg-2 transition-colors hover:text-fg">
-                    <MailIcon className="h-5 w-5 text-brand" /> {EMAIL}
-                  </a>
-                </li>
-                <li>
-                  <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-fg-2 transition-colors hover:text-fg">
-                    <InstagramIcon className="h-5 w-5 text-brand" /> {INSTAGRAM_HANDLE}
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <Reveal as="aside" className="flex flex-col gap-10">
+              <div className="rounded-2xl border border-line bg-panel p-6 md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Directo</p>
+                <h2 className="mt-3 font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
+                {/* ⚠️ SUSTITUIR el número en src/config.js (WHATSAPP_NUMBER) */}
+                <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="brand" className="mt-6 w-full">
+                  <WhatsAppIcon className="h-5 w-5" /> Abrir WhatsApp
+                </Button>
+                <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm">
+                  <li>
+                    <a
+                      href={`mailto:${EMAIL}`}
+                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent"
+                    >
+                      <MailIcon className="h-5 w-5 text-brand" /> {EMAIL}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent"
+                    >
+                      <InstagramIcon className="h-5 w-5 text-brand" /> {INSTAGRAM_HANDLE}
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">FAQ</p>
-              <ul className="mt-2 border-t border-line">
-                {FAQ.map((f) => (
-                  <FaqItem key={f.q} {...f} />
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">FAQ</p>
+                <ul className="mt-2 border-t border-line">
+                  {FAQ.map((f) => (
+                    <FaqItem key={f.q} {...f} />
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </StackSection>
     </>
   )
 }

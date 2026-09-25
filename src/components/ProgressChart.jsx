@@ -28,12 +28,28 @@ function ChartTooltip({ active, payload, label }) {
 
 export default function ProgressChart() {
   return (
-    <div className="h-56 w-full md:h-64" role="img" aria-label="Progreso ficticio de sentadilla: de 80 kg a 100 kg en 12 semanas">
+    <div
+      className="h-56 w-full md:h-64"
+      role="img"
+      aria-label="Progreso ficticio de sentadilla: de 80 kg a 100 kg en 12 semanas"
+    >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={DATA} margin={{ top: 10, right: 12, bottom: 0, left: -18 }}>
           <CartesianGrid vertical={false} stroke="#1A1F2B" />
-          <XAxis dataKey="semana" tickLine={false} axisLine={false} tick={{ fill: '#7C8497', fontSize: 11 }} interval={1} />
-          <YAxis domain={[75, 105]} ticks={[80, 90, 100]} tickLine={false} axisLine={false} tick={{ fill: '#7C8497', fontSize: 11 }} />
+          <XAxis
+            dataKey="semana"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: '#7C8497', fontSize: 11 }}
+            interval={1}
+          />
+          <YAxis
+            domain={[75, 105]}
+            ticks={[80, 90, 100]}
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: '#7C8497', fontSize: 11 }}
+          />
           <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#3D8BFF', strokeOpacity: 0.4, strokeWidth: 1 }} />
           <Line
             type="monotone"
