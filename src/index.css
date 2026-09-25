@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-sans: "Montserrat", system-ui, sans-serif;
+
+  --color-ink: #05070A;
+  --color-panel: #0B0D12;
+  --color-panel-2: #0F1319;
+  --color-line: #1A1F2B;
+  --color-fg: #FFFFFF;
+  --color-fg-2: #C7CCD8;
+  --color-muted: #8A93A6;
+  --color-muted-2: #7C8497;
+  --color-brand: #3D8BFF;
+  --color-accent: #FFC93C;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Deja hueco a la tira superior + nav al saltar a #anclas */
+[id] { scroll-margin-top: 110px; }
+
+::selection { background: var(--color-accent); color: var(--color-ink); }
