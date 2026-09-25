@@ -119,24 +119,31 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
       formData.append('codigo_para_su_amigo', generated || 'no se pudo generar — pásale uno a mano')
     }
 
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      })
-      if (res.ok) {
-        setMyCode(generated)
-        setMyCodeFailed(wantsCode && !generated)
-        setStatus('success')
-        return
-      }
-      const data = await res.json().catch(() => null)
-      setErrorMsg(data?.errors?.map((er) => er.message).join(' · ') || '')
-      setStatus('error')
-    } catch {
-      setStatus('error')
+    // 3) Se envía a la vez a Google Sheets (se guarda una fila) y a Formspree (aviso por email a Jaime).
+    //    Basta con que uno de los dos funcione para no perder la inscripción.
+    const saveToSheet = fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(formData)),
+    }).then((r) => r.ok)
+    const sendEmail = fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: formData,
+    }).then(async (r) => {
+      if (r.ok) return true
+      const data = await r.json().catch(() => null)
+      throw new Error(data?.errors?.map((er) => er.message).join(' · ') || '')
+    })
+    const [sheetResult, emailResult] = await Promise.allSettled([saveToSheet, sendEmail])
+    if (sheetResult.value === true || emailResult.value === true) {
+      setMyCode(generated)
+      setMyCodeFailed(wantsCode && !generated)
+      setStatus('success')
+      return
     }
+    setErrorMsg(emailResult.reason?.message || '')
+    setStatus('error')
   }
 
   if (status === 'success') {
@@ -225,12 +232,12 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
           />
         </div>
         <div>
-          <label htmlFor="whatsapp" className={labelCls}>
-            WhatsApp
+          <label htmlFor="telefono" className={labelCls}>
+            Teléfono
           </label>
           <input
-            id="whatsapp"
-            name="whatsapp"
+            id="telefono"
+            name="telefono"
             type="tel"
             required
             autoComplete="tel"

@@ -17,13 +17,27 @@ npm run preview  # sirve /dist en local
 |---|---|
 | ID de Formspree | `src/config.js` → `FORMSPREE_FORM_ID` |
 | Datos del titular (aviso legal y privacidad) | `src/config.js` → `LEGAL` |
-| Testimonios (tira superior y cita grande) | `src/config.js` → `TOP_STRIP_TESTIMONIALS`, `FEATURED_TESTIMONIAL` |
+| Testimonios (tira superior y tarjetas bajo los precios) | `src/config.js` → `TOP_STRIP_TESTIMONIALS`, `TESTIMONIALS` |
 | Vídeo del hero + poster | `public/hero.mp4`, `public/hero-poster.jpg` |
 | Fotos de la galería | `public/gallery-1.jpg` … `gallery-5.jpg` |
 | Foto de Jaime | `public/jaime.jpg` |
 | Features de cada plan | `src/data/pricing.js` |
 
 Busca `⚠️ SUSTITUIR` y `⚠️ REVISAR` en el código para ver todos los puntos.
+
+## Inscripciones en Google Sheets
+
+Cada envío del formulario se guarda como una fila en una hoja de Google Sheets de Train with Jaime (además del aviso
+por email de Formspree; basta con que uno de los dos funcione para no perder la inscripción).
+
+1. Con la cuenta de Google de Train with Jaime, crea una hoja de cálculo.
+2. **Extensiones → Apps Script**, borra lo que haya y pega `google-apps-script/Code.gs`. Guarda.
+3. **⚙️ Configuración del proyecto → Propiedades de la secuencia de comandos → Añadir**: `SECRET` = una clave larga inventada.
+4. **Implementar → Nueva implementación → Aplicación web** · Ejecutar como: *Yo* · Acceso: *Cualquier usuario* → Autorizar.
+5. En Vercel → **Settings → Environment Variables** añade `GOOGLE_SHEETS_WEBHOOK_URL` (la URL que acaba en `/exec`)
+   y `GOOGLE_SHEETS_SECRET` (la misma clave del paso 3). Después, **Redeploy**.
+
+La primera inscripción crea la pestaña «Inscripciones» con las cabeceras.
 
 ## Códigos de amigo (descuento squad)
 

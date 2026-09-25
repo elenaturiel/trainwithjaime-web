@@ -25,11 +25,13 @@ export const TOP_STRIP_TESTIMONIALS = [
   '[testimonio real pendiente]',
 ]
 
-// ⚠️ SUSTITUIR: testimonio grande a pantalla completa de la home.
-export const FEATURED_TESTIMONIAL = {
-  quote: '[testimonio real pendiente de confirmar]',
-  author: '[nombre pendiente]',
-}
+// ⚠️ SUSTITUIR: testimonios de la home (tarjetas debajo de los precios).
+// `detail` = plan, carrera o marca conseguida; puede quedarse vacío.
+export const TESTIMONIALS = [
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+]
 
 // ⚠️ SUSTITUIR: datos del titular de la web para el aviso legal y la política de privacidad
 // (obligatorios por la LSSI y el RGPD). Mientras estén entre corchetes se ven así en las páginas legales.

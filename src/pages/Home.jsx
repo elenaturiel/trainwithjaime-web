@@ -11,7 +11,7 @@ import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
-import { FEATURED_TESTIMONIAL } from '../config.js'
+import { TESTIMONIALS } from '../config.js'
 
 // recharts pesa bastante: se carga aparte para no frenar el primer render.
 const ProgressChart = lazy(() => import('../components/ProgressChart.jsx'))
@@ -271,21 +271,34 @@ function Evolution() {
   )
 }
 
-function Testimonial() {
-  // ⚠️ SUSTITUIR el testimonio en src/config.js (FEATURED_TESTIMONIAL)
+function Testimonials() {
+  // ⚠️ SUSTITUIR los testimonios en src/config.js (TESTIMONIALS)
   return (
-    <section className="relative flex min-h-[80svh] items-center overflow-hidden border-y border-line bg-panel md:min-h-screen">
-      <Reveal as="figure" className="mx-auto max-w-6xl px-5 text-center md:px-8">
-        <span aria-hidden="true" className="block font-display text-8xl leading-none text-brand md:text-9xl">
-          “
-        </span>
-        <blockquote className="font-display text-5xl uppercase leading-[1.05] md:text-8xl">
-          {FEATURED_TESTIMONIAL.quote}
-        </blockquote>
-        <figcaption className="mt-8 text-xs font-semibold uppercase tracking-[0.25em] text-muted">
-          — {FEATURED_TESTIMONIAL.author}
-        </figcaption>
-      </Reveal>
+    <section className="bg-ink py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <Reveal as="div" className="mb-12 md:mb-16">
+          <SectionHeading number="04" eyebrow="Testimonios" title="Lo que dicen" />
+        </Reveal>
+        <Stagger className="grid gap-5 md:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <StaggerItem
+              key={i}
+              as="figure"
+              hover
+              className="flex flex-col rounded-2xl border border-line bg-panel p-7 hover:bg-panel-2 md:p-8"
+            >
+              <span aria-hidden="true" className="font-display text-6xl leading-none text-accent-ink">
+                “
+              </span>
+              <blockquote className="mt-2 flex-1 text-lg leading-relaxed text-fg">{t.quote}</blockquote>
+              <figcaption className="mt-6 border-t border-line pt-4">
+                <span className="block font-semibold text-fg">{t.author}</span>
+                {t.detail && <span className="text-sm text-muted">{t.detail}</span>}
+              </figcaption>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
     </section>
   )
 }
@@ -343,13 +356,13 @@ export default function Home() {
       <ScrollSection effect="stack" dark>
         <Evolution />
       </ScrollSection>
-      <ScrollSection effect="parallax" bg="bg-panel" blue>
-        <Testimonial />
-      </ScrollSection>
       {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}
       <div id="precios" aria-hidden="true" />
       <ScrollSection effect="clip">
         <Pricing />
+      </ScrollSection>
+      <ScrollSection effect="parallax" blue>
+        <Testimonials />
       </ScrollSection>
       <ScrollSection effect="zoom" bg="bg-panel" last dark>
         <FinalCTA />

@@ -25,8 +25,8 @@ export default function Privacidad() {
       <H2>2. Qué datos tratamos</H2>
       <UL>
         <li>
-          <strong className="text-fg">Formulario de contacto:</strong> nombre, email, número de WhatsApp, qué buscas, tu
-          mensaje, el plan que te interesa y si indicas tener carné universitario.
+          <strong className="text-fg">Formulario de contacto:</strong> nombre, email, teléfono, qué buscas, tu mensaje,
+          el plan que te interesa y si indicas tener carné universitario.
         </li>
         <li>
           <strong className="text-fg">Códigos de amigo:</strong> si pides un código o canjeas uno, guardamos el código
@@ -80,7 +80,7 @@ export default function Privacidad() {
           ['Formspree, Inc.', 'Recibir los formularios y reenviarlos por email', 'EE. UU.'],
           ['Vercel Inc.', 'Alojamiento de la web y analítica de visitas', 'EE. UU. / UE'],
           ['Upstash, Inc.', 'Base de datos de códigos de amigo', 'EE. UU. / UE'],
-          ['Google (Gmail)', 'Correo electrónico', 'EE. UU. / UE'],
+          ['Google (Gmail y Google Sheets)', 'Correo electrónico y registro de inscripciones', 'EE. UU. / UE'],
           ['WhatsApp (Meta)', 'Comunicación, si nos escribes por WhatsApp', 'EE. UU. / UE'],
         ]}
       />
