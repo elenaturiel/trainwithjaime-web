@@ -140,7 +140,7 @@ function Hero() {
         </motion.span>
         <motion.h1
           {...item(0.15)}
-          className="mt-6 max-w-5xl font-display text-[44px] uppercase leading-[0.92] md:text-[90px]"
+          className="mt-6 max-w-5xl font-display text-[44px] uppercase leading-[1.02] md:text-[90px]"
         >
           Menos excusas.
           <br />
@@ -285,7 +285,7 @@ function Testimonial() {
         <span aria-hidden="true" className="block font-display text-8xl leading-none text-brand md:text-9xl">
           “
         </span>
-        <blockquote className="font-display text-5xl uppercase leading-[0.95] md:text-8xl">
+        <blockquote className="font-display text-5xl uppercase leading-[1.05] md:text-8xl">
           {FEATURED_TESTIMONIAL.quote}
         </blockquote>
         <figcaption className="mt-8 text-xs font-semibold uppercase tracking-[0.25em] text-muted">
@@ -317,7 +317,7 @@ export function FinalCTA() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.22),transparent_60%)]"
       />
       <Reveal as="div" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-        <h2 className="font-display text-6xl uppercase leading-[0.9] md:text-[140px]">¿Y tú, quieres ganar?</h2>
+        <h2 className="font-display text-6xl uppercase leading-[1.02] md:text-[140px]">¿Y tú, quieres ganar?</h2>
         <div className="mt-10 flex justify-center">
           <Button to="/contacto">
             Reserva tu llamada <ArrowIcon className="h-4 w-4" />

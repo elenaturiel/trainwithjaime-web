@@ -9,7 +9,7 @@ export default function SectionHeading({ number, eyebrow, title, className = '' 
           {eyebrow}
         </p>
       )}
-      <h2 className="font-display text-5xl uppercase leading-[0.9] md:text-7xl">{title}</h2>
+      <h2 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">{title}</h2>
     </div>
   )
 }

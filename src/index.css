@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bebas Neue", Impact, sans-serif;
-  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-display: "Anton", Impact, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 
   --color-ink: #05070A;
   --color-panel: #0B0D12;

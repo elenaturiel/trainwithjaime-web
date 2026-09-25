@@ -38,7 +38,7 @@ export default function SobreJaime() {
               transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             >
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-brand">Sobre Jaime</p>
-              <h1 className="font-display text-7xl uppercase leading-[0.9] md:text-9xl">Soy Jaime</h1>
+              <h1 className="font-display text-7xl uppercase leading-[1.02] md:text-9xl">Soy Jaime</h1>
               <ul className="mt-8 divide-y divide-line border-y border-line">
                 <li className="flex items-baseline justify-between gap-4 py-4">
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Formación</span>
@@ -90,7 +90,7 @@ export default function SobreJaime() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.18),transparent_60%)]"
           />
           <Reveal as="figure" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-            <blockquote className="font-display text-6xl uppercase leading-[0.9] md:text-[140px]">
+            <blockquote className="font-display text-6xl uppercase leading-[1.02] md:text-[140px]">
               “¿Y tú, quieres ganar?”
             </blockquote>
             <figcaption className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted">

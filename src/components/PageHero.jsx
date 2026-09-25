@@ -16,7 +16,7 @@ export default function PageHero({ eyebrow, title, children }) {
         className="relative mx-auto max-w-7xl px-5 md:px-8"
       >
         {eyebrow && <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-brand">{eyebrow}</p>}
-        <h1 className="font-display text-6xl uppercase leading-[0.9] md:text-9xl">{title}</h1>
+        <h1 className="font-display text-6xl uppercase leading-[1.02] md:text-9xl">{title}</h1>
         {children && <div className="mt-6 max-w-2xl text-base text-fg-2 md:text-lg">{children}</div>}
       </motion.div>
     </section>

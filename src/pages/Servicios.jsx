@@ -112,7 +112,7 @@ export default function Servicios() {
       <ScrollSection effect="parallax" bg="bg-panel" last>
         <Reveal className="border-t border-line bg-panel py-20 md:py-28">
           <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-8">
-            <h2 className="font-display text-5xl uppercase leading-[0.9] md:text-7xl">Elige tu plan</h2>
+            <h2 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">Elige tu plan</h2>
             <Button to="/#precios">
               Ver precios <ArrowIcon className="h-4 w-4" />
             </Button>
