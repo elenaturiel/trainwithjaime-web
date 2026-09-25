@@ -41,7 +41,7 @@ const SPECIALTIES = [
 export default function Servicios() {
   return (
     <>
-      <ScrollSection effect="stack" first>
+      <ScrollSection effect="stack" first dark>
         <PageHero eyebrow="Qué hacemos" title="Servicios" />
       </ScrollSection>
 
@@ -79,7 +79,7 @@ export default function Servicios() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="stack" bg="bg-panel">
+      <ScrollSection effect="stack" bg="bg-panel" dark>
         <Reveal className="border-y border-line bg-panel py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <SectionHeading number="02" eyebrow="Especialidades" title="Lo que entrenamos" />
@@ -133,7 +133,7 @@ export default function Servicios() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="zoom">
+      <ScrollSection effect="zoom" dark>
         <section className="bg-ink py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <PlanExtras />
@@ -141,7 +141,7 @@ export default function Servicios() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="parallax" bg="bg-panel" last>
+      <ScrollSection effect="parallax" bg="bg-panel" last blue>
         <Reveal className="border-t border-line bg-panel py-20 md:py-28">
           <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-8">
             <h2 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">Elige tu plan</h2>

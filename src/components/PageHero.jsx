@@ -4,7 +4,7 @@ import { EASE } from '../lib/motion.js'
 // Hero corto para páginas interiores.
 export default function PageHero({ eyebrow, title, children }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-ink pb-16 pt-40 md:pb-24 md:pt-52">
+    <section className="theme-dark relative overflow-hidden border-b border-line bg-ink pb-16 pt-40 md:pb-24 md:pt-52">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(61,139,255,0.14),transparent_60%)]"

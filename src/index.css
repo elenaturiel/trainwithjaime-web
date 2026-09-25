@@ -18,6 +18,7 @@
   --color-accent-ink: #9A5B00;   /* amarillo oscurecido para TEXTO sobre fondo claro */
   --color-on-accent: #0B1B3F;    /* texto encima del amarillo */
   --color-shade: #0B1B3F;        /* oscurecido de los apartados al taparse */
+  --color-on-brand: #FFFFFF;     /* texto encima del azul de marca */
 }
 
 /* Bandas oscuras (hero con vídeo, CTA final, tira superior): mismos tokens en azul marino */
@@ -32,6 +33,24 @@
   --color-muted-2: #8C9BBB;
   --color-brand: #5C9DFF;
   --color-accent-ink: #FFC93C;
+  --color-on-brand: #0B1633;
+  color: var(--color-fg);
+}
+
+/* Banda azul intenso (testimonio, CTA de servicios, cita de Jaime) */
+.theme-blue {
+  --color-ink: #1646C2;
+  --color-panel: #1A4ECC;
+  --color-panel-2: #2056D4;
+  --color-line: #3A68DA;
+  --color-fg: #FFFFFF;
+  --color-fg-2: #DCE6FF;
+  --color-muted: #C9D8FB;
+  --color-muted-2: #C9D8FB;
+  --color-brand: #FFFFFF;
+  --color-accent-ink: #FFC93C;
+  --color-on-brand: #1646C2;
+  --color-shade: #06113A;
   color: var(--color-fg);
 }
 

@@ -11,16 +11,18 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 //
 // Todas las <ScrollSection> de una página deben ser hermanas directas dentro de <main>
 // (si no, el sticky de "stack" no funciona).
-// `dark`: el apartado usa la paleta oscura (azul marino) en vez de la clara.
 export default function ScrollSection({
   effect = 'stack',
   first = false,
   last = false,
   bg = 'bg-ink',
   dark = false,
+  blue = false,
   children,
 }) {
-  if (dark) bg = `theme-dark ${bg}`
+  // Tono del apartado: por defecto claro (blanco); `dark` = azul marino; `blue` = azul intenso.
+  if (blue) bg = `theme-blue ${bg}`
+  else if (dark) bg = `theme-dark ${bg}`
   const reduce = useReducedMotion()
   if (effect === 'stack') return <Stack {...{ first, last, bg, reduce }}>{children}</Stack>
   if (reduce) {

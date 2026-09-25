@@ -525,7 +525,7 @@ export default function Contacto() {
 
   return (
     <>
-      <ScrollSection effect="stack" first>
+      <ScrollSection effect="stack" first dark>
         <PageHero eyebrow="Hablemos" title="Contacto">
           <strong className="text-accent-ink">El primer contacto es gratis:</strong> cuéntale a Jaime tu objetivo y te
           asesora sin compromiso.

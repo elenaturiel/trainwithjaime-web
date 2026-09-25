@@ -10,7 +10,7 @@ const base =
 const styles = {
   primary: 'bg-accent text-on-accent hover:bg-[#ffd666]',
   secondary: 'border border-fg/25 text-fg hover:border-fg/60 hover:bg-fg/5',
-  brand: 'bg-brand text-white hover:brightness-110',
+  brand: 'bg-brand text-on-brand hover:brightness-110',
 }
 
 // Botón / enlace con micro-interacción (scale 1.02 en hover, 150 ms).

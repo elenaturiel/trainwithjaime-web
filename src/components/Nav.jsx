@@ -39,8 +39,8 @@ export default function Nav() {
   }, [open])
 
   const isSolid = solid || open
-  // Sobre el vídeo del hero (solo en la home y sin scroll) el menú va en blanco sobre azul marino.
-  const overDark = location.pathname === '/' && !isSolid
+  // Todas las páginas empiezan con una banda azul marino: sin scroll, el menú va en blanco.
+  const overDark = !isSolid
 
   return (
     <>

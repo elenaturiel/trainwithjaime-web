@@ -23,7 +23,7 @@ const VALUES = [
 export default function SobreJaime() {
   return (
     <>
-      <ScrollSection effect="stack" first>
+      <ScrollSection effect="stack" first dark>
         <section className="bg-ink pb-20 pt-36 md:pb-32 md:pt-48">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[0.9fr_1.1fr] md:items-start md:gap-16 md:px-8">
             <motion.div
@@ -108,7 +108,7 @@ export default function SobreJaime() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="zoom" last>
+      <ScrollSection effect="zoom" last blue>
         <section className="relative flex min-h-[70svh] items-center overflow-hidden bg-ink">
           <div
             aria-hidden="true"

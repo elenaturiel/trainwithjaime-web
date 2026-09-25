@@ -334,16 +334,16 @@ export default function Home() {
       <ScrollSection effect="parallax">
         <Stats />
       </ScrollSection>
-      <ScrollSection effect="clip" bg="bg-panel">
+      <ScrollSection effect="clip" bg="bg-panel" dark>
         <Difference />
       </ScrollSection>
       <ScrollSection effect="zoom">
         <Gallery />
       </ScrollSection>
-      <ScrollSection effect="stack">
+      <ScrollSection effect="stack" dark>
         <Evolution />
       </ScrollSection>
-      <ScrollSection effect="parallax" bg="bg-panel">
+      <ScrollSection effect="parallax" bg="bg-panel" blue>
         <Testimonial />
       </ScrollSection>
       {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}

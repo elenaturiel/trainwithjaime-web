@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 // Datos ficticios de progreso (sentadilla, kg) — solo ilustrativos.
@@ -26,21 +27,35 @@ function ChartTooltip({ active, payload, label }) {
   )
 }
 
+// Lee los colores del tema (claro, azul marino o azul) en el que esté la gráfica.
+function useThemeColors(ref) {
+  const [c, setC] = useState({ line: '#DFE5EF', muted: '#56668A', brand: '#1D64D8', panel: '#F4F6FA' })
+  useLayoutEffect(() => {
+    const cs = getComputedStyle(ref.current)
+    const v = (n) => cs.getPropertyValue(n).trim()
+    setC({ line: v('--color-line'), muted: v('--color-muted'), brand: v('--color-brand'), panel: v('--color-panel') })
+  }, [ref])
+  return c
+}
+
 export default function ProgressChart() {
+  const ref = useRef(null)
+  const c = useThemeColors(ref)
   return (
     <div
+      ref={ref}
       className="h-56 w-full md:h-64"
       role="img"
       aria-label="Progreso ficticio de sentadilla: de 80 kg a 100 kg en 12 semanas"
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={DATA} margin={{ top: 10, right: 12, bottom: 0, left: -18 }}>
-          <CartesianGrid vertical={false} stroke="#DFE5EF" />
+          <CartesianGrid vertical={false} stroke={c.line} />
           <XAxis
             dataKey="semana"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#56668A', fontSize: 11 }}
+            tick={{ fill: c.muted, fontSize: 11 }}
             interval={1}
           />
           <YAxis
@@ -48,16 +63,16 @@ export default function ProgressChart() {
             ticks={[80, 90, 100]}
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#56668A', fontSize: 11 }}
+            tick={{ fill: c.muted, fontSize: 11 }}
           />
-          <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#1D64D8', strokeOpacity: 0.4, strokeWidth: 1 }} />
+          <Tooltip content={<ChartTooltip />} cursor={{ stroke: c.brand, strokeOpacity: 0.4, strokeWidth: 1 }} />
           <Line
             type="monotone"
             dataKey="kg"
-            stroke="#1D64D8"
+            stroke={c.brand}
             strokeWidth={2}
             dot={false}
-            activeDot={{ r: 5, fill: '#1D64D8', stroke: '#F4F6FA', strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: c.brand, stroke: c.panel, strokeWidth: 2 }}
             animationDuration={1400}
           />
         </LineChart>
