@@ -28,7 +28,7 @@ export function StaggerItem({ as = 'div', hover = false, children, className = '
     <Comp
       variants={fadeUp}
       className={`${className} ${hover ? 'transition-colors duration-200' : ''}`}
-      {...(hover ? { ...cardHover, 'data-cursor': '' } : {})}
+      {...(hover ? cardHover : {})}
       {...props}
     >
       {children}

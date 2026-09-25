@@ -5,7 +5,7 @@ import Button from '../components/Button.jsx'
 import CountUp from '../components/CountUp.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
-import StackSection from '../components/StackSection.jsx'
+import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
@@ -175,7 +175,7 @@ function Stats() {
     <Reveal className="border-y border-line bg-ink">
       <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-8">
         {stats.map((s) => (
-          <div key={s.label} data-cursor className="group py-10 sm:px-6 sm:first:pl-0 md:py-14">
+          <div key={s.label} className="group py-10 sm:px-6 sm:first:pl-0 md:py-14">
             <p className="origin-left font-display text-7xl leading-none transition-[color,transform] duration-200 group-hover:text-accent motion-safe:group-hover:scale-105 md:text-8xl">
               {s.value}
             </p>
@@ -220,7 +220,7 @@ function Gallery() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Stagger className="grid auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
           {GALLERY.map((g) => (
-            <StaggerItem key={g.src} data-cursor className={`group overflow-hidden rounded-xl bg-panel ${g.className}`}>
+            <StaggerItem key={g.src} className={`group overflow-hidden rounded-xl bg-panel ${g.className}`}>
               <img
                 src={g.src}
                 alt={g.alt}
@@ -258,19 +258,13 @@ function Evolution() {
             <ProgressChart />
           </Suspense>
           <div className="mt-6 flex flex-wrap gap-3">
-            <span
-              data-cursor
-              className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105"
-            >
+            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105">
               Sentadilla 80kg →{' '}
               <strong className="text-fg">
                 <CountUp from={80} to={100} suffix="kg" />
               </strong>
             </span>
-            <span
-              data-cursor
-              className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105"
-            >
+            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105">
               5km 28min →{' '}
               <strong className="text-fg">
                 <CountUp from={28} to={24} suffix="min" />
@@ -337,32 +331,32 @@ export function FinalCTA() {
 export default function Home() {
   return (
     <>
-      <StackSection first>
+      <ScrollSection effect="stack" first>
         <Hero />
-      </StackSection>
-      <StackSection>
+      </ScrollSection>
+      <ScrollSection effect="parallax">
         <Stats />
-      </StackSection>
-      <StackSection bg="bg-panel">
+      </ScrollSection>
+      <ScrollSection effect="clip" bg="bg-panel">
         <Difference />
-      </StackSection>
-      <StackSection>
+      </ScrollSection>
+      <ScrollSection effect="zoom">
         <Gallery />
-      </StackSection>
-      <StackSection>
+      </ScrollSection>
+      <ScrollSection effect="stack">
         <Evolution />
-      </StackSection>
-      <StackSection bg="bg-panel">
+      </ScrollSection>
+      <ScrollSection effect="parallax" bg="bg-panel">
         <Testimonial />
-      </StackSection>
+      </ScrollSection>
       {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}
       <div id="precios" aria-hidden="true" />
-      <StackSection>
+      <ScrollSection effect="clip">
         <Pricing />
-      </StackSection>
-      <StackSection bg="bg-panel" last>
+      </ScrollSection>
+      <ScrollSection effect="zoom" bg="bg-panel" last>
         <FinalCTA />
-      </StackSection>
+      </ScrollSection>
     </>
   )
 }

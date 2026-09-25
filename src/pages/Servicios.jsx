@@ -1,6 +1,6 @@
 import PageHero from '../components/PageHero.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
-import StackSection from '../components/StackSection.jsx'
+import ScrollSection from '../components/ScrollSection.jsx'
 import Button from '../components/Button.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon } from '../components/Icons.jsx'
@@ -35,11 +35,11 @@ const SPECIALTIES = [
 export default function Servicios() {
   return (
     <>
-      <StackSection first>
+      <ScrollSection effect="stack" first>
         <PageHero eyebrow="Qué hacemos" title="Servicios" />
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection>
+      <ScrollSection effect="zoom">
         <section className="bg-ink py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Stagger className="grid gap-5 md:grid-cols-3">
@@ -59,9 +59,9 @@ export default function Servicios() {
             </Stagger>
           </div>
         </section>
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection bg="bg-panel">
+      <ScrollSection effect="stack" bg="bg-panel">
         <Reveal className="border-y border-line bg-panel py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <SectionHeading number="02" eyebrow="Especialidades" title="Lo que entrenamos" />
@@ -69,7 +69,6 @@ export default function Servicios() {
               {SPECIALTIES.map((s) => (
                 <li
                   key={s}
-                  data-cursor
                   className="rounded-full border border-line bg-panel-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-fg-2 transition-[border-color,color,transform] duration-200 hover:border-accent hover:text-fg motion-safe:hover:scale-105"
                 >
                   {s}
@@ -78,9 +77,9 @@ export default function Servicios() {
             </ul>
           </div>
         </Reveal>
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection>
+      <ScrollSection effect="clip">
         <section className="bg-ink py-24 md:py-32">
           <Stagger className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 md:px-8">
             <StaggerItem
@@ -108,9 +107,9 @@ export default function Servicios() {
             </StaggerItem>
           </Stagger>
         </section>
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection bg="bg-panel" last>
+      <ScrollSection effect="parallax" bg="bg-panel" last>
         <Reveal className="border-t border-line bg-panel py-20 md:py-28">
           <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-8">
             <h2 className="font-display text-5xl uppercase leading-[0.9] md:text-7xl">Elige tu plan</h2>
@@ -119,7 +118,7 @@ export default function Servicios() {
             </Button>
           </div>
         </Reveal>
-      </StackSection>
+      </ScrollSection>
     </>
   )
 }

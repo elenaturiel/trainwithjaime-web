@@ -1,5 +1,5 @@
 import SectionHeading from '../components/SectionHeading.jsx'
-import StackSection from '../components/StackSection.jsx'
+import ScrollSection from '../components/ScrollSection.jsx'
 import Button from '../components/Button.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon } from '../components/Icons.jsx'
@@ -16,7 +16,7 @@ const VALUES = [
 export default function SobreJaime() {
   return (
     <>
-      <StackSection first>
+      <ScrollSection effect="stack" first>
         <section className="bg-ink pb-20 pt-36 md:pb-32 md:pt-48">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
             <motion.div
@@ -24,7 +24,6 @@ export default function SobreJaime() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE }}
               className="group overflow-hidden rounded-2xl border border-line bg-panel"
-              data-cursor
             >
               {/* ⚠️ SUSTITUIR: foto de Jaime en /public/jaime.jpg (vertical, ~1000×1300) */}
               <img
@@ -57,9 +56,9 @@ export default function SobreJaime() {
             </motion.div>
           </div>
         </section>
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection bg="bg-panel">
+      <ScrollSection effect="clip" bg="bg-panel">
         <section className="border-y border-line bg-panel py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Reveal as="div">
@@ -82,9 +81,9 @@ export default function SobreJaime() {
             </Stagger>
           </div>
         </section>
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection last>
+      <ScrollSection effect="zoom" last>
         <section className="relative flex min-h-[70svh] items-center overflow-hidden bg-ink">
           <div
             aria-hidden="true"
@@ -104,7 +103,7 @@ export default function SobreJaime() {
             </div>
           </Reveal>
         </section>
-      </StackSection>
+      </ScrollSection>
     </>
   )
 }

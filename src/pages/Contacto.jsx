@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PageHero from '../components/PageHero.jsx'
-import StackSection from '../components/StackSection.jsx'
+import ScrollSection from '../components/ScrollSection.jsx'
 import Button from '../components/Button.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 import { InstagramIcon, MailIcon, PlusIcon, WhatsAppIcon } from '../components/Icons.jsx'
@@ -256,11 +256,11 @@ export default function Contacto() {
 
   return (
     <>
-      <StackSection first>
+      <ScrollSection effect="stack" first>
         <PageHero eyebrow="Hablemos" title="Contacto" />
-      </StackSection>
+      </ScrollSection>
 
-      <StackSection last>
+      <ScrollSection effect="clip" last>
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
@@ -308,7 +308,7 @@ export default function Contacto() {
             </Reveal>
           </div>
         </section>
-      </StackSection>
+      </ScrollSection>
     </>
   )
 }
