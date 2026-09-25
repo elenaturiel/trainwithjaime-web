@@ -96,7 +96,7 @@ export default function SobreJaime() {
                   hover
                   className="group rounded-xl border-b border-line px-4 py-10 hover:bg-panel-2 md:border-b-0 md:border-l md:px-8 md:first:border-l-0"
                 >
-                  <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent">
+                  <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent-ink">
                     {v.n}
                   </p>
                   <h3 className="mt-6 font-display text-3xl uppercase">{v.title}</h3>

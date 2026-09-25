@@ -10,7 +10,7 @@ const LEGAL_LINKS = [
 ]
 
 export default function Footer() {
-  const link = 'transition-colors hover:text-accent'
+  const link = 'transition-colors hover:text-accent-ink'
   return (
     <footer className="border-t border-line bg-ink">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">

@@ -39,13 +39,15 @@ export default function Nav() {
   }, [open])
 
   const isSolid = solid || open
+  // Sobre el vídeo del hero (solo en la home y sin scroll) el menú va en blanco sobre azul marino.
+  const overDark = location.pathname === '/' && !isSolid
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-9 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
-          isSolid ? 'border-line bg-ink/85 backdrop-blur-md' : 'border-transparent bg-transparent'
-        }`}
+          isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
+        } ${overDark ? 'theme-dark' : ''}`}
       >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-18 md:px-8">
           <Logo />
@@ -122,7 +124,7 @@ export default function Nav() {
                 >
                   <Link
                     to={l.to}
-                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent"
+                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent-ink"
                   >
                     {l.label}
                   </Link>

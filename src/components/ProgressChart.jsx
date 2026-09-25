@@ -35,12 +35,12 @@ export default function ProgressChart() {
     >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={DATA} margin={{ top: 10, right: 12, bottom: 0, left: -18 }}>
-          <CartesianGrid vertical={false} stroke="#1A1F2B" />
+          <CartesianGrid vertical={false} stroke="#DFE5EF" />
           <XAxis
             dataKey="semana"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#7C8497', fontSize: 11 }}
+            tick={{ fill: '#56668A', fontSize: 11 }}
             interval={1}
           />
           <YAxis
@@ -48,16 +48,16 @@ export default function ProgressChart() {
             ticks={[80, 90, 100]}
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#7C8497', fontSize: 11 }}
+            tick={{ fill: '#56668A', fontSize: 11 }}
           />
-          <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#3D8BFF', strokeOpacity: 0.4, strokeWidth: 1 }} />
+          <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#1D64D8', strokeOpacity: 0.4, strokeWidth: 1 }} />
           <Line
             type="monotone"
             dataKey="kg"
-            stroke="#3D8BFF"
+            stroke="#1D64D8"
             strokeWidth={2}
             dot={false}
-            activeDot={{ r: 5, fill: '#3D8BFF', stroke: '#0B0D12', strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: '#1D64D8', stroke: '#F4F6FA', strokeWidth: 2 }}
             animationDuration={1400}
           />
         </LineChart>

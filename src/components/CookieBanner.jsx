@@ -66,7 +66,7 @@ export default function CookieBanner() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-panel-2/95 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur md:bottom-6 md:p-7"
+            className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-panel-2/95 p-5 shadow-[0_20px_60px_rgba(11,27,63,0.18)] backdrop-blur md:bottom-6 md:p-7"
           >
             <h2 id="cookies-title" className="font-display text-3xl uppercase leading-none">
               Cookies, sin postureo
@@ -75,7 +75,7 @@ export default function CookieBanner() {
               Usamos almacenamiento técnico para que la web funcione y, solo si aceptas, una analítica de visitas
               anónima (Vercel Web Analytics, sin cookies publicitarias) para saber qué páginas se ven más. Puedes
               cambiar de idea cuando quieras desde "Configurar cookies" en el pie de página.{' '}
-              <Link to="/cookies" className="font-semibold text-fg underline underline-offset-4 hover:text-accent">
+              <Link to="/cookies" className="font-semibold text-fg underline underline-offset-4 hover:text-accent-ink">
                 Política de cookies
               </Link>
             </p>
@@ -104,7 +104,7 @@ export default function CookieBanner() {
                 <button
                   type="button"
                   onClick={() => save(analytics)}
-                  className={`${btn} bg-accent text-ink hover:bg-[#ffd666]`}
+                  className={`${btn} bg-accent text-on-accent hover:bg-[#ffd666]`}
                 >
                   Guardar preferencias
                 </button>
@@ -121,14 +121,14 @@ export default function CookieBanner() {
                   <button
                     type="button"
                     onClick={() => save(false)}
-                    className={`${btn} border border-white/25 text-fg hover:border-white/60 hover:bg-white/5`}
+                    className={`${btn} border border-fg/25 text-fg hover:border-fg/60 hover:bg-fg/5`}
                   >
                     Rechazar
                   </button>
                   <button
                     type="button"
                     onClick={() => save(true)}
-                    className={`${btn} bg-accent text-ink hover:bg-[#ffd666]`}
+                    className={`${btn} bg-accent text-on-accent hover:bg-[#ffd666]`}
                   >
                     Aceptar
                   </button>

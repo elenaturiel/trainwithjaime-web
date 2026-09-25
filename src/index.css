@@ -4,16 +4,35 @@
   --font-display: "Anton", Impact, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --color-ink: #05070A;
-  --color-panel: #0B0D12;
-  --color-panel-2: #0F1319;
-  --color-line: #1A1F2B;
+  /* Tema claro (por defecto): fondo blanco, texto azul marino */
+  --color-ink: #FFFFFF;          /* fondo principal */
+  --color-panel: #F4F6FA;        /* tarjetas / paneles */
+  --color-panel-2: #EBEFF6;
+  --color-line: #DFE5EF;         /* bordes y divisores */
+  --color-fg: #0B1B3F;           /* texto principal (azul oscuro) */
+  --color-fg-2: #34466E;         /* texto secundario */
+  --color-muted: #56668A;
+  --color-muted-2: #5F6E8F;
+  --color-brand: #1D64D8;        /* azul de marca (accesible sobre blanco) */
+  --color-accent: #FFC93C;       /* amarillo: fondos de CTA y destacados */
+  --color-accent-ink: #9A5B00;   /* amarillo oscurecido para TEXTO sobre fondo claro */
+  --color-on-accent: #0B1B3F;    /* texto encima del amarillo */
+  --color-shade: #0B1B3F;        /* oscurecido de los apartados al taparse */
+}
+
+/* Bandas oscuras (hero con vídeo, CTA final, tira superior): mismos tokens en azul marino */
+.theme-dark {
+  --color-ink: #0B1633;
+  --color-panel: #101E40;
+  --color-panel-2: #15254C;
+  --color-line: #24345C;
   --color-fg: #FFFFFF;
-  --color-fg-2: #C7CCD8;
-  --color-muted: #8A93A6;
-  --color-muted-2: #7C8497;
-  --color-brand: #3D8BFF;
-  --color-accent: #FFC93C;
+  --color-fg-2: #C9D3E8;
+  --color-muted: #9AA8C6;
+  --color-muted-2: #8C9BBB;
+  --color-brand: #5C9DFF;
+  --color-accent-ink: #FFC93C;
+  color: var(--color-fg);
 }
 
 html {

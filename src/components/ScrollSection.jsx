@@ -11,7 +11,16 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 //
 // Todas las <ScrollSection> de una página deben ser hermanas directas dentro de <main>
 // (si no, el sticky de "stack" no funciona).
-export default function ScrollSection({ effect = 'stack', first = false, last = false, bg = 'bg-ink', children }) {
+// `dark`: el apartado usa la paleta oscura (azul marino) en vez de la clara.
+export default function ScrollSection({
+  effect = 'stack',
+  first = false,
+  last = false,
+  bg = 'bg-ink',
+  dark = false,
+  children,
+}) {
+  if (dark) bg = `theme-dark ${bg}`
   const reduce = useReducedMotion()
   if (effect === 'stack') return <Stack {...{ first, last, bg, reduce }}>{children}</Stack>
   if (reduce) {
@@ -25,6 +34,9 @@ function Stack({ first, last, bg, reduce, children }) {
   const ref = useRef(null)
   const endRef = useRef(null)
   const [layout, setLayout] = useState({ top: 0, origin: '50% 50%' })
+  // Parte del recorrido del scroll en la que el apartado ya está fijo y el siguiente lo va tapando.
+  // En apartados más bajos que la pantalla, el tapado empieza más tarde.
+  const coverStart = useRef(0)
 
   // Sticky con top negativo para apartados más altos que la pantalla:
   // se "enganchan" justo cuando su borde inferior toca el borde inferior del viewport.
@@ -35,6 +47,7 @@ function Stack({ first, last, bg, reduce, children }) {
       const vh = window.innerHeight
       const h = el.offsetHeight
       const top = Math.min(0, vh - h)
+      coverStart.current = 1 - Math.min(h, vh) / vh
       // El encogido se centra en la parte que se ve, no en el centro del bloque entero.
       const origin = h > vh ? `50% ${h - vh / 2}px` : '50% 50%'
       setLayout((prev) => (prev.top === top && prev.origin === origin ? prev : { top, origin }))
@@ -51,9 +64,13 @@ function Stack({ first, last, bg, reduce, children }) {
 
   // 0 → el apartado empieza a quedar tapado · 1 → el siguiente ya ha llegado arriba del todo.
   const { scrollYProgress } = useScroll({ target: endRef, offset: ['start end', 'start start'] })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
-  const dim = useTransform(scrollYProgress, [0, 1], [0, 0.7])
-  const radius = useTransform(scrollYProgress, [0, 1], [first ? 0 : 28, 40])
+  const covered = useTransform(scrollYProgress, (v) => {
+    const s = coverStart.current
+    return Math.min(1, Math.max(0, (v - s) / (1 - s)))
+  })
+  const scale = useTransform(covered, [0, 1], [1, 0.92])
+  const dim = useTransform(covered, [0, 1], [0, 0.45])
+  const radius = useTransform(covered, [0, 1], [first ? 0 : 28, 40])
   // Una vez tapado del todo se oculta, para que no asome por los huecos de "zoom" o "clip" más abajo.
   const visibility = useTransform(scrollYProgress, (v) => (v >= 0.999 ? 'hidden' : 'visible'))
   const animated = !last
@@ -73,7 +90,7 @@ function Stack({ first, last, bg, reduce, children }) {
             transformOrigin: layout.origin,
           }}
           className={`relative overflow-hidden ${bg} ${
-            first ? '' : 'shadow-[0_-30px_60px_-10px_rgba(0,0,0,0.75)] ring-1 ring-line'
+            first ? '' : 'shadow-[0_-30px_60px_-10px_rgba(11,27,63,0.16)] ring-1 ring-line'
           }`}
         >
           {children}
@@ -81,7 +98,7 @@ function Stack({ first, last, bg, reduce, children }) {
             <motion.div
               aria-hidden="true"
               style={{ opacity: dim }}
-              className="pointer-events-none absolute inset-0 bg-black"
+              className="pointer-events-none absolute inset-0 bg-shade"
             />
           )}
         </motion.div>
@@ -135,7 +152,7 @@ function Parallax({ first, bg, children }) {
     <div
       ref={ref}
       className={`relative overflow-hidden ${bg} ${
-        first ? '' : 'rounded-t-[28px] shadow-[0_-30px_60px_-10px_rgba(0,0,0,0.75)] ring-1 ring-line'
+        first ? '' : 'rounded-t-[28px] shadow-[0_-30px_60px_-10px_rgba(11,27,63,0.16)] ring-1 ring-line'
       }`}
     >
       <motion.div style={{ y, opacity }}>{children}</motion.div>

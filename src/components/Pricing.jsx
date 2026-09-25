@@ -70,7 +70,7 @@ function PlanCard({ p }) {
       {p.featured && (
         <>
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />
-          <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
+          <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-accent">
             <StarIcon className="h-3 w-3" />
             {p.badge}
           </span>
@@ -91,7 +91,7 @@ function PlanCard({ p }) {
       <ul className="mt-8 flex-1 space-y-3 border-t border-line pt-6">
         {p.features.map((f) => (
           <li key={f} className="flex gap-3 text-sm text-fg-2">
-            <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? 'text-accent' : 'text-brand'}`} />
+            <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? 'text-accent-ink' : 'text-brand'}`} />
             {f}
           </li>
         ))}
@@ -99,7 +99,7 @@ function PlanCard({ p }) {
       {p.note && (
         <p className="mt-6 rounded-lg border border-line bg-ink/60 px-4 py-3 text-xs leading-relaxed text-muted">
           {p.note}{' '}
-          <a href={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent">
+          <a href={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent-ink">
             Hablar con Jaime →
           </a>
         </p>
@@ -122,7 +122,7 @@ export default function PricingCards() {
       <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-panel p-6 md:flex-row md:items-center md:justify-between md:p-8">
         <div>
           <p className="font-display text-3xl uppercase leading-none md:text-4xl">
-            <span className="text-accent">-10%</span> con carné universitario
+            <span className="text-accent-ink">-10%</span> con carné universitario
           </p>
           <p className="mt-2 text-sm text-muted">Se verifica al hablar con Jaime. ¿No sabes qué plan elegir?</p>
         </div>

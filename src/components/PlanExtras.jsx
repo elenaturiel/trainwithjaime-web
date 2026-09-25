@@ -18,10 +18,10 @@ export default function PlanExtras() {
           </p>
           <ul className="mt-4 flex flex-wrap gap-3">
             <li className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg">
-              2 amigos entrando juntos = <strong className="text-accent">-15%</strong> cada uno
+              2 amigos entrando juntos = <strong className="text-accent-ink">-15%</strong> cada uno
             </li>
             <li className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg">
-              3 o más = <strong className="text-accent">-25%</strong> cada uno
+              3 o más = <strong className="text-accent-ink">-25%</strong> cada uno
             </li>
           </ul>
           <p className="mt-4 max-w-2xl text-sm text-muted">

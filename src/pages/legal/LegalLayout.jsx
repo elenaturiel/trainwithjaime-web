@@ -25,7 +25,7 @@ export const UL = ({ children }) => (
   <ul className="mb-4 list-disc space-y-2 pl-5 leading-relaxed marker:text-brand">{children}</ul>
 )
 export const A = (props) => (
-  <a className="font-semibold text-fg underline underline-offset-4 hover:text-accent" {...props} />
+  <a className="font-semibold text-fg underline underline-offset-4 hover:text-accent-ink" {...props} />
 )
 
 export function Table({ head, rows }) {

@@ -179,7 +179,7 @@ export default function Test() {
                 className="rounded-2xl border border-accent/40 bg-panel p-7 md:p-10"
                 role="status"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Tu plan</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-ink">Tu plan</p>
                 <h2 className="mt-3 font-display text-7xl uppercase leading-none md:text-8xl">{plan.name}</h2>
                 <p className="mt-2 text-fg-2">
                   {plan.tagline}{' '}
@@ -191,7 +191,7 @@ export default function Test() {
                 <ul className="mt-8 space-y-3 border-t border-line pt-6">
                   {result.reasons.map((r) => (
                     <li key={r} className="flex gap-3 text-fg-2">
-                      <CheckIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                      <CheckIcon className="mt-1 h-4 w-4 shrink-0 text-accent-ink" />
                       {r}
                     </li>
                   ))}

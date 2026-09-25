@@ -44,7 +44,7 @@ export default function Cookies() {
         <button
           type="button"
           onClick={openCookieSettings}
-          className="font-semibold text-fg underline underline-offset-4 hover:text-accent"
+          className="font-semibold text-fg underline underline-offset-4 hover:text-accent-ink"
         >
           Configurar cookies
         </button>{' '}

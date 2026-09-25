@@ -8,9 +8,9 @@ const base =
   'inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60'
 
 const styles = {
-  primary: 'bg-accent text-ink hover:bg-[#ffd666]',
-  secondary: 'border border-white/25 text-fg hover:border-white/60 hover:bg-white/5',
-  brand: 'bg-brand text-white hover:bg-[#5a9dff]',
+  primary: 'bg-accent text-on-accent hover:bg-[#ffd666]',
+  secondary: 'border border-fg/25 text-fg hover:border-fg/60 hover:bg-fg/5',
+  brand: 'bg-brand text-white hover:brightness-110',
 }
 
 // Botón / enlace con micro-interacción (scale 1.02 en hover, 150 ms).

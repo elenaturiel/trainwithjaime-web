@@ -6,6 +6,7 @@ import CountUp from '../components/CountUp.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import PlanExtras from '../components/PlanExtras.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
+import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
@@ -22,11 +23,11 @@ const HERO_POSTER = '/hero-poster.jpg'
 
 // ⚠️ SUSTITUIR FOTOS DE LA GALERÍA: /public/gallery-1.jpg … gallery-5.jpg
 const GALLERY = [
-  { src: '/gallery-1.jpg', alt: 'Entrenamiento con Jaime', className: 'col-span-2 row-span-2' },
-  { src: '/gallery-2.jpg', alt: 'Entrenamiento de fuerza', className: '' },
-  { src: '/gallery-3.jpg', alt: 'Running en Pamplona', className: '' },
-  { src: '/gallery-4.jpg', alt: 'Entrenamiento HYROX', className: '' },
-  { src: '/gallery-5.jpg', alt: 'Universitarios entrenando', className: '' },
+  { src: '/gallery-1.jpg', alt: 'Entrenamiento con Jaime' },
+  { src: '/gallery-2.jpg', alt: 'Entrenamiento de fuerza' },
+  { src: '/gallery-3.jpg', alt: 'Running en Pamplona' },
+  { src: '/gallery-4.jpg', alt: 'Entrenamiento HYROX' },
+  { src: '/gallery-5.jpg', alt: 'Universitarios entrenando' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).
@@ -61,7 +62,7 @@ function VideoModal({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/95 p-4 backdrop-blur"
+          className="theme-dark fixed inset-0 z-[60] flex items-center justify-center bg-ink/95 p-4 backdrop-blur"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -159,7 +160,7 @@ function Hero() {
           </Button>
         </motion.div>
         <motion.p {...item(0.45)} className="mt-5 text-sm text-fg-2">
-          <span className="font-semibold text-accent">Gratis:</span> primer contacto y asesoramiento con Jaime, sin
+          <span className="font-semibold text-accent-ink">Gratis:</span> primer contacto y asesoramiento con Jaime, sin
           compromiso.
         </motion.p>
       </div>
@@ -180,7 +181,7 @@ function Stats() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-8">
         {stats.map((s) => (
           <div key={s.label} className="group py-10 sm:px-6 sm:first:pl-0 md:py-14">
-            <p className="origin-left font-display text-7xl leading-none transition-[color,transform] duration-200 group-hover:text-accent motion-safe:group-hover:scale-105 md:text-8xl">
+            <p className="origin-left font-display text-7xl leading-none transition-[color,transform] duration-200 group-hover:text-accent-ink motion-safe:group-hover:scale-105 md:text-8xl">
               {s.value}
             </p>
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-muted">{s.label}</p>
@@ -205,7 +206,7 @@ function Difference() {
               hover
               className="group rounded-xl border-b border-line px-4 py-10 hover:bg-panel-2 md:border-b-0 md:border-l md:px-8 md:first:border-l-0"
             >
-              <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent">
+              <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent-ink">
                 {d.n}
               </p>
               <h3 className="mt-6 font-display text-3xl uppercase">{d.title}</h3>
@@ -221,20 +222,9 @@ function Difference() {
 function Gallery() {
   return (
     <section className="bg-ink py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Stagger className="grid auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
-          {GALLERY.map((g) => (
-            <StaggerItem key={g.src} className={`group overflow-hidden rounded-xl bg-panel ${g.className}`}>
-              <img
-                src={g.src}
-                alt={g.alt}
-                loading="lazy"
-                className="h-full w-full object-cover brightness-75 transition-[transform,filter] duration-500 group-hover:brightness-110 motion-safe:group-hover:scale-[1.08]"
-              />
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </div>
+      <Reveal as="div" className="mx-auto max-w-7xl px-5 md:px-8">
+        <Carousel items={GALLERY} label="Galería de fotos" />
+      </Reveal>
     </section>
   )
 }
@@ -338,7 +328,7 @@ export function FinalCTA() {
 export default function Home() {
   return (
     <>
-      <ScrollSection effect="stack" first>
+      <ScrollSection effect="stack" first dark>
         <Hero />
       </ScrollSection>
       <ScrollSection effect="parallax">
@@ -361,7 +351,7 @@ export default function Home() {
       <ScrollSection effect="clip">
         <Pricing />
       </ScrollSection>
-      <ScrollSection effect="zoom" bg="bg-panel" last>
+      <ScrollSection effect="zoom" bg="bg-panel" last dark>
         <FinalCTA />
       </ScrollSection>
     </>

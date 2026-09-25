@@ -190,7 +190,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
       noValidate={false}
     >
       {plan && (
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
           Interesado en: {planLabel}
         </p>
       )}
@@ -273,7 +273,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
           <input type="checkbox" name="carne_universitario" value="Sí (verificar al hablar)" className="peer sr-only" />
           <span
             aria-hidden="true"
-            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-on-accent peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
           >
             <CheckIcon className="h-3.5 w-3.5" />
           </span>
@@ -292,7 +292,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
           />
           <span
             aria-hidden="true"
-            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-ink transition-colors peer-checked:border-accent peer-checked:bg-accent peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-on-accent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-focus-visible:ring-2 peer-focus-visible:ring-brand"
           >
             {wantsCode && <CheckIcon className="h-3.5 w-3.5" />}
           </span>
@@ -339,9 +339,9 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
             aria-live="polite"
             className={`mt-2 min-h-5 text-sm ${
               codeCheck.state === 'invalid'
-                ? 'text-red-400'
+                ? 'text-red-600'
                 : codeCheck.state === 'valid'
-                  ? 'text-emerald-400'
+                  ? 'text-emerald-700'
                   : 'text-muted'
             }`}
           >
@@ -355,7 +355,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
         <input type="checkbox" name="acepta_privacidad" value="Sí" required className="peer sr-only" />
         <span
           aria-hidden="true"
-          className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-user-invalid:border-red-500"
+          className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-muted-2 bg-ink text-transparent transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-on-accent peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-user-invalid:border-red-500"
         >
           <CheckIcon className="h-3.5 w-3.5" />
         </span>
@@ -364,7 +364,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
           <Link
             to="/privacidad"
             target="_blank"
-            className="font-semibold text-fg underline underline-offset-4 hover:text-accent"
+            className="font-semibold text-fg underline underline-offset-4 hover:text-accent-ink"
           >
             política de privacidad
           </Link>
@@ -395,7 +395,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
               <button
                 type="button"
                 onClick={() => formRef.current?.requestSubmit()}
-                className="shrink-0 rounded-md border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-fg hover:bg-white/5"
+                className="shrink-0 rounded-md border border-fg/25 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-fg hover:bg-fg/5"
               >
                 Reintentar
               </button>
@@ -408,7 +408,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
         {submitting ? (
           <>
             <span
-              className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
+              className="h-4 w-4 animate-spin rounded-full border-2 border-on-accent/30 border-t-on-accent"
               aria-hidden="true"
             />
             Enviando…
@@ -429,7 +429,7 @@ function HelpNote({ className = '' }) {
       ¿Ha habido algún error o tienes alguna duda? Escríbenos a{' '}
       <a
         href={`mailto:${EMAIL}`}
-        className="font-semibold text-fg underline-offset-4 hover:text-accent hover:underline"
+        className="font-semibold text-fg underline-offset-4 hover:text-accent-ink hover:underline"
       >
         {EMAIL}
       </a>
@@ -455,7 +455,7 @@ function MyCodeCard({ code }) {
 
   return (
     <div className="mt-8 w-full rounded-xl border border-accent/40 bg-accent/5 p-5 md:p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Tu código para tu amigo</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-ink">Tu código para tu amigo</p>
       <p className="mt-3 select-all font-mono text-3xl font-bold tracking-[0.15em] text-fg md:text-4xl">{code}</p>
       <p className="mt-2 text-sm text-muted">
         Guárdalo: solo sirve para una persona. Cuando tu amigo se apunte con él, los dos tenéis el descuento squad.
@@ -485,13 +485,13 @@ function FaqItem({ q, a }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="group flex w-full items-center justify-between gap-4 py-5 text-left font-semibold text-fg transition-colors duration-150 hover:text-accent"
+        className="group flex w-full items-center justify-between gap-4 py-5 text-left font-semibold text-fg transition-colors duration-150 hover:text-accent-ink"
       >
         {q}
         <motion.span
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.2 }}
-          className="shrink-0 text-brand transition-colors group-hover:text-accent"
+          className="shrink-0 text-brand transition-colors group-hover:text-accent-ink"
         >
           <PlusIcon className="h-5 w-5" />
         </motion.span>
@@ -527,7 +527,7 @@ export default function Contacto() {
     <>
       <ScrollSection effect="stack" first>
         <PageHero eyebrow="Hablemos" title="Contacto">
-          <strong className="text-accent">El primer contacto es gratis:</strong> cuéntale a Jaime tu objetivo y te
+          <strong className="text-accent-ink">El primer contacto es gratis:</strong> cuéntale a Jaime tu objetivo y te
           asesora sin compromiso.
         </PageHero>
       </ScrollSection>
@@ -551,7 +551,7 @@ export default function Contacto() {
                   <li>
                     <a
                       href={`mailto:${EMAIL}`}
-                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent"
+                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent-ink"
                     >
                       <MailIcon className="h-5 w-5 text-brand" /> {EMAIL}
                     </a>
@@ -561,7 +561,7 @@ export default function Contacto() {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent"
+                      className="flex items-center gap-3 text-fg-2 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-accent-ink"
                     >
                       <InstagramIcon className="h-5 w-5 text-brand" /> {INSTAGRAM_HANDLE}
                     </a>

@@ -55,7 +55,7 @@ export default function Servicios() {
                   hover
                   className="group flex flex-col rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
                 >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-colors duration-200 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-colors duration-200 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent-ink">
                     <Icon className="h-7 w-7" />
                   </span>
                   <h2 className="mt-8 font-display text-4xl uppercase leading-[1.02] md:text-5xl">{title}</h2>
