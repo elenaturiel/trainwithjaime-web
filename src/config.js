@@ -2,9 +2,9 @@
 // CONFIGURACIÓN GLOBAL — todo lo que hay que sustituir está aquí
 // ─────────────────────────────────────────────────────────────
 
-// ⚠️ SUSTITUIR: ID real del formulario de Formspree (lo de después de /f/ en la URL
-// del endpoint, p. ej. "xyzabcd"). Los envíos llegan a trainwithjaimesanz@gmail.com.
-export const FORMSPREE_FORM_ID = 'TU_FORM_ID'
+// ID del formulario de Formspree (lo de después de /f/ en la URL del endpoint).
+// Los envíos llegan a trainwithjaimesanz@gmail.com.
+export const FORMSPREE_FORM_ID = 'mjykeabq'
 export const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`
 
 // Número de WhatsApp en formato internacional, sin "+", espacios ni guiones.
