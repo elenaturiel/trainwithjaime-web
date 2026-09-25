@@ -1,9 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
 import CountUp from '../components/CountUp.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
+import StackSection from '../components/StackSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
@@ -53,7 +55,8 @@ function VideoModal({ open, onClose }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  return (
+  // Portal a <body>: dentro de un apartado con transform, "fixed" dejaría de ser relativo a la pantalla.
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -80,11 +83,19 @@ function VideoModal({ open, onClose }) {
               Cerrar ✕
             </button>
             {/* ⚠️ SUSTITUIR: si el vídeo "largo" es otro distinto al del hero, cambia el src aquí */}
-            <video src={HERO_VIDEO} poster={HERO_POSTER} controls autoPlay playsInline className="aspect-video w-full rounded-xl bg-black" />
+            <video
+              src={HERO_VIDEO}
+              poster={HERO_POSTER}
+              controls
+              autoPlay
+              playsInline
+              className="aspect-video w-full rounded-xl bg-black"
+            />
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   )
 }
 
@@ -164,8 +175,10 @@ function Stats() {
     <Reveal className="border-y border-line bg-ink">
       <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-8">
         {stats.map((s) => (
-          <div key={s.label} className="py-10 sm:px-6 sm:first:pl-0 md:py-14">
-            <p className="font-display text-7xl leading-none md:text-8xl">{s.value}</p>
+          <div key={s.label} data-cursor className="group py-10 sm:px-6 sm:first:pl-0 md:py-14">
+            <p className="origin-left font-display text-7xl leading-none transition-[color,transform] duration-200 group-hover:text-accent motion-safe:group-hover:scale-105 md:text-8xl">
+              {s.value}
+            </p>
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-muted">{s.label}</p>
           </div>
         ))}
@@ -185,9 +198,12 @@ function Difference() {
           {DIFFERENCE.map((d) => (
             <StaggerItem
               key={d.n}
-              className="border-b border-line py-10 md:border-b-0 md:border-l md:px-8 md:first:border-l-0 md:first:pl-0"
+              hover
+              className="group rounded-xl border-b border-line px-4 py-10 hover:bg-panel-2 md:border-b-0 md:border-l md:px-8 md:first:border-l-0"
             >
-              <p className="font-display text-6xl leading-none text-brand">{d.n}</p>
+              <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent">
+                {d.n}
+              </p>
               <h3 className="mt-6 font-display text-3xl uppercase">{d.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-fg-2">{d.text}</p>
             </StaggerItem>
@@ -204,12 +220,12 @@ function Gallery() {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Stagger className="grid auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
           {GALLERY.map((g) => (
-            <StaggerItem key={g.src} className={`overflow-hidden rounded-xl bg-panel ${g.className}`}>
+            <StaggerItem key={g.src} data-cursor className={`group overflow-hidden rounded-xl bg-panel ${g.className}`}>
               <img
                 src={g.src}
                 alt={g.alt}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 motion-safe:hover:scale-[1.03]"
+                className="h-full w-full object-cover brightness-75 transition-[transform,filter] duration-500 group-hover:brightness-110 motion-safe:group-hover:scale-[1.08]"
               />
             </StaggerItem>
           ))}
@@ -221,7 +237,7 @@ function Gallery() {
 
 function Evolution() {
   return (
-    <section className="bg-ink pb-24 md:pb-32">
+    <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
           <SectionHeading number="02" eyebrow="Progreso medible" title="Tu evolución" />
@@ -230,7 +246,10 @@ function Evolution() {
             Registramos tus marcas semana a semana y ajustamos el plan para que la línea solo vaya hacia arriba.
           </p>
         </Reveal>
-        <Reveal as="div" className="rounded-2xl border border-line bg-panel p-5 md:p-8">
+        <Reveal
+          as="div"
+          className="rounded-2xl border border-line bg-panel p-5 transition-colors duration-300 hover:border-brand/50 md:p-8"
+        >
           <div className="mb-4 flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Sentadilla · 12 semanas</p>
             <p className="text-xs text-muted-2">Ejemplo</p>
@@ -239,11 +258,23 @@ function Evolution() {
             <ProgressChart />
           </Suspense>
           <div className="mt-6 flex flex-wrap gap-3">
-            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2">
-              Sentadilla 80kg → <strong className="text-fg"><CountUp from={80} to={100} suffix="kg" /></strong>
+            <span
+              data-cursor
+              className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105"
+            >
+              Sentadilla 80kg →{' '}
+              <strong className="text-fg">
+                <CountUp from={80} to={100} suffix="kg" />
+              </strong>
             </span>
-            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2">
-              5km 28min → <strong className="text-fg"><CountUp from={28} to={24} suffix="min" /></strong>
+            <span
+              data-cursor
+              className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105"
+            >
+              5km 28min →{' '}
+              <strong className="text-fg">
+                <CountUp from={28} to={24} suffix="min" />
+              </strong>
             </span>
           </div>
         </Reveal>
@@ -257,7 +288,9 @@ function Testimonial() {
   return (
     <section className="relative flex min-h-[80svh] items-center overflow-hidden border-y border-line bg-panel md:min-h-screen">
       <Reveal as="figure" className="mx-auto max-w-6xl px-5 text-center md:px-8">
-        <span aria-hidden="true" className="block font-display text-8xl leading-none text-brand md:text-9xl">“</span>
+        <span aria-hidden="true" className="block font-display text-8xl leading-none text-brand md:text-9xl">
+          “
+        </span>
         <blockquote className="font-display text-5xl uppercase leading-[0.95] md:text-8xl">
           {FEATURED_TESTIMONIAL.quote}
         </blockquote>
@@ -271,7 +304,7 @@ function Testimonial() {
 
 function Pricing() {
   return (
-    <section id="precios" className="bg-ink py-24 md:py-32">
+    <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal as="div" className="mb-14 md:mb-20">
           <SectionHeading number="03" eyebrow="Planes" title="Precios" />
@@ -304,14 +337,32 @@ export function FinalCTA() {
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Stats />
-      <Difference />
-      <Gallery />
-      <Evolution />
-      <Testimonial />
-      <Pricing />
-      <FinalCTA />
+      <StackSection first>
+        <Hero />
+      </StackSection>
+      <StackSection>
+        <Stats />
+      </StackSection>
+      <StackSection bg="bg-panel">
+        <Difference />
+      </StackSection>
+      <StackSection>
+        <Gallery />
+      </StackSection>
+      <StackSection>
+        <Evolution />
+      </StackSection>
+      <StackSection bg="bg-panel">
+        <Testimonial />
+      </StackSection>
+      {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}
+      <div id="precios" aria-hidden="true" />
+      <StackSection>
+        <Pricing />
+      </StackSection>
+      <StackSection bg="bg-panel" last>
+        <FinalCTA />
+      </StackSection>
     </>
   )
 }

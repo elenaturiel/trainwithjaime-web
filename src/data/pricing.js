@@ -7,11 +7,7 @@ export const PRICING = [
     name: 'Rookie',
     price: '24,90€',
     period: '/mes',
-    features: [
-      'Plan de entrenamiento personalizado',
-      'Ajustes mensuales del plan',
-      'Soporte por WhatsApp',
-    ],
+    features: ['Plan de entrenamiento personalizado', 'Ajustes mensuales del plan', 'Soporte por WhatsApp'],
   },
   {
     id: 'allin',
@@ -32,10 +28,6 @@ export const PRICING = [
     name: 'Peak',
     price: 'Desde 149€',
     period: '',
-    features: [
-      'Todo lo de All In',
-      'Sesiones presenciales en Pamplona',
-      'Videollamadas adicionales',
-    ],
+    features: ['Todo lo de All In', 'Sesiones presenciales en Pamplona', 'Videollamadas adicionales'],
   },
 ]

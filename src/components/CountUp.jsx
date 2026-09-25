@@ -5,7 +5,15 @@ const fmt = (n, decimals) =>
   n.toLocaleString('es-ES', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
 
 // Cuenta de `from` a `to` solo cuando el número entra en pantalla (una vez).
-export default function CountUp({ from = 0, to, decimals = 0, prefix = '', suffix = '', duration = 1.6, className = '' }) {
+export default function CountUp({
+  from = 0,
+  to,
+  decimals = 0,
+  prefix = '',
+  suffix = '',
+  duration = 1.6,
+  className = '',
+}) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
   const [value, setValue] = useState(from)

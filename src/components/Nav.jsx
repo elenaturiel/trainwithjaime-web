@@ -57,7 +57,7 @@ export default function Nav() {
                   to={l.to}
                   end
                   className={({ isActive }) =>
-                    `text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 hover:text-fg ${
+                    `relative py-1 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-fg hover:after:scale-x-100 ${
                       isActive && !l.to.includes('#') ? 'text-fg' : 'text-fg-2'
                     }`
                   }
@@ -120,7 +120,10 @@ export default function Nav() {
                   variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
                   className="border-b border-line"
                 >
-                  <Link to={l.to} className="block py-4 font-display text-5xl leading-none text-fg">
+                  <Link
+                    to={l.to}
+                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent"
+                  >
                     {l.label}
                   </Link>
                 </motion.li>

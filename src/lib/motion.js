@@ -11,13 +11,19 @@ export const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
 }
 
+// Tarjetas: se elevan y crecen un poco al pasar el cursor.
+export const cardHover = {
+  whileHover: { y: -6, scale: 1.02 },
+  transition: { type: 'spring', stiffness: 400, damping: 28 },
+}
+
 export const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 }
 
 export const hoverScale = {
-  whileHover: { scale: 1.02 },
+  whileHover: { scale: 1.04 },
   whileTap: { scale: 0.99 },
   transition: { duration: 0.15 },
 }
