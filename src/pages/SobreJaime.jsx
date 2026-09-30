@@ -44,19 +44,10 @@ export default function SobreJaime() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             >
-              <div className="flex flex-wrap gap-2">
-                {['CAFYD · 4º curso', 'Atleta de HYROX', 'Anti-postureo'].map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <h1 className="mt-6 font-display text-5xl uppercase leading-[1.02] md:text-7xl">
+              <h1 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">
                 Un estudiante que entiende a otros estudiantes
               </h1>
+              <p className="mt-4 font-semibold text-brand">CAFYD · 4º curso · Atleta de HYROX · Anti-postureo</p>
               <p className="mt-6 text-lg leading-relaxed text-fg-2">
                 Hola, soy Jaime y estudio Ciencias de la Actividad Física y del Deporte. Soy un loco del deporte y me
                 encanta ayudar a otras personas a mejorar sus hábitos, su confianza y alcanzar su mayor potencial.
@@ -87,7 +78,7 @@ export default function SobreJaime() {
         <section className="border-y border-line bg-panel py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Reveal as="div">
-              <SectionHeading number="01" eyebrow="Valores" title="Lo que defiendo" />
+              <SectionHeading title="Lo que defiendo" />
             </Reveal>
             <Stagger className="mt-14 grid border-t border-line md:grid-cols-3">
               {VALUES.map((v) => (
@@ -123,7 +114,7 @@ export default function SobreJaime() {
             </figcaption>
             <div className="mt-10 flex justify-center">
               <Button to="/contacto">
-                Contacta con Jaime <ArrowIcon className="h-4 w-4" />
+                Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
               </Button>
             </div>
           </Reveal>

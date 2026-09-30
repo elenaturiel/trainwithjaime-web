@@ -11,19 +11,14 @@ export default function PlanExtras() {
         className="grid gap-8 rounded-2xl border border-brand/50 bg-panel p-7 hover:border-brand md:grid-cols-[1fr_auto] md:items-center md:p-12"
       >
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">Squad discount</p>
-          <h3 className="mt-3 font-display text-4xl uppercase leading-[1.02] md:text-6xl">Entrena con tu gente</h3>
+          <h3 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">Entrena con tu gente</h3>
           <p className="mt-4 max-w-2xl text-fg-2">
             Los mejores resultados no se consiguen solo. Si te apuntas con tus amigos, todos ahorráis:
           </p>
-          <ul className="mt-4 flex flex-wrap gap-3">
-            <li className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg">
-              2 amigos entrando juntos = <strong className="text-accent-ink">-15%</strong> cada uno
-            </li>
-            <li className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg">
-              3 o más = <strong className="text-accent-ink">-25%</strong> cada uno
-            </li>
-          </ul>
+          <p className="mt-4 max-w-2xl text-fg-2">
+            2 amigos entrando juntos = <strong className="text-accent-ink">-15%</strong> cada uno · 3 o más ={' '}
+            <strong className="text-accent-ink">-25%</strong> cada uno.
+          </p>
           <p className="mt-4 max-w-2xl text-sm text-muted">
             Alta conjunta, aplicable a Rookie y All In. Ideal para grupos de la uni, compañeros de piso, o equipos que
             entrenan juntos para el mismo evento.
@@ -39,8 +34,7 @@ export default function PlanExtras() {
         className="grid gap-8 rounded-2xl border border-brand/50 bg-panel p-7 hover:border-brand md:grid-cols-[1fr_auto] md:items-center md:p-12"
       >
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">Plan Peak</p>
-          <h3 className="mt-3 font-display text-4xl uppercase leading-[1.02] md:text-6xl">Prepárate para tu día</h3>
+          <h3 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">Prepárate para tu día</h3>
           <p className="mt-4 max-w-2xl text-fg-2">
             ¿Tienes una fecha en el calendario? Un HYROX, una media maratón, un trail, la San Silvestre, una prueba
             física de oposiciones... El plan PEAK es un pack cerrado de 8, 10 o 12 semanas diseñado alrededor de TU

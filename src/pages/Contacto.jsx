@@ -533,7 +533,7 @@ export default function Contacto() {
   return (
     <>
       <ScrollSection effect="stack" first dark>
-        <PageHero eyebrow="Hablemos" title="Contacto">
+        <PageHero title="Contacto">
           <strong className="text-accent-ink">El primer contacto es gratis:</strong> cuéntale a Jaime tu objetivo y te
           asesora sin compromiso.
         </PageHero>
@@ -548,8 +548,7 @@ export default function Contacto() {
 
             <Reveal as="aside" className="flex flex-col gap-10">
               <div className="rounded-2xl border border-line bg-panel p-6 md:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Directo</p>
-                <h2 className="mt-3 font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
+                <h2 className="font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
                 <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="brand" className="mt-6 w-full">
                   <WhatsAppIcon className="h-5 w-5" /> Abrir WhatsApp
                 </Button>

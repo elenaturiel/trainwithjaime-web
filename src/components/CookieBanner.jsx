@@ -66,15 +66,19 @@ export default function CookieBanner() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-panel-2/95 p-5 shadow-[0_20px_60px_rgba(11,27,63,0.18)] backdrop-blur md:bottom-6 md:p-7"
+            className="fixed inset-x-2 bottom-2 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-ink p-4 shadow-[0_12px_32px_rgba(11,27,63,0.22)] sm:inset-x-3 sm:bottom-3 sm:p-5 md:bottom-6 md:left-auto md:right-6 md:max-w-lg md:p-6"
           >
-            <h2 id="cookies-title" className="font-display text-3xl uppercase leading-none">
+            <h2 id="cookies-title" className="font-display text-xl uppercase leading-none sm:text-3xl">
               Cookies, sin postureo
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-fg-2">
-              Usamos almacenamiento técnico para que la web funcione y, solo si aceptas, una analítica de visitas
-              anónima (Vercel Web Analytics, sin cookies publicitarias) para saber qué páginas se ven más. Puedes
-              cambiar de idea cuando quieras desde "Configurar cookies" en el pie de página.{' '}
+            {/* En móvil, versión corta para no tapar el hero; el texto completo, en pantallas grandes */}
+            <p className="mt-2 text-sm leading-snug text-fg-2 sm:mt-3 sm:leading-relaxed">
+              <span className="sm:hidden">Solo si aceptas, usamos una analítica de visitas anónima. </span>
+              <span className="hidden sm:inline">
+                Usamos almacenamiento técnico para que la web funcione y, solo si aceptas, una analítica de visitas
+                anónima (Vercel Web Analytics, sin cookies publicitarias) para saber qué páginas se ven más. Puedes
+                cambiar de idea cuando quieras desde "Configurar cookies" en el pie de página.{' '}
+              </span>
               <Link to="/cookies" className="font-semibold text-fg underline underline-offset-4 hover:text-accent-ink">
                 Política de cookies
               </Link>
@@ -99,12 +103,12 @@ export default function CookieBanner() {
               </ul>
             )}
 
-            <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-5 sm:flex sm:justify-end">
               {custom ? (
                 <button
                   type="button"
                   onClick={() => save(analytics)}
-                  className={`${btn} bg-accent text-on-accent hover:bg-[#ffd666]`}
+                  className={`${btn} col-span-2 bg-accent text-on-accent hover:bg-[#ffd666]`}
                 >
                   Guardar preferencias
                 </button>
@@ -113,7 +117,7 @@ export default function CookieBanner() {
                   <button
                     type="button"
                     onClick={() => setCustom(true)}
-                    className={`${btn} text-fg-2 underline-offset-4 hover:text-fg hover:underline`}
+                    className={`${btn} order-last col-span-2 py-1 text-fg-2 underline-offset-4 hover:text-fg hover:underline sm:order-none sm:py-3`}
                   >
                     Configurar
                   </button>

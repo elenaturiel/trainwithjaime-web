@@ -43,6 +43,13 @@ export const LEGAL = {
   updated: '25 de septiembre de 2026',
 }
 
+// Un texto entre corchetes ("[testimonio real pendiente]") es de relleno: no se muestra en la web.
+// Así nunca aparecen estrellas o testimonios falsos; en cuanto pongas uno real, sale solo.
+const isPlaceholder = (text) => /^\s*\[/.test(text || '')
+export const REAL_TOP_STRIP = TOP_STRIP_TESTIMONIALS.filter((t) => !isPlaceholder(t))
+export const REAL_TESTIMONIALS = TESTIMONIALS.filter((t) => !isPlaceholder(t.quote) && !isPlaceholder(t.author))
+export const HAS_TOP_STRIP = REAL_TOP_STRIP.length > 0
+
 export const PLANS = {
   rookie: 'Rookie',
   allin: 'All In',

@@ -91,9 +91,7 @@ function Stack({ first, last, bg, reduce, children }) {
             borderTopRightRadius: animated ? radius : first ? 0 : 28,
             transformOrigin: layout.origin,
           }}
-          className={`relative overflow-hidden ${bg} ${
-            first ? '' : 'shadow-[0_-30px_60px_-10px_rgba(11,27,63,0.16)] ring-1 ring-line'
-          }`}
+          className={`relative overflow-hidden ${bg} ${first ? '' : 'shadow-[0_-24px_48px_-12px_rgba(11,27,63,0.18)]'}`}
         >
           {children}
           {animated && (
@@ -120,7 +118,7 @@ function Zoom({ bg, children }) {
     <div ref={ref} className="relative">
       <motion.div
         style={{ scale, borderRadius: radius, transformOrigin: '50% 0%' }}
-        className={`overflow-hidden ${bg} ring-1 ring-line`}
+        className={`overflow-hidden ${bg}`}
       >
         {children}
       </motion.div>
@@ -154,7 +152,7 @@ function Parallax({ first, bg, children }) {
     <div
       ref={ref}
       className={`relative overflow-hidden ${bg} ${
-        first ? '' : 'rounded-t-[28px] shadow-[0_-30px_60px_-10px_rgba(11,27,63,0.16)] ring-1 ring-line'
+        first ? '' : 'rounded-t-[28px] shadow-[0_-24px_48px_-12px_rgba(11,27,63,0.18)]'
       }`}
     >
       <motion.div style={{ y, opacity }}>{children}</motion.div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import Button from './Button.jsx'
+import { HAS_TOP_STRIP } from '../config.js'
 
 const LINKS = [
   { to: '/servicios', label: 'Servicios' },
@@ -45,7 +46,7 @@ export default function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-9 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
+        className={`fixed inset-x-0 ${HAS_TOP_STRIP ? 'top-9' : 'top-0'} z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
           isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
         } ${overDark ? 'theme-dark' : ''}`}
       >
@@ -72,7 +73,7 @@ export default function Nav() {
 
           <div className="hidden md:block">
             <Button to="/contacto" className="px-5 py-2.5 text-xs">
-              Empieza gratis
+              Primera asesoría gratis
             </Button>
           </div>
 
@@ -132,7 +133,7 @@ export default function Nav() {
               ))}
             </motion.ul>
             <Button to="/contacto" className="w-full">
-              Empieza gratis
+              Primera asesoría gratis
             </Button>
           </motion.div>
         )}

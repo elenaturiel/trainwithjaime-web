@@ -42,7 +42,7 @@ export default function Servicios() {
   return (
     <>
       <ScrollSection effect="stack" first dark>
-        <PageHero eyebrow="Qué hacemos" title="Servicios" />
+        <PageHero title="Servicios" />
       </ScrollSection>
 
       <ScrollSection effect="zoom">
@@ -82,7 +82,7 @@ export default function Servicios() {
       <ScrollSection effect="stack" bg="bg-panel" dark>
         <Reveal className="border-y border-line bg-panel py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
-            <SectionHeading number="02" eyebrow="Especialidades" title="Lo que entrenamos" />
+            <SectionHeading title="Lo que entrenamos" />
             <ul className="mt-10 flex flex-wrap gap-3">
               {SPECIALTIES.map((s) => (
                 <li
@@ -104,8 +104,7 @@ export default function Servicios() {
               hover
               className="rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">03</p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-none">Extras</h2>
+              <h2 className="font-display text-5xl uppercase leading-none">Extras</h2>
               <ul className="mt-8 divide-y divide-line border-y border-line">
                 {[
                   ['Videollamada extra', '15€'],
@@ -125,8 +124,7 @@ export default function Servicios() {
               hover
               className="rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">04</p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-none">Suplementación honesta</h2>
+              <h2 className="font-display text-5xl uppercase leading-none">Suplementación honesta</h2>
               <p className="mt-8 text-fg-2">Creatina y proteína cuando aportan, sin vender humo.</p>
             </StaggerItem>
           </Stagger>

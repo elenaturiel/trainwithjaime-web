@@ -5,9 +5,7 @@ import { LEGAL } from '../../config.js'
 export default function LegalLayout({ title, children }) {
   return (
     <>
-      <PageHero eyebrow="Legal" title={title}>
-        Última actualización: {LEGAL.updated}
-      </PageHero>
+      <PageHero title={title}>Última actualización: {LEGAL.updated}</PageHero>
       <section className="bg-ink py-16 md:py-24">
         <article className="legal mx-auto max-w-3xl px-5 text-fg-2 md:px-8">{children}</article>
       </section>

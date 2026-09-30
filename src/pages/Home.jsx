@@ -4,14 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
 import CountUp from '../components/CountUp.jsx'
 import PricingCards from '../components/Pricing.jsx'
-import PlanExtras from '../components/PlanExtras.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
-import { TESTIMONIALS } from '../config.js'
+import { REAL_TESTIMONIALS as TESTIMONIALS } from '../config.js'
 
 // recharts pesa bastante: se carga aparte para no frenar el primer render.
 const ProgressChart = lazy(() => import('../components/ProgressChart.jsx'))
@@ -133,37 +132,36 @@ function Hero() {
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-40 md:px-8 md:pb-24">
-        <motion.span
-          {...item(0.05)}
-          className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-          Pamplona · Universitarios
-        </motion.span>
+      <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-40 md:px-8 md:pb-24">
         <motion.h1
-          {...item(0.15)}
-          className="mt-6 max-w-5xl font-display text-[44px] uppercase leading-[1.02] md:text-[90px]"
+          {...item(0.1)}
+          className="max-w-5xl font-display text-[44px] uppercase leading-[1.02] md:text-[90px]"
         >
           Menos excusas.
           <br />
           Más resultados.
         </motion.h1>
-        <motion.p {...item(0.25)} className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">
+        <motion.p {...item(0.2)} className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">
           Más peso en la barra. Menos tiempo en el 5km. Un plan que se nota en tus marcas, no en tu Instagram.
         </motion.p>
-        <motion.div {...item(0.35)} className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Button to="/test">
-            Hazte el test de estudihambre <ArrowIcon className="h-4 w-4" />
+        <motion.div {...item(0.3)} className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Button to="/contacto">
+            Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
           </Button>
-          <Button variant="secondary" onClick={() => setVideoOpen(true)}>
-            <PlayIcon className="h-4 w-4" /> Ver el vídeo
+          <Button to="/test" variant="secondary">
+            Hazte el test de estudihambre
           </Button>
         </motion.div>
-        <motion.p {...item(0.45)} className="mt-5 text-sm text-fg-2">
-          <span className="font-semibold text-accent-ink">Gratis:</span> primer contacto y asesoramiento con Jaime, sin
-          compromiso.
-        </motion.p>
+        <motion.div {...item(0.4)} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-fg-2">
+          <button
+            type="button"
+            onClick={() => setVideoOpen(true)}
+            className="inline-flex items-center gap-2 font-semibold text-fg underline-offset-4 hover:text-accent-ink hover:underline"
+          >
+            <PlayIcon className="h-3.5 w-3.5" /> Ver el vídeo
+          </button>
+          <span>Sin compromiso · Universitarios en Pamplona y online</span>
+        </motion.div>
       </div>
 
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
@@ -198,7 +196,7 @@ function Difference() {
     <section className="bg-panel py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal as="div">
-          <SectionHeading number="01" eyebrow="Por qué funciona" title="La diferencia" />
+          <SectionHeading title="La diferencia" />
         </Reveal>
         <Stagger className="mt-14 grid border-t border-line md:grid-cols-3">
           {DIFFERENCE.map((d) => (
@@ -242,7 +240,7 @@ function Evolution() {
     <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
-          <SectionHeading number="02" eyebrow="Progreso medible" title="Tu evolución" />
+          <SectionHeading title="Tu evolución" />
           {/* ⚠️ REVISAR: copy propuesto */}
           <p className="mt-6 max-w-md text-base leading-relaxed text-fg-2">
             Registramos tus marcas semana a semana y ajustamos el plan para que la línea solo vaya hacia arriba.
@@ -250,7 +248,7 @@ function Evolution() {
         </Reveal>
         <Reveal
           as="div"
-          className="rounded-2xl border border-line bg-panel p-5 transition-colors duration-300 hover:border-brand/50 md:p-8"
+          className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-12 md:pt-0"
         >
           <div className="mb-4 flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Sentadilla · 12 semanas</p>
@@ -259,14 +257,14 @@ function Evolution() {
           <Suspense fallback={<div className="h-56 md:h-64" />}>
             <ProgressChart />
           </Suspense>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105">
+          <div className="mt-6 grid grid-cols-2 divide-x divide-line border-t border-line pt-5">
+            <span className="pr-4 text-sm text-fg-2">
               Sentadilla 80kg →{' '}
               <strong className="text-fg">
                 <CountUp from={80} to={100} suffix="kg" />
               </strong>
             </span>
-            <span className="rounded-full border border-line bg-panel-2 px-4 py-2 text-sm text-fg-2 transition-[border-color,transform] duration-200 hover:border-brand motion-safe:hover:scale-105">
+            <span className="pl-4 text-sm text-fg-2">
               5km 28min →{' '}
               <strong className="text-fg">
                 <CountUp from={28} to={24} suffix="min" />
@@ -285,7 +283,7 @@ function Testimonials() {
     <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal as="div" className="mb-12 md:mb-16">
-          <SectionHeading number="04" eyebrow="Testimonios" title="Lo que dicen" />
+          <SectionHeading title="Lo que dicen" />
         </Reveal>
         <Stagger className="grid gap-5 md:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (
@@ -316,12 +314,9 @@ function Pricing() {
     <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal as="div" className="mb-14 md:mb-20">
-          <SectionHeading number="03" eyebrow="Planes" title="Precios" />
+          <SectionHeading title="Precios" />
         </Reveal>
         <PricingCards />
-        <div className="mt-16 md:mt-24">
-          <PlanExtras />
-        </div>
       </div>
     </section>
   )
@@ -338,7 +333,7 @@ export function FinalCTA() {
         <h2 className="font-display text-6xl uppercase leading-[1.02] md:text-[140px]">¿Y tú, quieres ganar?</h2>
         <div className="mt-10 flex justify-center">
           <Button to="/contacto">
-            Reserva tu llamada <ArrowIcon className="h-4 w-4" />
+            Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
           </Button>
         </div>
       </Reveal>
@@ -369,9 +364,12 @@ export default function Home() {
       <ScrollSection effect="clip">
         <Pricing />
       </ScrollSection>
-      <ScrollSection effect="parallax" blue>
-        <Testimonials />
-      </ScrollSection>
+      {/* Solo con testimonios reales (los de relleno [..] no se muestran) */}
+      {TESTIMONIALS.length > 0 && (
+        <ScrollSection effect="parallax" blue>
+          <Testimonials />
+        </ScrollSection>
+      )}
       <ScrollSection effect="zoom" bg="bg-panel" last dark>
         <FinalCTA />
       </ScrollSection>

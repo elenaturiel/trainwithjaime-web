@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { PRICING } from '../data/pricing.js'
@@ -29,7 +30,12 @@ function Price({ value, period }) {
 function WeeksPicker({ options, value, onChange }) {
   return (
     <div className="mt-6">
-      <div role="radiogroup" aria-label="Duración del pack" className="grid grid-cols-3 gap-2">
+      {/* Control segmentado: una sola pieza, sin bordes por opción */}
+      <div
+        role="radiogroup"
+        aria-label="Duración del pack"
+        className="grid grid-cols-3 gap-1 rounded-xl bg-panel-2 p-1"
+      >
         {options.map((o) => {
           const active = o.weeks === value
           return (
@@ -39,8 +45,8 @@ function WeeksPicker({ options, value, onChange }) {
               role="radio"
               aria-checked={active}
               onClick={() => onChange(o.weeks)}
-              className={`rounded-lg border py-2.5 text-sm font-bold uppercase tracking-wider transition-colors duration-150 ${
-                active ? 'border-fg bg-panel-2 text-fg' : 'border-line text-muted hover:border-muted-2 hover:text-fg-2'
+              className={`rounded-lg py-2.5 text-sm font-bold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand ${
+                active ? 'bg-fg text-ink' : 'text-muted hover:text-fg'
               }`}
             >
               {o.weeks} sem
@@ -70,7 +76,7 @@ function PlanCard({ p }) {
       {p.featured && (
         <>
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />
-          <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-accent">
+          <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-on-accent">
             <StarIcon className="h-3 w-3" />
             {p.badge}
           </span>
@@ -97,11 +103,11 @@ function PlanCard({ p }) {
         ))}
       </ul>
       {p.note && (
-        <p className="mt-6 rounded-lg border border-line bg-ink/60 px-4 py-3 text-xs leading-relaxed text-muted">
+        <p className="mt-6 text-sm leading-relaxed text-muted">
           {p.note}{' '}
-          <a href={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent-ink">
+          <Link to={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent-ink">
             Hablar con Jaime →
-          </a>
+          </Link>
         </p>
       )}
       <Button to={href} variant={p.featured ? 'primary' : 'secondary'} className="mt-8 w-full">
@@ -119,17 +125,32 @@ export default function PricingCards() {
           <PlanCard key={p.id} p={p} />
         ))}
       </Stagger>
-      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-panel p-6 md:flex-row md:items-center md:justify-between md:p-8">
-        <div>
-          <p className="font-display text-3xl uppercase leading-none md:text-4xl">
+      {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
+      <div className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
+        <div className="md:pr-10">
+          <p className="font-display text-4xl uppercase leading-none md:text-5xl">
             <span className="text-accent-ink">-10%</span> con carné universitario
           </p>
-          <p className="mt-2 text-sm text-muted">Se verifica al hablar con Jaime. ¿No sabes qué plan elegir?</p>
+          <p className="mt-3 text-fg-2">Se verifica cuando hablas con Jaime.</p>
         </div>
-        <Button to="/test" variant="secondary">
-          Hazte el test de estudihambre <ArrowIcon className="h-4 w-4" />
-        </Button>
+        <div className="md:pl-10">
+          <p className="font-display text-4xl uppercase leading-none md:text-5xl">
+            <span className="text-accent-ink">-15%</span> / <span className="text-accent-ink">-25%</span> con tu squad
+          </p>
+          <p className="mt-3 text-fg-2">
+            Si os apuntáis 2 amigos, -15% cada uno; 3 o más, -25%. Alta conjunta en Rookie y All In.{' '}
+            <Link to="/contacto?plan=squad" className="font-semibold text-brand underline-offset-4 hover:underline">
+              Entrar con mi squad →
+            </Link>
+          </p>
+        </div>
       </div>
+      <p className="mt-8 text-center text-fg-2">
+        ¿No sabes qué plan elegir?{' '}
+        <Link to="/test" className="font-semibold text-brand underline-offset-4 hover:underline">
+          Hazte el test de estudihambre →
+        </Link>
+      </p>
     </>
   )
 }
