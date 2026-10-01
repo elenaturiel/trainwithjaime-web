@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
-import CountUp from '../components/CountUp.jsx'
+import RollingNumber from '../components/RollingNumber.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Carousel from '../components/Carousel.jsx'
@@ -171,9 +171,9 @@ function Hero() {
 
 function Stats() {
   const stats = [
-    { value: <CountUp to={24.9} decimals={2} suffix="€" />, label: 'desde' },
-    { value: <CountUp to={10} prefix="-" suffix="%" />, label: 'con carné universitario' },
-    { value: <CountUp from={100} to={0} suffix="%" />, label: 'postureo' },
+    { value: <RollingNumber value="24,90" suffix="€" />, label: 'desde' },
+    { value: <RollingNumber value="10" prefix="-" suffix="%" />, label: 'con carné universitario' },
+    { value: <RollingNumber value="0" suffix="%" direction="down" />, label: 'postureo' },
   ]
   return (
     <Reveal className="border-y border-line bg-ink">
@@ -258,13 +258,13 @@ function Evolution() {
             <span className="pr-4 text-sm text-fg-2">
               Sentadilla 80kg →{' '}
               <strong className="text-fg">
-                <CountUp from={80} to={100} suffix="kg" />
+                <RollingNumber value="100" suffix="kg" />
               </strong>
             </span>
             <span className="pl-4 text-sm text-fg-2">
               5km 28min →{' '}
               <strong className="text-fg">
-                <CountUp from={28} to={24} suffix="min" />
+                <RollingNumber value="24" suffix="min" direction="down" />
               </strong>
             </span>
           </div>
