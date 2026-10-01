@@ -51,7 +51,7 @@ export default function CookieBanner() {
   }
 
   const btn =
-    'rounded-lg px-5 py-3 font-accent text-xs uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand'
+    'rounded-lg px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand'
 
   return (
     <>

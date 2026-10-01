@@ -125,7 +125,7 @@ export default function Test() {
                 transition={{ duration: 0.3 }}
               />
             </div>
-            <span className="font-accent text-xs uppercase tracking-[0.2em] text-muted tabular-nums">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted tabular-nums">
               {done ? 'Resultado' : `${step + 1} / ${QUESTIONS.length}`}
             </span>
           </div>
@@ -139,7 +139,7 @@ export default function Test() {
                 exit={{ opacity: 0, x: -32 }}
                 transition={{ duration: 0.25 }}
               >
-                <h2 className="font-display text-3xl uppercase leading-[1.02] md:text-5xl">{current.q}</h2>
+                <h2 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">{current.q}</h2>
                 <div className="mt-8 grid gap-3">
                   {current.options.map((o) => (
                     <motion.button
@@ -164,7 +164,7 @@ export default function Test() {
                   <button
                     type="button"
                     onClick={() => setStep((s) => s - 1)}
-                    className="mt-6 font-accent text-xs uppercase tracking-[0.2em] text-muted hover:text-fg"
+                    className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted hover:text-fg"
                   >
                     ← Anterior
                   </button>
@@ -179,8 +179,8 @@ export default function Test() {
                 className="rounded-2xl border border-accent/40 bg-panel p-7 md:p-10"
                 role="status"
               >
-                <p className="font-accent text-xs uppercase tracking-[0.25em] text-accent-ink">Tu plan</p>
-                <h2 className="mt-3 font-display text-6xl uppercase leading-none md:text-8xl">{plan.name}</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-ink">Tu plan</p>
+                <h2 className="mt-3 font-display text-7xl uppercase leading-none md:text-8xl">{plan.name}</h2>
                 <p className="mt-2 text-fg-2">
                   {plan.tagline}{' '}
                   <span className="text-fg">
@@ -227,7 +227,7 @@ export default function Test() {
                 <button
                   type="button"
                   onClick={restart}
-                  className="mt-6 font-accent text-xs uppercase tracking-[0.2em] text-muted hover:text-fg"
+                  className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted hover:text-fg"
                 >
                   Repetir el test
                 </button>

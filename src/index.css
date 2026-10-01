@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bowlby One", Impact, sans-serif;   /* titulares y cifras grandes */
-  --font-accent: "Bungee", Impact, sans-serif;        /* logo, menú, botones y etiquetas */
+  --font-display: "Anton", Impact, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
   /* Tema claro (por defecto): fondo blanco, texto azul marino */
@@ -72,18 +71,5 @@ body {
 
 /* Deja hueco a la tira superior + nav al saltar a #anclas */
 [id] { scroll-margin-top: 110px; }
-
-/* Palabras muy largas en titulares: partir con guion antes que desbordar */
-h1, h2, h3 {
-  hyphens: auto;
-  overflow-wrap: break-word;
-}
-
-/* Bowlby One y Bungee solo existen en un grosor: sin negrita sintética */
-.font-display,
-.font-accent {
-  font-synthesis: none;
-  font-weight: 400;
-}
 
 ::selection { background: var(--color-accent); color: var(--color-ink); }
