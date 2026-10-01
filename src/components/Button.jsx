@@ -5,7 +5,7 @@ import { hoverScale } from '../lib/motion.js'
 const MotionLink = motion.create(Link)
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60'
+  'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3.5 font-accent sm:px-6 text-xs uppercase tracking-wide transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60'
 
 const styles = {
   primary: 'bg-accent text-on-accent hover:bg-[#ffd666]',

@@ -11,7 +11,9 @@ export default function PlanExtras() {
         className="grid gap-8 rounded-2xl border border-brand/50 bg-panel p-7 hover:border-brand md:grid-cols-[1fr_auto] md:items-center md:p-12"
       >
         <div>
-          <h3 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">Entrena con tu gente</h3>
+          <h3 className="font-display text-3xl uppercase leading-[1.02] md:text-4xl lg:text-6xl">
+            Entrena con tu gente
+          </h3>
           <p className="mt-4 max-w-2xl text-fg-2">
             Los mejores resultados no se consiguen solo. Si te apuntas con tus amigos, todos ahorráis:
           </p>
@@ -34,7 +36,9 @@ export default function PlanExtras() {
         className="grid gap-8 rounded-2xl border border-brand/50 bg-panel p-7 hover:border-brand md:grid-cols-[1fr_auto] md:items-center md:p-12"
       >
         <div>
-          <h3 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">Prepárate para tu día</h3>
+          <h3 className="font-display text-3xl uppercase leading-[1.02] md:text-4xl lg:text-6xl">
+            Prepárate para tu día
+          </h3>
           <p className="mt-4 max-w-2xl text-fg-2">
             ¿Tienes una fecha en el calendario? Un HYROX, una media maratón, un trail, la San Silvestre, una prueba
             física de oposiciones... El plan PEAK es un pack cerrado de 8, 10 o 12 semanas diseñado alrededor de TU

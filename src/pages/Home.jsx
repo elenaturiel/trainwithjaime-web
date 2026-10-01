@@ -80,7 +80,7 @@ function VideoModal({ open, onClose }) {
           >
             <button
               onClick={onClose}
-              className="absolute -top-12 right-0 text-xs font-semibold uppercase tracking-widest text-fg-2 hover:text-fg"
+              className="absolute -top-12 right-0 font-accent text-xs uppercase tracking-widest text-fg-2 hover:text-fg"
             >
               Cerrar ✕
             </button>
@@ -135,7 +135,7 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-40 md:px-8 md:pb-24">
         <motion.h1
           {...item(0.1)}
-          className="max-w-5xl font-display text-[44px] uppercase leading-[1.02] md:text-[90px]"
+          className="max-w-5xl font-display text-[clamp(22px,7.2vw,44px)] uppercase leading-[1.02] md:text-[64px] lg:text-[90px]"
         >
           Menos excusas.
           <br />
@@ -180,10 +180,10 @@ function Stats() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:px-8">
         {stats.map((s) => (
           <div key={s.label} className="group py-10 sm:px-6 sm:first:pl-0 md:py-14">
-            <p className="origin-left font-display text-7xl leading-none transition-[color,transform] duration-200 group-hover:text-accent-ink motion-safe:group-hover:scale-105 md:text-8xl">
+            <p className="origin-left font-display text-7xl leading-none sm:text-4xl transition-[color,transform] duration-200 group-hover:text-accent-ink motion-safe:group-hover:scale-105 md:text-5xl lg:text-6xl xl:text-8xl">
               {s.value}
             </p>
-            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-muted">{s.label}</p>
+            <p className="mt-2 font-accent text-xs uppercase tracking-[0.25em] text-muted">{s.label}</p>
           </div>
         ))}
       </div>
@@ -208,7 +208,7 @@ function Difference() {
               <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent-ink">
                 {d.n}
               </p>
-              <h3 className="mt-6 font-display text-3xl uppercase">{d.title}</h3>
+              <h3 className="mt-6 font-display text-2xl uppercase lg:text-3xl">{d.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-fg-2">{d.text}</p>
             </StaggerItem>
           ))}
@@ -222,7 +222,7 @@ function Gallery() {
   return (
     <section className="bg-ink py-24 md:py-32">
       <Reveal as="div" className="mx-auto max-w-7xl px-5 md:px-8">
-        <h2 className="max-w-4xl font-display text-5xl uppercase leading-[1.02] md:text-8xl">
+        <h2 className="max-w-4xl font-display text-4xl uppercase leading-[1.02] md:text-6xl lg:text-8xl">
           Entrena con cabeza, nótalo en todo
         </h2>
         <p className="mb-12 mt-6 max-w-2xl text-base leading-relaxed text-fg-2 md:mb-16 md:text-lg">
@@ -246,12 +246,9 @@ function Evolution() {
             Registramos tus marcas semana a semana y ajustamos el plan para que la línea solo vaya hacia arriba.
           </p>
         </Reveal>
-        <Reveal
-          as="div"
-          className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-12 md:pt-0"
-        >
+        <Reveal as="div" className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-12 md:pt-0">
           <div className="mb-4 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Sentadilla · 12 semanas</p>
+            <p className="font-accent text-xs uppercase tracking-[0.2em] text-muted">Sentadilla · 12 semanas</p>
             <p className="text-xs text-muted-2">Ejemplo</p>
           </div>
           <Suspense fallback={<div className="h-56 md:h-64" />}>
@@ -330,7 +327,9 @@ export function FinalCTA() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.22),transparent_60%)]"
       />
       <Reveal as="div" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-        <h2 className="font-display text-6xl uppercase leading-[1.02] md:text-[140px]">¿Y tú, quieres ganar?</h2>
+        <h2 className="font-display text-5xl uppercase leading-[1.02] sm:text-6xl md:text-[96px] lg:text-[140px]">
+          ¿Y tú, quieres ganar?
+        </h2>
         <div className="mt-10 flex justify-center">
           <Button to="/contacto">
             Primera asesoría gratis <ArrowIcon className="h-4 w-4" />

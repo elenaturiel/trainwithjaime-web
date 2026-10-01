@@ -58,14 +58,16 @@ export default function Servicios() {
                   <span className="flex h-14 w-14 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-colors duration-200 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent-ink">
                     <Icon className="h-7 w-7" />
                   </span>
-                  <h2 className="mt-8 font-display text-4xl uppercase leading-[1.02] md:text-5xl">{title}</h2>
+                  <h2 className="mt-8 font-display text-2xl uppercase leading-[1.02] sm:text-3xl xl:text-5xl">
+                    {title}
+                  </h2>
                   <p className="mt-4 leading-relaxed text-fg-2">{text}</p>
                   {tags && (
                     <ul className="mt-6 flex flex-wrap gap-2" aria-label="En la plataforma">
                       {tags.map((t) => (
                         <li
                           key={t}
-                          className="rounded-full border border-line bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-wider text-fg-2"
+                          className="rounded-full border border-line bg-ink px-3 py-1 font-accent text-xs uppercase tracking-wider text-fg-2"
                         >
                           {t}
                         </li>
@@ -87,7 +89,7 @@ export default function Servicios() {
               {SPECIALTIES.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-line bg-panel-2 px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-fg-2 transition-[border-color,color,transform] duration-200 hover:border-accent hover:text-fg motion-safe:hover:scale-105"
+                  className="rounded-full border border-line bg-panel-2 px-5 py-2.5 text-sm font-accent uppercase tracking-wider text-fg-2 transition-[border-color,color,transform] duration-200 hover:border-accent hover:text-fg motion-safe:hover:scale-105"
                 >
                   {s}
                 </li>
@@ -104,7 +106,7 @@ export default function Servicios() {
               hover
               className="rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
             >
-              <h2 className="font-display text-5xl uppercase leading-none">Extras</h2>
+              <h2 className="font-display text-3xl uppercase leading-none lg:text-5xl">Extras</h2>
               <ul className="mt-8 divide-y divide-line border-y border-line">
                 {[
                   ['Videollamada extra', '15€'],
@@ -124,7 +126,9 @@ export default function Servicios() {
               hover
               className="rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
             >
-              <h2 className="font-display text-5xl uppercase leading-none">Suplementación honesta</h2>
+              <h2 className="font-display text-2xl uppercase leading-none sm:text-4xl md:text-2xl lg:text-4xl xl:text-5xl">
+                Suplementación honesta
+              </h2>
               <p className="mt-8 text-fg-2">Creatina y proteína cuando aportan, sin vender humo.</p>
             </StaggerItem>
           </Stagger>
@@ -142,7 +146,7 @@ export default function Servicios() {
       <ScrollSection effect="parallax" bg="bg-panel" last blue>
         <Reveal className="border-t border-line bg-panel py-20 md:py-28">
           <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-8">
-            <h2 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">Elige tu plan</h2>
+            <h2 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl lg:text-7xl">Elige tu plan</h2>
             <Button to="/#precios">
               Ver precios <ArrowIcon className="h-4 w-4" />
             </Button>

@@ -45,7 +45,7 @@ const FAQ = [
 
 const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
-const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
+const labelCls = 'mb-2 block font-accent text-xs uppercase tracking-[0.18em] text-fg-2'
 
 function ContactForm({ plan, weeks, initialCode, testPlan }) {
   const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
@@ -159,7 +159,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
         role="status"
       >
         <p className="font-display text-6xl leading-none text-brand">✓</p>
-        <h2 className="mt-6 font-display text-5xl uppercase leading-none md:text-6xl">
+        <h2 className="mt-6 font-display text-3xl uppercase leading-none sm:text-4xl md:text-5xl">
           ¡Gracias! Jaime te responde en menos de 24h
         </h2>
         {myCode && <MyCodeCard code={myCode} />}
@@ -179,7 +179,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
             setMyCode(null)
             setMyCodeFailed(false)
           }}
-          className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted underline-offset-4 hover:text-fg hover:underline"
+          className="mt-8 font-accent text-xs uppercase tracking-[0.2em] text-muted underline-offset-4 hover:text-fg hover:underline"
         >
           Enviar otro mensaje
         </button>
@@ -197,7 +197,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
       noValidate={false}
     >
       {plan && (
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
+        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 font-accent text-xs uppercase tracking-[0.18em] text-accent-ink">
           Interesado en: {planLabel}
         </p>
       )}
@@ -272,7 +272,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
 
       {/* Descuento con amigos (squad) */}
       <fieldset className="mt-8 rounded-xl border border-brand/40 bg-brand/5 p-5 md:p-6">
-        <legend className="flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+        <legend className="flex items-center gap-2 px-2 font-accent text-xs uppercase tracking-[0.2em] text-brand">
           <UsersIcon className="h-4 w-4" /> Descuentos
         </legend>
 
@@ -402,7 +402,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
               <button
                 type="button"
                 onClick={() => formRef.current?.requestSubmit()}
-                className="shrink-0 rounded-md border border-fg/25 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-fg hover:bg-fg/5"
+                className="shrink-0 rounded-md border border-fg/25 px-4 py-2 font-accent text-xs uppercase tracking-wider text-fg hover:bg-fg/5"
               >
                 Reintentar
               </button>
@@ -462,7 +462,7 @@ function MyCodeCard({ code }) {
 
   return (
     <div className="mt-8 w-full rounded-xl border border-accent/40 bg-accent/5 p-5 md:p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-ink">Tu código para tu amigo</p>
+      <p className="font-accent text-xs uppercase tracking-[0.2em] text-accent-ink">Tu código para tu amigo</p>
       <p className="mt-3 select-all font-mono text-3xl font-bold tracking-[0.15em] text-fg md:text-4xl">{code}</p>
       <p className="mt-2 text-sm text-muted">
         Guárdalo: solo sirve para una persona. Cuando tu amigo se apunte con él, los dos tenéis el descuento squad.
@@ -576,7 +576,7 @@ export default function Contacto() {
               </div>
 
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">FAQ</p>
+                <p className="font-accent text-xs uppercase tracking-[0.2em] text-muted">FAQ</p>
                 <ul className="mt-2 border-t border-line">
                   {FAQ.map((f) => (
                     <FaqItem key={f.q} {...f} />

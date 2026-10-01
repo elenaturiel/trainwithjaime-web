@@ -13,7 +13,7 @@ const LINKS = [
 
 export function Logo({ className = '' }) {
   return (
-    <Link to="/" className={`font-display text-2xl leading-none tracking-wide text-fg ${className}`}>
+    <Link to="/" className={`font-accent text-lg leading-none text-fg ${className}`}>
       TRAIN WITH <span className="text-brand">JAIME</span>
     </Link>
   )
@@ -60,7 +60,7 @@ export default function Nav() {
                   to={l.to}
                   end
                   className={({ isActive }) =>
-                    `relative py-1 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-fg hover:after:scale-x-100 ${
+                    `relative py-1 font-accent text-[11px] uppercase tracking-wider transition-colors duration-150 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-fg hover:after:scale-x-100 ${
                       isActive && !l.to.includes('#') ? 'text-fg' : 'text-fg-2'
                     }`
                   }
@@ -125,7 +125,7 @@ export default function Nav() {
                 >
                   <Link
                     to={l.to}
-                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent-ink"
+                    className="block py-4 font-display text-4xl leading-none text-fg transition-colors active:text-accent-ink"
                   >
                     {l.label}
                   </Link>

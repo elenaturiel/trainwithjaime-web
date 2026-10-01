@@ -15,7 +15,7 @@ export default function PageHero({ title, children }) {
         transition={{ duration: 0.5, ease: EASE }}
         className="relative mx-auto max-w-7xl px-5 md:px-8"
       >
-        <h1 className="font-display text-6xl uppercase leading-[1.02] md:text-9xl">{title}</h1>
+        <h1 className="font-display text-5xl uppercase leading-[1.02] sm:text-6xl md:text-8xl">{title}</h1>
         {children && <div className="mt-6 max-w-2xl text-base text-fg-2 md:text-lg">{children}</div>}
       </motion.div>
     </section>
