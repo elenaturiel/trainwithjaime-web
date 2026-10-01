@@ -91,7 +91,7 @@ function Stack({ first, last, bg, reduce, children }) {
             borderTopRightRadius: animated ? radius : first ? 0 : 28,
             transformOrigin: layout.origin,
           }}
-          className={`relative overflow-hidden ${bg} ${first ? '' : 'shadow-[0_-24px_48px_-12px_rgba(11,27,63,0.18)]'}`}
+          className={`relative overflow-hidden ${bg} ${first ? '' : 'shadow-[0_-24px_48px_-12px_rgba(4,16,55,0.18)]'}`}
         >
           {children}
           {animated && (
@@ -152,7 +152,7 @@ function Parallax({ first, bg, children }) {
     <div
       ref={ref}
       className={`relative overflow-hidden ${bg} ${
-        first ? '' : 'rounded-t-[28px] shadow-[0_-24px_48px_-12px_rgba(11,27,63,0.18)]'
+        first ? '' : 'rounded-t-[28px] shadow-[0_-24px_48px_-12px_rgba(4,16,55,0.18)]'
       }`}
     >
       <motion.div style={{ y, opacity }}>{children}</motion.div>

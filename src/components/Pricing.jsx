@@ -16,7 +16,7 @@ function Price({ value, period }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.2 }}
-          className="font-display text-6xl leading-none md:text-7xl"
+          className="font-display text-5xl leading-none sm:text-6xl lg:text-5xl xl:text-7xl"
         >
           {value}
         </motion.span>
@@ -69,7 +69,7 @@ function PlanCard({ p }) {
       hover
       className={`relative flex flex-col rounded-2xl border bg-panel p-7 md:p-8 ${
         p.featured
-          ? 'border-accent/40 bg-panel-2 hover:border-accent md:-my-4 md:py-12'
+          ? 'border-accent/40 bg-panel-2 hover:border-accent lg:-my-4 lg:py-12'
           : 'border-line hover:border-brand/60 hover:bg-panel-2'
       }`}
     >
@@ -82,7 +82,7 @@ function PlanCard({ p }) {
           </span>
         </>
       )}
-      <h3 className="font-display text-5xl uppercase leading-none">{p.name}</h3>
+      <h3 className="font-display text-5xl leading-none">{p.name}</h3>
       <p className="mt-2 text-sm text-muted">{p.tagline}</p>
 
       {p.options && (
@@ -120,7 +120,7 @@ function PlanCard({ p }) {
 export default function PricingCards() {
   return (
     <>
-      <Stagger className="grid gap-5 md:grid-cols-3 md:items-stretch">
+      <Stagger className="grid gap-5 lg:grid-cols-3 lg:items-stretch">
         {PRICING.map((p) => (
           <PlanCard key={p.id} p={p} />
         ))}
@@ -128,13 +128,13 @@ export default function PricingCards() {
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
       <div className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
         <div className="md:pr-10">
-          <p className="font-display text-4xl uppercase leading-none md:text-5xl">
+          <p className="font-display text-3xl leading-none lg:text-4xl xl:text-5xl">
             <span className="text-accent-ink">-10%</span> con carné universitario
           </p>
           <p className="mt-3 text-fg-2">Se verifica cuando hablas con Jaime.</p>
         </div>
         <div className="md:pl-10">
-          <p className="font-display text-4xl uppercase leading-none md:text-5xl">
+          <p className="font-display text-3xl leading-none lg:text-4xl xl:text-5xl">
             <span className="text-accent-ink">-15%</span> / <span className="text-accent-ink">-25%</span> con tu squad
           </p>
           <p className="mt-3 text-fg-2">

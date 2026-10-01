@@ -14,9 +14,7 @@ export default function LegalLayout({ title, children }) {
 }
 
 export const H2 = ({ children }) => (
-  <h2 className="mb-4 mt-12 font-display text-3xl uppercase leading-[1.05] text-fg first:mt-0 md:text-4xl">
-    {children}
-  </h2>
+  <h2 className="mb-4 mt-12 font-display text-3xl leading-[1.05] text-fg first:mt-0 md:text-4xl">{children}</h2>
 )
 export const P = ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>
 export const UL = ({ children }) => (

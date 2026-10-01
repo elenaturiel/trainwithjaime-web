@@ -102,8 +102,8 @@ export default function Carousel({ items, label = 'Galería' }) {
               }`}
             />
             {it.title && (
-              <figcaption className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-[#0B1B3F]/70 to-transparent p-6 pb-16 md:p-8 md:pb-24">
-                <span className="block max-w-md font-display text-3xl uppercase leading-[1.02] text-white md:text-5xl">
+              <figcaption className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-[#041037]/70 to-transparent p-6 pb-16 md:p-8 md:pb-24">
+                <span className="block max-w-md font-display text-3xl leading-[1.02] text-white md:text-5xl">
                   {it.title}
                 </span>
               </figcaption>

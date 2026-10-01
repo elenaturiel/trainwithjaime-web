@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Anton", Impact, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  /* Una sola familia con todos los grosores (300 → 700), como WHOOP: titulares ligeros, negrita para destacar */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
 
   /* Tema claro (por defecto): fondo blanco, texto azul marino */
   --color-ink: #FFFFFF;          /* fondo principal */
   --color-panel: #F4F6FA;        /* tarjetas / paneles */
   --color-panel-2: #EBEFF6;
   --color-line: #DFE5EF;         /* bordes y divisores */
-  --color-fg: #0B1B3F;           /* texto principal (azul oscuro) */
+  --color-fg: #041037;           /* texto principal (azul oscuro de marca) */
   --color-fg-2: #34466E;         /* texto secundario */
   --color-muted: #56668A;
   --color-muted-2: #5F6E8F;
   --color-brand: #1D64D8;        /* azul de marca (accesible sobre blanco) */
   --color-accent: #FFC93C;       /* amarillo: fondos de CTA y destacados */
   --color-accent-ink: #9A5B00;   /* amarillo oscurecido para TEXTO sobre fondo claro */
-  --color-on-accent: #0B1B3F;    /* texto encima del amarillo */
-  --color-shade: #0B1B3F;        /* oscurecido de los apartados al taparse */
+  --color-on-accent: #041037;    /* texto encima del amarillo */
+  --color-shade: #041037;        /* oscurecido de los apartados al taparse */
   --color-on-brand: #FFFFFF;     /* texto encima del azul de marca */
 }
 
 /* Bandas oscuras (hero con vídeo, CTA final, tira superior): mismos tokens en azul marino */
 .theme-dark {
-  --color-ink: #0B1633;
-  --color-panel: #101E40;
-  --color-panel-2: #15254C;
-  --color-line: #24345C;
+  --color-ink: #041037;          /* azul de marca */
+  --color-panel: #091844;
+  --color-panel-2: #0E1F50;
+  --color-line: #1D2E60;
   --color-fg: #FFFFFF;
   --color-fg-2: #C9D3E8;
   --color-muted: #9AA8C6;
   --color-muted-2: #8C9BBB;
   --color-brand: #5C9DFF;
   --color-accent-ink: #FFC93C;
-  --color-on-brand: #0B1633;
+  --color-on-brand: #041037;
   color: var(--color-fg);
 }
 
@@ -71,5 +72,13 @@ body {
 
 /* Deja hueco a la tira superior + nav al saltar a #anclas */
 [id] { scroll-margin-top: 110px; }
+
+/* Titulares ligeros (300) con tracking apretado; negrita (font-bold/semibold) para destacar palabras */
+@layer base {
+  h1, h2, h3, .font-display {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+}
 
 ::selection { background: var(--color-accent); color: var(--color-ink); }

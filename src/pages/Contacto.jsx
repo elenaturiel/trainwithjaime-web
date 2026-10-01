@@ -159,7 +159,7 @@ function ContactForm({ plan, weeks, initialCode, testPlan }) {
         role="status"
       >
         <p className="font-display text-6xl leading-none text-brand">✓</p>
-        <h2 className="mt-6 font-display text-5xl uppercase leading-none md:text-6xl">
+        <h2 className="mt-6 font-display text-5xl leading-none md:text-6xl">
           ¡Gracias! Jaime te responde en menos de 24h
         </h2>
         {myCode && <MyCodeCard code={myCode} />}
@@ -548,7 +548,7 @@ export default function Contacto() {
 
             <Reveal as="aside" className="flex flex-col gap-10">
               <div className="rounded-2xl border border-line bg-panel p-6 md:p-8">
-                <h2 className="font-display text-4xl uppercase leading-none">Escríbeme por WhatsApp</h2>
+                <h2 className="font-display text-4xl leading-none">Escríbeme por WhatsApp</h2>
                 <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="brand" className="mt-6 w-full">
                   <WhatsAppIcon className="h-5 w-5" /> Abrir WhatsApp
                 </Button>

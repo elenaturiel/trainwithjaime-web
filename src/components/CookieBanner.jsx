@@ -66,9 +66,9 @@ export default function CookieBanner() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-2 bottom-2 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-ink p-4 shadow-[0_12px_32px_rgba(11,27,63,0.22)] sm:inset-x-3 sm:bottom-3 sm:p-5 md:bottom-6 md:left-auto md:right-6 md:max-w-lg md:p-6"
+            className="fixed inset-x-2 bottom-2 z-[80] mx-auto max-w-3xl rounded-2xl border border-line bg-ink p-4 shadow-[0_12px_32px_rgba(4,16,55,0.22)] sm:inset-x-3 sm:bottom-3 sm:p-5 md:bottom-6 md:left-auto md:right-6 md:max-w-lg md:p-6"
           >
-            <h2 id="cookies-title" className="font-display text-xl uppercase leading-none sm:text-3xl">
+            <h2 id="cookies-title" className="font-display text-xl leading-none sm:text-3xl">
               Cookies, sin postureo
             </h2>
             {/* En móvil, versión corta para no tapar el hero; el texto completo, en pantallas grandes */}

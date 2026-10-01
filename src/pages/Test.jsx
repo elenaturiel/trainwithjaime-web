@@ -139,7 +139,7 @@ export default function Test() {
                 exit={{ opacity: 0, x: -32 }}
                 transition={{ duration: 0.25 }}
               >
-                <h2 className="font-display text-4xl uppercase leading-[1.02] md:text-6xl">{current.q}</h2>
+                <h2 className="font-display text-4xl leading-[1.02] md:text-6xl">{current.q}</h2>
                 <div className="mt-8 grid gap-3">
                   {current.options.map((o) => (
                     <motion.button
@@ -180,7 +180,7 @@ export default function Test() {
                 role="status"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-ink">Tu plan</p>
-                <h2 className="mt-3 font-display text-7xl uppercase leading-none md:text-8xl">{plan.name}</h2>
+                <h2 className="mt-3 font-display text-7xl leading-none md:text-8xl">{plan.name}</h2>
                 <p className="mt-2 text-fg-2">
                   {plan.tagline}{' '}
                   <span className="text-fg">

@@ -13,7 +13,7 @@ const LINKS = [
 
 export function Logo({ className = '' }) {
   return (
-    <Link to="/" className={`font-display text-2xl leading-none tracking-wide text-fg ${className}`}>
+    <Link to="/" className={`font-display text-xl font-bold leading-none tracking-wide text-fg ${className}`}>
       TRAIN WITH <span className="text-brand">JAIME</span>
     </Link>
   )

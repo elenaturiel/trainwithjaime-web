@@ -44,8 +44,8 @@ export default function SobreJaime() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
             >
-              <h1 className="font-display text-5xl uppercase leading-[1.02] md:text-7xl">
-                Un estudiante que entiende a otros estudiantes
+              <h1 className="font-display text-5xl leading-[1.02] md:text-7xl">
+                Un estudiante que <span className="font-bold">entiende a otros estudiantes</span>
               </h1>
               <p className="mt-4 font-semibold text-brand">CAFYD · 4º curso · Atleta de HYROX · Anti-postureo</p>
               <p className="mt-6 text-lg leading-relaxed text-fg-2">
@@ -90,7 +90,7 @@ export default function SobreJaime() {
                   <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent-ink">
                     {v.n}
                   </p>
-                  <h3 className="mt-6 font-display text-3xl uppercase">{v.title}</h3>
+                  <h3 className="mt-6 font-display text-3xl">{v.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-fg-2">{v.text}</p>
                 </StaggerItem>
               ))}
@@ -106,8 +106,8 @@ export default function SobreJaime() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.18),transparent_60%)]"
           />
           <Reveal as="figure" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-            <blockquote className="font-display text-6xl uppercase leading-[1.02] md:text-[140px]">
-              “¿Y tú, quieres ganar?”
+            <blockquote className="font-display text-5xl leading-[1.04] sm:text-6xl md:text-[96px] lg:text-[136px]">
+              “¿Y tú, <span className="font-bold">quieres ganar?</span>”
             </blockquote>
             <figcaption className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted">
               — Jaime

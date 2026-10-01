@@ -61,6 +61,13 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 La analítica es Vercel Web Analytics y solo se carga si el visitante la acepta en el aviso de cookies. Para ver los
 datos: Vercel → tu proyecto → **Analytics** → **Enable**. Las páginas legales están en `src/pages/legal/`.
 
+## Tipografía y color
+
+- **Outfit** (SIL OFL, libre para uso comercial) en toda la web, servida desde la propia web (`@fontsource/outfit`,
+  grosores 300–700 en `src/main.jsx`). Titulares en 300 con negrita para destacar palabras (estilo WHOOP).
+- Azul de marca **#041037** (tokens en `src/index.css`: `--color-fg` sobre blanco y `--color-ink` en `.theme-dark`).
+- Ojo con las fuentes "gratis" de webs de descargas: muchas son de uso personal y no valen para un negocio.
+
 ## Despliegue
 
 - **Vercel:** importa el repo en vercel.com → framework "Vite" → deploy. `vercel.json` ya incluye el rewrite para que `/servicios`, `/contacto`… funcionen al recargar.
