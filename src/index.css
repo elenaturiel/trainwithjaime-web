@@ -81,4 +81,10 @@ body {
   }
 }
 
+/* Barra de progreso de cada punto del carrusel (la foto siguiente llega cuando se llena) */
+@keyframes dot-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 ::selection { background: var(--color-accent); color: var(--color-ink); }
