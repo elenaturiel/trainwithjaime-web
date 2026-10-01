@@ -32,10 +32,9 @@ export default function SobreJaime() {
               transition={{ duration: 0.5, ease: EASE }}
               className="group overflow-hidden rounded-2xl border border-line bg-panel"
             >
-              {/* ⚠️ SUSTITUIR: foto de Jaime en /public/jaime.jpg (vertical, ~1000×1300) */}
               <img
                 src="/jaime.jpg"
-                alt="Jaime, entrenador de Train with Jaime"
+                alt="Jaime sonriendo y marcando bíceps"
                 className="aspect-[4/5] h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
               />
             </motion.div>

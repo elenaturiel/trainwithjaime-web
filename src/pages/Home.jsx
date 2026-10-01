@@ -20,14 +20,21 @@ const ProgressChart = lazy(() => import('../components/ProgressChart.jsx'))
 const HERO_VIDEO = '/hero.mp4'
 const HERO_POSTER = '/hero-poster.jpg'
 
-// ⚠️ SUSTITUIR FOTOS DE LA GALERÍA: /public/gallery-1.jpg … gallery-5.jpg
 const GALLERY = [
-  // `title` = frase que aparece encima de cada foto (cámbiala para que encaje con la foto real).
-  { src: '/gallery-1.jpg', alt: 'Entrenamiento de fuerza con Jaime', title: 'Más peso en la barra, semana a semana' },
-  { src: '/gallery-2.jpg', alt: 'Jaime revisando la técnica de un cliente', title: 'Tu técnica, revisada en vídeo' },
-  { src: '/gallery-3.jpg', alt: 'Running en Pamplona', title: 'Kilómetros con cabeza, no a lo loco' },
-  { src: '/gallery-4.jpg', alt: 'Entrenamiento HYROX', title: 'Llega a tu prueba en tu mejor versión' },
-  { src: '/gallery-5.jpg', alt: 'Universitarios entrenando juntos', title: 'Aquí no entrenas solo' },
+  // `title` = frase que aparece encima de cada foto. Fotos en /public/gallery-N.jpg (vertical 4:5).
+  {
+    src: '/gallery-1.jpg',
+    alt: 'Jaime posando en el gimnasio, de espaldas al espejo',
+    title: 'Más peso en la barra, semana a semana',
+  },
+  { src: '/gallery-2.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Aquí no entrenas solo' },
+  { src: '/gallery-3.jpg', alt: 'Jaime de espaldas frente al espejo, en blanco y negro', title: 'Resultados sin humo' },
+  {
+    src: '/gallery-4.jpg',
+    alt: 'Jaime marcando bíceps frente al espejo, en blanco y negro',
+    title: 'Llega en tu mejor versión',
+  },
+  { src: '/gallery-5.jpg', alt: 'Jaime con ropa de entrenar frente al espejo', title: 'Un plan hecho para ti' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).

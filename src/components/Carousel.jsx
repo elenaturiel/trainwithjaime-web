@@ -187,20 +187,20 @@ export default function Carousel({ items, label = 'Galería', interval = 4500 })
                 aria-roledescription="foto"
                 aria-label={`${it.i + 1} de ${n}`}
                 aria-hidden={original ? undefined : true}
-                className="group relative shrink-0 basis-[86%] select-none overflow-hidden rounded-2xl bg-panel md:basis-[72%]"
+                className="group relative shrink-0 basis-[76%] select-none overflow-hidden rounded-2xl bg-panel sm:basis-[44%] lg:basis-[31%]"
               >
                 <img
                   src={it.src}
                   alt={original ? it.alt : ''}
                   loading={original ? 'eager' : 'lazy'}
                   draggable={false}
-                  className={`aspect-[4/5] w-full object-cover transition-[transform,opacity] duration-500 sm:aspect-[16/10] motion-safe:group-hover:scale-[1.03] ${
+                  className={`aspect-[4/5] w-full object-cover transition-[transform,opacity] duration-500 motion-safe:group-hover:scale-[1.03] ${
                     active ? 'opacity-100' : 'opacity-60'
                   }`}
                 />
                 {it.title && (
                   <figcaption className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-[#041037]/70 to-transparent p-6 pb-16 md:p-8 md:pb-24">
-                    <span className="block max-w-md font-display text-3xl leading-[1.02] text-white md:text-5xl">
+                    <span className="block max-w-xs font-display text-2xl leading-[1.05] text-white lg:text-3xl">
                       {it.title}
                     </span>
                   </figcaption>
