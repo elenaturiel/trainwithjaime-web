@@ -2,13 +2,14 @@
 // CONFIGURACIÓN GLOBAL — todo lo que hay que sustituir está aquí
 // ─────────────────────────────────────────────────────────────
 
-// ⚠️ SUSTITUIR: ID real del formulario de Formspree (lo de después de /f/ en la URL
-// del endpoint, p. ej. "xyzabcd"). Los envíos llegan a trainwithjaimesanz@gmail.com.
-export const FORMSPREE_FORM_ID = 'TU_FORM_ID'
+// ID del formulario de Formspree (lo de después de /f/ en la URL del endpoint).
+// Los envíos llegan a trainwithjaimesanz@gmail.com.
+export const FORMSPREE_FORM_ID = 'mjykeabq'
 export const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`
 
-// ⚠️ SUSTITUIR: número de WhatsApp en formato internacional, sin "+", espacios ni guiones.
-export const WHATSAPP_NUMBER = '34600000000'
+// Número de WhatsApp en formato internacional, sin "+", espacios ni guiones.
+export const WHATSAPP_NUMBER = '34684034156'
+export const WHATSAPP_DISPLAY = '+34 684 034 156'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hola Jaime, vengo de la web de Train with Jaime',
 )}`
@@ -24,14 +25,35 @@ export const TOP_STRIP_TESTIMONIALS = [
   '[testimonio real pendiente]',
 ]
 
-// ⚠️ SUSTITUIR: testimonio grande a pantalla completa de la home.
-export const FEATURED_TESTIMONIAL = {
-  quote: '[testimonio real pendiente de confirmar]',
-  author: '[nombre pendiente]',
+// ⚠️ SUSTITUIR: testimonios de la home (tarjetas debajo de los precios).
+// `detail` = plan, carrera o marca conseguida; puede quedarse vacío.
+export const TESTIMONIALS = [
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+  { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
+]
+
+// ⚠️ SUSTITUIR: datos del titular de la web para el aviso legal y la política de privacidad
+// (obligatorios por la LSSI y el RGPD). Mientras estén entre corchetes se ven así en las páginas legales.
+export const LEGAL = {
+  owner: '[Nombre y apellidos del titular]',
+  nif: '[NIF]',
+  address: '[Domicilio completo]',
+  domain: 'trainwithjaime.com',
+  updated: '25 de septiembre de 2026',
 }
+
+// Un texto entre corchetes ("[testimonio real pendiente]") es de relleno: no se muestra en la web.
+// Así nunca aparecen estrellas o testimonios falsos; en cuanto pongas uno real, sale solo.
+const isPlaceholder = (text) => /^\s*\[/.test(text || '')
+export const REAL_TOP_STRIP = TOP_STRIP_TESTIMONIALS.filter((t) => !isPlaceholder(t))
+export const REAL_TESTIMONIALS = TESTIMONIALS.filter((t) => !isPlaceholder(t.quote) && !isPlaceholder(t.author))
+export const HAS_TOP_STRIP = REAL_TOP_STRIP.length > 0
 
 export const PLANS = {
   rookie: 'Rookie',
   allin: 'All In',
+  mvp: 'MVP',
   peak: 'Peak',
+  squad: 'Squad discount (Rookie / All In en grupo)',
 }

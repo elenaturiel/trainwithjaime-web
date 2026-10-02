@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { TOP_STRIP_TESTIMONIALS } from '../config.js'
+import { REAL_TOP_STRIP as TOP_STRIP_TESTIMONIALS } from '../config.js'
 
 // Tira superior fija con testimonio rotatorio.
 // ⚠️ SUSTITUIR los testimonios en src/config.js (TOP_STRIP_TESTIMONIALS).
+// Mientras todos sean de relleno ([...]), la tira no se muestra.
 export default function TopStrip() {
   const [i, setI] = useState(0)
 
@@ -13,8 +14,10 @@ export default function TopStrip() {
     return () => clearInterval(id)
   }, [])
 
+  if (!TOP_STRIP_TESTIMONIALS.length) return null
+
   return (
-    <div className="fixed inset-x-0 top-0 z-50 h-9 overflow-hidden border-b border-line bg-ink">
+    <div className="theme-dark fixed inset-x-0 top-0 z-50 h-9 overflow-hidden border-b border-line bg-ink">
       <div className="relative mx-auto flex h-full max-w-7xl items-center justify-center px-4">
         <AnimatePresence mode="wait" initial={false}>
           <motion.p
@@ -25,7 +28,7 @@ export default function TopStrip() {
             transition={{ duration: 0.35 }}
             className="truncate text-center text-xs text-fg-2"
           >
-            <span className="mr-2 text-accent">★★★★★</span>
+            <span className="mr-2 text-accent-ink">★★★★★</span>
             {TOP_STRIP_TESTIMONIALS[i]}
           </motion.p>
         </AnimatePresence>

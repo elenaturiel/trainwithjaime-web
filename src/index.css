@@ -1,19 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bebas Neue", Impact, sans-serif;
-  --font-sans: "Montserrat", system-ui, sans-serif;
+  /* Una sola familia con todos los grosores (300 → 700), como WHOOP: titulares ligeros, negrita para destacar */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
 
-  --color-ink: #05070A;
-  --color-panel: #0B0D12;
-  --color-panel-2: #0F1319;
-  --color-line: #1A1F2B;
+  /* Tema claro (por defecto): fondo blanco, texto azul marino */
+  --color-ink: #FFFFFF;          /* fondo principal */
+  --color-panel: #F4F6FA;        /* tarjetas / paneles */
+  --color-panel-2: #EBEFF6;
+  --color-line: #DFE5EF;         /* bordes y divisores */
+  --color-fg: #041037;           /* texto principal (azul oscuro de marca) */
+  --color-fg-2: #34466E;         /* texto secundario */
+  --color-muted: #56668A;
+  --color-muted-2: #5F6E8F;
+  --color-brand: #1D64D8;        /* azul de marca (accesible sobre blanco) */
+  --color-accent: #FFC93C;       /* amarillo: fondos de CTA y destacados */
+  --color-accent-ink: #9A5B00;   /* amarillo oscurecido para TEXTO sobre fondo claro */
+  --color-on-accent: #041037;    /* texto encima del amarillo */
+  --color-shade: #041037;        /* oscurecido de los apartados al taparse */
+  --color-on-brand: #FFFFFF;     /* texto encima del azul de marca */
+}
+
+/* Bandas oscuras (hero con vídeo, CTA final, tira superior): mismos tokens en azul marino */
+.theme-dark {
+  --color-ink: #041037;          /* azul de marca */
+  --color-panel: #091844;
+  --color-panel-2: #0E1F50;
+  --color-line: #1D2E60;
   --color-fg: #FFFFFF;
-  --color-fg-2: #C7CCD8;
-  --color-muted: #8A93A6;
-  --color-muted-2: #7C8497;
-  --color-brand: #3D8BFF;
-  --color-accent: #FFC93C;
+  --color-fg-2: #C9D3E8;
+  --color-muted: #9AA8C6;
+  --color-muted-2: #8C9BBB;
+  --color-brand: #5C9DFF;
+  --color-accent-ink: #FFC93C;
+  --color-on-brand: #041037;
+  color: var(--color-fg);
+}
+
+/* Banda azul intenso (testimonio, CTA de servicios, cita de Jaime) */
+.theme-blue {
+  --color-ink: #1646C2;
+  --color-panel: #1A4ECC;
+  --color-panel-2: #2056D4;
+  --color-line: #3A68DA;
+  --color-fg: #FFFFFF;
+  --color-fg-2: #DCE6FF;
+  --color-muted: #C9D8FB;
+  --color-muted-2: #C9D8FB;
+  --color-brand: #FFFFFF;
+  --color-accent-ink: #FFC93C;
+  --color-on-brand: #1646C2;
+  --color-shade: #06113A;
+  color: var(--color-fg);
 }
 
 html {
@@ -33,5 +72,19 @@ body {
 
 /* Deja hueco a la tira superior + nav al saltar a #anclas */
 [id] { scroll-margin-top: 110px; }
+
+/* Titulares ligeros (300) con tracking apretado; negrita (font-bold/semibold) para destacar palabras */
+@layer base {
+  h1, h2, h3, .font-display {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Barra de progreso de cada punto del carrusel (la foto siguiente llega cuando se llena) */
+@keyframes dot-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
 
 ::selection { background: var(--color-accent); color: var(--color-ink); }

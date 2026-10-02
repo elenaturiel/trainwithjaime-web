@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import Button from './Button.jsx'
+import { HAS_TOP_STRIP } from '../config.js'
 
 const LINKS = [
   { to: '/servicios', label: 'Servicios' },
   { to: '/sobre-jaime', label: 'Sobre Jaime' },
-  { to: '/#precios', label: 'Precios' },
+  { to: '/precios', label: 'Precios' },
   { to: '/contacto', label: 'Contacto' },
 ]
 
 export function Logo({ className = '' }) {
   return (
-    <Link to="/" className={`font-display text-2xl leading-none tracking-wide text-fg ${className}`}>
+    <Link to="/" className={`font-display text-xl font-bold leading-none tracking-wide text-fg ${className}`}>
       TRAIN WITH <span className="text-brand">JAIME</span>
     </Link>
   )
@@ -39,13 +40,15 @@ export default function Nav() {
   }, [open])
 
   const isSolid = solid || open
+  // Todas las páginas empiezan con una banda azul marino: sin scroll, el menú va en blanco.
+  const overDark = !isSolid
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-9 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
-          isSolid ? 'border-line bg-ink/85 backdrop-blur-md' : 'border-transparent bg-transparent'
-        }`}
+        className={`fixed inset-x-0 ${HAS_TOP_STRIP ? 'top-9' : 'top-0'} z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
+          isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
+        } ${overDark ? 'theme-dark' : ''}`}
       >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-18 md:px-8">
           <Logo />
@@ -70,7 +73,7 @@ export default function Nav() {
 
           <div className="hidden md:block">
             <Button to="/contacto" className="px-5 py-2.5 text-xs">
-              Empieza gratis
+              Primera asesoría gratis
             </Button>
           </div>
 
@@ -122,7 +125,7 @@ export default function Nav() {
                 >
                   <Link
                     to={l.to}
-                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent"
+                    className="block py-4 font-display text-5xl leading-none text-fg transition-colors active:text-accent-ink"
                   >
                     {l.label}
                   </Link>
@@ -130,7 +133,7 @@ export default function Nav() {
               ))}
             </motion.ul>
             <Button to="/contacto" className="w-full">
-              Empieza gratis
+              Primera asesoría gratis
             </Button>
           </motion.div>
         )}

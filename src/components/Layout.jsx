@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import TopStrip from './TopStrip.jsx'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
-import CursorFollower from './CursorFollower.jsx'
+import CookieBanner from './CookieBanner.jsx'
 
 // Sube arriba al cambiar de ruta, o salta a la #ancla si la URL la trae (p. ej. /#precios).
 function ScrollManager() {
@@ -24,13 +24,13 @@ export default function Layout() {
   return (
     <>
       <ScrollManager />
-      <CursorFollower />
       <TopStrip />
       <Nav />
       <main>
         <Outlet />
       </main>
       <Footer />
+      <CookieBanner />
     </>
   )
 }
