@@ -113,18 +113,44 @@ export const PRICING = [
   },
 ]
 
-// Filas de la tabla comparativa: true = incluido, false = no incluido, texto = matiz.
-export const COMPARE_ROWS = [
-  { label: 'Plan de entrenamiento personalizado', values: { rookie: true, allin: true, mvp: true, peak: '100% para tu evento' } },
-  { label: 'Plan nutricional', values: { rookie: false, allin: true, mvp: true, peak: 'A medida, ajustado cada semana' } },
-  { label: 'Revisión por WhatsApp', values: { rookie: 'Cada 15 días', allin: 'Semanal', mvp: 'Semanal', peak: 'Semanal prioritaria' } },
-  { label: 'Videollamada mensual con Jaime', values: { rookie: false, allin: '1 al mes', mvp: '1 al mes', peak: '1 al mes' } },
-  { label: 'Entrenos en directo con Jaime', values: { rookie: false, allin: false, mvp: '2 al mes (~1 h)', peak: '2 al mes (~1 h)' } },
-  { label: 'Análisis de técnica en vídeo', values: { rookie: 'Cuando lo necesites', allin: 'Ilimitado', mvp: 'Ilimitado', peak: 'Ilimitado' } },
-  { label: 'Test inicial y retest cada 4 semanas', values: { rookie: false, allin: false, mvp: true, peak: true } },
-  { label: 'Resumen de cada sesión en la plataforma', values: { rookie: false, allin: false, mvp: true, peak: true } },
-  { label: 'Respuesta prioritaria por WhatsApp', values: { rookie: false, allin: false, mvp: true, peak: true } },
-  { label: 'Sesión de arranque 1:1 (45 min)', values: { rookie: false, allin: false, mvp: false, peak: true } },
-  { label: 'Plan del día del evento', values: { rookie: false, allin: false, mvp: false, peak: true } },
-  { label: 'Comunidad WhatsApp', values: { rookie: true, allin: true, mvp: true, peak: true } },
+// Tabla comparativa por bloques: true = incluido, false = no incluido, texto = matiz.
+export const COMPARE_GROUPS = [
+  {
+    title: 'Entrenamiento',
+    rows: [
+      { label: 'Plan de entrenamiento personalizado', note: 'Gym o running, tú eliges.', values: { rookie: true, allin: true, mvp: true, peak: '100% para tu evento' } },
+      { label: 'Análisis de técnica en vídeo', values: { rookie: 'Cuando lo necesites', allin: 'Ilimitado', mvp: 'Ilimitado', peak: 'Ilimitado' } },
+      { label: 'Test inicial y retest cada 4 semanas', note: 'Repetimos las pruebas del principio para que veas cuánto has mejorado.', values: { rookie: false, allin: false, mvp: true, peak: true } },
+    ],
+  },
+  {
+    title: 'Nutrición',
+    rows: [
+      { label: 'Plan nutricional', note: 'Pensado para presupuesto de estudiante.', values: { rookie: false, allin: true, mvp: true, peak: 'A medida, ajustado cada semana' } },
+      { label: 'Recetas Mercadona, tuppers y comer fuera', values: { rookie: false, allin: true, mvp: true, peak: true } },
+    ],
+  },
+  {
+    title: 'Seguimiento con Jaime',
+    rows: [
+      { label: 'Revisión por WhatsApp', values: { rookie: 'Cada 15 días', allin: 'Semanal', mvp: 'Semanal', peak: 'Semanal prioritaria' } },
+      { label: 'Videollamada mensual con Jaime', note: 'Para hablar de tu plan y de todo lo que necesites.', values: { rookie: false, allin: '1 al mes', mvp: '1 al mes', peak: '1 al mes' } },
+      { label: 'Entrenos en directo con Jaime', note: 'Por videollamada, durante toda la sesión.', values: { rookie: false, allin: false, mvp: '2 al mes (~1 h)', peak: '2 al mes (~1 h)' } },
+      { label: 'Resumen de cada sesión en la plataforma', note: 'Tus 3 objetivos hasta la siguiente sesión quedan guardados.', values: { rookie: false, allin: false, mvp: true, peak: true } },
+      { label: 'Respuesta prioritaria por WhatsApp', values: { rookie: false, allin: false, mvp: true, peak: true } },
+    ],
+  },
+  {
+    title: 'Para tu evento',
+    rows: [
+      { label: 'Sesión de arranque 1:1 (45 min)', note: 'Fijamos tu objetivo, tu nivel y tu calendario.', values: { rookie: false, allin: false, mvp: false, peak: true } },
+      { label: 'Plan del día del evento', note: 'Ritmos, qué comer y beber, y cuándo.', values: { rookie: false, allin: false, mvp: false, peak: true } },
+    ],
+  },
+  {
+    title: 'Comunidad',
+    rows: [
+      { label: 'Comunidad WhatsApp', note: 'Tips semanales y reto mensual.', values: { rookie: true, allin: true, mvp: true, peak: true } },
+    ],
+  },
 ]
