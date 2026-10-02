@@ -19,7 +19,7 @@ export const PRICING = [
       'Plan de entrenamiento personalizado (gym o running, tú eliges)',
       'Actualización cada 4 semanas',
       'Revisión por WhatsApp cada 15 días',
-      'Análisis de técnica en vídeo cuando lo necesites',
+      'Análisis de técnica en vídeo limitado',
       'Comunidad WhatsApp: tips semanales + reto mensual',
     ],
   },
