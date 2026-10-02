@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../components/Button.jsx'
 import RollingNumber from '../components/RollingNumber.jsx'
@@ -321,6 +322,11 @@ function Pricing() {
           <SectionHeading title="Precios" />
         </Reveal>
         <PricingCards />
+        <p className="mt-6 text-center">
+          <Link to="/precios" className="font-semibold text-brand underline-offset-4 hover:underline">
+            Comparar los 4 planes →
+          </Link>
+        </p>
       </div>
     </section>
   )
@@ -335,7 +341,9 @@ export function FinalCTA() {
       />
       <Reveal as="div" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
         <h2 className="font-display text-5xl leading-[1.04] sm:text-6xl md:text-[96px] lg:text-[136px]">
-          ¿Y tú, <span className="font-bold">quieres ganar?</span>
+          Y tú,
+          <br />
+          <span className="font-bold">¿quieres ganar?</span>
         </h2>
         <div className="mt-10 flex justify-center">
           <Button to="/contacto">

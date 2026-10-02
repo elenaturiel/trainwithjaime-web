@@ -51,10 +51,13 @@ export const PRICING = [
     badge: MVP_BADGE,
     cta: 'Voy MVP',
     features: [
-      'Todo lo de All In',
+      {
+        title: 'Todo lo de All In',
+        note: 'Incluye la videollamada mensual con Jaime para hablar de tu plan y de todo lo que necesites.',
+      },
       {
         title: '2 entrenos al mes en directo con Jaime (~1 h cada uno)',
-        note: 'Entrenas y Jaime te acompaña por videollamada durante toda la sesión. Sustituye a la videollamada mensual de All In.',
+        note: 'Un añadido de este plan: entrenas y Jaime te acompaña por videollamada durante toda la sesión.',
       },
       'En casa o en el gym: tú eliges dónde entrenas',
       'Corrección de técnica, cargas y ritmo en directo',
@@ -108,4 +111,20 @@ export const PRICING = [
       'Comunidad WhatsApp incluida',
     ],
   },
+]
+
+// Filas de la tabla comparativa: true = incluido, false = no incluido, texto = matiz.
+export const COMPARE_ROWS = [
+  { label: 'Plan de entrenamiento personalizado', values: { rookie: true, allin: true, mvp: true, peak: '100% para tu evento' } },
+  { label: 'Plan nutricional', values: { rookie: false, allin: true, mvp: true, peak: 'A medida, ajustado cada semana' } },
+  { label: 'Revisión por WhatsApp', values: { rookie: 'Cada 15 días', allin: 'Semanal', mvp: 'Semanal', peak: 'Semanal prioritaria' } },
+  { label: 'Videollamada mensual con Jaime', values: { rookie: false, allin: '1 al mes', mvp: '1 al mes', peak: '1 al mes' } },
+  { label: 'Entrenos en directo con Jaime', values: { rookie: false, allin: false, mvp: '2 al mes (~1 h)', peak: '2 al mes (~1 h)' } },
+  { label: 'Análisis de técnica en vídeo', values: { rookie: 'Cuando lo necesites', allin: 'Ilimitado', mvp: 'Ilimitado', peak: 'Ilimitado' } },
+  { label: 'Test inicial y retest cada 4 semanas', values: { rookie: false, allin: false, mvp: true, peak: true } },
+  { label: 'Resumen de cada sesión en la plataforma', values: { rookie: false, allin: false, mvp: true, peak: true } },
+  { label: 'Respuesta prioritaria por WhatsApp', values: { rookie: false, allin: false, mvp: true, peak: true } },
+  { label: 'Sesión de arranque 1:1 (45 min)', values: { rookie: false, allin: false, mvp: false, peak: true } },
+  { label: 'Plan del día del evento', values: { rookie: false, allin: false, mvp: false, peak: true } },
+  { label: 'Comunidad WhatsApp', values: { rookie: true, allin: true, mvp: true, peak: true } },
 ]

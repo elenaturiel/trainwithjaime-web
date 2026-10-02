@@ -7,7 +7,7 @@ import { HAS_TOP_STRIP } from '../config.js'
 const LINKS = [
   { to: '/servicios', label: 'Servicios' },
   { to: '/sobre-jaime', label: 'Sobre Jaime' },
-  { to: '/#precios', label: 'Precios' },
+  { to: '/precios', label: 'Precios' },
   { to: '/contacto', label: 'Contacto' },
 ]
 

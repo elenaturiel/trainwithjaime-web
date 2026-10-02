@@ -220,7 +220,7 @@ export default function Test() {
                   >
                     {plan.cta} <ArrowIcon className="h-4 w-4" />
                   </Button>
-                  <Button to="/#precios" variant="secondary">
+                  <Button to="/precios" variant="secondary">
                     Ver todos los planes
                   </Button>
                 </div>

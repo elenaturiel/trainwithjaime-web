@@ -106,7 +106,9 @@ export default function SobreJaime() {
           />
           <Reveal as="figure" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
             <blockquote className="font-display text-5xl leading-[1.04] sm:text-6xl md:text-[96px] lg:text-[136px]">
-              “¿Y tú, <span className="font-bold">quieres ganar?</span>”
+              “Y tú,
+              <br />
+              <span className="font-bold">¿quieres ganar?</span>”
             </blockquote>
             <figcaption className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted">
               — Jaime

@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx'
 import Home from './pages/Home.jsx'
 import Servicios from './pages/Servicios.jsx'
 import SobreJaime from './pages/SobreJaime.jsx'
+import Precios from './pages/Precios.jsx'
 import Contacto from './pages/Contacto.jsx'
 import Test from './pages/Test.jsx'
 import AvisoLegal from './pages/legal/AvisoLegal.jsx'
@@ -19,6 +20,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<Servicios />} />
+          <Route path="/precios" element={<Precios />} />
           <Route path="/sobre-jaime" element={<SobreJaime />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/test" element={<Test />} />
