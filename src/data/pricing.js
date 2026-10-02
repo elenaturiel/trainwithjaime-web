@@ -119,7 +119,7 @@ export const COMPARE_GROUPS = [
     title: 'Entrenamiento',
     rows: [
       { label: 'Plan de entrenamiento personalizado', note: 'Gym o running, tú eliges.', values: { rookie: true, allin: true, mvp: true, peak: '100% para tu evento' } },
-      { label: 'Análisis de técnica en vídeo', values: { rookie: 'Cuando lo necesites', allin: 'Ilimitado', mvp: 'Ilimitado', peak: 'Ilimitado' } },
+      { label: 'Análisis de técnica en vídeo', values: { rookie: 'Limitado', allin: 'Ilimitado', mvp: 'Ilimitado', peak: 'Ilimitado' } },
       { label: 'Test inicial y retest cada 4 semanas', note: 'Repetimos las pruebas del principio para que veas cuánto has mejorado.', values: { rookie: false, allin: false, mvp: true, peak: true } },
     ],
   },
