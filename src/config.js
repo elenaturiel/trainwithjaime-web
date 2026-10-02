@@ -53,6 +53,7 @@ export const HAS_TOP_STRIP = REAL_TOP_STRIP.length > 0
 export const PLANS = {
   rookie: 'Rookie',
   allin: 'All In',
+  mvp: 'MVP',
   peak: 'Peak',
   squad: 'Squad discount (Rookie / All In en grupo)',
 }

@@ -6,9 +6,9 @@ import { Stagger, StaggerItem } from './Reveal.jsx'
 import Button from './Button.jsx'
 import { ArrowIcon, CheckIcon, StarIcon } from './Icons.jsx'
 
-function Price({ value, period }) {
+function Price({ value, oldValue, period }) {
   return (
-    <p className="mt-6 flex items-baseline gap-1.5">
+    <p className="mt-6 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={value}
@@ -16,12 +16,19 @@ function Price({ value, period }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.2 }}
-          className="font-display text-5xl leading-none sm:text-6xl lg:text-5xl xl:text-7xl"
+          className="font-display text-5xl leading-none sm:text-6xl md:text-6xl xl:text-5xl 2xl:text-6xl"
         >
           {value}
         </motion.span>
       </AnimatePresence>
       <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">{period}</span>
+      {oldValue && (
+        <span className="ml-1 text-base text-muted line-through decoration-1">
+          <span className="sr-only">Precio anterior: </span>
+          {oldValue}
+          <span className="sr-only">/mes</span>
+        </span>
+      )}
     </p>
   )
 }
@@ -67,23 +74,29 @@ function PlanCard({ p }) {
   return (
     <StaggerItem
       hover
-      className={`relative flex flex-col rounded-2xl border bg-panel p-7 md:p-8 ${
+      className={`relative flex min-w-0 flex-col rounded-2xl border bg-panel p-6 sm:p-7 ${
         p.featured
-          ? 'border-accent/40 bg-panel-2 hover:border-accent lg:-my-4 lg:py-12'
-          : 'border-line hover:border-brand/60 hover:bg-panel-2'
+          ? 'border-accent/40 bg-panel-2 hover:border-accent xl:-my-4 xl:py-12'
+          : p.tag
+            ? 'border-dashed border-fg/25 hover:border-brand/60 hover:bg-panel-2'
+            : 'border-line hover:border-brand/60 hover:bg-panel-2'
       }`}
     >
       {p.featured && (
         <>
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />
-          <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-on-accent">
+          <span className="absolute right-5 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-on-accent">
             <StarIcon className="h-3 w-3" />
             {p.badge}
           </span>
         </>
       )}
+      {p.tag && (
+        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-muted">{p.tag}</p>
+      )}
       <h3 className="font-display text-5xl leading-none">{p.name}</h3>
       <p className="mt-2 text-sm text-muted">{p.tagline}</p>
+      {p.lead && <p className="mt-3 text-sm font-semibold text-fg">{p.lead}</p>}
 
       {p.options && (
         <>
@@ -92,16 +105,28 @@ function PlanCard({ p }) {
         </>
       )}
 
-      <Price value={price} period={p.period} />
+      <Price value={price} oldValue={p.oldPrice} period={p.period} />
+      {p.id === 'mvp' && p.badge && (
+        <p className="mt-3 inline-flex self-start rounded-full border border-accent/60 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-accent-ink">
+          {p.badge}
+        </p>
+      )}
 
       <ul className="mt-8 flex-1 space-y-3 border-t border-line pt-6">
-        {p.features.map((f) => (
-          <li key={f} className="flex gap-3 text-sm text-fg-2">
-            <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? 'text-accent-ink' : 'text-brand'}`} />
-            {f}
-          </li>
-        ))}
+        {p.features.map((f) => {
+          const item = typeof f === 'string' ? { title: f } : f
+          return (
+            <li key={item.title} className="flex gap-3 text-sm text-fg-2">
+              <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? 'text-accent-ink' : 'text-brand'}`} />
+              <span className="min-w-0">
+                {item.title}
+                {item.note && <span className="mt-1 block text-xs leading-relaxed text-muted">{item.note}</span>}
+              </span>
+            </li>
+          )
+        })}
       </ul>
+      {p.extra && <p className="mt-6 text-xs leading-relaxed text-muted">{p.extra}</p>}
       {p.note && (
         <p className="mt-6 text-sm leading-relaxed text-muted">
           {p.note}{' '}
@@ -120,7 +145,7 @@ function PlanCard({ p }) {
 export default function PricingCards() {
   return (
     <>
-      <Stagger className="grid gap-5 lg:grid-cols-3 lg:items-stretch">
+      <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
         {PRICING.map((p) => (
           <PlanCard key={p.id} p={p} />
         ))}

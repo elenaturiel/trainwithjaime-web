@@ -31,7 +31,7 @@ const FAQ = [
   },
   {
     q: '¿Cómo funciona el seguimiento?',
-    a: 'Depende del plan: en Rookie, revisión por WhatsApp cada 15 días; en All In y Peak, revisión semanal (All In incluye además una videollamada al mes). Y si te surge una duda antes de entrenar, me escribes.',
+    a: 'Depende del plan: en Rookie, revisión por WhatsApp cada 15 días; en All In, MVP y Peak, revisión semanal (All In incluye además una videollamada al mes; MVP la sustituye por 2 entrenos al mes en directo con Jaime). Y si te surge una duda antes de entrenar, me escribes.',
   },
   {
     q: '¿Hay descuento para universitarios?',
