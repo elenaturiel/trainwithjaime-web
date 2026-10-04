@@ -146,28 +146,114 @@ function PlanCard({ p, yearly }) {
   )
 }
 
+
+// Versión compacta (home): una tarjeta con una fila por plan — nombre y resumen de una línea a la izquierda,
+// precio a la derecha. Los detalles completos están en /precios.
+function PricingList({ yearly, billing }) {
+  return (
+    <div className="mx-auto max-w-4xl rounded-3xl border border-line bg-panel p-5 sm:p-7 md:p-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h3 className="font-display text-2xl font-semibold leading-none md:text-3xl">Elige tu plan</h3>
+        {billing}
+      </div>
+      <ul className="mt-6 divide-y divide-line border-t border-line">
+        {PRICING.map((p) => {
+          const peak = !!p.options
+          const base = peak ? Math.min(...p.options.map((o) => num(o.price))) : p.amount
+          const annual = yearly && !peak
+          const amount = annual ? yearlyMonthly(base) : base
+          const was = annual ? base : p.oldAmount
+          const href = `/contacto?plan=${p.id}${annual ? '&periodo=anual' : ''}${peak ? '&semanas=10' : ''}`
+          return (
+            <li key={p.id} className="grid items-center gap-x-4 gap-y-3 py-5 sm:grid-cols-[1fr_auto]">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h4 className="font-display text-2xl font-semibold leading-none md:text-3xl">{p.name}</h4>
+                  {p.featured && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-on-accent">
+                      <StarIcon className="h-2.5 w-2.5" />
+                      {p.badge}
+                    </span>
+                  )}
+                  {p.id === 'mvp' && (
+                    <span className="rounded-full border border-accent/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-accent-ink">
+                      {p.badge.split(' · ')[0]}
+                    </span>
+                  )}
+                  {p.tag && (
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted">{p.tag}</span>
+                  )}
+                </div>
+                <p className="mt-1.5 text-sm text-muted">{p.summary}</p>
+              </div>
+              <div className="flex items-center justify-between gap-4 sm:justify-end">
+                <div className="text-left sm:text-right">
+                  <BillingPrice
+                    compact
+                    amount={amount}
+                    decimals={peak ? 0 : 2}
+                    was={was}
+                    period={p.period}
+                    prefix={peak ? 'desde' : undefined}
+                    className="text-3xl md:text-4xl"
+                  />
+                  <p className="mt-1 h-4 text-xs text-muted">{annual ? `${money(amount * 12)} al año` : '\u00A0'}</p>
+                </div>
+                <Link
+                  to={href}
+                  aria-label={`${p.cta}${annual ? ' (plan anual)' : ''}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+                    p.featured
+                      ? 'border-accent bg-accent text-on-accent hover:bg-[#ffd666]'
+                      : 'border-fg/25 text-fg hover:border-fg/60 hover:bg-fg/5'
+                  }`}
+                >
+                  <ArrowIcon className="h-4 w-4" />
+                </Link>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 const BILLING = [
   { value: 'monthly', label: 'Mensual' },
   { value: 'yearly', label: 'Anual', badge: `Ahorra ${Math.round(YEARLY_DISCOUNT * 100)}%`, activeBadge: `Ahorras ${Math.round(YEARLY_DISCOUNT * 100)}%` },
 ]
 
-export default function PricingCards() {
+export default function PricingCards({ compact = false }) {
   const [billing, setBilling] = useState('monthly')
   const yearly = billing === 'yearly'
+  const toggle = <BillingToggle value={billing} onValueChange={setBilling} options={BILLING} />
+  const note = (
+    <p className="max-w-md text-xs text-muted">
+      {Math.round(YEARLY_DISCOUNT * 100)}% de descuento si coges el año entero en Rookie, All In o MVP. Peak es un pack
+      cerrado y no cambia.
+    </p>
+  )
   return (
     <>
-      <div className="mb-10 flex flex-col items-center gap-3 text-center">
-        <BillingToggle value={billing} onValueChange={setBilling} options={BILLING} />
-        <p className="max-w-md text-xs text-muted">
-          {Math.round(YEARLY_DISCOUNT * 100)}% de descuento si coges el año entero en Rookie, All In o MVP. Peak es un
-          pack cerrado y no cambia.
-        </p>
-      </div>
+      {compact ? (
+        <>
+          <PricingList yearly={yearly} billing={toggle} />
+          <div className="mt-4 flex justify-center text-center">{note}</div>
+        </>
+      ) : (
+        <>
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            {toggle}
+            {note}
+          </div>
       <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
         {PRICING.map((p) => (
           <PlanCard key={p.id} p={p} yearly={yearly} />
         ))}
       </Stagger>
+        </>
+      )}
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
       <div className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
         <div className="md:pr-10">
