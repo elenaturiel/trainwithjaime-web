@@ -76,7 +76,7 @@ export default function SobreJaime() {
       </ScrollSection>
 
       <ScrollSection effect="clip" bg="bg-panel">
-        <section className="border-y border-line bg-panel py-24 md:py-32">
+        <section id="valores" className="border-y border-line bg-panel py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Reveal as="div">
               <SectionHeading title="Lo que defiendo" />
