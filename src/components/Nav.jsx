@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { AnimatePresence, LayoutGroup, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
 import Button from './Button.jsx'
 import { HAS_TOP_STRIP } from '../config.js'
+
+// La pastilla de selección se desliza de un enlace al otro (misma transición de muelle críticamente amortiguado
+// que el resto de selectores de la web: llega sin rebotar). Con "reducir movimiento" salta sin animar.
+const SELECTION = { type: 'spring', visualDuration: 0.34, bounce: 0 }
 
 const LINKS = [
   { to: '/servicios', label: 'Servicios' },
@@ -24,6 +28,7 @@ export default function Nav() {
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const reduced = useReducedMotion()
 
   // Transparente sobre el hero → sólido con blur a partir de 80px de scroll.
   useMotionValueEvent(scrollY, 'change', (y) => setSolid(y > 80))
@@ -53,23 +58,34 @@ export default function Nav() {
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-18 md:px-8">
           <Logo />
 
-          <ul className="hidden items-center gap-8 md:flex">
-            {LINKS.map((l) => (
-              <li key={l.to}>
-                <NavLink
-                  to={l.to}
-                  end
-                  className={({ isActive }) =>
-                    `relative py-1 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-200 hover:text-fg hover:after:scale-x-100 ${
-                      isActive && !l.to.includes('#') ? 'text-fg' : 'text-fg-2'
-                    }`
-                  }
-                >
-                  {l.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <LayoutGroup id="nav-tabs">
+            <ul className="hidden items-center gap-1 md:flex">
+              {LINKS.map((l) => {
+                const current = location.pathname === l.to
+                return (
+                  <li key={l.to}>
+                    <NavLink
+                      to={l.to}
+                      end
+                      className={`relative block rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+                        current ? 'text-fg' : 'text-fg-2'
+                      }`}
+                    >
+                      {current && (
+                        <motion.span
+                          layoutId="nav-selection"
+                          aria-hidden="true"
+                          className="absolute inset-0 rounded-full bg-fg/10"
+                          transition={reduced ? { duration: 0 } : SELECTION}
+                        />
+                      )}
+                      <span className="relative">{l.label}</span>
+                    </NavLink>
+                  </li>
+                )
+              })}
+            </ul>
+          </LayoutGroup>
 
           <div className="hidden md:block">
             <Button to="/contacto" className="px-5 py-2.5 text-xs">
