@@ -6,6 +6,13 @@ export const MVP_PRICE = '59,90€'
 export const MVP_PRICE_OLD = '64,90€'
 export const MVP_BADGE = 'Precio fundador · primeras 6 plazas'
 export const EXTRA_SESSION_PRICE = '25 €'
+// ✏️ Descuento por pagar el año entero (Rookie, All In y MVP; Peak es un pack cerrado).
+export const YEARLY_DISCOUNT = 0.2
+
+// '24,90€' → 24.9
+export const num = (s) => parseFloat(String(s).replace(',', '.'))
+// Precio mensual con el descuento anual, a céntimos
+export const yearlyMonthly = (amount) => Math.round(amount * (1 - YEARLY_DISCOUNT) * 100) / 100
 
 export const PRICING = [
   {
@@ -13,6 +20,7 @@ export const PRICING = [
     name: 'Rookie',
     tagline: 'Empieza a entrenar con cabeza.',
     price: '24,90€',
+    amount: num('24,90€'),
     period: '/mes',
     cta: 'Empezar con Rookie',
     features: [
@@ -28,6 +36,7 @@ export const PRICING = [
     name: 'All In',
     tagline: 'Entrenamiento + nutrición. Todo dentro.',
     price: '44,90€',
+    amount: num('44,90€'),
     period: '/mes',
     featured: true,
     badge: 'El más elegido',
@@ -46,7 +55,9 @@ export const PRICING = [
     name: 'MVP',
     tagline: 'Jaime contigo en tus entrenos clave. Tú juegas, él te lleva.',
     price: MVP_PRICE,
+    amount: num(MVP_PRICE),
     oldPrice: MVP_PRICE_OLD,
+    oldAmount: num(MVP_PRICE_OLD),
     period: '/mes',
     badge: MVP_BADGE,
     cta: 'Voy MVP',

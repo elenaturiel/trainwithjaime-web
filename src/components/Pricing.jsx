@@ -1,37 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { PRICING } from '../data/pricing.js'
+import { PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
+import { BillingPrice, BillingToggle } from './BillingToggle.jsx'
 import { Stagger, StaggerItem } from './Reveal.jsx'
 import Button from './Button.jsx'
 import { ArrowIcon, CheckIcon, StarIcon } from './Icons.jsx'
-
-function Price({ value, oldValue, period }) {
-  return (
-    <p className="mt-6 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={value}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.2 }}
-          className="font-display text-5xl leading-none sm:text-6xl md:text-6xl xl:text-5xl 2xl:text-6xl"
-        >
-          {value}
-        </motion.span>
-      </AnimatePresence>
-      <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">{period}</span>
-      {oldValue && (
-        <span className="ml-1 text-base text-muted line-through decoration-1">
-          <span className="sr-only">Precio anterior: </span>
-          {oldValue}
-          <span className="sr-only">/mes</span>
-        </span>
-      )}
-    </p>
-  )
-}
 
 // Selector 8 / 10 / 12 semanas del plan Peak.
 function WeeksPicker({ options, value, onChange }) {
@@ -65,11 +39,19 @@ function WeeksPicker({ options, value, onChange }) {
   )
 }
 
-function PlanCard({ p }) {
+const money = (v) => `${v.toFixed(2).replace('.', ',')}€`
+
+function PlanCard({ p, yearly }) {
   const [weeks, setWeeks] = useState(p.defaultWeeks)
   const option = p.options?.find((o) => o.weeks === weeks)
-  const price = option ? option.price : p.price
-  const href = option ? `/contacto?plan=${p.id}&semanas=${weeks}` : `/contacto?plan=${p.id}`
+  // El pago anual (-20 %) solo aplica a los planes mensuales; Peak es un pack cerrado
+  const annual = yearly && !option && p.amount !== undefined
+  const base = option ? num(option.price) : p.amount
+  const amount = annual ? yearlyMonthly(base) : base
+  const was = annual ? base : p.oldAmount
+  const href = option
+    ? `/contacto?plan=${p.id}&semanas=${weeks}`
+    : `/contacto?plan=${p.id}${annual ? '&periodo=anual' : ''}`
 
   return (
     <StaggerItem
@@ -105,7 +87,29 @@ function PlanCard({ p }) {
         </>
       )}
 
-      <Price value={price} oldValue={p.oldPrice} period={p.period} />
+      <BillingPrice
+        amount={amount}
+        decimals={option ? 0 : 2}
+        was={was}
+        period={p.period}
+        className="text-5xl sm:text-6xl md:text-6xl xl:text-5xl 2xl:text-6xl"
+      />
+      <AnimatePresence initial={false}>
+        {annual && (
+          <motion.p
+            key="year"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden text-xs leading-relaxed text-muted"
+          >
+            <span className="mt-2 block">
+              Pagas {money(amount * 12)} al año · ahorras {money((base - amount) * 12)}
+            </span>
+          </motion.p>
+        )}
+      </AnimatePresence>
       {p.id === 'mvp' && p.badge && (
         <p className="mt-3 inline-flex self-start rounded-full border border-accent/60 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-accent-ink">
           {p.badge}
@@ -142,12 +146,26 @@ function PlanCard({ p }) {
   )
 }
 
+const BILLING = [
+  { value: 'monthly', label: 'Mensual' },
+  { value: 'yearly', label: 'Anual', badge: `Ahorra ${Math.round(YEARLY_DISCOUNT * 100)}%`, activeBadge: `Ahorras ${Math.round(YEARLY_DISCOUNT * 100)}%` },
+]
+
 export default function PricingCards() {
+  const [billing, setBilling] = useState('monthly')
+  const yearly = billing === 'yearly'
   return (
     <>
+      <div className="mb-10 flex flex-col items-center gap-3 text-center">
+        <BillingToggle value={billing} onValueChange={setBilling} options={BILLING} />
+        <p className="max-w-md text-xs text-muted">
+          {Math.round(YEARLY_DISCOUNT * 100)}% de descuento si coges el año entero en Rookie, All In o MVP. Peak es un
+          pack cerrado y no cambia.
+        </p>
+      </div>
       <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
         {PRICING.map((p) => (
-          <PlanCard key={p.id} p={p} />
+          <PlanCard key={p.id} p={p} yearly={yearly} />
         ))}
       </Stagger>
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
