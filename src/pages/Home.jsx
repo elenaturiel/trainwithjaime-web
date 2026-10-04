@@ -7,6 +7,7 @@ import RollingNumber from '../components/RollingNumber.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
+import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
@@ -200,29 +201,18 @@ function Stats() {
   )
 }
 
+// Fotos de la galería para acompañar cada punto (una por punto)
+const DIFFERENCE_IMAGES = ['/gallery-2.jpg', '/gallery-1.jpg', '/gallery-4.jpg']
+
 function Difference() {
   return (
-    <section className="bg-panel py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal as="div">
-          <SectionHeading title="La diferencia" />
-        </Reveal>
-        <Stagger className="mt-14 grid border-t border-line md:grid-cols-3">
-          {DIFFERENCE.map((d) => (
-            <StaggerItem
-              key={d.n}
-              hover
-              className="group rounded-xl border-b border-line px-4 py-10 hover:bg-panel-2 md:border-b-0 md:border-l md:px-8 md:first:border-l-0"
-            >
-              <p className="font-display text-6xl leading-none text-brand transition-colors duration-200 group-hover:text-accent-ink">
-                {d.n}
-              </p>
-              <h3 className="mt-6 font-display text-3xl">{d.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-fg-2">{d.text}</p>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </div>
+    // Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de SnapText
+    <section className="theme-dark relative bg-panel">
+      <SnapText
+        items={DIFFERENCE}
+        images={DIFFERENCE_IMAGES}
+        heading={<h2 className="font-display text-4xl leading-none md:text-6xl">La diferencia</h2>}
+      />
     </section>
   )
 }
@@ -342,9 +332,7 @@ export default function Home() {
       <ScrollSection effect="parallax">
         <Stats />
       </ScrollSection>
-      <ScrollSection effect="clip" bg="bg-panel" dark>
-        <Difference />
-      </ScrollSection>
+      <Difference />
       <ScrollSection effect="zoom">
         <Gallery />
       </ScrollSection>
