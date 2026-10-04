@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
+import BorderGlow from './BorderGlow.jsx'
 import { BillingPrice, BillingToggle } from './BillingToggle.jsx'
 import { Stagger, StaggerItem } from './Reveal.jsx'
 import Button from './Button.jsx'
@@ -66,6 +67,7 @@ function PlanCard({ p, yearly }) {
     >
       {p.featured && (
         <>
+          <BorderGlow coneSpread={32} />
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />
           <span className="absolute right-5 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-on-accent">
             <StarIcon className="h-3 w-3" />
@@ -170,13 +172,15 @@ export default function PricingCards() {
       </Stagger>
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
       <div className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
-        <div className="md:pr-10">
+        <div className="relative rounded-3xl md:pr-10">
+          <BorderGlow inset="-1.25rem" coneSpread={45} colors={['#5C9DFF', '#FFC93C', '#5C9DFF']} />
           <p className="font-display text-3xl leading-none lg:text-4xl xl:text-5xl">
             <span className="text-accent-ink">-10%</span> con carné universitario
           </p>
           <p className="mt-3 text-fg-2">Se verifica cuando hablas con Jaime.</p>
         </div>
-        <div className="md:pl-10">
+        <div className="relative rounded-3xl md:pl-10">
+          <BorderGlow inset="-1.25rem" coneSpread={45} colors={['#FFC93C', '#5C9DFF', '#FFC93C']} />
           <p className="font-display text-3xl leading-none lg:text-4xl xl:text-5xl">
             <span className="text-accent-ink">-15%</span> / <span className="text-accent-ink">-25%</span> con tu squad
           </p>

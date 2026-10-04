@@ -1,3 +1,5 @@
+import '@fontsource-variable/outfit/wght.css'
+import VariableProximity from './VariableProximity.jsx'
 import Button from './Button.jsx'
 import { Reveal } from './Reveal.jsx'
 import { ArrowIcon } from './Icons.jsx'
@@ -12,9 +14,26 @@ export default function FinalCTA() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.22),transparent_60%)]"
       />
       <Reveal as="div" className="relative mx-auto w-full max-w-7xl px-5 text-center md:px-8">
-        <h2 className="font-display text-[clamp(2.5rem,9vw,8rem)] leading-[1.04]">
-          <span className="block">Y tú,</span>
-          <span className="block whitespace-nowrap font-bold">¿quieres ganar?</span>
+        {/* Cada letra engorda según lo cerca que pase el cursor (o el dedo): fuente variable de Outfit */}
+        <h2 aria-label="Y tú, ¿quieres ganar?" className="font-variable text-[clamp(2.5rem,9vw,8rem)] leading-[1.04]">
+          <VariableProximity
+            as="span"
+            label="Y tú,"
+            className="block"
+            fromFontVariationSettings="'wght' 300"
+            toFontVariationSettings="'wght' 800"
+            radius={220}
+            falloff="linear"
+          />
+          <VariableProximity
+            as="span"
+            label="¿quieres ganar?"
+            className="block whitespace-nowrap"
+            fromFontVariationSettings="'wght' 650"
+            toFontVariationSettings="'wght' 900"
+            radius={220}
+            falloff="linear"
+          />
         </h2>
         <div className="mt-10 flex justify-center md:mt-14">
           <Button to="/contacto">
