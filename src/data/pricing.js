@@ -22,6 +22,7 @@ export const PRICING = [
     price: '24,90€',
     amount: num('24,90€'),
     period: '/mes',
+    summary: 'Entrenamiento personalizado y revisión por WhatsApp cada 15 días.',
     cta: 'Empezar con Rookie',
     features: [
       'Plan de entrenamiento personalizado (gym o running, tú eliges)',
@@ -40,6 +41,7 @@ export const PRICING = [
     period: '/mes',
     featured: true,
     badge: 'El más elegido',
+    summary: 'Entrenamiento + nutrición, revisión semanal y videollamada mensual.',
     cta: 'Voy All In',
     features: [
       'Todo lo de Rookie',
@@ -60,6 +62,7 @@ export const PRICING = [
     oldAmount: num(MVP_PRICE_OLD),
     period: '/mes',
     badge: MVP_BADGE,
+    summary: 'Todo lo de All In + 2 entrenos al mes en directo con Jaime.',
     cta: 'Voy MVP',
     features: [
       {
@@ -93,6 +96,7 @@ export const PRICING = [
     tag: 'A medida',
     lead: 'Todo lo de MVP, hecho a tu medida.',
     period: '/pack',
+    summary: 'Pack a medida para tu prueba: 8, 10 o 12 semanas.',
     cta: 'Voy a por mi Peak',
     // Pack cerrado: el precio depende de las semanas elegidas.
     options: [

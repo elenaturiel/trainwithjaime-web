@@ -339,7 +339,7 @@ function Pricing() {
             className="block text-center font-display text-6xl font-bold uppercase leading-[1.02] md:text-[9rem]"
           />
         </Reveal>
-        <PricingCards />
+        <PricingCards compact />
         <p className="mt-6 text-center">
           <Link to="/precios" className="font-semibold text-brand underline-offset-4 hover:underline">
             Comparar los 4 planes →
