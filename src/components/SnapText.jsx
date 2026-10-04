@@ -125,7 +125,7 @@ export default function SnapText({
     <div ref={ref} className={`relative ${className}`} style={{ height: `${100 + (n - 1) * screens * 100}svh` }}>
       <div className="sticky top-0 h-svh min-h-[520px] overflow-hidden" style={{ fontSize: 'clamp(1.9rem, 6vw, 5.75rem)' }}>
         {heading && (
-          <div className="absolute inset-x-0 top-24 z-10 mx-auto max-w-7xl px-5 text-fg md:top-28 md:px-8" style={{ fontSize: '1rem' }}>
+          <div className="absolute inset-x-0 top-[5.25rem] z-10 mx-auto max-w-7xl px-5 text-fg md:top-[5.5rem] md:px-8" style={{ fontSize: '1rem' }}>
             {heading}
           </div>
         )}
@@ -133,7 +133,7 @@ export default function SnapText({
         {/* mobile: the picture on top, the lines under it · desktop: picture left, lines right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.5rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[13rem] md:flex-row md:items-center md:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
+          className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.75rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[14rem] md:flex-row md:items-center md:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
         >
           {images.length > 0 && (
             <div className="relative h-[25svh] w-full shrink-0 overflow-hidden rounded-xl bg-panel-2 md:h-[min(54svh,36rem)] md:w-auto md:aspect-[4/5] md:rounded-2xl">

@@ -225,7 +225,7 @@ function Difference() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            className="block text-center font-display text-5xl font-bold uppercase leading-none md:text-[7rem]"
+            className="block text-center font-display text-4xl font-bold uppercase leading-none md:text-[5.25rem]"
           />
         }
       />
