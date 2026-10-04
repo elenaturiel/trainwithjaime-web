@@ -110,7 +110,7 @@ export default function Test() {
 
   return (
     <>
-      <PageHero title="¿Qué plan es para ti?">
+      <PageHero align="center" title="¿Qué plan es para ti?">
         6 preguntas, 1 minuto. Al final te decimos qué plan te encaja mejor.
       </PageHero>
 
