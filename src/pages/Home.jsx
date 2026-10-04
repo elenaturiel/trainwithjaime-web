@@ -8,6 +8,7 @@ import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
 import FoldText from '../components/FoldText.jsx'
+import ScrollExpand from '../components/ScrollExpand.jsx'
 import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -251,16 +252,17 @@ function Gallery() {
 
 function Evolution() {
   return (
-    <section className="bg-ink py-24 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
+    // Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de ScrollExpand
+    <ScrollExpand src="/gallery-3.jpg" title="Tu evolución">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
           <SectionHeading title="Tu evolución" />
           {/* ⚠️ REVISAR: copy propuesto */}
-          <p className="mt-6 max-w-md text-base leading-relaxed text-fg-2">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-fg-2 md:mt-6">
             Registramos tus marcas semana a semana y ajustamos el plan para que la línea solo vaya hacia arriba.
           </p>
         </Reveal>
-        <Reveal as="div" className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+        <Reveal as="div" className="border-t border-line pt-5 md:border-l md:border-t-0 md:pl-12 md:pt-0">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">Sentadilla · 12 semanas</p>
             <p className="text-xs text-muted-2">Ejemplo</p>
@@ -268,7 +270,7 @@ function Evolution() {
           <Suspense fallback={<div className="h-56 md:h-64" />}>
             <ProgressChart />
           </Suspense>
-          <div className="mt-6 grid grid-cols-2 divide-x divide-line border-t border-line pt-5">
+          <div className="mt-5 grid grid-cols-2 divide-x divide-line border-t border-line pt-4 md:mt-6 md:pt-5">
             <span className="pr-4 text-sm text-fg-2">
               Sentadilla 80kg →{' '}
               <strong className="text-fg">
@@ -284,7 +286,7 @@ function Evolution() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </ScrollExpand>
   )
 }
 
@@ -363,9 +365,7 @@ export default function Home() {
       <ScrollSection effect="zoom">
         <Gallery />
       </ScrollSection>
-      <ScrollSection effect="stack" dark>
-        <Evolution />
-      </ScrollSection>
+      <Evolution />
       {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}
       <div id="precios" aria-hidden="true" />
       <ScrollSection effect="clip">
