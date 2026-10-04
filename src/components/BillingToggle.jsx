@@ -153,7 +153,7 @@ export function BillingToggle({ value, onValueChange, options, label = 'Periodo 
 const fmt = (v, decimals) => v.toFixed(decimals).replace('.', ',')
 
 /* The amount rolls to its new value (stands in for the AnimatedCounter of the original). */
-function Counter({ value, decimals }) {
+export function Counter({ value, decimals }) {
   const reduced = !!useReducedMotion()
   const mv = useMotionValue(value)
   const [text, setText] = useState(fmt(value, decimals))
@@ -172,7 +172,7 @@ function Counter({ value, decimals }) {
  * A price that rolls to its new amount. The struck-through old price eases its width in and out, so
  * nothing beside it jumps. `was` is shown only when it is higher than `amount`.
  */
-export function BillingPrice({ amount, decimals = 2, was, period, prefix, compact = false, className = '' }) {
+export function BillingPrice({ amount, decimals = 2, was, period, prefix, compact = false, className = '', periodClass = '', wasClass = '' }) {
   const reduced = !!useReducedMotion()
   const showWas = was !== undefined && was > amount
   return (
@@ -190,7 +190,7 @@ export function BillingPrice({ amount, decimals = 2, was, period, prefix, compac
         <Counter value={amount} decimals={decimals} />
         <span aria-hidden="true">€</span>
       </span>
-      <span aria-hidden="true" className="text-xs font-semibold uppercase tracking-[0.15em] text-muted">
+      <span aria-hidden="true" className={`text-xs font-semibold uppercase tracking-[0.15em] text-muted ${periodClass}`}>
         {period}
       </span>
       <AnimatePresence initial={false}>
@@ -198,7 +198,7 @@ export function BillingPrice({ amount, decimals = 2, was, period, prefix, compac
           <motion.span
             key="was"
             aria-hidden="true"
-            className="overflow-hidden whitespace-nowrap"
+            className={`overflow-hidden whitespace-nowrap ${wasClass}`}
             initial={reduced ? { opacity: 0 } : { opacity: 0, width: 0 }}
             animate={{ opacity: 1, width: 'auto' }}
             exit={reduced ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, width: 0, transition: { ...clip, opacity: { duration: DURATION.fast } } }}

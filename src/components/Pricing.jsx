@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { BILLING_OPTIONS, setBilling, useBilling } from '../lib/billing.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
 import { BillingPrice, BillingToggle } from './BillingToggle.jsx'
@@ -219,15 +220,10 @@ function PricingList({ yearly, billing }) {
   )
 }
 
-const BILLING = [
-  { value: 'monthly', label: 'Mensual' },
-  { value: 'yearly', label: 'Anual', badge: `Ahorra ${Math.round(YEARLY_DISCOUNT * 100)}%`, activeBadge: `Ahorras ${Math.round(YEARLY_DISCOUNT * 100)}%` },
-]
-
 export default function PricingCards({ compact = false }) {
-  const [billing, setBilling] = useState('monthly')
+  const billing = useBilling()
   const yearly = billing === 'yearly'
-  const toggle = <BillingToggle value={billing} onValueChange={setBilling} options={BILLING} />
+  const toggle = <BillingToggle value={billing} onValueChange={setBilling} options={BILLING_OPTIONS} />
   const note = (
     <p className="max-w-md text-xs text-muted">
       {Math.round(YEARLY_DISCOUNT * 100)}% de descuento si coges el año entero en Rookie, All In o MVP. Peak es un pack
