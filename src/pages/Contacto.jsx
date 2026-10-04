@@ -47,8 +47,8 @@ const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
-function ContactForm({ plan, weeks, initialCode, testPlan }) {
-  const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
+function ContactForm({ plan, weeks, yearly, initialCode, testPlan }) {
+  const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}${yearly ? ' · año entero (-20%)' : ''}` : null
   const formRef = useRef(null)
   const codeRef = useRef(null)
   // idle | submitting | success | error
@@ -526,6 +526,7 @@ export default function Contacto() {
   const plan = planParam && PLANS[planParam] ? planParam : null
   const weeksParam = params.get('semanas')
   const weeks = plan === 'peak' && ['8', '10', '12'].includes(weeksParam) ? weeksParam : null
+  const yearly = ['rookie', 'allin', 'mvp'].includes(plan) && params.get('periodo') === 'anual'
   const initialCode = normalizeCode(params.get('codigo') || '')
   const testParam = params.get('test')
   const testPlan = testParam && PLANS[testParam] ? testParam : null
@@ -543,7 +544,7 @@ export default function Contacto() {
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} weeks={weeks} initialCode={initialCode} testPlan={testPlan} />
+              <ContactForm plan={plan} weeks={weeks} yearly={yearly} initialCode={initialCode} testPlan={testPlan} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">
