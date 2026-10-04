@@ -4,6 +4,8 @@ import Button from '../components/Button.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
 import { ArrowIcon, GradCapIcon, HeartIcon, SparklesIcon, UsersIcon } from '../components/Icons.jsx'
 import { motion } from 'framer-motion'
+import ImageCompare from '../components/ImageCompare.jsx'
+import { BEFORE_AFTER } from '../config.js'
 import { EASE } from '../lib/motion.js'
 
 const HIGHLIGHTS = [
@@ -97,6 +99,30 @@ export default function SobreJaime() {
           </div>
         </section>
       </ScrollSection>
+
+      {/* Solo cuando hay fotos reales en BEFORE_AFTER (src/config.js) */}
+      {BEFORE_AFTER.before && BEFORE_AFTER.after && (
+        <ScrollSection effect="zoom" dark>
+          <section className="bg-ink py-24 md:py-32">
+            <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-2 md:gap-16 md:px-8">
+              <Reveal as="div">
+                <SectionHeading title="Mi cambio" />
+                <p className="mt-6 max-w-md text-base leading-relaxed text-fg-2">
+                  Antes y después de empezar a entrenar con cabeza. Arrastra la línea para ver la diferencia.
+                </p>
+              </Reveal>
+              <Reveal as="div" className="mx-auto w-full max-w-sm md:max-w-md">
+                <ImageCompare
+                  before={BEFORE_AFTER.before}
+                  after={BEFORE_AFTER.after}
+                  beforeAlt={BEFORE_AFTER.beforeAlt}
+                  afterAlt={BEFORE_AFTER.afterAlt}
+                />
+              </Reveal>
+            </div>
+          </section>
+        </ScrollSection>
+      )}
 
       <ScrollSection effect="zoom" last blue>
         <section className="relative flex min-h-[70svh] items-center overflow-hidden bg-ink">

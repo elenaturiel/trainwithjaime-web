@@ -33,6 +33,16 @@ export const TESTIMONIALS = [
   { quote: '[testimonio real pendiente]', author: '[nombre pendiente]', detail: '[plan o carrera]' },
 ]
 
+// ⚠️ SUSTITUIR: fotos de antes y después de Jaime (Sobre Jaime). Sube las dos a /public (mismo encuadre y
+// tamaño, mejor vertical 3:4) y pon aquí sus rutas, p. ej. '/antes.jpg' y '/despues.jpg'.
+// Mientras estén vacías, el apartado no se muestra.
+export const BEFORE_AFTER = {
+  before: '',
+  after: '',
+  beforeAlt: 'Jaime antes de empezar a entrenar',
+  afterAlt: 'Jaime después de entrenar',
+}
+
 // ⚠️ SUSTITUIR: datos del titular de la web para el aviso legal y la política de privacidad
 // (obligatorios por la LSSI y el RGPD). Mientras estén entre corchetes se ven así en las páginas legales.
 export const LEGAL = {
