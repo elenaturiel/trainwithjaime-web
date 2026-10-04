@@ -224,7 +224,7 @@ function Difference() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            className="block text-center font-display text-5xl uppercase leading-none md:text-[7rem]"
+            className="block text-center font-display text-5xl font-bold uppercase leading-none md:text-[7rem]"
           />
         }
       />
@@ -336,7 +336,7 @@ function Pricing() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            className="block text-center font-display text-6xl uppercase leading-[1.02] md:text-[9rem]"
+            className="block text-center font-display text-6xl font-bold uppercase leading-[1.02] md:text-[9rem]"
           />
         </Reveal>
         <PricingCards />
