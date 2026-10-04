@@ -172,11 +172,10 @@ export default function Servicios() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="clip" bg="bg-panel" dark>
-        <section className="border-y border-line bg-panel py-14 md:py-20" aria-label="Lo que entrenamos">
-          <Marquee items={SPECIALTIES} className="text-fg" />
-        </section>
-      </ScrollSection>
+      {/* Sin ScrollSection: así la cinta mantiene siempre su tamaño (esos contenedores se abren al hacer scroll) */}
+      <section className="theme-dark relative z-10 border-y border-line bg-panel py-7 md:py-9" aria-label="Lo que entrenamos">
+        <Marquee items={SPECIALTIES} className="text-fg" />
+      </section>
 
       {/* Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de SnapText */}
       <section className="theme-dark relative bg-ink">

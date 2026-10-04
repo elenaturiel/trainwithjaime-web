@@ -2,11 +2,11 @@
 // Se pausa al pasar el ratón y no se mueve con "reducir movimiento" (queda la lista estática y centrada).
 export default function Marquee({ items, className = '' }) {
   const row = (
-    <ul className="flex shrink-0 items-center gap-10 pr-10 md:gap-16 md:pr-16">
+    <ul className="flex shrink-0 items-center gap-6 pr-6 md:gap-10 md:pr-10">
       {items.map((t) => (
-        <li key={t} className="flex items-center gap-10 whitespace-nowrap md:gap-16">
-          <span className="font-display text-5xl font-bold uppercase leading-none tracking-[-0.02em] md:text-8xl">{t}</span>
-          <span aria-hidden="true" className="h-3 w-3 shrink-0 rounded-full bg-accent md:h-4 md:w-4" />
+        <li key={t} className="flex items-center gap-6 whitespace-nowrap md:gap-10">
+          <span className="font-display text-2xl font-bold uppercase leading-none tracking-[-0.01em] md:text-4xl">{t}</span>
+          <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-accent md:h-2.5 md:w-2.5" />
         </li>
       ))}
     </ul>
