@@ -7,6 +7,7 @@ import RollingNumber from '../components/RollingNumber.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
+import FoldText from '../components/FoldText.jsx'
 import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -211,7 +212,21 @@ function Difference() {
       <SnapText
         items={DIFFERENCE}
         images={DIFFERENCE_IMAGES}
-        heading={<h2 className="font-display text-4xl leading-none md:text-6xl">La diferencia</h2>}
+        heading={
+          <FoldText
+            as="h2"
+            text="La diferencia"
+            splitBy="char"
+            hinge="top"
+            trigger="inView"
+            duration={0.65}
+            stagger={0.045}
+            ease="power3.out"
+            perspective={700}
+            creaseShading={0.55}
+            className="block font-display text-4xl leading-none md:text-7xl"
+          />
+        }
       />
     </section>
   )
