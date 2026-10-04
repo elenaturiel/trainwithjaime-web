@@ -3,6 +3,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import PlanComparison from '../components/PlanComparison.jsx'
+import FoldText from '../components/FoldText.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 
@@ -10,7 +11,23 @@ export default function Precios() {
   return (
     <>
       <ScrollSection effect="stack" first dark>
-        <PageHero title="Precios">Elige el plan que encaja contigo. La primera asesoría con Jaime es gratis.</PageHero>
+        <PageHero
+          center
+          title={
+            <FoldText
+              text="Precios"
+              splitBy="char"
+              hinge="top"
+              trigger="mount"
+              duration={0.65}
+              stagger={0.045}
+              ease="power3.out"
+              perspective={700}
+              creaseShading={0.55}
+              className="block"
+            />
+          }
+        >Elige el plan que encaja contigo. La primera asesoría con Jaime es gratis.</PageHero>
       </ScrollSection>
 
       <ScrollSection effect="clip">

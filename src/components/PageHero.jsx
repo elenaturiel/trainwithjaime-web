@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { EASE } from '../lib/motion.js'
 
 // Hero corto para páginas interiores.
-export default function PageHero({ title, children }) {
+export default function PageHero({ title, children, center = false }) {
   return (
     <section className="theme-dark relative overflow-hidden border-b border-line bg-ink pb-16 pt-40 md:pb-24 md:pt-52">
       <div
@@ -13,10 +13,14 @@ export default function PageHero({ title, children }) {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: EASE }}
-        className="relative mx-auto max-w-7xl px-5 md:px-8"
+        className={`relative mx-auto max-w-7xl px-5 md:px-8 ${center ? 'text-center' : ''}`}
       >
-        <h1 className="font-display text-6xl leading-[1.02] md:text-9xl">{title}</h1>
-        {children && <div className="mt-6 max-w-2xl text-base text-fg-2 md:text-lg">{children}</div>}
+        <h1 className={center ? 'font-display text-7xl uppercase leading-[1.02] md:text-[11rem]' : 'font-display text-6xl leading-[1.02] md:text-9xl'}>
+          {title}
+        </h1>
+        {children && (
+          <div className={`mt-6 max-w-2xl text-base text-fg-2 md:text-lg ${center ? 'mx-auto' : ''}`}>{children}</div>
+        )}
       </motion.div>
     </section>
   )

@@ -224,7 +224,7 @@ function Difference() {
             ease="power3.out"
             perspective={700}
             creaseShading={0.55}
-            className="block font-display text-4xl leading-none md:text-7xl"
+            className="block text-center font-display text-5xl uppercase leading-none md:text-[7rem]"
           />
         }
       />
@@ -325,7 +325,19 @@ function Pricing() {
     <section className="bg-ink py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal as="div" className="mb-14 md:mb-20">
-          <SectionHeading title="Precios" />
+          <FoldText
+            as="h2"
+            text="Precios"
+            splitBy="char"
+            hinge="top"
+            trigger="inView"
+            duration={0.65}
+            stagger={0.045}
+            ease="power3.out"
+            perspective={700}
+            creaseShading={0.55}
+            className="block text-center font-display text-6xl uppercase leading-[1.02] md:text-[9rem]"
+          />
         </Reveal>
         <PricingCards />
         <p className="mt-6 text-center">

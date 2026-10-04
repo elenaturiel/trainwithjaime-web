@@ -133,16 +133,16 @@ export default function SnapText({
         {/* mobile: the picture on top, the lines under it · desktop: picture left, lines right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-14 top-[9.5rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[9.5rem] md:flex-row md:items-center md:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
+          className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.5rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[13rem] md:flex-row md:items-center md:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
         >
           {images.length > 0 && (
-            <div className="relative h-[28svh] w-full shrink-0 overflow-hidden rounded-xl bg-panel-2 md:h-[min(60svh,40rem)] md:w-auto md:aspect-[4/5] md:rounded-2xl">
+            <div className="relative h-[25svh] w-full shrink-0 overflow-hidden rounded-xl bg-panel-2 md:h-[min(54svh,36rem)] md:w-auto md:aspect-[4/5] md:rounded-2xl">
               {items.map((it, i) => (
                 <Picture key={it.title} index={i} progress={progress} reduced={reduced} src={images[i % images.length]} />
               ))}
             </div>
           )}
-          <div className="relative min-h-0 w-full min-w-0 flex-1 self-stretch">
+          <div className="relative min-h-0 w-full min-w-0 flex-1 self-stretch overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_14%,#000_86%,transparent)]">
             <motion.ul className="absolute inset-x-0 top-1/2 m-0 list-none p-0" style={{ transform: track }}>
               {items.map((it, i) => (
                 <Row key={it.title} color={colors[i % colors.length]} index={i} inactiveColor={inactiveColor} item={it} progress={progress} />
