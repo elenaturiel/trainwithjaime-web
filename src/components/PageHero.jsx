@@ -15,7 +15,7 @@ export default function PageHero({ title, children, center = false }) {
         transition={{ duration: 0.5, ease: EASE }}
         className={`relative mx-auto max-w-7xl px-5 md:px-8 ${center ? 'text-center' : ''}`}
       >
-        <h1 className={center ? 'font-display text-7xl font-bold uppercase leading-[1.02] md:text-[9rem] lg:text-[11rem]' : 'font-display text-6xl leading-[1.02] md:text-9xl'}>
+        <h1 className={center ? 'font-display text-[3.25rem] font-bold uppercase leading-[1.02] sm:text-7xl md:text-[9rem] lg:text-[11rem]' : 'font-display text-6xl leading-[1.02] md:text-9xl'}>
           {title}
         </h1>
         {children && (

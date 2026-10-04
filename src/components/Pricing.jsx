@@ -251,7 +251,7 @@ export default function PricingCards({ compact = false }) {
         </>
       )}
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
-      <div className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
+      <div id="descuentos" className="mt-16 grid gap-8 border-y border-line py-10 md:mt-20 md:grid-cols-2 md:gap-0 md:divide-x md:divide-line">
         <div className="md:pr-10">
           <p className="font-display text-3xl leading-none lg:text-4xl xl:text-5xl">
             <span className="text-accent-ink">-10%</span> con carné universitario

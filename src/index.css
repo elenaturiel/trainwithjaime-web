@@ -176,3 +176,13 @@ body {
 
 /* Outfit en su versión variable (eje de grosor continuo), para los titulares que cambian de grosor al vuelo */
 .font-variable { font-family: "Outfit Variable", "Outfit", system-ui, sans-serif; }
+
+/* Cinta de texto sin fin (Marquee): se mueve la mitad de su ancho (una copia de la lista) y vuelve al principio */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 38s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+}

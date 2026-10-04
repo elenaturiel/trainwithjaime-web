@@ -39,7 +39,7 @@ export default function Precios() {
       </ScrollSection>
 
       {/* Sin ScrollSection: su contenedor con overflow rompería la cabecera fija de la tabla */}
-      <section className="theme-dark relative z-10 overflow-x-clip bg-ink py-24 md:py-32">
+      <section id="comparar" className="theme-dark relative z-10 overflow-x-clip bg-ink py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal as="div" className="mb-4">
             <SectionHeading title="Compara los planes" />
