@@ -1,9 +1,9 @@
 import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
-import Button from '../components/Button.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
-import { ArrowIcon, GradCapIcon, HeartIcon, SparklesIcon, UsersIcon } from '../components/Icons.jsx'
+import { GradCapIcon, HeartIcon, SparklesIcon, UsersIcon } from '../components/Icons.jsx'
 import { motion } from 'framer-motion'
+import FinalCTA from '../components/FinalCTA.jsx'
 import ImageCompare from '../components/ImageCompare.jsx'
 import { BEFORE_AFTER } from '../config.js'
 import { EASE } from '../lib/motion.js'
@@ -124,28 +124,8 @@ export default function SobreJaime() {
         </ScrollSection>
       )}
 
-      <ScrollSection effect="zoom" last blue>
-        <section className="relative flex min-h-[70svh] items-center overflow-hidden bg-ink">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.18),transparent_60%)]"
-          />
-          <Reveal as="figure" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-            <blockquote className="font-display text-5xl leading-[1.04] sm:text-6xl md:text-[96px] lg:text-[136px]">
-              “Y tú,
-              <br />
-              <span className="font-bold">¿quieres ganar?</span>”
-            </blockquote>
-            <figcaption className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted">
-              — Jaime
-            </figcaption>
-            <div className="mt-10 flex justify-center">
-              <Button to="/contacto">
-                Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
-              </Button>
-            </div>
-          </Reveal>
-        </section>
+      <ScrollSection effect="zoom" bg="bg-panel" last dark>
+        <FinalCTA />
       </ScrollSection>
     </>
   )

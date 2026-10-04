@@ -1,9 +1,9 @@
 import PageHero from '../components/PageHero.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
-import Button from '../components/Button.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
-import { AppleIcon, ArrowIcon, ChatIcon, DumbbellIcon, UsersIcon } from '../components/Icons.jsx'
+import { AppleIcon, ChatIcon, DumbbellIcon, UsersIcon } from '../components/Icons.jsx'
+import FinalCTA from '../components/FinalCTA.jsx'
 import PlanExtras from '../components/PlanExtras.jsx'
 
 const SERVICES = [
@@ -143,15 +143,8 @@ export default function Servicios() {
         </section>
       </ScrollSection>
 
-      <ScrollSection effect="parallax" bg="bg-panel" last blue>
-        <Reveal className="border-t border-line bg-panel py-20 md:py-28">
-          <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-8">
-            <h2 className="font-display text-5xl leading-[1.02] md:text-7xl">Elige tu plan</h2>
-            <Button to="/precios">
-              Ver precios <ArrowIcon className="h-4 w-4" />
-            </Button>
-          </div>
-        </Reveal>
+      <ScrollSection effect="parallax" bg="bg-panel" last dark>
+        <FinalCTA />
       </ScrollSection>
     </>
   )

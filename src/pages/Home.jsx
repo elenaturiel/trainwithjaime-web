@@ -6,6 +6,7 @@ import Button from '../components/Button.jsx'
 import RollingNumber from '../components/RollingNumber.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
+import FinalCTA from '../components/FinalCTA.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
@@ -328,29 +329,6 @@ function Pricing() {
           </Link>
         </p>
       </div>
-    </section>
-  )
-}
-
-export function FinalCTA() {
-  return (
-    <section className="relative flex min-h-[80svh] items-center overflow-hidden bg-panel md:min-h-screen">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,139,255,0.22),transparent_60%)]"
-      />
-      <Reveal as="div" className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-        <h2 className="font-display text-5xl leading-[1.04] sm:text-6xl md:text-[96px] lg:text-[136px]">
-          Y tú,
-          <br />
-          <span className="font-bold">¿quieres ganar?</span>
-        </h2>
-        <div className="mt-10 flex justify-center">
-          <Button to="/contacto">
-            Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
-          </Button>
-        </div>
-      </Reveal>
     </section>
   )
 }

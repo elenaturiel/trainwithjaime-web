@@ -3,6 +3,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import PlanComparison from '../components/PlanComparison.jsx'
+import FinalCTA from '../components/FinalCTA.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 
 export default function Precios() {
@@ -29,6 +30,9 @@ export default function Precios() {
           <PlanComparison />
         </div>
       </section>
+      <div className="theme-dark relative z-10">
+        <FinalCTA />
+      </div>
     </>
   )
 }
