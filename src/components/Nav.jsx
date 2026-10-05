@@ -101,7 +101,7 @@ const ITEMS = [
 
 export function Logo({ className = '' }) {
   return (
-    <Link to="/" className={`font-display text-xl font-bold leading-none tracking-wide text-fg ${className}`}>
+    <Link to="/" className={`whitespace-nowrap font-display text-xl font-bold leading-none tracking-wide text-fg ${className}`}>
       TRAIN WITH <span className="text-brand">JAIME</span>
     </Link>
   )
@@ -242,9 +242,9 @@ export default function Nav() {
     }
   }, [menuOpen])
 
-  // The sheet belongs to narrow screens: widening closes it, narrowing closes the panel
+  // The sheet belongs to narrow screens (below 1024 px, tablets included, where the full menu does not fit): widening closes it, narrowing closes the panel
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)')
+    const mq = window.matchMedia('(min-width: 1024px)')
     const on = () => (mq.matches ? closeMenu() : openPanel(null))
     mq.addEventListener('change', on)
     return () => mq.removeEventListener('change', on)
@@ -326,7 +326,7 @@ export default function Nav() {
           <Logo />
 
           <LayoutGroup id={id}>
-            <nav aria-label="Principal" onKeyDown={onNavKeyDown} onPointerLeave={() => setHovered(null)} className="hidden md:block">
+            <nav aria-label="Principal" onKeyDown={onNavKeyDown} onPointerLeave={() => setHovered(null)} className="hidden lg:block">
               <ul className="flex items-center gap-1">
                 {ITEMS.map((item) => {
                   const isCurrent = current === item.value
@@ -399,13 +399,13 @@ export default function Nav() {
           </LayoutGroup>
 
           <div className="flex items-center gap-2">
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <Button to="/contacto" className="px-5 py-2.5 text-xs">
                 Primera asesoría gratis
               </Button>
             </div>
 
-            {/* Hamburguesa (< 768px) */}
+            {/* Hamburguesa (< 1024px: móvil y tablet) */}
             <button
               ref={menuButtonRef}
               type="button"
@@ -413,7 +413,7 @@ export default function Nav() {
               aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={menuOpen}
               aria-controls={`${id}-sheet`}
-              className={`relative z-50 -mr-2 flex h-11 w-11 items-center justify-center md:hidden ${linkBase}`}
+              className={`relative z-50 -mr-2 flex h-11 w-11 items-center justify-center lg:hidden ${linkBase}`}
             >
               <span className="relative block h-3.5 w-6">
                 <span className={`absolute left-0 h-0.5 w-6 bg-fg transition-transform duration-200 ${menuOpen ? 'top-1.5 rotate-45' : 'top-0'}`} />
@@ -433,7 +433,7 @@ export default function Nav() {
               role="region"
               aria-label={openItem.label}
               onKeyDown={onPanelKeyDown}
-              className="absolute right-1/2 top-full z-10 mt-2 hidden w-[min(44rem,calc(100vw-2.5rem))] translate-x-1/2 overflow-hidden rounded-2xl border border-line bg-ink shadow-2xl shadow-[#041037]/20 md:block"
+              className="absolute right-1/2 top-full z-10 mt-2 hidden w-[min(44rem,calc(100vw-2.5rem))] translate-x-1/2 overflow-hidden rounded-2xl border border-line bg-ink shadow-2xl shadow-[#041037]/20 lg:block"
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1, height: panel.height ?? 'auto' }}
               exit={reduced ? { opacity: 0, transition: { duration: 0.1 } } : { opacity: 0, y: -4, scale: 0.99, transition: { duration: 0.14, ease: STANDARD } }}
@@ -495,7 +495,7 @@ export default function Nav() {
               key="scrim"
               aria-hidden="true"
               onClick={() => closeMenu()}
-              className="fixed inset-0 -z-10 bg-[#041037]/40 md:hidden"
+              className="fixed inset-0 -z-10 bg-[#041037]/40 lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -504,7 +504,7 @@ export default function Nav() {
             <motion.div
               key="sheet"
               id={`${id}-sheet`}
-              className="absolute inset-x-0 top-full overflow-hidden border-b border-line bg-ink md:hidden"
+              className="absolute inset-x-0 top-full overflow-hidden border-b border-line bg-ink lg:hidden"
               initial={reduced ? { opacity: 0 } : { height: 0 }}
               animate={reduced ? { opacity: 1 } : { height: 'auto' }}
               exit={reduced ? { opacity: 0 } : { height: 0, transition: SHRINK }}

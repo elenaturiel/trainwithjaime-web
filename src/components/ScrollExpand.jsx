@@ -61,9 +61,13 @@ export default function ScrollExpand({
   const sw = compact ? 78 : startWidth
   const sh = compact ? 46 : startHeight
 
-  const width = useTransform(t, (v) => `${lerp(sw, 100, v)}%`)
-  const height = useTransform(t, (v) => `${lerp(sh, 100, v)}%`)
-  const radius = useTransform(t, (v) => lerp(startRadius, endRadius, v))
+  // El marco ocupa siempre toda la pantalla y se "recorta" con clip-path: abrirlo no cambia el diseño de la página
+  // (animar width/height obligaba a recalcular el layout en cada fotograma y se notaba en el móvil).
+  const clip = useTransform(t, (v) => {
+    const x = ((100 - lerp(sw, 100, v)) / 2).toFixed(3)
+    const yy = ((100 - lerp(sh, 100, v)) / 2).toFixed(3)
+    return `inset(${yy}% ${x}% ${yy}% ${x}% round ${lerp(startRadius, endRadius, v).toFixed(2)}px)`
+  })
   const zoom = useTransform(t, (v) => lerp(mediaZoom, 1, v))
   const scrim = useTransform(progress, (v) => {
     const k = Math.min(1, Math.max(0, v / open))
@@ -85,8 +89,8 @@ export default function ScrollExpand({
     >
       <div className={`${reduced ? 'relative min-h-svh' : 'sticky top-0 h-svh min-h-[560px]'} flex items-center justify-center overflow-hidden`}>
         <motion.div
-          className="absolute overflow-hidden bg-panel-2"
-          style={reduced ? { inset: 0 } : { width, height, borderRadius: radius }}
+          className="absolute inset-0 overflow-hidden bg-panel-2 will-change-[clip-path]"
+          style={reduced ? undefined : { clipPath: clip }}
         >
           <motion.img
             src={src}
