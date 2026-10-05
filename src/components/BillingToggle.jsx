@@ -172,11 +172,11 @@ export function Counter({ value, decimals }) {
  * A price that rolls to its new amount. The struck-through old price eases its width in and out, so
  * nothing beside it jumps. `was` is shown only when it is higher than `amount`.
  */
-export function BillingPrice({ amount, decimals = 2, was, period, prefix, compact = false, className = '', periodClass = '', wasClass = '' }) {
+export function BillingPrice({ amount, decimals = 2, was, period, prefix, compact = false, flush = false, center = false, className = '', periodClass = '', wasClass = '' }) {
   const reduced = !!useReducedMotion()
   const showWas = was !== undefined && was > amount
   return (
-    <p className={`flex flex-wrap items-baseline gap-x-1.5 gap-y-1 ${compact ? 'justify-end' : 'mt-6'}`}>
+    <p className={`flex flex-wrap items-baseline gap-x-1.5 gap-y-1 ${compact ? 'justify-end' : center ? 'justify-center' : flush ? '' : 'mt-6'}`}>
       <span className="sr-only">
         {fmt(amount, decimals)}€ {period}
         {showWas ? `, precio anterior ${fmt(was, decimals)}€` : ''}
