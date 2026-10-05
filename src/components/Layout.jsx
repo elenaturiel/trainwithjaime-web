@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import TopStrip from './TopStrip.jsx'
 import Nav from './Nav.jsx'
@@ -15,7 +15,8 @@ function ScrollManager() {
       const t = setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 60)
       return () => clearTimeout(t)
     }
-    window.scrollTo(0, 0)
+    // instantáneo: con scroll-behavior: smooth en el CSS, scrollTo(0, 0) a secas haría un barrido lento hasta arriba al cambiar de página
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash, key])
   return null
 }
@@ -27,7 +28,9 @@ export default function Layout() {
       <TopStrip />
       <Nav />
       <main>
-        <Outlet />
+        <Suspense fallback={<div className="min-h-svh bg-ink" />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <CookieBanner />

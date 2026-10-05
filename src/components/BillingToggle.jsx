@@ -102,7 +102,7 @@ export function BillingToggle({ value, onValueChange, options, label = 'Periodo 
       ref={rootRef}
       role="radiogroup"
       aria-label={label}
-      className={`relative inline-flex rounded-full bg-panel-2 p-1 ${className}`}
+      className={`relative inline-flex max-w-full rounded-full bg-panel-2 p-1 ${className}`}
     >
       {thumb && (
         <motion.span
@@ -129,14 +129,14 @@ export function BillingToggle({ value, onValueChange, options, label = 'Periodo 
             tabIndex={selected ? 0 : -1}
             onClick={() => onValueChange(o.value)}
             onKeyDown={(e) => onKeyDown(e, i)}
-            className={`relative z-10 flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:px-5 ${
+            className={`relative z-10 flex items-center gap-1.5 rounded-full px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:gap-2 sm:px-5 sm:text-sm ${
               selected ? 'text-ink' : 'text-muted hover:text-fg'
             } ${selected && !thumb ? 'bg-fg' : ''}`}
           >
             <span>{o.label}</span>
             {badgeText && (
               <span
-                className={`rounded-full px-2 py-0.5 text-[10px] font-bold tracking-widest transition-colors duration-200 ${
+                className={`rounded-full px-1.5 py-0.5 text-[9px] font-bold tracking-wider transition-colors duration-200 sm:px-2 sm:text-[10px] sm:tracking-widest ${
                   selected ? 'bg-accent text-on-accent' : 'bg-accent/25 text-accent-ink'
                 }`}
               >

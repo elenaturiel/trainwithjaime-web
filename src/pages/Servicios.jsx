@@ -193,14 +193,14 @@ export default function Servicios() {
             <Reveal as="div" className="mb-12 md:mb-16">
               {heading('Extras', 'text-5xl md:text-[7rem]')}
             </Reveal>
-            <Stagger className="grid gap-5 md:grid-cols-3">
+            <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {EXTRAS.map((e) => (
                 <StaggerItem
                   key={e.label}
                   hover
                   className="min-w-0 rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
                 >
-                  <p className="font-display text-7xl font-bold leading-none md:text-8xl">
+                  <p className="font-display text-7xl font-bold leading-none xl:text-8xl">
                     <RollingNumber value={e.value} suffix="€" />
                   </p>
                   <p className="mt-6 text-lg text-fg-2">{e.label}</p>
@@ -208,9 +208,9 @@ export default function Servicios() {
               ))}
               <StaggerItem
                 hover
-                className="flex min-w-0 flex-col justify-between rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
+                className="flex min-w-0 flex-col justify-between md:col-span-2 xl:col-span-1 rounded-2xl border border-line bg-panel p-7 hover:border-brand/60 hover:bg-panel-2 md:p-10"
               >
-                <h3 className="font-display text-3xl leading-none sm:text-4xl md:text-5xl">Suplementación honesta</h3>
+                <h3 className="font-display text-3xl leading-none sm:text-4xl xl:text-5xl">Suplementación honesta</h3>
                 <p className="mt-6 text-lg text-fg-2">Creatina y proteína cuando aportan, sin vender humo.</p>
               </StaggerItem>
             </Stagger>

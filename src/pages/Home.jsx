@@ -17,7 +17,7 @@ import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
 import { REAL_TESTIMONIALS as TESTIMONIALS } from '../config.js'
 
-// recharts pesa bastante: se carga aparte para no frenar el primer render.
+// La gráfica se carga aparte para no frenar el primer render.
 const ProgressChart = lazy(() => import('../components/ProgressChart.jsx'))
 
 // ⚠️ SUSTITUIR VÍDEO DEL HERO: sube el vídeo definitivo a /public/hero.mp4
@@ -119,7 +119,13 @@ function Hero() {
 
   // Si el usuario prefiere menos movimiento, no reproducimos el vídeo de fondo (se queda el poster).
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) videoRef.current?.pause()
+    const v = videoRef.current
+    if (!v) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return v.pause()
+    // El vídeo solo se reproduce mientras se ve: fuera de pantalla no gasta batería ni compite con el scroll.
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0.05 })
+    io.observe(v)
+    return () => io.disconnect()
   }, [])
 
   const item = (delay) => ({

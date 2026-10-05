@@ -1,6 +1,6 @@
 # Train with Jaime — web
 
-React + Vite + TailwindCSS v4 + Framer Motion + react-router-dom + recharts.
+React + Vite + TailwindCSS v4 + Framer Motion + react-router-dom.
 
 ## Local
 
