@@ -11,7 +11,7 @@ import { ArrowIcon, CheckIcon, StarIcon } from './Icons.jsx'
 // Selector 8 / 10 / 12 semanas del plan Peak.
 function WeeksPicker({ options, value, onChange }) {
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       {/* Control segmentado: una sola pieza, sin bordes por opción */}
       <div
         role="radiogroup"
@@ -27,7 +27,7 @@ function WeeksPicker({ options, value, onChange }) {
               role="radio"
               aria-checked={active}
               onClick={() => onChange(o.weeks)}
-              className={`rounded-lg py-2.5 text-sm font-bold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand ${
+              className={`rounded-lg py-2 text-xs font-bold uppercase tracking-wider transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand ${
                 active ? 'bg-fg text-ink' : 'text-muted hover:text-fg'
               }`}
             >
@@ -42,6 +42,9 @@ function WeeksPicker({ options, value, onChange }) {
 
 const money = (v) => `${v.toFixed(2).replace('.', ',')}€`
 
+// Tarjeta de plan. Es una "subcuadrícula" de 4 filas (cabecera · precio · prestaciones · botón) que comparte filas con
+// las demás tarjetas: así los 4 precios y los 4 botones quedan siempre alineados en la misma línea, aunque los
+// textos de arriba tengan distinta altura.
 function PlanCard({ p, yearly }) {
   const [weeks, setWeeks] = useState(p.defaultWeeks)
   const option = p.options?.find((o) => o.weeks === weeks)
@@ -57,67 +60,73 @@ function PlanCard({ p, yearly }) {
   return (
     <StaggerItem
       hover
-      className={`relative flex min-w-0 flex-col rounded-2xl border bg-panel p-6 sm:p-7 ${
+      className={`relative row-span-4 grid min-w-0 snap-start grid-rows-subgrid rounded-2xl border bg-panel p-5 xl:p-6 ${
         p.featured
-          ? 'border-accent/40 bg-panel-2 hover:border-accent xl:-my-4 xl:py-12'
+          ? 'border-accent/50 bg-panel-2 hover:border-accent'
           : p.tag
             ? 'border-dashed border-fg/25 hover:border-brand/60 hover:bg-panel-2'
             : 'border-line hover:border-brand/60 hover:bg-panel-2'
       }`}
     >
-      {p.featured && (
-        <>
-          <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />
-          <span className="absolute right-5 top-6 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-on-accent">
-            <StarIcon className="h-3 w-3" />
-            {p.badge}
-          </span>
-        </>
-      )}
-      {p.tag && (
-        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-muted">{p.tag}</p>
-      )}
-      <h3 className="font-display text-5xl leading-none">{p.name}</h3>
-      <p className="mt-2 text-sm text-muted">{p.tagline}</p>
-      {p.lead && <p className="mt-3 text-sm font-semibold text-fg">{p.lead}</p>}
+      {p.featured && <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-accent" />}
 
-      {p.options && (
-        <>
-          <WeeksPicker options={p.options} value={weeks} onChange={setWeeks} />
-          {option.events && <p className="mt-3 text-sm text-muted">{option.events}</p>}
-        </>
-      )}
-
-      <BillingPrice
-        amount={amount}
-        decimals={option ? 0 : 2}
-        was={was}
-        period={p.period}
-        className="text-5xl sm:text-6xl md:text-6xl xl:text-5xl 2xl:text-6xl"
-      />
-      <AnimatePresence initial={false}>
-        {annual && (
-          <motion.p
-            key="year"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden text-xs leading-relaxed text-muted"
-          >
-            <span className="mt-2 block">
-              Pagas {money(amount * 12)} al año · ahorras {money((base - amount) * 12)}
+      {/* 1 · cabecera */}
+      <div className="pb-5">
+        <div className="flex h-6 items-center">
+          {p.featured && (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-on-accent">
+              <StarIcon className="h-3 w-3" />
+              {p.badge}
             </span>
-          </motion.p>
-        )}
-      </AnimatePresence>
-      {p.id === 'mvp' && p.badge && (
-        <p className="mt-3 inline-flex self-start rounded-full border border-accent/60 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-accent-ink">
-          {p.badge}
-        </p>
-      )}
+          )}
+          {p.tag && <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted">{p.tag}</span>}
+        </div>
+        <h3 className="mt-2 font-display text-4xl leading-none xl:text-5xl">{p.name}</h3>
+        <p className="mt-2 text-sm text-muted">{p.tagline}</p>
+        {p.lead && <p className="mt-2 text-sm font-semibold text-fg">{p.lead}</p>}
+      </div>
 
-      <ul className="mt-8 flex-1 space-y-3 border-t border-line pt-6">
+      {/* 2 · precio */}
+      <div className="border-t border-line pt-5">
+        <BillingPrice
+          flush
+          amount={amount}
+          decimals={option ? 0 : 2}
+          was={was}
+          period={p.period}
+          className="text-5xl sm:text-6xl lg:text-5xl 2xl:text-6xl"
+        />
+        <AnimatePresence initial={false}>
+          {annual && (
+            <motion.p
+              key="year"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="overflow-hidden text-xs leading-relaxed text-muted"
+            >
+              <span className="mt-2 block">
+                Pagas {money(amount * 12)} al año · ahorras {money((base - amount) * 12)}
+              </span>
+            </motion.p>
+          )}
+        </AnimatePresence>
+        {p.id === 'mvp' && p.badge && (
+          <p className="mt-3 inline-flex rounded-full border border-accent/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-ink">
+            {p.badge}
+          </p>
+        )}
+        {p.options && (
+          <>
+            <WeeksPicker options={p.options} value={weeks} onChange={setWeeks} />
+            {option.events && <p className="mt-2 text-xs text-muted">{option.events}</p>}
+          </>
+        )}
+      </div>
+
+      {/* 3 · prestaciones */}
+      <ul className="mt-5 space-y-3 border-t border-line pt-5">
         {p.features.map((f) => {
           const item = typeof f === 'string' ? { title: f } : f
           return (
@@ -131,22 +140,55 @@ function PlanCard({ p, yearly }) {
           )
         })}
       </ul>
-      {p.extra && <p className="mt-6 text-xs leading-relaxed text-muted">{p.extra}</p>}
-      {p.note && (
-        <p className="mt-6 text-sm leading-relaxed text-muted">
-          {p.note}{' '}
-          <Link to={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent-ink">
-            Hablar con Jaime →
-          </Link>
-        </p>
-      )}
-      <Button to={href} variant={p.featured ? 'primary' : 'secondary'} className="mt-8 w-full">
-        {p.cta} <ArrowIcon className="h-4 w-4" />
-      </Button>
+
+      {/* 4 · botón (abajo del todo, alineado con los demás) */}
+      <div className="flex flex-col justify-end pt-6">
+        {p.extra && <p className="mb-4 text-xs leading-relaxed text-muted">{p.extra}</p>}
+        {p.note && (
+          <p className="mb-4 text-sm leading-relaxed text-muted">
+            {p.note}{' '}
+            <Link to={`/contacto?plan=${p.id}`} className="font-semibold text-brand hover:text-accent-ink">
+              Hablar con Jaime →
+            </Link>
+          </p>
+        )}
+        <Button to={href} variant={p.featured ? 'primary' : 'secondary'} className="w-full !px-3">
+          {p.cta} <ArrowIcon className="h-4 w-4 shrink-0" />
+        </Button>
+      </div>
     </StaggerItem>
   )
 }
 
+// Fila de precios (móvil y tablet): los 4 precios uno al lado del otro, siempre visibles a la vez; debajo, las tarjetas.
+function PriceStrip({ yearly }) {
+  return (
+    <div className="mb-5 grid grid-cols-4 divide-x divide-line rounded-2xl border border-line bg-panel py-4 lg:hidden">
+      {PRICING.map((p) => {
+        const peak = !!p.options
+        const base = peak ? Math.min(...p.options.map((o) => num(o.price))) : p.amount
+        const annual = yearly && !peak
+        return (
+          <div key={p.id} className={`min-w-0 px-1 text-center ${p.featured ? 'bg-accent/10' : ''}`}>
+            <p className="font-display text-base font-semibold leading-none sm:text-xl">{p.name}</p>
+            <div className="mt-2 text-fg">
+              {peak && <span className="block text-[10px] leading-none text-muted">desde</span>}
+              <BillingPrice
+                center
+                amount={annual ? yearlyMonthly(base) : base}
+                decimals={peak ? 0 : 2}
+                period={p.period}
+                periodClass="hidden"
+                className="text-base sm:text-2xl"
+              />
+            </div>
+            <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted">{peak ? '/pack' : '/mes'}</p>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 // Versión compacta (home): una tarjeta con una fila por plan — nombre y resumen de una línea a la izquierda,
 // precio a la derecha. Los detalles completos están en /precios.
@@ -243,11 +285,17 @@ export default function PricingCards({ compact = false }) {
             {toggle}
             {note}
           </div>
-      <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
-        {PRICING.map((p) => (
-          <PlanCard key={p.id} p={p} yearly={yearly} />
-        ))}
-      </Stagger>
+      <PriceStrip yearly={yearly} />
+      {/* Los 4 planes siempre en la misma fila: en pantallas anchas, 4 columnas; en móvil y tablet, una fila que se
+          desliza de lado (con imán), para que los precios se comparen uno al lado del otro */}
+      <div className="-mx-5 snap-x snap-mandatory overflow-x-auto px-5 pb-4 [scrollbar-width:none] lg:mx-0 lg:snap-none lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+        <Stagger className="grid grid-flow-col auto-cols-[80%] grid-rows-[auto_auto_1fr_auto] gap-x-4 sm:auto-cols-[46%] lg:auto-cols-fr lg:gap-x-4 xl:gap-x-5">
+          {PRICING.map((p) => (
+            <PlanCard key={p.id} p={p} yearly={yearly} />
+          ))}
+        </Stagger>
+      </div>
+      <p className="mt-2 text-center text-xs text-muted lg:hidden">Desliza para ver todos los planes →</p>
         </>
       )}
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}
