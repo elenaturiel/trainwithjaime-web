@@ -13,7 +13,8 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, us
    - Sizes are in em, so one font-size controls the row height, the indent and the track offset.
    - Each item carries a short text that sits under its big line and travels with it: it only reads
      while its line is in focus. Titles may wrap to two lines (rows have a fixed height in em).
-   - On small screens and tablets (below 1024 px) the picture goes above the lines instead of beside them.
+   - On small screens and tablets (below 1024 px) the picture goes above the lines instead of beside them, always in
+     its own 4:5 proportion (never cropped into a band).
    - It must NOT live inside a <ScrollSection>: those wrappers clip overflow, which breaks sticky. */
 
 const SPRING = { damping: 30, mass: 0.8, stiffness: 280 }
@@ -136,7 +137,7 @@ export default function SnapText({
           className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.75rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[11rem] lg:top-[14rem] lg:flex-row lg:items-center lg:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
         >
           {images.length > 0 && (
-            <div className="relative h-[25svh] w-full shrink-0 md:h-[32svh] overflow-hidden rounded-xl bg-panel-2 lg:h-[min(54svh,36rem)] lg:w-auto lg:aspect-[4/5] lg:rounded-2xl">
+            <div className="relative aspect-[4/5] h-[38svh] shrink-0 self-center overflow-hidden rounded-xl bg-panel-2 md:h-[38svh] lg:h-[min(54svh,36rem)] lg:self-auto lg:rounded-2xl">
               {items.map((it, i) => (
                 <Picture key={it.title} index={i} progress={progress} reduced={reduced} src={images[i % images.length]} />
               ))}
