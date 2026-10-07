@@ -9,6 +9,87 @@ const NIVEL_L = labels(NIVEL)
 const CUANDO_L = labels(CUANDO)
 const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : '–')
 
+// CSV para Excel / Google Sheets. Las celdas que empiezan por = + - @ se neutralizan (evita fórmulas inyectadas).
+const csvCell = (v) => {
+  let t = String(v ?? '')
+  if (/^[=+\-@\t\r]/.test(t)) t = `'${t}`
+  return `"${t.replace(/"/g, '""')}"`
+}
+
+function Contacts({ rows }) {
+  const [copied, setCopied] = useState(false)
+  const emails = rows.map((r) => r.email)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(emails.join(', '))
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      /* el navegador no deja copiar: usa la descarga */
+    }
+  }
+  const download = () => {
+    const head = ['email', 'fecha', 'nivel', 'plazo', 'banner', 'utm_source']
+    const body = rows.map((r) => [r.email, r.fecha, NIVEL_L[r.nivel] || r.nivel, CUANDO_L[r.cuando] || r.cuando, r.ubicacion_banner, r.utm_source])
+    const csv = '\ufeff' + [head, ...body].map((l) => l.map(csvCell).join(',')).join('\r\n')
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
+    a.download = `lista-hyrox-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(a.href)
+  }
+  const btn =
+    'rounded-lg border border-fg/25 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-fg transition-colors hover:border-fg/60 hover:bg-fg/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-50'
+  return (
+    <section className="rounded-2xl border border-line bg-panel p-5 md:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h3 className="font-display text-2xl font-semibold">Emails ({rows.length})</h3>
+        <div className="flex gap-2">
+          <button type="button" onClick={copy} disabled={!rows.length} className={btn}>
+            {copied ? 'Copiados' : 'Copiar emails'}
+          </button>
+          <button type="button" onClick={download} disabled={!rows.length} className={btn}>
+            Descargar CSV
+          </button>
+        </div>
+      </div>
+      <div className="mt-4 overflow-x-auto">
+        <table className="w-full min-w-[620px] text-left text-sm">
+          <thead>
+            <tr className="border-b border-line text-xs uppercase tracking-wider text-muted">
+              <th className="py-2 pr-3 font-semibold">Email</th>
+              <th className="px-2 py-2 font-semibold">Fecha</th>
+              <th className="px-2 py-2 font-semibold">Nivel</th>
+              <th className="px-2 py-2 font-semibold">Plazo</th>
+              <th className="px-2 py-2 font-semibold">Banner</th>
+              <th className="py-2 pl-2 font-semibold">Origen</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.email + r.fecha} className="border-b border-line align-top last:border-0">
+                <td className="py-2.5 pr-3 font-semibold text-fg">{r.email}</td>
+                <td className="whitespace-nowrap px-2 py-2.5 text-fg-2">{new Date(r.fecha).toLocaleDateString('es-ES')}</td>
+                <td className="px-2 py-2.5 text-fg-2">{NIVEL_L[r.nivel] || '–'}</td>
+                <td className="px-2 py-2.5 text-fg-2">{CUANDO_L[r.cuando] || '–'}</td>
+                <td className="px-2 py-2.5 text-fg-2">{r.ubicacion_banner || '–'}</td>
+                <td className="py-2.5 pl-2 text-fg-2">{r.utm_source || '(directo)'}</td>
+              </tr>
+            ))}
+            {rows.length === 0 && (
+              <tr>
+                <td colSpan={6} className="py-3 text-muted">
+                  Todavía no se ha apuntado nadie.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
 function Kpi({ label, value, hint }) {
   return (
     <div className="rounded-2xl border border-line bg-panel p-5">
@@ -255,6 +336,8 @@ export default function AdminHyrox() {
                 ))}
               </ul>
             </section>
+
+            <Contacts rows={s.contactos || []} />
 
             <div className="grid gap-5 md:grid-cols-2">
               <Table title="Por ubicación del banner" firstCol="Banner" rows={s.porUbicacion} />
