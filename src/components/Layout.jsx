@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import TopStrip from './TopStrip.jsx'
+import HyroxBanner from './HyroxBanner.jsx'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import CookieBanner from './CookieBanner.jsx'
@@ -25,7 +25,7 @@ export default function Layout() {
   return (
     <>
       <ScrollManager />
-      <TopStrip />
+      <HyroxBanner ubicacion="barra" />
       <Nav />
       <main>
         <Suspense fallback={<div className="min-h-svh bg-ink" />}>

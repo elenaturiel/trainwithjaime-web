@@ -50,6 +50,10 @@ export default function Privacidad() {
           ['Responder a tu solicitud y darte el primer asesoramiento gratuito', 'Tu consentimiento (art. 6.1.a RGPD)'],
           ['Generar, comprobar y canjear códigos de amigo y aplicar descuentos', 'Tu consentimiento (art. 6.1.a RGPD)'],
           [
+            'Lista de espera del plan HYROX: guardar tus respuestas (nivel y plazo) y tu email para escribirte solo sobre ese plan',
+            'Tu consentimiento (art. 6.1.a RGPD)',
+          ],
+          [
             'Prestar el servicio contratado: planes, seguimiento y acceso a la plataforma de clientes',
             'Ejecución del contrato (art. 6.1.b RGPD); datos de salud: consentimiento explícito (art. 9.2.a RGPD)',
           ],
@@ -63,6 +67,10 @@ export default function Privacidad() {
       <UL>
         <li>Solicitudes de contacto que no acaban en contratación: hasta 12 meses.</li>
         <li>Códigos de amigo: mientras la promoción esté activa y, como máximo, 24 meses.</li>
+        <li>
+          Lista de espera HYROX: hasta que lances el plan y, como máximo, 12 meses. Las respuestas del formulario sin
+          email son anónimas.
+        </li>
         <li>
           Clientes: mientras dure la relación y, después, durante los plazos legales de prescripción y conservación
           fiscal.

@@ -9,6 +9,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
 import FoldText from '../components/FoldText.jsx'
 import ScrollExpand from '../components/ScrollExpand.jsx'
+import HyroxBanner from '../components/HyroxBanner.jsx'
 import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -383,6 +384,7 @@ export default function Home() {
           <Testimonials />
         </ScrollSection>
       )}
+      <HyroxBanner ubicacion="home" />
       <ScrollSection effect="zoom" bg="bg-panel" last dark>
         <FinalCTA />
       </ScrollSection>
