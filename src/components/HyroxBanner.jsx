@@ -15,7 +15,7 @@ import { useHasTopBar } from '../lib/topbar.js'
      ubicacion="planes"  → bloque entre las secciones de planes
      ubicacion="footer"  → pie de página */
 
-export default function HyroxBanner({ ubicacion, text = HYROX_BANNER.text, cta = HYROX_BANNER.cta }) {
+export default function HyroxBanner({ ubicacion, text = HYROX_BANNER.text, cta = HYROX_BANNER.cta, sub = HYROX_BANNER.sub }) {
   const to = `/hyrox?ub=${ubicacion}`
   const hasBar = useHasTopBar()
 
@@ -44,10 +44,7 @@ export default function HyroxBanner({ ubicacion, text = HYROX_BANNER.text, cta =
         <Reveal as="div" className="relative mx-auto max-w-7xl px-5 md:px-8">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">HYROX · sin postureo</p>
           <h2 className="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.02] md:text-8xl">{text}</h2>
-          <p className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">
-            Jaime está preparando un plan para quien llega sin saber ni por dónde empezar. Déjanos tu email y te
-            escribimos antes que a nadie.
-          </p>
+          {sub && <p className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">{sub}</p>}
           <div className="mt-10">
             <Button to={to}>
               {cta} <ArrowIcon className="h-4 w-4" />
