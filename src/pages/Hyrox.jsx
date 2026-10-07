@@ -127,7 +127,7 @@ export default function Hyrox() {
               Tu primer HYROX, sin hacerte el héroe.
             </h1>
             <p className="mt-3 text-base text-muted md:text-lg">
-              Tres preguntas y te avisamos cuando esté el plan HYROX de Jaime. Sin spam, sin “rise and grind”.
+              Tres preguntas rápidas para saber en qué punto estás y cómo preparar tu primer HYROX. Sin spam, sin “rise and grind”.
             </p>
 
             {/* Progreso */}
