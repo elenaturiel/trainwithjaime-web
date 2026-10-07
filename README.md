@@ -56,6 +56,20 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 > Esta parte usa funciones de Vercel: en Netlify el resto de la web funciona, pero los códigos no.
 
+## Lista de espera HYROX
+
+- **Banner** (`src/components/HyroxBanner.jsx`): barra fina fija arriba, bloque grande en la home, bloque entre los planes
+  (`/precios`) y pie de página. Todos enlazan a `/hyrox?ub=barra|home|planes|footer`. **El texto se cambia en
+  `src/config.js`** (`HYROX_BANNER_VARIANTS` y `HYROX_BANNER_ACTIVE`) y se actualizan los cuatro a la vez.
+- **Formulario** `/hyrox` (`src/pages/Hyrox.jsx`, preguntas en `src/data/hyrox.js`): 3 pasos, una pregunta por pantalla.
+  Cada paso se guarda al momento, así también quedan los que no llegan al email.
+- **Datos** (`api/_lib/hyrox.js`): usan el mismo Redis de Upstash que los códigos de amigo. Entidad `HyroxLead`: nivel,
+  cuando, email, consentimiento, ubicacion_banner, utm_source, utm_medium, utm_campaign, fecha. Eventos (vista, paso1,
+  paso2, envio) sin datos personales; con `HYROX_EVENTS_NEED_CONSENT = true` (en `src/config.js`) solo se registran si
+  la persona acepta la analítica.
+- **Vista privada** `/admin/hyrox`: pide una clave. En Vercel → Settings → Environment Variables crea
+  **`HYROX_ADMIN_TOKEN`** con una clave larga que solo sepas tú y redespliega. Sin esa variable la vista no se abre.
+
 ## Analítica y cookies
 
 La analítica es Vercel Web Analytics y solo se carga si el visitante la acepta en el aviso de cookies. Para ver los

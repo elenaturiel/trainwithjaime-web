@@ -4,6 +4,7 @@ import ScrollSection from '../components/ScrollSection.jsx'
 import PricingCards from '../components/Pricing.jsx'
 import PlanComparison from '../components/PlanComparison.jsx'
 import FoldText from '../components/FoldText.jsx'
+import HyroxBanner from '../components/HyroxBanner.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
 import { Reveal } from '../components/Reveal.jsx'
 
@@ -37,6 +38,9 @@ export default function Precios() {
           </div>
         </section>
       </ScrollSection>
+
+      {/* Bloque HYROX entre las dos secciones de planes (tarjetas y comparativa) */}
+      <HyroxBanner ubicacion="planes" />
 
       {/* Sin ScrollSection: su contenedor con overflow rompería la cabecera fija de la tabla */}
       <section id="comparar" className="theme-dark relative z-10 overflow-x-clip bg-ink py-24 md:py-32">

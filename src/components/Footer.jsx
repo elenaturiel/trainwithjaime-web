@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '../config.js'
 import { openCookieSettings } from '../lib/consent.js'
 import { Logo } from './Nav.jsx'
+import HyroxBanner from './HyroxBanner.jsx'
 
 const LEGAL_LINKS = [
   { to: '/aviso-legal', label: 'Aviso legal' },
@@ -13,6 +14,7 @@ export default function Footer() {
   const link = 'transition-colors hover:text-accent-ink'
   return (
     <footer className="border-t border-line bg-ink">
+      <HyroxBanner ubicacion="footer" />
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
         <Logo className="text-xl" />
         <div className="flex flex-col gap-2 md:flex-row md:gap-8">
