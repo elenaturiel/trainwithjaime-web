@@ -203,6 +203,10 @@ export async function handleHyroxStats(token, store = getStore(), env = process.
         porSource: byKey('utm_source', '(directo)'),
         nivel: tally(leads.filter((l) => l.nivel), 'nivel'),
         cuando: tally(leads.filter((l) => l.cuando), 'cuando'),
+        // Quién se ha apuntado (solo con email y consentimiento), lo más reciente primero
+        contactos: withEmail
+          .map((l) => ({ email: l.email, fecha: l.fecha, nivel: l.nivel, cuando: l.cuando, ubicacion_banner: l.ubicacion_banner, utm_source: l.utm_source }))
+          .sort((a, b) => (a.fecha < b.fecha ? 1 : -1)),
         ultimo: leads.reduce((m, l) => (l.actualizado > m ? l.actualizado : m), ''),
       },
     ]
