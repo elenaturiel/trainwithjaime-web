@@ -121,8 +121,14 @@ function ServiceTabs() {
             ))}
           </ul>
         </div>
-        <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-panel-2 md:max-w-none">
-          <img src={s.image} alt={s.alt} draggable={false} className="aspect-[3/4] w-full object-cover" />
+        <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-panel-2 md:w-fit md:max-w-none">
+          {/* Foto entera: en escritorio se limita por altura para que quepa en pantalla sin recortarse */}
+          <img
+            src={s.image}
+            alt={s.alt}
+            draggable={false}
+            className="aspect-[3/4] w-full object-cover md:h-[min(76svh,40rem)] md:w-auto"
+          />
         </div>
       </div>
     ),
