@@ -27,9 +27,10 @@ const HERO_VIDEO = '/hero.mp4'
 const HERO_POSTER = '/hero-poster.jpg'
 
 const GALLERY = [
-  // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4).
-  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Aquí no entrenas solo' },
+  // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4; sin fotos de espejo).
+  { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Aquí no entrenas solo' },
   { src: '/foto-3.jpg', alt: 'Jaime con un disco en las manos, mirando de lado', title: 'Más peso en la barra, semana a semana' },
+  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Sin atajos, con método' },
   { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Llega en tu mejor versión' },
   { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Resultados sin humo' },
   { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
@@ -204,7 +205,7 @@ function Stats() {
 }
 
 // Fotos para acompañar cada punto (una por punto)
-const DIFFERENCE_IMAGES = ['/foto-6.jpg', '/foto-4.jpg', '/foto-1.jpg']
+const DIFFERENCE_IMAGES = ['/foto-7.jpg', '/foto-2.jpg', '/foto-6.jpg']
 
 function Difference() {
   return (
