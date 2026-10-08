@@ -29,7 +29,7 @@ const HERO_POSTER = '/hero-poster.jpg'
 const GALLERY = [
   // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4; sin fotos de espejo).
   { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Aquí no entrenas solo' },
-  { src: '/foto-8.jpg', alt: 'Jaime de pie, agarrando la barra en una máquina Smith', title: 'Más peso en la barra, semana a semana' },
+  { src: '/foto-3.jpg', alt: 'Jaime con un disco en las manos, mirando de lado', title: 'Más peso en la barra, semana a semana' },
   { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Sin atajos, con método' },
   { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Llega en tu mejor versión' },
   { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Resultados sin humo' },
@@ -254,7 +254,7 @@ function Gallery() {
 function Evolution() {
   return (
     // Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de ScrollExpand
-    <ScrollExpand src="/foto-3.jpg" title="Tu evolución">
+    <ScrollExpand src="/foto-8.jpg" position="50% 22%" title="Tu evolución">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
           <SectionHeading title="Tu evolución" />
