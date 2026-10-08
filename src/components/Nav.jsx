@@ -74,7 +74,7 @@ const ITEMS = [
       { label: 'Seguimiento', description: 'Cada semana, por WhatsApp', icon: <ChatIcon className={ICON} />, to: '/servicios#seguimiento' },
       { label: 'Plataforma y comunidad', description: 'Exclusiva para clientes', icon: <UsersIcon className={ICON} />, to: '/servicios#comunidad' },
     ],
-    feature: { title: 'Hazte el test de estudihambre', description: 'Descubre qué plan te encaja.', to: '/test', image: { src: '/gallery-5.jpg', alt: '' } },
+    feature: { title: 'Hazte el test de estudihambre', description: 'Descubre qué plan te encaja.', to: '/test', image: { src: '/foto-5.jpg', alt: '' } },
   },
   {
     value: 'sobre-jaime',
@@ -94,7 +94,7 @@ const ITEMS = [
       { label: 'Comparar los planes', description: 'Qué cambia de uno a otro', icon: <ChatIcon className={ICON} />, to: '/precios#comparar' },
       { label: 'Descuentos', description: 'Carné universitario y squad', icon: <UsersIcon className={ICON} />, to: '/precios#descuentos' },
     ],
-    feature: { title: 'Primera asesoría gratis', description: 'Cuéntale a Jaime tu objetivo.', to: '/contacto', image: { src: '/gallery-2.jpg', alt: '' } },
+    feature: { title: 'Primera asesoría gratis', description: 'Cuéntale a Jaime tu objetivo.', to: '/contacto', image: { src: '/foto-1.jpg', alt: '' } },
   },
   { value: 'contacto', label: 'Contacto', to: '/contacto' },
 ]

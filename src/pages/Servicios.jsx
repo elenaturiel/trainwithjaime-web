@@ -22,8 +22,8 @@ const SERVICES = [
     title: 'Entrenamiento personalizado',
     text: 'Diseño tu plan de entrenamiento desde cero según tu nivel, tus objetivos y el material que tienes disponible. Gym, running, trail, HYROX, obstáculos, o una combinación. Cada rutina se adapta a ti y se actualiza para seguir progresando.',
     chips: ['HYROX', 'Entrenamiento funcional', 'Gym/hipertrofia', 'Running para principiantes', 'Programación a medida'],
-    image: '/gallery-2.jpg',
-    alt: 'Jaime sonriendo y marcando bíceps',
+    image: '/foto-4.jpg',
+    alt: 'Jaime con un disco en las manos, mirando a cámara',
   },
   {
     value: 'nutricion',
@@ -32,8 +32,8 @@ const SERVICES = [
     title: 'Nutrición adaptada a tu vida',
     text: 'Planes de nutrición pensados para quien vive en un piso de estudiantes, come tuppers en la uni o cena fuera los fines de semana. Recetas Mercadona, listas de la compra realistas, y estrategias para comer bien sin gastarte lo que no tienes. No es una dieta, es aprender a comer.',
     chips: ['Recetas Mercadona', 'Tuppers', 'Comer fuera', 'Listas de la compra'],
-    image: '/gallery-1.jpg',
-    alt: 'Jaime posando en el gimnasio, de espaldas al espejo',
+    image: '/foto-1.jpg',
+    alt: 'Jaime sonriendo, sentado en un banco del gimnasio',
   },
   {
     value: 'seguimiento',
@@ -42,8 +42,8 @@ const SERVICES = [
     title: 'Seguimiento real, no un PDF y adiós',
     text: 'Estoy contigo cada semana. Revisiones periódicas por WhatsApp, videollamadas mensuales en el plan All In, y análisis de técnica en vídeo cuando lo necesites, sin coste extra (que estamos para aprender). Si tienes una duda a las 22h antes del entreno de mañana, ¡mándamela!',
     chips: ['Revisión por WhatsApp', 'Videollamada mensual', 'Análisis de técnica en vídeo'],
-    image: '/gallery-4.jpg',
-    alt: 'Jaime marcando bíceps frente al espejo, en blanco y negro',
+    image: '/foto-2.jpg',
+    alt: 'Jaime sentado en un cajón de salto',
   },
   {
     value: 'comunidad',
@@ -52,8 +52,8 @@ const SERVICES = [
     title: 'La comunidad de Train with Jaime',
     text: 'Train with Jaime tiene su propia plataforma, exclusiva para clientes: ahí gestionas tus entrenos y tu nutrición, y además encuentras entradas de blog, recetas, recomendaciones, un espacio para resolver tus dudas y retos. Y todos los clientes entran también en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
     chips: ['Entrenos', 'Nutrición', 'Blog', 'Recetas', 'Recomendaciones', 'Dudas', 'Retos'],
-    image: '/gallery-5.jpg',
-    alt: 'Jaime en el gimnasio',
+    image: '/foto-6.jpg',
+    alt: 'Jaime con los brazos cruzados frente a las mancuernas',
   },
 ]
 
@@ -66,7 +66,7 @@ const STEPS = [
   { title: 'Seguimiento de verdad', text: 'Revisiones por WhatsApp, análisis de técnica en vídeo y una plataforma solo para clientes.' },
   { title: 'Resultados que se miden', text: 'Medimos marcas, no likes: registramos tu progreso y ajustamos el plan cuando hace falta.' },
 ]
-const STEP_IMAGES = ['/gallery-5.jpg', '/gallery-3.jpg', '/gallery-1.jpg', '/gallery-4.jpg']
+const STEP_IMAGES = ['/foto-5.jpg', '/foto-3.jpg', '/foto-1.jpg', '/foto-2.jpg']
 
 const EXTRAS = [
   { label: 'Videollamada extra', value: '15' },
@@ -122,7 +122,7 @@ function ServiceTabs() {
           </ul>
         </div>
         <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl bg-panel-2 md:max-w-none">
-          <img src={s.image} alt={s.alt} draggable={false} className="aspect-[4/5] w-full object-cover" />
+          <img src={s.image} alt={s.alt} draggable={false} className="aspect-[3/4] w-full object-cover" />
         </div>
       </div>
     ),
