@@ -42,8 +42,8 @@ const SERVICES = [
     title: 'Seguimiento real, no un PDF y adiós',
     text: 'Estoy contigo cada semana. Revisiones periódicas por WhatsApp, videollamadas mensuales en el plan All In, y análisis de técnica en vídeo cuando lo necesites, sin coste extra (que estamos para aprender). Si tienes una duda a las 22h antes del entreno de mañana, ¡mándamela!',
     chips: ['Revisión por WhatsApp', 'Videollamada mensual', 'Análisis de técnica en vídeo'],
-    image: '/foto-2.jpg',
-    alt: 'Jaime sentado en un cajón de salto',
+    image: '/foto-7.jpg',
+    alt: 'Jaime sonriendo y marcando bíceps',
   },
   {
     value: 'comunidad',
@@ -66,7 +66,7 @@ const STEPS = [
   { title: 'Seguimiento de verdad', text: 'Revisiones por WhatsApp, análisis de técnica en vídeo y una plataforma solo para clientes.' },
   { title: 'Resultados que se miden', text: 'Medimos marcas, no likes: registramos tu progreso y ajustamos el plan cuando hace falta.' },
 ]
-const STEP_IMAGES = ['/foto-5.jpg', '/foto-3.jpg', '/foto-1.jpg', '/foto-2.jpg']
+const STEP_IMAGES = ['/foto-5.jpg', '/foto-2.jpg', '/foto-3.jpg', '/foto-7.jpg']
 
 const EXTRAS = [
   { label: 'Videollamada extra', value: '15' },
