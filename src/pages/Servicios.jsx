@@ -66,7 +66,7 @@ const STEPS = [
   { title: 'Seguimiento de verdad', text: 'Revisiones por WhatsApp, análisis de técnica en vídeo y una plataforma solo para clientes.' },
   { title: 'Resultados que se miden', text: 'Medimos marcas, no likes: registramos tu progreso y ajustamos el plan cuando hace falta.' },
 ]
-const STEP_IMAGES = ['/foto-5.jpg', '/foto-2.jpg', '/foto-3.jpg', '/foto-7.jpg']
+const STEP_IMAGES = ['/foto-5.jpg', '/foto-2.jpg', '/foto-3.jpg', '/foto-8.jpg']
 
 const EXTRAS = [
   { label: 'Videollamada extra', value: '15' },

@@ -36,6 +36,7 @@ export default function ScrollExpand({
   holdDistance = 0.35,
   overlayScrim = 0.45, // darkness of the picture once open…
   contentScrim = 0.7, // …and once the content is on it
+  position = '50% 50%', // object-position de la foto (sube el foco para no cortar la cara)
   className = '',
 }) {
   const reduced = !!useReducedMotion()
@@ -97,7 +98,7 @@ export default function ScrollExpand({
             alt={alt}
             draggable={false}
             className="size-full select-none object-cover"
-            style={reduced ? undefined : { scale: zoom }}
+            style={reduced ? { objectPosition: position } : { scale: zoom, objectPosition: position }}
           />
           <motion.div aria-hidden="true" className="absolute inset-0 bg-[#041037]" style={{ opacity: reduced ? contentScrim : scrim }} />
         </motion.div>
