@@ -32,8 +32,8 @@ const SERVICES = [
     title: 'Nutrición adaptada a tu vida',
     text: 'Planes de nutrición pensados para quien vive en un piso de estudiantes, come tuppers en la uni o cena fuera los fines de semana. Recetas Mercadona, listas de la compra realistas, y estrategias para comer bien sin gastarte lo que no tienes. No es una dieta, es aprender a comer.',
     chips: ['Recetas Mercadona', 'Tuppers', 'Comer fuera', 'Listas de la compra'],
-    image: '/foto-1.jpg',
-    alt: 'Jaime sonriendo, sentado en un banco del gimnasio',
+    image: '/nutricion.jpg',
+    alt: 'Cuatro tuppers de arroz con boniato asado, listos para la semana',
   },
   {
     value: 'seguimiento',
