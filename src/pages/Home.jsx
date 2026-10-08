@@ -27,20 +27,13 @@ const HERO_VIDEO = '/hero.mp4'
 const HERO_POSTER = '/hero-poster.jpg'
 
 const GALLERY = [
-  // `title` = frase que aparece encima de cada foto. Fotos en /public/gallery-N.jpg (vertical 4:5).
-  {
-    src: '/gallery-1.jpg',
-    alt: 'Jaime posando en el gimnasio, de espaldas al espejo',
-    title: 'Más peso en la barra, semana a semana',
-  },
-  { src: '/gallery-2.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Aquí no entrenas solo' },
-  { src: '/gallery-3.jpg', alt: 'Jaime de espaldas frente al espejo, en blanco y negro', title: 'Resultados sin humo' },
-  {
-    src: '/gallery-4.jpg',
-    alt: 'Jaime marcando bíceps frente al espejo, en blanco y negro',
-    title: 'Llega en tu mejor versión',
-  },
-  { src: '/gallery-5.jpg', alt: 'Jaime con ropa de entrenar frente al espejo', title: 'Un plan hecho para ti' },
+  // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4).
+  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Aquí no entrenas solo' },
+  { src: '/foto-3.jpg', alt: 'Jaime con un disco en las manos, mirando de lado', title: 'Más peso en la barra, semana a semana' },
+  { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Llega en tu mejor versión' },
+  { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Resultados sin humo' },
+  { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
+  { src: '/foto-5.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Cero postureo, mucho plan' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).
@@ -210,8 +203,8 @@ function Stats() {
   )
 }
 
-// Fotos de la galería para acompañar cada punto (una por punto)
-const DIFFERENCE_IMAGES = ['/gallery-2.jpg', '/gallery-1.jpg', '/gallery-4.jpg']
+// Fotos para acompañar cada punto (una por punto)
+const DIFFERENCE_IMAGES = ['/foto-6.jpg', '/foto-4.jpg', '/foto-1.jpg']
 
 function Difference() {
   return (
@@ -260,7 +253,7 @@ function Gallery() {
 function Evolution() {
   return (
     // Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de ScrollExpand
-    <ScrollExpand src="/gallery-3.jpg" title="Tu evolución">
+    <ScrollExpand src="/foto-3.jpg" title="Tu evolución">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
           <SectionHeading title="Tu evolución" />

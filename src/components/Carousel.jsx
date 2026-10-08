@@ -194,7 +194,7 @@ export default function Carousel({ items, label = 'Galería', interval = 4500 })
                   alt={original ? it.alt : ''}
                   loading={original ? 'eager' : 'lazy'}
                   draggable={false}
-                  className={`aspect-[4/5] w-full object-cover transition-[transform,opacity] duration-500 motion-safe:group-hover:scale-[1.03] ${
+                  className={`aspect-[3/4] w-full object-cover transition-[transform,opacity] duration-500 motion-safe:group-hover:scale-[1.03] ${
                     active ? 'opacity-100' : 'opacity-60'
                   }`}
                 />
