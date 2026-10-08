@@ -28,13 +28,13 @@ const HERO_POSTER = '/hero-poster.jpg'
 
 const GALLERY = [
   // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4; sin fotos de espejo).
-  { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Los bíceps no se regalan' },
-  { src: '/foto-3.jpg', alt: 'Jaime con un disco en las manos, mirando de lado', title: 'Cada semana, un poco más de peso' },
-  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Entrenar también puede ser divertido' },
-  { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Brazos cruzados solo en la foto' },
-  { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Te toca a ti: ¿empezamos?' },
-  { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Siéntate, hablamos de tu plan' },
-  { src: '/foto-5.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Un disco, cero excusas' },
+  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Aquí no entrenas solo' },
+  { src: '/foto-3.jpg', alt: 'Jaime con un disco en las manos, mirando de lado', title: 'Más peso en la barra, semana a semana' },
+  { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Sin atajos, con método' },
+  { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Llega en tu mejor versión' },
+  { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Resultados sin humo' },
+  { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
+  { src: '/foto-5.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Cero postureo, mucho plan' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).
