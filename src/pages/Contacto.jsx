@@ -119,30 +119,48 @@ function ContactForm({ plan, weeks, yearly, initialCode, testPlan }) {
       formData.append('codigo_para_su_amigo', generated || 'no se pudo generar — pásale uno a mano')
     }
 
-    // 3) Se envía a la vez a Google Sheets (se guarda una fila) y a Formspree (aviso por email a Jaime).
-    //    Basta con que uno de los dos funcione para no perder la inscripción.
-    const saveToSheet = fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(formData)),
-    }).then((r) => r.ok)
-    const sendEmail = fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: { Accept: 'application/json' },
-      body: formData,
-    }).then(async (r) => {
-      if (r.ok) return true
-      const data = await r.json().catch(() => null)
-      throw new Error(data?.errors?.map((er) => er.message).join(' · ') || '')
-    })
-    const [sheetResult, emailResult] = await Promise.allSettled([saveToSheet, sendEmail])
-    if (sheetResult.value === true || emailResult.value === true) {
+    // 3) El servidor (/api/lead) guarda una fila en Google Sheets y manda el aviso por email (Formspree).
+    //    Basta con que una de las dos cosas funcione para no perder la inscripción.
+    //    Si el servidor no responde (p. ej. en local), se prueba Formspree directamente desde el navegador.
+    let sent = false
+    let formError = ''
+    try {
+      const r = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      })
+      sent = r.ok
+      // Guardado en la hoja pero sin email desde el servidor: se intenta también el aviso desde el navegador.
+      if (r.ok && (await r.json().catch(() => null))?.email === false) {
+        fetch(FORMSPREE_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: formData }).catch(() => {})
+      }
+    } catch {
+      /* sin conexión con el servidor: se prueba el plan B */
+    }
+    if (!sent) {
+      try {
+        const r = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        })
+        if (r.ok) sent = true
+        else {
+          const data = await r.json().catch(() => null)
+          formError = data?.errors?.map((er) => er.message).join(' · ') || ''
+        }
+      } catch (err) {
+        formError = err?.message || ''
+      }
+    }
+    if (sent) {
       setMyCode(generated)
       setMyCodeFailed(wantsCode && !generated)
       setStatus('success')
       return
     }
-    setErrorMsg(emailResult.reason?.message || '')
+    setErrorMsg(formError)
     setStatus('error')
   }
 

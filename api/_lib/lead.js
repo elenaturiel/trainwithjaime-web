@@ -5,6 +5,11 @@
 // junto a una clave secreta. Variables de entorno en Vercel:
 //   GOOGLE_SHEETS_WEBHOOK_URL → URL de la aplicación web del Apps Script (…/exec)
 //   GOOGLE_SHEETS_SECRET      → la misma clave que se pone en el Apps Script
+//
+// Además reenvía el envío a Formspree (aviso por email a Jaime) desde el servidor, para que no dependa
+// del navegador de quien rellena el formulario (bloqueadores de anuncios, extensiones de privacidad…).
+
+import { FORMSPREE_ENDPOINT } from '../../src/config.js'
 
 // Campos que se guardan (en este orden); el resto se ignora.
 export const LEAD_FIELDS = [
@@ -28,19 +33,50 @@ const clean = (v) =>
     // Evita que un texto que empiece por = + - @ se interprete como fórmula en la hoja.
     .replace(/^[=+\-@]/, "'$&")
 
-export async function handleLead(body, env = process.env) {
+export async function handleLead(body, env = process.env, doFetch = fetch) {
   if (!body || typeof body !== 'object') return [400, { ok: false, error: 'Datos no válidos.' }]
   if (body._gotcha) return [200, { ok: true }] // bot: se ignora en silencio
   if (!body.nombre || !body.email) return [400, { ok: false, error: 'Faltan nombre o email.' }]
 
+  // Las dos cosas a la vez; basta con que una funcione para no perder la inscripción.
+  const [sheet, email] = await Promise.all([saveToSheet(body, env, doFetch), sendEmail(body, env, doFetch)])
+  if (sheet.ok || email.ok) return [200, { ok: true, sheet: sheet.ok, email: email.ok }]
+  return [502, { ok: false, error: 'No se ha podido guardar en Google Sheets ni enviar el email.', sheet, email, unavailable: true }]
+}
+
+// Aviso por email a Jaime (Formspree), enviado desde el servidor.
+async function sendEmail(body, env, doFetch) {
+  const endpoint = env.FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT
+  const fields = {}
+  for (const [k, v] of Object.entries(body)) {
+    if (k === '_gotcha') continue
+    fields[k] = String(v ?? '').slice(0, 5000)
+  }
+  try {
+    const res = await doFetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(fields),
+    })
+    if (res.ok) return { ok: true }
+    const text = await res.text().catch(() => '')
+    console.error('[lead] Formspree respondió', res.status, text.slice(0, 300))
+    return { ok: false, detail: `Formspree respondió HTTP ${res.status}` }
+  } catch (e) {
+    console.error('[lead] Formspree', e)
+    return { ok: false, detail: `No se ha podido conectar con Formspree (${e.message})` }
+  }
+}
+
+async function saveToSheet(body, env, doFetch) {
   const url = env.GOOGLE_SHEETS_WEBHOOK_URL
   const secret = env.GOOGLE_SHEETS_SECRET
-  if (!url || !secret) return [503, { ok: false, error: 'Google Sheets no está configurado.', unavailable: true }]
+  if (!url || !secret) return { ok: false, detail: 'Google Sheets no está configurado.' }
 
   const row = Object.fromEntries(LEAD_FIELDS.map((f) => [f, clean(body[f])]))
   let res, text
   try {
-    res = await fetch(url, {
+    res = await doFetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ secret, row }),
@@ -49,7 +85,7 @@ export async function handleLead(body, env = process.env) {
     text = await res.text()
   } catch (e) {
     console.error('[lead]', e)
-    return fail(`No se ha podido conectar con la URL de Apps Script (${e.message}). Revisa GOOGLE_SHEETS_WEBHOOK_URL.`)
+    return { ok: false, detail: `No se ha podido conectar con la URL de Apps Script (${e.message}). Revisa GOOGLE_SHEETS_WEBHOOK_URL.` }
   }
   let data = null
   try {
@@ -57,7 +93,7 @@ export async function handleLead(body, env = process.env) {
   } catch {
     /* Google ha devuelto una página HTML en vez de JSON */
   }
-  if (res.ok && data?.ok) return [200, { ok: true }]
+  if (res.ok && data?.ok) return { ok: true }
 
   // Diagnóstico legible (sin datos sensibles) para saber qué falla en la configuración.
   let detail
@@ -73,9 +109,5 @@ export async function handleLead(body, env = process.env) {
     detail = `Error dentro del Apps Script: ${(text.match(/(TypeError|Exception|Error)[^<]{0,160}/) || [''])[0]}`
   else detail = `Respuesta inesperada de Google (HTTP ${res.status}).`
   console.error('[lead]', detail)
-  return fail(detail)
-}
-
-function fail(detail) {
-  return [502, { ok: false, error: 'No se ha podido guardar en Google Sheets.', detail, unavailable: true }]
+  return { ok: false, detail }
 }
