@@ -28,7 +28,9 @@ Busca `⚠️ SUSTITUIR` y `⚠️ REVISAR` en el código para ver todos los pun
 ## Inscripciones en Google Sheets
 
 Cada envío del formulario se guarda como una fila en una hoja de Google Sheets de Train with Jaime (además del aviso
-por email de Formspree; basta con que uno de los dos funcione para no perder la inscripción).
+por email de Formspree; basta con que uno de los dos funcione para no perder la inscripción). Ambos pasos los hace
+el servidor (`/api/lead`), así que no dependen del navegador de quien rellena el formulario; si algo falla, el motivo
+queda en los logs de la función en Vercel (`[lead] …`).
 
 1. Con la cuenta de Google de Train with Jaime, crea una hoja de cálculo.
 2. **Extensiones → Apps Script**, borra lo que haya y pega `google-apps-script/Code.gs`. Guarda.
