@@ -254,7 +254,7 @@ function Gallery() {
 function Evolution() {
   return (
     // Sin ScrollSection: su contenedor recorta el desbordamiento y rompería el sticky de ScrollExpand
-    <ScrollExpand src="/foto-7.jpg" position="50% 4%" title="Tu evolución">
+    <ScrollExpand src="/gallery-3.jpg" title="Tu evolución">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
         <Reveal as="div">
           <SectionHeading title="Tu evolución" />
