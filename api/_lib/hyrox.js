@@ -53,6 +53,7 @@ function redisStore(url, token) {
       return v == null ? null : JSON.parse(v)
     },
     hset: (k, f, v) => cmd('HSET', k, f, JSON.stringify(v)),
+    hdel: (k, f) => cmd('HDEL', k, f),
     hgetall: async (k) => {
       const flat = (await cmd('HGETALL', k)) || []
       const out = []
@@ -73,6 +74,9 @@ const memoryStore = {
   hset: async (k, f, v) => {
     if (!mem.hashes.has(k)) mem.hashes.set(k, new Map())
     mem.hashes.get(k).set(f, v)
+  },
+  hdel: async (k, f) => {
+    mem.hashes.get(k)?.delete(f)
   },
   hgetall: async (k) => [...(mem.hashes.get(k)?.values() ?? [])],
   push: async (k, v, max) => {

@@ -27,6 +27,9 @@ export default function Footer() {
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className={link}>
             {INSTAGRAM_HANDLE}
           </a>
+          <Link to="/resenas" className={link}>
+            Reseñas
+          </Link>
         </div>
       </div>
       <div className="border-t border-line">
