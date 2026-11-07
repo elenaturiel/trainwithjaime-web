@@ -208,7 +208,7 @@ function Stats() {
 }
 
 // Fotos para acompañar cada punto (una por punto)
-const DIFFERENCE_IMAGES = ['/img-08.jpg', '/img-22.jpg', '/img-45.jpg']
+const DIFFERENCE_IMAGES = ['/img-08.jpg', '/img-22.jpg', '/img-24.jpg']
 
 function Difference() {
   return (
