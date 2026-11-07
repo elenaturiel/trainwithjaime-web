@@ -37,7 +37,7 @@ const GALLERY = [
   { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Llega en tu mejor versión' },
   { src: '/img-05.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Resultados sin humo' },
   { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
-  { src: '/foto-5.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Cero postureo, mucho plan' },
+  { src: '/img-46.jpg', alt: 'Portátil con un documento abierto y un cuaderno con el plan de entrenos', title: 'Cero postureo, mucho plan' },
 ]
 
 // ⚠️ REVISAR: copy propuesto para "La diferencia" (no venía en el brief).
