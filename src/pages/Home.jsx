@@ -31,11 +31,11 @@ const HERO_POSTER = '/hero-poster.jpg'
 
 const GALLERY = [
   // `title` = frase que aparece encima de cada foto. Fotos en /public/foto-N.jpg (verticales, 3:4; sin fotos de espejo).
-  { src: '/foto-1.jpg', alt: 'Jaime sonriendo, sentado en un banco del gimnasio', title: 'Aquí no entrenas solo' },
-  { src: '/foto-8.jpg', alt: 'Jaime de pie, agarrando la barra en una máquina Smith', title: 'Más peso en la barra, semana a semana' },
-  { src: '/foto-4.jpg', alt: 'Jaime con un disco en las manos, mirando a cámara', title: 'Sin atajos, con método' },
+  { src: '/img-42.jpg', alt: 'Jaime y un amigo sonriendo en un selfie al aire libre', title: 'Aquí no entrenas solo' },
+  { src: '/img-41.jpg', alt: 'Jaime en el rack de sentadillas del gimnasio', title: 'Más peso en la barra, semana a semana' },
+  { src: '/img-25.jpg', alt: 'Jaime tomando apuntes en su cuaderno junto a la ventana', title: 'Sin atajos, con método' },
   { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Llega en tu mejor versión' },
-  { src: '/foto-6.jpg', alt: 'Jaime con los brazos cruzados frente a las mancuernas', title: 'Resultados sin humo' },
+  { src: '/img-05.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Resultados sin humo' },
   { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
   { src: '/foto-5.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Cero postureo, mucho plan' },
 ]
@@ -208,7 +208,7 @@ function Stats() {
 }
 
 // Fotos para acompañar cada punto (una por punto)
-const DIFFERENCE_IMAGES = ['/foto-7.jpg', '/foto-2.jpg', '/foto-6.jpg']
+const DIFFERENCE_IMAGES = ['/img-08.jpg', '/img-22.jpg', '/img-24.jpg']
 
 function Difference() {
   return (
