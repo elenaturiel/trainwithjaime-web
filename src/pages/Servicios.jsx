@@ -22,8 +22,8 @@ const SERVICES = [
     title: 'Entrenamiento personalizado',
     text: 'Diseño tu plan de entrenamiento desde cero según tu nivel, tus objetivos y el material que tienes disponible. Gym, running, trail, HYROX, obstáculos, o una combinación. Cada rutina se adapta a ti y se actualiza para seguir progresando.',
     chips: ['HYROX', 'Entrenamiento funcional', 'Gym/hipertrofia', 'Running para principiantes', 'Programación a medida'],
-    image: '/foto-4.jpg',
-    alt: 'Jaime con un disco en las manos, mirando a cámara',
+    image: '/img-11.jpg',
+    alt: 'Jaime en la máquina Smith, agarrando la barra',
   },
   {
     value: 'nutricion',
@@ -32,8 +32,8 @@ const SERVICES = [
     title: 'Nutrición adaptada a tu vida',
     text: 'Planes de nutrición pensados para quien vive en un piso de estudiantes, come tuppers en la uni o cena fuera los fines de semana. Recetas Mercadona, listas de la compra realistas, y estrategias para comer bien sin gastarte lo que no tienes. No es una dieta, es aprender a comer.',
     chips: ['Recetas Mercadona', 'Tuppers', 'Comer fuera', 'Listas de la compra'],
-    image: '/nutricion.jpg',
-    alt: 'Cuatro tuppers de arroz con boniato asado, listos para la semana',
+    image: '/img-31.jpg',
+    alt: 'Plato de pollo con verduras salteadas',
   },
   {
     value: 'seguimiento',
@@ -42,8 +42,8 @@ const SERVICES = [
     title: 'Seguimiento real, no un PDF y adiós',
     text: 'Estoy contigo cada semana. Revisiones periódicas por WhatsApp, videollamadas mensuales en el plan All In, y análisis de técnica en vídeo cuando lo necesites, sin coste extra (que estamos para aprender). Si tienes una duda a las 22h antes del entreno de mañana, ¡mándamela!',
     chips: ['Revisión por WhatsApp', 'Videollamada mensual', 'Análisis de técnica en vídeo'],
-    image: '/foto-7.jpg',
-    alt: 'Jaime sonriendo y marcando bíceps',
+    image: '/img-26.jpg',
+    alt: 'Planificación de los entrenos en un portátil y un cuaderno',
   },
   {
     value: 'comunidad',
