@@ -8,7 +8,20 @@ const COPIES = 3 // la lista se repite 3 veces; siempre nos quedamos en la del m
 // última vuelve a salir la primera sin cortes (nunca acaba). Pasa solo cada `interval` ms; se detiene mientras el
 // ratón está encima, se toca/arrastra o se navega con el teclado, cuando no se ve en pantalla y si el usuario pulsa
 // pausa (y no arranca con "reducir movimiento"). Se puede arrastrar con el dedo o el ratón, o usar las flechas.
-export default function Carousel({ items, label = 'Galería', interval = 4500 }) {
+//
+// Por defecto muestra fotos (`src`, `alt`, `title`). Con `renderItem(item)` cada hueco pinta lo que quieras (reseñas,
+// tarjetas…); `basis` fija cuántos se ven a la vez (clases de Tailwind) y `noun` es lo que se dice a los lectores de pantalla.
+const PHOTO_BASIS = 'basis-[76%] sm:basis-[44%] lg:basis-[31%]'
+
+export default function Carousel({
+  items,
+  label = 'Galería',
+  interval = 4500,
+  renderItem,
+  basis = PHOTO_BASIS,
+  noun = 'foto',
+  inactiveClass = 'opacity-60', // cómo se ven las tarjetas que no son la activa (las reseñas se atenúan menos para poder leerse)
+}) {
   const n = items.length
   const all = Array.from({ length: COPIES }, (_, c) => items.map((it, i) => ({ ...it, c, i }))).flat()
 
@@ -175,19 +188,33 @@ export default function Carousel({ items, label = 'Galería', interval = 4500 })
           dragConstraints={{ left: -1e6, right: 1e6 }}
           onDragStart={() => anim.current?.stop()}
           onDragEnd={onDragEnd}
-          className="flex cursor-grab gap-4 will-change-transform active:cursor-grabbing md:gap-6"
+          className="flex cursor-grab items-stretch gap-4 will-change-transform active:cursor-grabbing md:gap-6"
         >
           {all.map((it, g) => {
             const active = g === p
             const original = it.c === 1 // las copias de los lados no se leen dos veces con un lector de pantalla
+            if (renderItem) {
+              return (
+                <div
+                  key={`${it.c}-${it.i}`}
+                  role="group"
+                  aria-roledescription={noun}
+                  aria-label={`${it.i + 1} de ${n}`}
+                  aria-hidden={original ? undefined : true}
+                  className={`shrink-0 select-none ${basis} ${active ? 'opacity-100' : inactiveClass} transition-opacity duration-500`}
+                >
+                  {renderItem(it, { active, original })}
+                </div>
+              )
+            }
             return (
               <figure
                 key={`${it.c}-${it.i}`}
                 role="group"
-                aria-roledescription="foto"
+                aria-roledescription={noun}
                 aria-label={`${it.i + 1} de ${n}`}
                 aria-hidden={original ? undefined : true}
-                className="group relative shrink-0 basis-[76%] select-none overflow-hidden rounded-2xl bg-panel sm:basis-[44%] lg:basis-[31%]"
+                className={`group relative shrink-0 select-none overflow-hidden rounded-2xl bg-panel ${basis}`}
               >
                 <img
                   src={it.src}
@@ -212,16 +239,16 @@ export default function Carousel({ items, label = 'Galería', interval = 4500 })
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Elegir foto">
+        <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label={`Elegir ${noun}`}>
           {items.map((it, i) => {
             const active = i === current
             return (
               <button
-                key={it.src}
+                key={it.id ?? it.src}
                 type="button"
                 role="tab"
                 aria-selected={active}
-                aria-label={`Ir a la foto ${i + 1}`}
+                aria-label={`Ir a ${noun === 'foto' ? 'la foto' : `la ${noun}`} ${i + 1}`}
                 onClick={() => moveBy(i - current)}
                 className={`relative h-2 overflow-hidden rounded-full bg-fg/25 transition-all duration-300 hover:bg-fg/50 ${
                   active ? 'w-12' : 'w-2'
@@ -269,10 +296,10 @@ export default function Carousel({ items, label = 'Galería', interval = 4500 })
               )}
             </button>
           )}
-          <button type="button" onClick={() => go(-1)} aria-label="Foto anterior" className={arrow}>
+          <button type="button" onClick={() => go(-1)} aria-label="Anterior" className={arrow}>
             <ArrowIcon className="h-5 w-5 rotate-180" />
           </button>
-          <button type="button" onClick={() => go(1)} aria-label="Foto siguiente" className={arrow}>
+          <button type="button" onClick={() => go(1)} aria-label="Siguiente" className={arrow}>
             <ArrowIcon className="h-5 w-5" />
           </button>
         </div>
