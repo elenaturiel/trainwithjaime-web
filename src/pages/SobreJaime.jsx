@@ -35,8 +35,8 @@ export default function SobreJaime() {
               className="group overflow-hidden rounded-2xl border border-line bg-panel"
             >
               <img
-                src="/foto-7.jpg"
-                alt="Jaime sonriendo y marcando bíceps"
+                src="/img-06.jpg"
+                alt="Jaime con un disco, de pie frente a la estructura de dominadas"
                 className="aspect-[3/4] h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
               />
             </motion.div>
