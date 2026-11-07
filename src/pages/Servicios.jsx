@@ -42,8 +42,8 @@ const SERVICES = [
     title: 'Seguimiento real, no un PDF y adiós',
     text: 'Estoy contigo cada semana. Revisiones periódicas por WhatsApp, videollamadas mensuales en el plan All In, y análisis de técnica en vídeo cuando lo necesites, sin coste extra (que estamos para aprender). Si tienes una duda a las 22h antes del entreno de mañana, ¡mándamela!',
     chips: ['Revisión por WhatsApp', 'Videollamada mensual', 'Análisis de técnica en vídeo'],
-    image: '/img-26.jpg',
-    alt: 'Planificación de los entrenos en un portátil y un cuaderno',
+    image: '/img-45.jpg',
+    alt: 'Portátil con un documento abierto y un cuaderno con apuntes',
   },
   {
     value: 'comunidad',
