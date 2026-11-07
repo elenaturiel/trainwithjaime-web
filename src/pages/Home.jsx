@@ -13,13 +13,13 @@ import HyroxBanner from '../components/HyroxBanner.jsx'
 import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
-import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
+import { Reveal } from '../components/Reveal.jsx'
 import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
 import { REAL_TESTIMONIALS as TESTIMONIALS } from '../config.js'
 import { useReviews } from '../lib/resenas.js'
 import { Stars } from '../components/Stars.jsx'
-import ReviewCard, { ChangeCard } from '../components/ReviewCard.jsx'
+import { ChangesSlider, ReviewsSlider } from '../components/ReviewSliders.jsx'
 
 // La gráfica se carga aparte para no frenar el primer render.
 const ProgressChart = lazy(() => import('../components/ProgressChart.jsx'))
@@ -295,16 +295,16 @@ function Evolution() {
 }
 
 function Testimonials() {
-  // Reseñas publicadas y cambios (foto + mini texto) de /api/resenas; Jaime los gestiona en /admin/resenas.
-  // ⚠️ Los testimonios escritos a mano en src/config.js (TESTIMONIALS) salen primero.
+  // Dos bloques separados: reseñas de clientes y cambios con foto que sube Jaime (/admin/resenas).
+  // ⚠️ Los testimonios escritos a mano en src/config.js (TESTIMONIALS) van los primeros entre las reseñas.
   const { data } = useReviews()
-  const reviews = (data?.resenas ?? []).slice(0, Math.max(0, 3 - TESTIMONIALS.length))
-  const cambios = (data?.cambios ?? []).slice(0, 3)
-  const hasQuotes = TESTIMONIALS.length + reviews.length > 0
+  const written = TESTIMONIALS.map((t, i) => ({ id: `t${i}`, nombre: t.author, detalle: t.detail, estrellas: 0, texto: t.quote, fecha: '' }))
+  const reviews = [...written, ...(data?.resenas ?? [])]
+  const cambios = data?.cambios ?? []
   return (
-    <section className="bg-ink py-24 md:py-32">
+    <section className="bg-ink py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal as="div" className="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
+        <Reveal as="div" className="mb-10 flex flex-wrap items-end justify-between gap-6 md:mb-12">
           <SectionHeading title="Lo que dicen" />
           {data?.total > 0 && (
             <p className="flex items-center gap-3 text-fg-2">
@@ -315,51 +315,26 @@ function Testimonials() {
           )}
         </Reveal>
 
-        {cambios.length > 0 && (
-          <Stagger className="mb-5 grid justify-center gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),23rem))]">
-            {cambios.map((c) => (
-              <StaggerItem key={c.id}>
-                <ChangeCard c={c} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        )}
-
-        {hasQuotes && (
-          <Stagger className="grid justify-center gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),25rem))]">
-            {TESTIMONIALS.map((t, i) => (
-              <StaggerItem
-                key={i}
-                as="figure"
-                hover
-                className="flex flex-col rounded-2xl border border-line bg-panel p-7 hover:bg-panel-2 md:p-8"
-              >
-                <span aria-hidden="true" className="font-display text-6xl leading-none text-accent-ink">
-                  “
-                </span>
-                <blockquote className="mt-2 flex-1 text-lg leading-relaxed text-fg">{t.quote}</blockquote>
-                <figcaption className="mt-6 border-t border-line pt-4">
-                  <span className="block font-semibold text-fg">{t.author}</span>
-                  {t.detail && <span className="text-sm text-muted">{t.detail}</span>}
-                </figcaption>
-              </StaggerItem>
-            ))}
-            {reviews.map((r) => (
-              <StaggerItem key={r.id}>
-                <ReviewCard r={r} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        )}
-
-        {!hasQuotes && cambios.length === 0 && (
+        {reviews.length > 0 ? (
+          <ReviewsSlider items={reviews} />
+        ) : (
           <p className="max-w-2xl text-lg text-fg-2">
-            Aquí irán los cambios y las opiniones de quienes entrenan con Jaime. ¿Has entrenado con él? Cuéntanos cómo te ha ido.
+            Aquí irán las opiniones de quienes entrenan con Jaime. ¿Has entrenado con él? Cuéntanos cómo te ha ido.
           </p>
         )}
 
+        {cambios.length > 0 && (
+          <div className="mt-16 md:mt-20">
+            <Reveal as="div" className="mb-8 md:mb-10">
+              <h3 className="font-display text-3xl leading-tight md:text-5xl">Cambios reales</h3>
+              <p className="mt-2 text-fg-2">Fotos de clientes, con su permiso.</p>
+            </Reveal>
+            <ChangesSlider items={cambios} />
+          </div>
+        )}
+
         <div className="mt-10 flex flex-wrap gap-3">
-          {(hasQuotes || cambios.length > 0) && (
+          {(reviews.length > 0 || cambios.length > 0) && (
             <Button to="/resenas" variant="secondary">
               Ver todas las reseñas
             </Button>

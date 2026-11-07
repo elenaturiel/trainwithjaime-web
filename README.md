@@ -76,6 +76,9 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 - **Página pública** `/resenas` ("Qué dicen nuestros clientes", `src/pages/Resenas.jsx`): cambios con foto, reseñas
   publicadas con la nota media y un formulario para escribir la tuya. La home muestra un resumen en "Lo que dicen".
+- **Dos carruseles separados** (`src/components/ReviewSliders.jsx`): las reseñas de los clientes y los cambios con foto
+  que sube Jaime, cada uno con su título. Se deslizan despacio solos (mismo carrusel que las fotos de la home): 3 reseñas
+  a la vez en escritorio, 4 en pantallas grandes. Con pocas tarjetas (menos de 5 reseñas o 3 cambios) se muestran quietas.
 - **Reseñas del público:** cualquiera puede enviar la suya (nombre, valoración, texto y consentimiento). **No se publica
   nada sola**: llega como *pendiente* y Jaime la publica, la oculta o la borra. Protecciones: campo trampa, mínimo de
   tiempo, sin enlaces, tope de 200 pendientes y sin guardar email ni IP.

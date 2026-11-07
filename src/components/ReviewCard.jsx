@@ -1,17 +1,18 @@
 import { Stars } from './Stars.jsx'
 import { formatDate } from '../lib/resenas.js'
 
-// Tarjeta de una reseña publicada.
+// Tarjeta de una reseña publicada (las escritas a mano en config.js no llevan estrellas ni fecha).
 export default function ReviewCard({ r }) {
+  const meta = [r.detalle, r.fecha && formatDate(r.fecha)].filter(Boolean).join(' · ')
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-line bg-panel p-7 md:p-8">
-      <Stars value={r.estrellas} className="h-5 w-5" />
-      <blockquote className="mt-4 flex-1 whitespace-pre-line break-words text-base leading-relaxed text-fg md:text-lg">
+    <figure className="flex h-full flex-col rounded-2xl border border-line bg-panel p-6 md:p-7">
+      {r.estrellas > 0 && <Stars value={r.estrellas} className="h-5 w-5" />}
+      <blockquote className="mt-3 flex-1 whitespace-pre-line break-words text-base leading-relaxed text-fg">
         {r.texto}
       </blockquote>
-      <figcaption className="mt-6 border-t border-line pt-4">
+      <figcaption className="mt-5 border-t border-line pt-4">
         <span className="block font-semibold text-fg">{r.nombre}</span>
-        <span className="text-sm text-muted">{[r.detalle, formatDate(r.fecha)].filter(Boolean).join(' · ')}</span>
+        {meta && <span className="text-sm text-muted">{meta}</span>}
       </figcaption>
     </figure>
   )

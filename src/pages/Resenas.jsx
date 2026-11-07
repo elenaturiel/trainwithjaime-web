@@ -5,10 +5,10 @@ import PageHero from '../components/PageHero.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
-import ReviewCard, { ChangeCard } from '../components/ReviewCard.jsx'
+import { ChangesSlider, ReviewsSlider } from '../components/ReviewSliders.jsx'
 import { Stars, StarPicker } from '../components/Stars.jsx'
 import { CheckIcon } from '../components/Icons.jsx'
-import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
+import { Reveal } from '../components/Reveal.jsx'
 import { useReviews } from '../lib/resenas.js'
 
 const inputCls =
@@ -213,16 +213,10 @@ export default function Resenas() {
               <Reveal as="div" className="mb-12 md:mb-16">
                 <SectionHeading title="Cambios reales" />
                 <p className="mt-4 max-w-xl text-base text-fg-2 md:text-lg">
-                  Personas de verdad, con su permiso. Cada una tiene su punto de partida y su ritmo.
+                  Fotos que sube Jaime, con el permiso de cada persona. Cada una tiene su punto de partida y su ritmo.
                 </p>
               </Reveal>
-              <Stagger className="grid justify-center gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),23rem))]">
-                {cambios.map((c) => (
-                  <StaggerItem key={c.id}>
-                    <ChangeCard c={c} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
+              <ChangesSlider items={cambios} />
             </div>
           </section>
         </ScrollSection>
@@ -232,7 +226,7 @@ export default function Resenas() {
         <section className="bg-ink py-24 md:py-32">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <Reveal as="div" className="mb-12 flex flex-wrap items-end justify-between gap-6 md:mb-16">
-              <SectionHeading title="Lo que dicen" />
+              <SectionHeading title="Lo que dicen los clientes" />
               {data?.total > 0 && (
                 <p className="flex items-center gap-3 text-fg-2">
                   <Stars value={data.media} className="h-6 w-6" />
@@ -245,13 +239,7 @@ export default function Resenas() {
             </Reveal>
 
             {resenas.length > 0 ? (
-              <Stagger className="grid justify-center gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),25rem))]">
-                {resenas.map((r) => (
-                  <StaggerItem key={r.id}>
-                    <ReviewCard r={r} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
+              <ReviewsSlider items={resenas} />
             ) : (
               !loading && (
                 <p className="rounded-2xl border border-dashed border-line px-6 py-12 text-center text-lg text-fg-2">
