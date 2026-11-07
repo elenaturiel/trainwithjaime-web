@@ -83,6 +83,7 @@ const ITEMS = [
     links: [
       { label: 'Quién es Jaime', description: 'Un estudiante que entiende a estudiantes', icon: <HeartIcon className={ICON} />, to: '/sobre-jaime' },
       { label: 'Lo que defiendo', description: 'Anti-postureo y resultados sin humo', icon: <SparklesIcon className={ICON} />, to: '/sobre-jaime#valores' },
+      { label: 'Reseñas', description: 'Lo que dicen nuestros clientes', icon: <StarIcon className={ICON} />, to: '/resenas' },
     ],
   },
   {

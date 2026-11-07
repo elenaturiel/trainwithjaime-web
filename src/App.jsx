@@ -10,6 +10,8 @@ const Precios = lazy(() => import('./pages/Precios.jsx'))
 const Contacto = lazy(() => import('./pages/Contacto.jsx'))
 const Hyrox = lazy(() => import('./pages/Hyrox.jsx'))
 const AdminHyrox = lazy(() => import('./pages/AdminHyrox.jsx'))
+const Resenas = lazy(() => import('./pages/Resenas.jsx'))
+const AdminResenas = lazy(() => import('./pages/AdminResenas.jsx'))
 const Test = lazy(() => import('./pages/Test.jsx'))
 const AvisoLegal = lazy(() => import('./pages/legal/AvisoLegal.jsx'))
 const Privacidad = lazy(() => import('./pages/legal/Privacidad.jsx'))
@@ -24,6 +26,7 @@ const PAGES = [
   () => import('./pages/Contacto.jsx'),
   () => import('./pages/Test.jsx'),
   () => import('./pages/Hyrox.jsx'),
+  () => import('./pages/Resenas.jsx'),
 ]
 
 export default function App() {
@@ -48,7 +51,9 @@ export default function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/test" element={<Test />} />
           <Route path="/hyrox" element={<Hyrox />} />
+          <Route path="/resenas" element={<Resenas />} />
           <Route path="/admin/hyrox" element={<AdminHyrox />} />
+          <Route path="/admin/resenas" element={<AdminResenas />} />
           <Route path="/aviso-legal" element={<AvisoLegal />} />
           <Route path="/privacidad" element={<Privacidad />} />
           <Route path="/cookies" element={<Cookies />} />

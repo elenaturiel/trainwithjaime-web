@@ -54,6 +54,14 @@ export default function Privacidad() {
             'Tu consentimiento (art. 6.1.a RGPD)',
           ],
           [
+            'Reseñas: publicar en la web la opinión que nos envías (nombre que elijas, valoración y texto), tras revisarla',
+            'Tu consentimiento (art. 6.1.a RGPD)',
+          ],
+          [
+            'Cambios con foto: publicar en la web la foto y el texto de un cliente que ha dado su permiso',
+            'Tu consentimiento (art. 6.1.a RGPD)',
+          ],
+          [
             'Prestar el servicio contratado: planes, seguimiento y acceso a la plataforma de clientes',
             'Ejecución del contrato (art. 6.1.b RGPD); datos de salud: consentimiento explícito (art. 9.2.a RGPD)',
           ],
@@ -70,6 +78,10 @@ export default function Privacidad() {
         <li>
           Lista de espera HYROX: hasta que lances el plan y, como máximo, 12 meses. Las respuestas del formulario sin
           email son anónimas.
+        </li>
+        <li>
+          Reseñas y cambios con foto: mientras estén publicados. Puedes pedir que se retiren en cualquier momento
+          escribiendo a Jaime y se borran en cuanto lo pidas. No guardamos tu email ni tu IP al enviar una reseña.
         </li>
         <li>
           Clientes: mientras dure la relación y, después, durante los plazos legales de prescripción y conservación

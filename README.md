@@ -72,6 +72,19 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 - **Vista privada** `/admin/hyrox`: pide una clave. En Vercel → Settings → Environment Variables crea
   **`HYROX_ADMIN_TOKEN`** con una clave larga que solo sepas tú y redespliega. Sin esa variable la vista no se abre.
 
+## Reseñas y cambios con foto
+
+- **Página pública** `/resenas` ("Qué dicen nuestros clientes", `src/pages/Resenas.jsx`): cambios con foto, reseñas
+  publicadas con la nota media y un formulario para escribir la tuya. La home muestra un resumen en "Lo que dicen".
+- **Reseñas del público:** cualquiera puede enviar la suya (nombre, valoración, texto y consentimiento). **No se publica
+  nada sola**: llega como *pendiente* y Jaime la publica, la oculta o la borra. Protecciones: campo trampa, mínimo de
+  tiempo, sin enlaces, tope de 200 pendientes y sin guardar email ni IP.
+- **Cambios con foto:** Jaime los sube en **`/admin/resenas` → "Cambios con foto"** (foto, título corto, mini texto,
+  nombre opcional y la casilla de que tiene el permiso de la persona). La foto se reduce en su navegador y se guarda en
+  Redis; se publica al guardar y se puede editar o borrar. Máximo 60.
+- **Datos** (`api/_lib/resenas.js`): el mismo Redis de Upstash que HYROX. **Panel privado** `/admin/resenas`: usa la
+  misma clave `HYROX_ADMIN_TOKEN`, así que no hay que configurar nada nuevo en Vercel.
+
 ## Analítica y cookies
 
 La analítica es Vercel Web Analytics y solo se carga si el visitante la acepta en el aviso de cookies. Para ver los
