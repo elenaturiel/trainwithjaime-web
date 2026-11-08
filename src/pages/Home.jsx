@@ -35,7 +35,7 @@ const GALLERY = [
   { src: '/img-41.jpg', alt: 'Jaime en el rack de sentadillas del gimnasio', title: 'Más peso en la barra, semana a semana' },
   { src: '/img-25.jpg', alt: 'Jaime tomando apuntes en su cuaderno junto a la ventana', title: 'Sin atajos, con método' },
   { src: '/foto-7.jpg', alt: 'Jaime sonriendo y marcando bíceps', title: 'Llega en tu mejor versión' },
-  { src: '/img-05.jpg', alt: 'Jaime con un disco, frente a la estructura de dominadas', title: 'Resultados sin humo' },
+  { src: '/resultados.jpg', alt: 'Reloj Garmin en la muñeca con una carrera de 10,11 km en 51:29', title: 'Resultados sin humo' },
   { src: '/foto-2.jpg', alt: 'Jaime sentado en un cajón de salto, en el gimnasio', title: 'Un plan hecho para ti' },
   { src: '/img-46.jpg', alt: 'Portátil con un documento abierto y un cuaderno con el plan de entrenos', title: 'Cero postureo, mucho plan' },
 ]
