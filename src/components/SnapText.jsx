@@ -100,7 +100,7 @@ function Row({ color, index, inactiveColor, item, progress }) {
       {item.text && (
         <motion.span
           aria-hidden="true"
-          className="mt-[0.3em] block max-w-[34rem] font-sans font-normal leading-relaxed tracking-normal text-fg-2"
+          className="mt-[0.3em] block max-w-[min(34rem,100%)] font-sans font-normal leading-relaxed tracking-normal text-fg-2"
           style={{ opacity: fill, fontSize: 'clamp(0.9rem, 1.45vw, 1.3rem)' }}
         >
           {item.text}
@@ -140,7 +140,7 @@ export default function SnapText({
 
   return (
     <div ref={ref} className={`relative ${className}`} style={{ height: `${100 + (n - 1) * screens * 100}svh` }}>
-      <div className="sticky top-0 h-svh min-h-[520px] overflow-hidden" style={{ fontSize: 'clamp(1.9rem, 6vw, 5.75rem)' }}>
+      <div className="sticky top-0 h-svh min-h-[520px] overflow-hidden text-[clamp(1.9rem,6vw,5.75rem)] lg:text-[clamp(2.4rem,4.4vw,5rem)]">
         {heading && (
           <div className="absolute inset-x-0 top-[5.25rem] z-10 mx-auto max-w-7xl px-5 text-fg md:top-[5.5rem] md:px-8" style={{ fontSize: '1rem' }}>
             {heading}
@@ -150,10 +150,10 @@ export default function SnapText({
         {/* mobile: the picture on top, the lines under it · desktop: picture left, lines right */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.75rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[11rem] lg:top-[14rem] lg:flex-row lg:items-center lg:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
+          className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.75rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[11rem] lg:top-[11rem] lg:flex-row lg:items-center lg:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
         >
           {images.length > 0 && (
-            <div className="relative h-[min(100%,calc(100vw*1.45))] w-screen shrink-0 self-center overflow-hidden rounded-none bg-panel-2 md:aspect-[3/4] md:h-[min(100%,calc((100vw-4rem)*4/3))] md:w-auto md:rounded-xl lg:h-[min(54svh,36rem)] lg:self-auto lg:rounded-2xl">
+            <div className="relative h-[min(100%,calc(100vw*1.45))] w-screen shrink-0 self-center overflow-hidden rounded-none bg-panel-2 md:aspect-[3/4] md:h-[min(100%,calc((100vw-4rem)*4/3))] md:w-auto md:rounded-xl lg:h-[min(100%,48rem)] lg:self-auto lg:rounded-2xl">
               {items.map((it, i) => (
                 <Picture key={it.title} index={i} progress={progress} reduced={reduced} src={images[i % images.length]} />
               ))}
