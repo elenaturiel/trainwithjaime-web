@@ -13,8 +13,10 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, us
    - Sizes are in em, so one font-size controls the row height, the indent and the track offset.
    - Each item carries a short text that sits under its big line and travels with it: it only reads
      while its line is in focus. Titles may wrap to two lines (rows have a fixed height in em).
-   - On small screens and tablets (below 1024 px) the picture goes above the lines instead of beside them, always in
-     its own 3:4 proportion (never cropped into a band).
+   - On small screens and tablets (below 1024 px) the picture takes the whole stage and the title and text of the
+     current item sit over its bottom edge on a translucent blue panel, so it reads on top of any photo. On phones
+     it runs edge to edge (a little taller than 3:4, so the sides trim slightly); on tablets it stays a whole 3:4.
+     The rolling lines are for desktop.
    - It must NOT live inside a <ScrollSection>: those wrappers clip overflow, which breaks sticky. */
 
 const SPRING = { damping: 30, mass: 0.8, stiffness: 280 }
@@ -43,6 +45,20 @@ function Picture({ index, progress, reduced, src }) {
   return (
     <motion.div className="absolute inset-0 origin-center will-change-[transform,opacity]" style={{ opacity, transform }}>
       <img alt="" src={src} draggable={false} className="size-full select-none object-cover" />
+    </motion.div>
+  )
+}
+
+// Small screens: the title and text of the item in focus, over the bottom of the picture. All the captions share one
+// grid cell, so the panel is as tall as the tallest one and never jumps; they cross-fade as you scroll.
+function Caption({ color, index, item, progress }) {
+  const opacity = useTransform(progress, (p) => Math.max(0, 1 - Math.abs(index - p) * 2))
+  return (
+    <motion.div className="col-start-1 row-start-1" style={{ opacity }}>
+      <span className="block font-display text-[1.65rem] font-semibold leading-[1.05] tracking-[-0.02em] md:text-4xl" style={{ color }}>
+        {item.title}
+      </span>
+      {item.text && <span className="mt-2 block text-[0.95rem] leading-snug text-white/90 md:text-lg">{item.text}</span>}
     </motion.div>
   )
 }
@@ -137,13 +153,21 @@ export default function SnapText({
           className="pointer-events-none absolute inset-x-0 bottom-14 top-[10.75rem] mx-auto flex max-w-7xl flex-col gap-4 px-5 md:top-[11rem] lg:top-[14rem] lg:flex-row lg:items-center lg:gap-[clamp(1.5rem,3vw,3rem)] md:px-8"
         >
           {images.length > 0 && (
-            <div className="relative aspect-[3/4] h-[38svh] shrink-0 self-center overflow-hidden rounded-xl bg-panel-2 md:h-[38svh] lg:h-[min(54svh,36rem)] lg:self-auto lg:rounded-2xl">
+            <div className="relative h-[min(100%,calc(100vw*1.45))] w-screen shrink-0 self-center overflow-hidden rounded-none bg-panel-2 md:aspect-[3/4] md:h-[min(100%,calc((100vw-4rem)*4/3))] md:w-auto md:rounded-xl lg:h-[min(54svh,36rem)] lg:self-auto lg:rounded-2xl">
               {items.map((it, i) => (
                 <Picture key={it.title} index={i} progress={progress} reduced={reduced} src={images[i % images.length]} />
               ))}
+              <div
+                className="absolute inset-x-0 bottom-0 grid border-t border-white/15 bg-[#041037]/70 px-4 pb-4 pt-3.5 text-white backdrop-blur-md md:px-6 md:pb-6 md:pt-5 lg:hidden"
+                style={{ fontSize: '1rem' }}
+              >
+                {items.map((it, i) => (
+                  <Caption key={it.title} color={colors[i % colors.length]} index={i} item={it} progress={progress} />
+                ))}
+              </div>
             </div>
           )}
-          <div className="relative min-h-0 w-full min-w-0 flex-1 self-stretch overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_14%,#000_86%,transparent)]">
+          <div className="relative hidden min-h-0 w-full min-w-0 flex-1 self-stretch overflow-hidden lg:block [mask-image:linear-gradient(to_bottom,transparent,#000_14%,#000_86%,transparent)]">
             <motion.ul className="absolute inset-x-0 top-1/2 m-0 list-none p-0" style={{ transform: track }}>
               {items.map((it, i) => (
                 <Row key={it.title} color={colors[i % colors.length]} index={i} inactiveColor={inactiveColor} item={it} progress={progress} />
