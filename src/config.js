@@ -37,8 +37,9 @@ export const TESTIMONIALS = [
 // tamaño, mejor vertical 3:4) y pon aquí sus rutas, p. ej. '/antes.jpg' y '/despues.jpg'.
 // Mientras estén vacías, el apartado no se muestra.
 export const BEFORE_AFTER = {
-  // ⚠️ FOTOS DE PRUEBA (fotos de la web) para ver cómo queda: cámbialas por el antes y el después reales
-  before: '/foto-3.jpg',
+  // ANTES: foto real (public/antes.jpg).
+  // ⚠️ DESPUÉS: foto de prueba (una foto de la web) para ver cómo queda: cámbiala por la real
+  before: '/antes.jpg',
   after: '/foto-4.jpg',
   beforeAlt: 'Jaime, foto de antes',
   afterAlt: 'Jaime, foto de después',
