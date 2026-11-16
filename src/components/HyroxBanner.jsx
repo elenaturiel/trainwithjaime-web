@@ -41,14 +41,29 @@ export default function HyroxBanner({ ubicacion, text = HYROX_BANNER.text, cta =
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,201,60,0.16),transparent_55%)]"
         />
-        <Reveal as="div" className="relative mx-auto max-w-7xl px-5 md:px-8">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">HYROX · sin postureo</p>
-          <h2 className="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.02] md:text-8xl">{text}</h2>
-          {sub && <p className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">{sub}</p>}
-          <div className="mt-10">
-            <Button to={to}>
-              {cta} <ArrowIcon className="h-4 w-4" />
-            </Button>
+        <Reveal as="div" className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">HYROX · sin postureo</p>
+            <h2 className="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.02] md:text-7xl xl:text-8xl">{text}</h2>
+            {sub && <p className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">{sub}</p>}
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Button to={to}>
+                {cta} <ArrowIcon className="h-4 w-4" />
+              </Button>
+              <Link to="/entrenamiento-hyrox" className="text-sm font-semibold text-brand underline-offset-4 hover:underline">
+                Ver el entrenamiento HYROX →
+              </Link>
+            </div>
+          </div>
+          <div className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-line lg:max-w-none">
+            <img
+              src="/hyrox-podio.jpg"
+              alt="Jaime sentado en el podio de HYROX Barcelona con el cartel “My first HYROX”"
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+              className="aspect-[3/4] w-full object-cover"
+            />
           </div>
         </Reveal>
       </section>

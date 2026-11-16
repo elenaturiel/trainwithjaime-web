@@ -52,8 +52,8 @@ const SERVICES = [
     title: 'La comunidad de Train with Jaime',
     text: 'Train with Jaime tiene su propia plataforma, exclusiva para clientes: ahí gestionas tus entrenos y tu nutrición, y además encuentras entradas de blog, recetas, recomendaciones, un espacio para resolver tus dudas y retos. Y todos los clientes entran también en la Comunidad de WhatsApp: tips semanales de entreno y nutrición, retos mensuales, y un equipo que te empuja cuando la motivación flojea. Aquí no entrenas solo.',
     chips: ['Entrenos', 'Nutrición', 'Blog', 'Recetas', 'Recomendaciones', 'Dudas', 'Retos'],
-    image: '/foto-6.jpg',
-    alt: 'Jaime con los brazos cruzados frente a las mancuernas',
+    image: '/hyrox-pareja.jpg',
+    alt: 'Jaime y su pareja de dobles mixtos delante del panel de HYROX Barcelona',
   },
 ]
 
