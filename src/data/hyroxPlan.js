@@ -25,7 +25,7 @@ export const HYROX_PHOTOS = {
 export const HYROX_MODES = [
   { title: 'Individual', text: 'Tú contra el recorrido. Todo el ritmo y toda la estrategia, a tu medida.', photo: { src: '/hyrox-podio.jpg', alt: 'Jaime sentado en el podio con el cartel “My first HYROX”' } },
   { title: 'Dobles', text: 'Dos personas, un equipo: os repartís las estaciones y corréis juntos.', photo: { src: '/hyrox-kit.jpg', alt: 'Parches de HYROX Barcelona de la temporada de dobles' } },
-  { title: 'Dobles mixtos', text: 'Chico y chica en el mismo equipo. La modalidad que vivimos en Barcelona.', photo: { src: '/hyrox-pareja.jpg', alt: 'Jaime y su pareja de dobles mixtos delante del panel de HYROX' } },
+  { title: 'Dobles mixtos', text: 'Chico y chica en el mismo equipo. La modalidad que vivimos en Barcelona.', photo: { src: '/hyrox-elena-podio.jpg', alt: 'Jaime y Elena en el podio de HYROX Barcelona, celebrando con los carteles “My first HYROX” y “Mum, I did it”' } },
 ]
 
 export const HYROX_VIDEO = { src: '/hyrox-bcn.mp4', poster: '/hyrox-bcn-poster.jpg' }
@@ -36,6 +36,8 @@ export const HYROX_BAND = { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando b�
 
 // ⚠️ REVISAR: pies de foto propuestos.
 export const HYROX_GALLERY = [
+  { src: '/hyrox-elena-podio.jpg', alt: 'Jaime y Elena en el podio de HYROX Barcelona, celebrando con los carteles “My first HYROX” y “Mum, I did it”', title: 'Jaime y Elena en el podio' },
+  { src: '/hyrox-elena-beso.jpg', alt: 'Jaime y Elena besándose en el podio de HYROX Barcelona con los carteles de su primer HYROX', title: 'Misión cumplida, en equipo' },
   { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando bíceps delante del panel de HYROX Barcelona', title: 'HYROX Barcelona · 14/11/2026' },
   { src: '/hyrox-pareja.jpg', alt: 'Jaime y su pareja abrazados delante del panel de HYROX', title: 'Dobles mixtos: mejor en equipo' },
   { src: '/hyrox-podio.jpg', alt: 'Jaime sentado en el podio con el cartel “My first HYROX”', title: 'My first HYROX' },
