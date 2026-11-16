@@ -67,7 +67,7 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
   parallax, cifras que ruedan, línea de pasos, preguntas que se despliegan); con "reducir movimiento" se quedan quietas.
   **Todos los textos y datos están en `src/data/hyroxPlan.js`** (busca ⚠️): `HYROX_NEXT` (fecha de la cuenta atrás y lugar),
   fotos, vídeos y el copy del método y de lo que incluye el plan, que Jaime debe revisar.
-- **Vídeos** (`public/hyrox-hero.mp4`, `public/hyrox-bcn.mp4`, 5 s, sin sonido, ~0,8 MB cada uno) y fotos `public/hyrox-*.jpg`.
+- **Vídeos** (`public/hyrox-comp.mp4` portada, 13 s de la competición, ~3 MB; `public/hyrox-bcn.mp4`, 5 s; sin sonido) y fotos `public/hyrox-*.jpg`.
 - **Plan HYROX** (`HYROX_PLAN` en `src/data/pricing.js`): precio **"A consultar con Jaime"** (es personalizado). Sale como
   tarjeta ancha bajo los 4 planes de `/precios` y como una fila más en la lista de la home.
 - **Formulario de contacto:** los botones llevan a `/contacto?plan=hyrox&origen=hyrox`. El formulario muestra "Interesado en:

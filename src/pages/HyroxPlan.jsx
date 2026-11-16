@@ -179,7 +179,7 @@ function Glow({ className = '', color = 'rgba(255,201,60,0.16)', duration = 14 }
 }
 
 // Vídeo de fondo de la portada: en bucle y sin sonido. Con "reducir movimiento" queda solo el fotograma.
-// En pantallas anchas se desplaza a la derecha, para que la cara quede al lado del título y no debajo.
+// Capas oscuras encima para que el título se lea sobre cualquier imagen.
 function HeroVideo() {
   const reduced = useReducedMotion()
   return (
@@ -193,9 +193,9 @@ function HeroVideo() {
         playsInline
         preload="auto"
         aria-hidden="true"
-        className="absolute inset-0 -z-20 size-full object-cover md:origin-right md:translate-x-[18%] md:scale-[1.12]"
+        className="absolute inset-0 -z-20 size-full object-cover"
       />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[#041037] via-[#041037]/75 to-[#041037]/15 max-md:from-[#041037]/80 max-md:via-[#041037]/70 max-md:to-[#041037]/70" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-[#041037]/90 via-[#041037]/65 to-[#041037]/35 max-md:from-[#041037]/80 max-md:via-[#041037]/70 max-md:to-[#041037]/70" />
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#041037] to-transparent" />
     </>
   )
