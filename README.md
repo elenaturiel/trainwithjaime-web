@@ -58,6 +58,13 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 > Esta parte usa funciones de Vercel: en Netlify el resto de la web funciona, pero los códigos no.
 
+## Test de estudihambre
+
+`/test` (`src/pages/Test.jsx`): 6 preguntas → recomienda Rookie, All In o Peak y lleva a `/contacto?plan=…&test=…` con el plan
+ya puesto (con amigos, `plan=squad`). No guarda datos. Se promociona en: botón principal del hero, tarjeta "¿Tienes
+estudihambre?" de la home, píldora "Test" del menú y franja "¿No sabes qué plan elegir?" bajo los planes. El nº de preguntas
+y la duración que se anuncian salen de `TEST` en `src/config.js`.
+
 ## Página y plan HYROX (entrenamiento)
 
 - **Página de venta** `/entrenamiento-hyrox` (pestaña "HYROX" del menú, `src/pages/HyroxPlan.jsx`): portada con vídeo de

@@ -61,6 +61,9 @@ export const REAL_TOP_STRIP = TOP_STRIP_TESTIMONIALS.filter((t) => !isPlaceholde
 export const REAL_TESTIMONIALS = TESTIMONIALS.filter((t) => !isPlaceholder(t.quote) && !isPlaceholder(t.author))
 export const HAS_TOP_STRIP = REAL_TOP_STRIP.length > 0
 
+// Test de estudihambre: lo que se dice de él en la home, el menú y la propia página /test (un solo sitio, para que coincida).
+export const TEST = { questions: 6, duration: '2 minutos' }
+
 export const PLANS = {
   rookie: 'Rookie',
   allin: 'All In',

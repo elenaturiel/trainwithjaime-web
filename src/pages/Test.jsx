@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.jsx'
 import Button from '../components/Button.jsx'
 import { ArrowIcon, CheckIcon } from '../components/Icons.jsx'
 import { PRICING } from '../data/pricing.js'
+import { TEST } from '../config.js'
 
 // Test de estudihambre: 6 preguntas rápidas → plan recomendado (Rookie, All In o Peak).
 const QUESTIONS = [
@@ -111,7 +112,7 @@ export default function Test() {
   return (
     <>
       <PageHero align="center" title="¿Qué plan es para ti?">
-        6 preguntas, 1 minuto. Al final te decimos qué plan te encaja mejor.
+        {TEST.questions} preguntas, {TEST.duration}. Al final te decimos qué plan te encaja mejor.
       </PageHero>
 
       <section className="bg-ink py-16 md:py-24">

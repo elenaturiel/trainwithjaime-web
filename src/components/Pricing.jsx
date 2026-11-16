@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { BILLING_OPTIONS, setBilling, useBilling } from '../lib/billing.js'
 import { AnimatePresence, motion } from 'framer-motion'
+import { TEST } from '../config.js'
 import { HYROX_PLAN, PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
 import { BillingPrice, BillingToggle } from './BillingToggle.jsx'
 import { Stagger, StaggerItem } from './Reveal.jsx'
@@ -388,12 +389,17 @@ export default function PricingCards({ compact = false }) {
           </p>
         </div>
       </div>
-      <p className="mt-8 text-center text-fg-2">
-        ¿No sabes qué plan elegir?{' '}
-        <Link to="/test" className="font-semibold text-brand underline-offset-4 hover:underline">
-          Hazte el test de estudihambre →
-        </Link>
-      </p>
+      <div className="mt-10 flex flex-col items-center gap-5 rounded-3xl border border-accent/60 bg-accent/10 px-6 py-8 text-center md:flex-row md:justify-between md:px-10 md:text-left">
+        <div>
+          <p className="font-display text-3xl font-bold leading-tight md:text-4xl">¿No sabes qué plan elegir?</p>
+          <p className="mt-2 text-fg-2">
+            Hazte el test de estudihambre: {TEST.questions} preguntas, {TEST.duration} y te decimos cuál te encaja.
+          </p>
+        </div>
+        <Button to="/test" className="shrink-0">
+          Hazte el test <ArrowIcon className="h-4 w-4" />
+        </Button>
+      </div>
     </>
   )
 }
