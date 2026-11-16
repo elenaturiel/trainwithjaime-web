@@ -18,8 +18,8 @@ export const HYROX_STATIONS = ['SkiErg', 'Sled Push', 'Sled Pull', 'Burpee Broad
 
 // Fotos: método (foto de la web), vídeo de Barcelona y galería "Así lo vivimos" (fotos de HYROX Barcelona, verticales 3:4).
 export const HYROX_PHOTOS = {
-  metodo: { src: '/img-11.jpg', alt: 'Jaime entrenando en un gimnasio normal' },
-  cuentaAtras: { src: '/hyrox-pulsera.jpg', alt: 'Jaime con los brazos cruzados y la pulsera de HYROX' },
+  metodo: { src: '/hyrox-cartel.jpg', alt: 'Jaime con el cartel “My first HYROX” en HYROX Barcelona' },
+  cuentaAtras: { src: '/hyrox-flex.jpg', alt: 'Jaime marcando bíceps con los dos brazos delante del panel de HYROX' },
 }
 // Tu HYROX, a tu manera: individual, dobles o dobles mixtos (el plan vale para cualquiera).
 export const HYROX_MODES = [
@@ -29,8 +29,8 @@ export const HYROX_MODES = [
 ]
 
 export const HYROX_VIDEO = { src: '/hyrox-bcn.mp4', poster: '/hyrox-bcn-poster.jpg' }
-// Vídeo de fondo de la portada (horizontal, 5 s, sin sonido, en bucle)
-export const HYROX_HERO_VIDEO = { src: '/hyrox-hero.mp4', poster: '/hyrox-hero-poster.jpg' }
+// Vídeo de fondo de la portada: montaje de la competición (horizontal, 13 s, sin sonido, en bucle)
+export const HYROX_HERO_VIDEO = { src: '/hyrox-comp.mp4', poster: '/hyrox-comp-poster.jpg' }
 // Foto grande a todo el ancho entre secciones
 export const HYROX_BAND = { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando bíceps delante del panel de HYROX Barcelona' }
 
@@ -39,9 +39,7 @@ export const HYROX_GALLERY = [
   { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando bíceps delante del panel de HYROX Barcelona', title: 'HYROX Barcelona · 14/11/2026' },
   { src: '/hyrox-pareja.jpg', alt: 'Jaime y su pareja abrazados delante del panel de HYROX', title: 'Dobles mixtos: mejor en equipo' },
   { src: '/hyrox-podio.jpg', alt: 'Jaime sentado en el podio con el cartel “My first HYROX”', title: 'My first HYROX' },
-  { src: '/hyrox-pulsera.jpg', alt: 'Jaime con los brazos cruzados y la pulsera de HYROX', title: 'Con la pulsera puesta' },
   { src: '/hyrox-flex.jpg', alt: 'Jaime marcando bíceps con los dos brazos', title: 'Sin postureo, con muchas ganas' },
-  { src: '/hyrox-sonrisa.jpg', alt: 'Jaime sonriendo con los brazos cruzados', title: 'Con una sonrisa (luego duele)' },
   { src: '/hyrox-kit.jpg', alt: 'Parches y pulseras del kit de HYROX Barcelona', title: 'El kit de HYROX Barcelona' },
 ]
 
