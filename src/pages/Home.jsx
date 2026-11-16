@@ -149,21 +149,28 @@ function Hero() {
         playsInline
         aria-hidden="true"
       />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
+      {/* Capas oscuras para que el texto cumpla contraste AA sobre cualquier fotograma del vídeo: una de abajo arriba y otra de
+          izquierda a derecha (el texto va a la izquierda y abajo; a la derecha queda libre la pegatina y el vídeo se ve) */}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/25" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/35 to-transparent" />
       {/* Pegatina del plan HYROX: se ve nada más entrar */}
       <HyroxSticker className="absolute right-4 top-24 md:right-10 md:top-32 lg:right-16 lg:top-36" />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-40 md:px-8 md:pb-24">
+        {/* A quién va dirigido, visible y encima del titular */}
+        <motion.p {...item(0)} className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-accent-ink [text-wrap:balance] min-[400px]:text-xs min-[400px]:tracking-[0.2em] md:tracking-[0.25em]">
+          Universitarios en Pamplona y online
+        </motion.p>
         <motion.h1
           {...item(0.1)}
-          className="max-w-5xl font-display text-[clamp(34px,10vw,48px)] leading-[1.04] md:text-[88px] lg:text-[112px]"
+          className="mt-4 max-w-6xl font-display text-[clamp(34px,10vw,48px)] leading-[1.04] [text-wrap:balance] md:text-[64px] lg:text-[clamp(56px,5.4vw,88px)]"
         >
-          Menos excusas.
-          <br />
-          <span className="font-bold">Más resultados.</span>
+          Tu rutina manda.
+          <span className="block font-bold [text-wrap:balance]">Tu entrenamiento se adapta.</span>
         </motion.h1>
-        <motion.p {...item(0.2)} className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">
-          Más peso en la barra. Menos tiempo en el 5km. Un plan que se nota en tus marcas, no en tu Instagram.
+        <motion.p {...item(0.2)} className="mt-6 max-w-2xl text-base text-fg-2 md:text-lg">
+          Entrenamiento y nutrición personalizados que se adaptan a tus clases, tu trabajo y tus horarios, no al revés.
+          Para estudiantes y para cualquiera con una vida con prisa.
         </motion.p>
         <motion.div {...item(0.3)} className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Button to="/contacto">
@@ -181,7 +188,7 @@ function Hero() {
           >
             <PlayIcon className="h-3.5 w-3.5" /> Ver el vídeo
           </button>
-          <span>Sin compromiso · Universitarios en Pamplona y online</span>
+          <span>Sin compromiso</span>
         </motion.div>
       </div>
 
@@ -238,6 +245,59 @@ function Difference() {
           />
         }
       />
+    </section>
+  )
+}
+
+// "Quién te entrena": solo datos que ya están publicados en la web (/sobre-jaime y la página de HYROX).
+// ⚠️ TODO (Jaime): estos datos NO están en la web, así que no se muestran. Si los confirma, se añaden como tarjetas:
+//   · años entrenando · nº de personas a las que ha entrenado · medias maratones u otras pruebas completadas
+//   · certificación como entrenador (en /sobre-jaime dice "no soy un entrenador certificado (aún)")
+const COACH_FACTS = [
+  { value: '4º', label: 'curso de Ciencias de la Actividad Física y del Deporte' },
+  { value: '1', label: 'HYROX completado: Barcelona, 14 de noviembre de 2026' },
+  { value: '20/03', label: 'próximo HYROX, en 2027, y vamos a competir' },
+]
+
+function Coach() {
+  return (
+    <section className="bg-ink py-24 md:py-32">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:grid-cols-[0.8fr_1.2fr] md:gap-14 md:px-8 lg:gap-20">
+        <Reveal as="div" className="mx-auto w-full max-w-xs md:max-w-none">
+          <img
+            src="/img-06.jpg"
+            alt="Jaime sonriendo en el gimnasio, de pie frente a la estructura de dominadas con un disco en las manos"
+            width="1000"
+            height="1333"
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            className="aspect-[3/4] w-full rounded-2xl border border-line object-cover"
+          />
+        </Reveal>
+        <Reveal as="div">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">Quién te entrena</p>
+          <SectionHeading title="Soy Jaime, y entreno como tú" className="mt-4" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-2 md:text-lg">
+            Estudio Ciencias de la Actividad Física y del Deporte y sé lo que es ir con la agenda llena: clases,
+            exámenes y presupuesto justo. No soy entrenador certificado (aún), pero aplico lo que estudio y lo que he
+            vivido en mis propias carnes. Y no te mando nada que yo no haga: sin postureo, solo plan.
+          </p>
+          <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+            {COACH_FACTS.map((f) => (
+              <div key={f.value} className="rounded-2xl border border-line bg-panel p-5">
+                <dt className="font-display text-4xl font-bold leading-none text-accent-ink md:text-5xl">{f.value}</dt>
+                <dd className="mt-3 text-sm leading-snug text-fg-2">{f.label}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-8">
+            <Button to="/sobre-jaime" variant="secondary">
+              Conoce a Jaime <ArrowIcon className="h-4 w-4" />
+            </Button>
+          </div>
+        </Reveal>
+      </div>
     </section>
   )
 }
@@ -393,6 +453,9 @@ export default function Home() {
         <Stats />
       </ScrollSection>
       <Difference />
+      <ScrollSection effect="clip">
+        <Coach />
+      </ScrollSection>
       <ScrollSection effect="zoom">
         <Gallery />
       </ScrollSection>
