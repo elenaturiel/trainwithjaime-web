@@ -5,21 +5,45 @@
 // a que viene de la página de HYROX (se ve en el aviso del formulario y en el email que recibe Jaime).
 export const HYROX_CONTACT = '/contacto?plan=hyrox&origen=hyrox'
 
-// ⚠️ RELLENAR: fecha y detalles de la carrera de Barcelona. Mientras `fecha` esté vacía no se muestra.
-export const HYROX_EVENT = {
-  nombre: 'HYROX Barcelona',
-  modalidad: 'Dobles mixtos',
-  fecha: '', // p. ej. '14 de marzo de 2027'
+// La carrera que ya fue y la siguiente. `iso` es el momento exacto de la cuenta atrás (00:00 hora de España).
+export const HYROX_PAST = { nombre: 'HYROX Barcelona', modalidad: 'Dobles mixtos', fecha: '14 de noviembre de 2026' }
+export const HYROX_NEXT = {
+  fecha: '20 de marzo de 2027',
+  iso: '2027-03-20T00:00:00+01:00',
+  lugar: '', // ⚠️ RELLENAR: ciudad / evento de la próxima carrera (si se deja vacío, no se muestra)
 }
 
 // Las 8 estaciones del recorrido (entre cada una, 1 km corriendo)
 export const HYROX_STATIONS = ['SkiErg', 'Sled Push', 'Sled Pull', 'Burpee Broad Jumps', 'Remo', 'Farmers Carry', 'Sandbag Lunges', 'Wall Balls']
 
-// ⚠️ FOTOS PROVISIONALES (fotos de la web): sustitúyelas por las de HYROX cuando las pases. Verticales, 3:4.
+// Fotos: método (foto de la web), vídeo de Barcelona y galería "Así lo vivimos" (fotos de HYROX Barcelona, verticales 3:4).
 export const HYROX_PHOTOS = {
   metodo: { src: '/img-11.jpg', alt: 'Jaime entrenando en un gimnasio normal' },
-  barcelona: { src: '/img-08.jpg', alt: 'Jaime sonriendo en el gimnasio' },
+  cuentaAtras: { src: '/hyrox-pulsera.jpg', alt: 'Jaime con los brazos cruzados y la pulsera de HYROX' },
 }
+// Tu HYROX, a tu manera: individual, dobles o dobles mixtos (el plan vale para cualquiera).
+export const HYROX_MODES = [
+  { title: 'Individual', text: 'Tú contra el recorrido. Todo el ritmo y toda la estrategia, a tu medida.', photo: { src: '/hyrox-podio.jpg', alt: 'Jaime sentado en el podio con el cartel “My first HYROX”' } },
+  { title: 'Dobles', text: 'Dos personas, un equipo: os repartís las estaciones y corréis juntos.', photo: { src: '/hyrox-kit.jpg', alt: 'Parches de HYROX Barcelona de la temporada de dobles' } },
+  { title: 'Dobles mixtos', text: 'Chico y chica en el mismo equipo. La modalidad que vivimos en Barcelona.', photo: { src: '/hyrox-pareja.jpg', alt: 'Jaime y su pareja de dobles mixtos delante del panel de HYROX' } },
+]
+
+export const HYROX_VIDEO = { src: '/hyrox-bcn.mp4', poster: '/hyrox-bcn-poster.jpg' }
+// Vídeo de fondo de la portada (horizontal, 5 s, sin sonido, en bucle)
+export const HYROX_HERO_VIDEO = { src: '/hyrox-hero.mp4', poster: '/hyrox-hero-poster.jpg' }
+// Foto grande a todo el ancho entre secciones
+export const HYROX_BAND = { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando bíceps delante del panel de HYROX Barcelona' }
+
+// ⚠️ REVISAR: pies de foto propuestos.
+export const HYROX_GALLERY = [
+  { src: '/hyrox-barcelona.jpg', alt: 'Jaime marcando bíceps delante del panel de HYROX Barcelona', title: 'HYROX Barcelona · 14/11/2026' },
+  { src: '/hyrox-pareja.jpg', alt: 'Jaime y su pareja abrazados delante del panel de HYROX', title: 'Dobles mixtos: mejor en equipo' },
+  { src: '/hyrox-podio.jpg', alt: 'Jaime sentado en el podio con el cartel “My first HYROX”', title: 'My first HYROX' },
+  { src: '/hyrox-pulsera.jpg', alt: 'Jaime con los brazos cruzados y la pulsera de HYROX', title: 'Con la pulsera puesta' },
+  { src: '/hyrox-flex.jpg', alt: 'Jaime marcando bíceps con los dos brazos', title: 'Sin postureo, con muchas ganas' },
+  { src: '/hyrox-sonrisa.jpg', alt: 'Jaime sonriendo con los brazos cruzados', title: 'Con una sonrisa (luego duele)' },
+  { src: '/hyrox-kit.jpg', alt: 'Parches y pulseras del kit de HYROX Barcelona', title: 'El kit de HYROX Barcelona' },
+]
 
 // ⚠️ REVISAR: copy propuesto sobre el método (Jaime debe confirmar que describe bien cómo trabaja).
 export const HYROX_METHOD = [
@@ -42,7 +66,7 @@ export const HYROX_METHOD = [
 ]
 
 export const HYROX_STEPS = [
-  { title: 'Hablamos (gratis)', text: 'Primera asesoría sin compromiso: tu nivel, tu fecha y, si vais en dobles, con quién vas.' },
+  { title: 'Hablamos (gratis)', text: 'Primera asesoría sin compromiso: tu nivel, tu fecha y cómo quieres competir (individual, dobles o mixtos).' },
   { title: 'Tu plan, a medida', text: 'Jaime lo diseña para ti: tu punto de partida, tu calendario y el gimnasio donde entrenas.' },
   { title: 'Entrenas con seguimiento', text: 'Seguimiento por WhatsApp y ajustes según cómo te vaya, sin PDF y adiós.' },
   { title: 'Llegas a la salida', text: 'Con ritmos, estrategia y la cabeza tranquila. A disfrutarlo (y a sufrir un poquito, que es HYROX).' },
@@ -51,7 +75,7 @@ export const HYROX_STEPS = [
 export const HYROX_FOR = [
   { title: 'Nunca has hecho HYROX', text: 'Ni falta que hace. El plan empieza donde estás tú, no donde “deberías” estar.' },
   { title: 'Entrenas en el gym, pero no compites', text: 'Ya tienes la base. Te falta convertirla en una carrera con un plan que tenga sentido.' },
-  { title: 'Vas con tu pareja de equipo', text: 'Dobles mixtos: chico y chica, juntos desde la salida hasta la meta.' },
+  { title: 'Ya has competido y quieres mejorar', text: 'Más ritmo, mejores transiciones y estaciones que dejen de ser tu punto débil.' },
 ]
 
 // ⚠️ REVISAR: qué incluye el plan (Jaime debe confirmar el contenido real).
@@ -60,7 +84,7 @@ export const HYROX_INCLUDES = [
   'Carrera y fuerza integradas, en cuenta atrás hacia tu fecha',
   'Seguimiento por WhatsApp y ajustes del plan',
   'Estrategia y ritmos para el día de la carrera',
-  'Si vais en dobles mixtos, el plan tiene en cuenta a los dos',
+  'Individual, dobles o mixtos: el plan se adapta a cómo vayas a competir',
 ]
 
 export const HYROX_FAQ = [
@@ -74,11 +98,11 @@ export const HYROX_FAQ = [
   },
   {
     q: '¿Cuánto cuesta el plan HYROX?',
-    a: 'Es un plan personalizado, así que el precio se consulta con Jaime: depende de tu nivel, de tu fecha y de si vais en dobles. La primera asesoría es gratis y sin compromiso.',
+    a: 'Es un plan personalizado, así que el precio se consulta con Jaime: depende de tu nivel, de tu fecha y de cómo quieras competir. La primera asesoría es gratis y sin compromiso.',
   },
   {
-    q: '¿Tengo que ir en dobles mixtos?',
-    a: 'No. Dobles mixtos es la modalidad que proponemos para debutar en Barcelona, pero cuéntale a Jaime cómo quieres competir y adapta el plan.',
+    q: '¿Individual, dobles o mixtos?',
+    a: 'Da igual. Jaime te prepara para cualquier HYROX, vayas solo, en pareja o en dobles mixtos. Cuéntale cómo quieres competir y adapta el plan.',
   },
   {
     q: '¿Cómo funciona el entrenamiento?',

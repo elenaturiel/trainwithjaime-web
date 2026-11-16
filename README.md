@@ -60,10 +60,14 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 ## Página y plan HYROX (entrenamiento)
 
-- **Página de venta** `/entrenamiento-hyrox` (pestaña "HYROX" del menú, `src/pages/HyroxPlan.jsx`): qué es HYROX, el método de
-  Jaime (se entrena en un gimnasio normal), HYROX Barcelona en dobles mixtos, pasos, para quién, plan y precio, y preguntas.
-  **Todos los textos están en `src/data/hyroxPlan.js`** (busca ⚠️): fecha de la carrera (`HYROX_EVENT.fecha`), fotos
-  (`HYROX_PHOTOS`, ahora provisionales) y el copy del método y de lo que incluye el plan, que Jaime debe revisar.
+- **Página de venta** `/entrenamiento-hyrox` (pestaña "HYROX" del menú, `src/pages/HyroxPlan.jsx`): portada con vídeo de
+  fondo, qué es HYROX, el método de Jaime (se entrena en un gimnasio normal), modalidades (individual, dobles o mixtos: el plan
+  vale para cualquier HYROX), HYROX Barcelona (14/11/2026, ya vivido: vídeo y galería de fotos), cuenta atrás al siguiente
+  HYROX, pasos, para quién, plan y precio, y preguntas. Lleva animaciones al hacer scroll (barra de progreso, fotos con
+  parallax, cifras que ruedan, línea de pasos, preguntas que se despliegan); con "reducir movimiento" se quedan quietas.
+  **Todos los textos y datos están en `src/data/hyroxPlan.js`** (busca ⚠️): `HYROX_NEXT` (fecha de la cuenta atrás y lugar),
+  fotos, vídeos y el copy del método y de lo que incluye el plan, que Jaime debe revisar.
+- **Vídeos** (`public/hyrox-hero.mp4`, `public/hyrox-bcn.mp4`, 5 s, sin sonido, ~0,8 MB cada uno) y fotos `public/hyrox-*.jpg`.
 - **Plan HYROX** (`HYROX_PLAN` en `src/data/pricing.js`): precio **"A consultar con Jaime"** (es personalizado). Sale como
   tarjeta ancha bajo los 4 planes de `/precios` y como una fila más en la lista de la home.
 - **Formulario de contacto:** los botones llevan a `/contacto?plan=hyrox&origen=hyrox`. El formulario muestra "Interesado en:
