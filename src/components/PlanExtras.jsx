@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Stagger, StaggerItem } from './Reveal.jsx'
 import Button from './Button.jsx'
 import { ArrowIcon } from './Icons.jsx'
@@ -36,13 +37,16 @@ export default function PlanExtras() {
         <div>
           <h3 className="font-display text-4xl leading-[1.02] md:text-6xl">Prepárate para tu día</h3>
           <p className="mt-4 max-w-2xl text-fg-2">
-            ¿Tienes una fecha en el calendario? Un HYROX, una media maratón, un trail, la San Silvestre, una prueba
+            ¿Tienes una fecha en el calendario? Un 10K, una media maratón, un trail, la San Silvestre, una prueba
             física de oposiciones... El plan PEAK es un pack cerrado de 8, 10 o 12 semanas diseñado alrededor de TU
             evento. Entrenamiento específico, nutrición durante toda la preparación, seguimiento semanal y comunidad
             incluida. Pago único, deadline claro, un solo objetivo: llegar a tu día en tu mejor versión.
           </p>
           <p className="mt-4 max-w-2xl text-sm text-muted">
-            ¿Preparas otra prueba? Consulta con Jaime para entrenamientos de pruebas personalizadas.
+            ¿Preparas otra prueba? Consulta con Jaime para entrenamientos de pruebas personalizadas.{' '}
+            <Link to="/entrenamiento-hyrox" className="font-semibold text-brand underline-offset-4 hover:underline">
+              ¿Es un HYROX? Tiene su propio plan a medida →
+            </Link>
           </p>
         </div>
         <Button to="/contacto?plan=peak" variant="secondary">
