@@ -133,12 +133,12 @@ export const PRICING = [
 export const HYROX_PLAN = {
   id: 'hyrox',
   name: 'HYROX',
-  tagline: 'Prepara tu HYROX en un gimnasio normal, sin material específico.',
+  tagline: 'Prepara cualquier HYROX en un gimnasio normal, sin material específico.',
   summary: 'Entrenamiento HYROX personalizado. Precio a consultar con Jaime.',
   priceLabel: 'A consultar',
   note: 'Es un plan 100 % personalizado, así que el precio se ve con Jaime. La primera asesoría es gratis.',
   cta: 'Consultar mi plan HYROX',
-  features: ['Método HYROX para un gimnasio normal', 'Plan a tu nivel y a tu fecha de carrera', 'Dobles mixtos (HYROX Barcelona)'],
+  features: ['Método HYROX para un gimnasio normal', 'Plan a tu nivel y a tu fecha de carrera', 'Individual, dobles o mixtos'],
   href: '/contacto?plan=hyrox&origen=hyrox',
   more: '/entrenamiento-hyrox',
 }
