@@ -75,21 +75,17 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
   "Nuevo contacto HYROX", el campo `origen` y el plan marcado como "viene de la página HYROX" (en la hoja de Google queda
   dentro de la columna "Plan").
 - **Fotos de HYROX por la web:** carrusel de la home (3 fotos), bloque HYROX de la home, sección "Mi primer HYROX" de Sobre Jaime, tarjeta del plan en `/precios` y pestaña Comunidad de Servicios.
-- La barra HYROX de arriba (que lleva a la lista de espera `/hyrox`) no se muestra en esta página.
+- **Pegatina** en la portada de la home (`src/components/HyroxSticker.jsx`): círculo amarillo "Nuevo · HYROX · Plan" con el
+  aro de texto girando, que lleva a `/entrenamiento-hyrox`. Para quitarla, borra `<HyroxSticker …/>` de `src/pages/Home.jsx`.
+  El bloque "Entrena para tu HYROX" de la home es `src/components/HyroxPromo.jsx`.
 
-## Lista de espera HYROX
+## Lista de espera HYROX (cerrada)
 
-- **Banner** (`src/components/HyroxBanner.jsx`): barra fina fija arriba, bloque grande en la home, bloque entre los planes
-  (`/precios`) y pie de página. Todos enlazan a `/hyrox?ub=barra|home|planes|footer`. **El texto se cambia en
-  `src/config.js`** (`HYROX_BANNER_VARIANTS` y `HYROX_BANNER_ACTIVE`) y se actualizan los cuatro a la vez.
-- **Formulario** `/hyrox` (`src/pages/Hyrox.jsx`, preguntas en `src/data/hyrox.js`): 3 pasos, una pregunta por pantalla.
-  Cada paso se guarda al momento, así también quedan los que no llegan al email.
-- **Datos** (`api/_lib/hyrox.js`): usan el mismo Redis de Upstash que los códigos de amigo. Entidad `HyroxLead`: nivel,
-  cuando, email, consentimiento, ubicacion_banner, utm_source, utm_medium, utm_campaign, fecha. Eventos (vista, paso1,
-  paso2, envio) sin datos personales; con `HYROX_EVENTS_NEED_CONSENT = true` (en `src/config.js`) solo se registran si
-  la persona acepta la analítica.
-- **Vista privada** `/admin/hyrox`: pide una clave. En Vercel → Settings → Environment Variables crea
-  **`HYROX_ADMIN_TOKEN`** con una clave larga que solo sepas tú y redespliega. Sin esa variable la vista no se abre.
+El plan ya está activo, así que se quitó todo lo público de la lista de espera (barra, bloques, formulario). `/hyrox` ahora
+redirige a `/entrenamiento-hyrox`. **Se conserva la vista privada** `/admin/hyrox` (y `api/hyrox-stats`) para poder seguir
+viendo y descargando los emails que ya se recogieron (`HyroxLead` en Redis). Pide una clave: crea en Vercel →
+Settings → Environment Variables **`HYROX_ADMIN_TOKEN`** con una clave larga y redespliega. Cuando ya no hagan falta esos
+datos, se pueden borrar de Redis (claves `hyrox:leads` y `hyrox:events`) y eliminar la vista.
 
 ## Reseñas y cambios con foto
 

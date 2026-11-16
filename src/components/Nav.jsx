@@ -11,7 +11,6 @@ import {
 } from 'framer-motion'
 import Button from './Button.jsx'
 import { ArrowIcon, AppleIcon, ChatIcon, DumbbellIcon, HeartIcon, SparklesIcon, StarIcon, UsersIcon } from './Icons.jsx'
-import { useHasTopBar } from '../lib/topbar.js'
 
 /* ══ Site header ══════════════════════════════════════════
    Sticky bar that is clear over the hero and turns solid once the page scrolls. It marks the current page with a
@@ -154,7 +153,6 @@ const linkBase =
 export default function Nav() {
   const id = useId()
   const reduced = !!useReducedMotion()
-  const hasTopBar = useHasTopBar()
   const { scrollY } = useScroll()
   const location = useLocation()
   const [solid, setSolid] = useState(false)
@@ -320,7 +318,7 @@ export default function Nav() {
   return (
     <header
       ref={rootRef}
-      className={`fixed inset-x-0 ${hasTopBar ? 'top-9' : 'top-0'} z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
         isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
       } ${overDark ? 'theme-dark' : ''}`}
     >

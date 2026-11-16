@@ -176,7 +176,7 @@ function HyroxPlanCard() {
         />
         <div className="grid gap-8 p-6 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-10 md:p-10">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent-ink">Nuevo · 100 % personalizado</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent-ink">Nuevo · plan a medida</p>
           <h3 className="mt-2 font-display text-5xl font-bold leading-none md:text-6xl">{p.name}</h3>
           <p className="mt-3 max-w-xl text-base text-fg-2 md:text-lg">{p.tagline}</p>
           <ul className="mt-5 flex flex-wrap gap-2" aria-label="Incluye">

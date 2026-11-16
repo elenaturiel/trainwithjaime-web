@@ -553,7 +553,7 @@ export default function HyroxPlan() {
             <Reveal as="div" className="mt-12 grid gap-8 rounded-3xl border border-accent/50 bg-panel-2 p-7 md:grid-cols-[1.1fr_0.9fr] md:gap-12 md:p-12">
               <div>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-accent">
-                  <StarIcon className="h-3 w-3" /> 100 % personalizado
+                  <StarIcon className="h-3 w-3" /> Plan a medida
                 </span>
                 <Stagger as="ul" className="mt-6 space-y-4">
                   {HYROX_INCLUDES.map((t) => (
@@ -568,11 +568,12 @@ export default function HyroxPlan() {
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted">Precio</p>
                 <p className="mt-2 font-display text-5xl font-bold leading-none md:text-6xl">A consultar</p>
                 <p className="mt-4 text-sm leading-relaxed text-fg-2">
-                  Es un plan hecho a tu medida, así que el precio lo ves con Jaime: depende de tu nivel, tu fecha y de cómo
-                  quieras competir. La primera asesoría es gratis y sin compromiso.
+                  No es un plan de catálogo: Jaime lo hace a tu medida. Para que quede lo mejor posible, lo consultas
+                  primero con él (tu nivel, tu fecha, cómo quieres competir y el gimnasio que tienes) y así te dice el
+                  precio. La primera asesoría es gratis y sin compromiso.
                 </p>
                 <Button to={HYROX_CONTACT} className="mt-6 w-full">
-                  Consultar mi plan HYROX <ArrowIcon className="h-4 w-4" />
+                  Consultar mi plan con Jaime <ArrowIcon className="h-4 w-4" />
                 </Button>
                 <Button href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="secondary" className="mt-3 w-full">
                   <WhatsAppIcon className="h-5 w-5" /> Hablar por WhatsApp

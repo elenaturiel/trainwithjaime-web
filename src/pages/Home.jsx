@@ -9,7 +9,8 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import FinalCTA from '../components/FinalCTA.jsx'
 import FoldText from '../components/FoldText.jsx'
 import ScrollExpand from '../components/ScrollExpand.jsx'
-import HyroxBanner from '../components/HyroxBanner.jsx'
+import HyroxPromo from '../components/HyroxPromo.jsx'
+import HyroxSticker from '../components/HyroxSticker.jsx'
 import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -149,6 +150,8 @@ function Hero() {
         aria-hidden="true"
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
+      {/* Pegatina del plan HYROX: se ve nada más entrar */}
+      <HyroxSticker className="absolute right-4 top-24 md:right-10 md:top-32 lg:right-16 lg:top-36" />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-40 md:px-8 md:pb-24">
         <motion.h1
@@ -402,7 +405,7 @@ export default function Home() {
       <ScrollSection effect="parallax" blue>
         <Testimonials />
       </ScrollSection>
-      <HyroxBanner ubicacion="home" />
+      <HyroxPromo />
       <ScrollSection effect="zoom" bg="bg-panel" last dark>
         <FinalCTA />
       </ScrollSection>
