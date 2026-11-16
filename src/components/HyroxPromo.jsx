@@ -16,7 +16,7 @@ export default function HyroxPromo() {
           <h2 className="mt-5 max-w-4xl font-display text-5xl font-bold leading-[1.02] md:text-7xl xl:text-8xl">Entrena para tu HYROX</h2>
           <p className="mt-6 max-w-xl text-base text-fg-2 md:text-lg">
             Prepárate para cualquier HYROX en un gimnasio normal, sin material específico y sin postureo. Individual,
-            parejas o mixtos: Jaime te hace el plan a tu medida.
+            parejas o mixtos. Es un plan a medida: lo consultas con Jaime para que quede lo mejor posible para ti.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Button to="/entrenamiento-hyrox">

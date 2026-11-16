@@ -78,7 +78,7 @@ export const HYROX_FOR = [
 
 // ⚠️ REVISAR: qué incluye el plan (Jaime debe confirmar el contenido real).
 export const HYROX_INCLUDES = [
-  'Plan HYROX 100 % personalizado, pensado para un gimnasio normal',
+  'Plan HYROX a medida, diseñado contigo tras hablar con Jaime y pensado para un gimnasio normal',
   'Carrera y fuerza integradas, en cuenta atrás hacia tu fecha',
   'Seguimiento por WhatsApp y ajustes del plan',
   'Estrategia y ritmos para el día de la carrera',
@@ -96,7 +96,7 @@ export const HYROX_FAQ = [
   },
   {
     q: '¿Cuánto cuesta el plan HYROX?',
-    a: 'Es un plan personalizado, así que el precio se consulta con Jaime: depende de tu nivel, de tu fecha y de cómo quieras competir. La primera asesoría es gratis y sin compromiso.',
+    a: 'El plan HYROX es a medida, no hay un plan cerrado. Por eso se consulta con Jaime: así lo hace lo mejor posible para ti, y el precio depende de tu nivel, tu fecha y cómo quieras competir. La primera asesoría es gratis y sin compromiso.',
   },
   {
     q: '¿Individual, dobles o mixtos?',
