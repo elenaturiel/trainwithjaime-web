@@ -163,10 +163,11 @@ function Hero() {
         </motion.p>
         <motion.h1
           {...item(0.1)}
-          className="mt-4 max-w-6xl font-display text-[clamp(34px,10vw,48px)] leading-[1.04] [text-wrap:balance] md:text-[64px] lg:text-[clamp(56px,5.4vw,88px)]"
+          className="mt-4 max-w-5xl font-display text-[clamp(34px,10vw,48px)] leading-[1.04] md:text-[88px] lg:text-[112px]"
         >
-          Tu rutina manda.
-          <span className="block font-bold [text-wrap:balance]">Tu entrenamiento se adapta.</span>
+          Menos excusas.
+          <br />
+          <span className="font-bold">Más resultados.</span>
         </motion.h1>
         <motion.p {...item(0.2)} className="mt-6 max-w-2xl text-base text-fg-2 md:text-lg">
           Entrenamiento y nutrición personalizados que se adaptan a tus clases, tu trabajo y tus horarios, no al revés.
@@ -193,6 +194,34 @@ function Hero() {
       </div>
 
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
+    </section>
+  )
+}
+
+// Mensaje de adaptación (antes era el titular del hero): "Tu rutina manda. Tu entrenamiento se adapta."
+function Adapts() {
+  return (
+    <section className="theme-dark bg-ink py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <Reveal as="div">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">Cómo entrenamos</p>
+          <h2 className="mt-5 max-w-5xl font-display text-[2.1rem] leading-[1.04] min-[420px]:text-5xl md:text-7xl lg:text-8xl">
+            Tu rutina manda.
+            <span className="block font-bold [text-wrap:balance]">Tu entrenamiento se adapta.</span>
+          </h2>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-2 md:text-lg">
+            No tienes que cambiar tu vida para entrenar: el plan se monta alrededor de tu semana, no al revés. Si un día
+            se complica, se ajusta.
+          </p>
+          <ul className="mt-8 flex flex-wrap gap-3" aria-label="Se adapta a">
+            {['Tus clases', 'Tu trabajo', 'Tus horarios', 'Tu presupuesto'].map((t) => (
+              <li key={t} className="rounded-full border border-fg/25 px-5 py-2 text-sm font-semibold uppercase tracking-wider text-fg">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
     </section>
   )
 }
@@ -451,6 +480,9 @@ export default function Home() {
       </ScrollSection>
       <ScrollSection effect="parallax">
         <Stats />
+      </ScrollSection>
+      <ScrollSection effect="zoom" dark>
+        <Adapts />
       </ScrollSection>
       <Difference />
       <ScrollSection effect="clip">
