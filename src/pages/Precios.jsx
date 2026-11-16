@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
@@ -43,6 +44,13 @@ export default function Precios() {
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal as="div" className="mb-4">
             <SectionHeading title="Compara los planes" />
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-fg-2 md:text-base">
+              <strong className="text-fg">El plan HYROX no está en la tabla:</strong> es un plan a medida y se consulta con
+              Jaime para hacerlo lo mejor posible.{' '}
+              <Link to="/entrenamiento-hyrox" className="font-semibold text-brand underline-offset-4 hover:underline">
+                Ver el plan HYROX →
+              </Link>
+            </p>
           </Reveal>
           <PlanComparison />
         </div>

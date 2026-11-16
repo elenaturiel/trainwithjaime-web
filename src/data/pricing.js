@@ -128,7 +128,7 @@ export const PRICING = [
   },
 ]
 
-// Plan HYROX: precio a consultar con Jaime (es personalizado), por eso va aparte de los 4 planes con precio.
+// Plan HYROX: precio a consultar con Jaime (es personalizado), por eso va aparte de los planes con precio (y fuera de la tabla comparativa).
 // Lleva al formulario de contacto con el plan elegido y el origen "página HYROX".
 export const HYROX_PLAN = {
   id: 'hyrox',

@@ -15,9 +15,9 @@ import SnapText from '../components/SnapText.jsx'
 import Carousel from '../components/Carousel.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal } from '../components/Reveal.jsx'
-import { ArrowIcon, PlayIcon } from '../components/Icons.jsx'
+import { ArrowIcon, CheckIcon, PlayIcon } from '../components/Icons.jsx'
 import { EASE } from '../lib/motion.js'
-import { REAL_TESTIMONIALS as TESTIMONIALS } from '../config.js'
+import { REAL_TESTIMONIALS as TESTIMONIALS, TEST } from '../config.js'
 import { useReviews } from '../lib/resenas.js'
 import { Stars } from '../components/Stars.jsx'
 import { ChangesSlider, ReviewsSlider } from '../components/ReviewSliders.jsx'
@@ -174,13 +174,16 @@ function Hero() {
           Para estudiantes y para cualquiera con una vida con prisa.
         </motion.p>
         <motion.div {...item(0.3)} className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Button to="/contacto">
-            Primera asesoría gratis <ArrowIcon className="h-4 w-4" />
+          <Button to="/test">
+            Hazte el test de estudihambre <ArrowIcon className="h-4 w-4" />
           </Button>
-          <Button to="/test" variant="secondary">
-            Hazte el test de estudihambre
+          <Button to="/contacto" variant="secondary">
+            Primera asesoría gratis
           </Button>
         </motion.div>
+        <motion.p {...item(0.35)} className="mt-3 text-sm text-fg-2">
+          {TEST.questions} preguntas, {TEST.duration}: te decimos qué plan te encaja y cuánto puedes ahorrar.
+        </motion.p>
         <motion.div {...item(0.4)} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-fg-2">
           <button
             type="button"
@@ -442,6 +445,62 @@ function Testimonials() {
   )
 }
 
+// Tarjeta grande del test de estudihambre, entre la propuesta de valor y los precios.
+const TEST_PERKS = [
+  ['Tu plan, sin dar vueltas', 'Rookie, All In o Peak: te decimos cuál encaja con tu semana y tu bolsillo, y por qué.'],
+  ['Los descuentos que te tocan', '-10% con carné universitario y hasta -25% si vais en squad. Sin letra pequeña.'],
+  ['Cero datos, cero registro', 'Son solo clics: no te pedimos email ni teléfono para ver el resultado.'],
+]
+
+function TestPromo() {
+  return (
+    <section className="bg-ink py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <Reveal
+          as="div"
+          className="relative overflow-hidden rounded-3xl border border-accent/60 bg-accent/10 p-7 md:p-14"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-accent/30 blur-3xl"
+          />
+          <div className="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">
+                {TEST.questions} preguntas · {TEST.duration}
+              </p>
+              <h2 className="mt-4 font-display text-[2.1rem] font-bold leading-[1.02] min-[420px]:text-5xl md:text-7xl">
+                ¿Tienes estudihambre?
+              </h2>
+              <p className="mt-5 max-w-xl text-base text-fg-2 md:text-lg">
+                Pasta, pizza y lo que caiga no es un plan. Haz el test y te decimos qué plan te encaja de verdad.
+              </p>
+              <div className="mt-8">
+                <Button to="/test" className="w-full sm:w-auto">
+                  Hazte el test de estudihambre <ArrowIcon className="h-4 w-4 shrink-0" />
+                </Button>
+              </div>
+            </div>
+            <ul className="grid min-w-0 gap-3">
+              {TEST_PERKS.map(([t, d]) => (
+                <li key={t} className="flex gap-4 rounded-2xl border border-line bg-panel p-5">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-on-accent">
+                    <CheckIcon className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-xl font-semibold leading-tight md:text-2xl">{t}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-fg-2">{d}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 function Pricing() {
   return (
     <section className="bg-ink py-24 md:py-32">
@@ -464,7 +523,7 @@ function Pricing() {
         <PricingCards compact />
         <p className="mt-6 text-center">
           <Link to="/precios" className="font-semibold text-brand underline-offset-4 hover:underline">
-            Comparar los 4 planes →
+            Comparar todos los planes →
           </Link>
         </p>
       </div>
@@ -492,6 +551,9 @@ export default function Home() {
         <Gallery />
       </ScrollSection>
       <Evolution />
+      <ScrollSection effect="zoom">
+        <TestPromo />
+      </ScrollSection>
       {/* Ancla fuera del bloque sticky para que /#precios salte siempre al sitio correcto */}
       <div id="precios" aria-hidden="true" />
       <ScrollSection effect="clip">

@@ -10,6 +10,7 @@ import {
   useScroll,
 } from 'framer-motion'
 import Button from './Button.jsx'
+import { TEST } from '../config.js'
 import { ArrowIcon, AppleIcon, ChatIcon, DumbbellIcon, HeartIcon, SparklesIcon, StarIcon, UsersIcon } from './Icons.jsx'
 
 /* ══ Site header ══════════════════════════════════════════
@@ -91,12 +92,14 @@ const ITEMS = [
     label: 'Precios',
     to: '/precios',
     links: [
-      { label: 'Planes y precios', description: 'Cuatro planes desde 24,90 €/mes', icon: <StarIcon className={ICON} />, to: '/precios' },
+      { label: 'Planes y precios', description: 'Todos los planes, desde 24,90 €/mes', icon: <StarIcon className={ICON} />, to: '/precios' },
       { label: 'Comparar los planes', description: 'Qué cambia de uno a otro', icon: <ChatIcon className={ICON} />, to: '/precios#comparar' },
       { label: 'Descuentos', description: 'Carné universitario y squad', icon: <UsersIcon className={ICON} />, to: '/precios#descuentos' },
     ],
     feature: { title: 'Primera asesoría gratis', description: 'Cuéntale a Jaime tu objetivo.', to: '/contacto', image: { src: '/img-14.jpg', alt: '' } },
   },
+  // Destacado: píldora de acento con un punto que late (no es un enlace más)
+  { value: 'test', label: 'Test', to: '/test', highlight: true },
   { value: 'contacto', label: 'Contacto', to: '/contacto' },
 ]
 
@@ -336,9 +339,9 @@ export default function Nav() {
                   const common = {
                     'data-nav-item': '',
                     'data-open': isOpen ? '' : undefined,
-                    className: `relative flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors xl:px-4 xl:tracking-[0.18em] duration-150 hover:text-fg ${linkBase} ${
+                    className: `relative flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-xs font-semibold uppercase tracking-[0.1em] transition-colors xl:px-4 xl:tracking-[0.18em] duration-150 hover:text-fg ${linkBase} ${
                       isCurrent || isOpen ? 'text-fg' : 'text-fg-2'
-                    }`,
+                    } ${item.highlight ? 'border border-accent bg-accent/15 !text-fg hover:bg-accent/30' : ''}`,
                     onPointerEnter: (e) => {
                       if (e.pointerType === 'mouse') setHovered(item.value)
                       if (withPanel) onTriggerPointerEnter(e, item.value)
@@ -389,6 +392,12 @@ export default function Nav() {
                           {...common}
                         >
                           {decorations}
+                          {item.highlight && (
+                            <span aria-hidden="true" className="relative mr-0.5 flex h-2 w-2">
+                              {!reduced && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />}
+                              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                            </span>
+                          )}
                           <span className="relative">{item.label}</span>
                         </Link>
                       )}
@@ -401,8 +410,10 @@ export default function Nav() {
 
           <div className="flex items-center gap-2">
             <div className="hidden lg:block">
-              <Button to="/contacto" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5">
-                Primera asesoría gratis
+              <Button to="/contacto" aria-label="Primera asesoría gratis" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5">
+                {/* entre 1024 y 1280 px el menú va justo: texto corto para dejarle aire */}
+                <span className="xl:hidden">Asesoría gratis</span>
+                <span className="hidden xl:inline">Primera asesoría gratis</span>
               </Button>
             </div>
 
@@ -570,6 +581,11 @@ export default function Nav() {
                         ) : (
                           <Link to={item.to} aria-current={isCurrent ? 'page' : undefined} className={`flex items-center py-4 font-display text-3xl leading-none text-fg ${linkBase}`}>
                             {item.label}
+                            {item.highlight && (
+                              <span className="ml-3 rounded-full bg-accent px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-widest text-on-accent">
+                                {TEST.duration}
+                              </span>
+                            )}
                             {isCurrent && <span aria-hidden="true" className="ml-3 inline-block h-2 w-2 rounded-full bg-accent" />}
                           </Link>
                         )}
