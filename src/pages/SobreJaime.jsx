@@ -1,7 +1,8 @@
 import SectionHeading from '../components/SectionHeading.jsx'
 import ScrollSection from '../components/ScrollSection.jsx'
 import { Reveal, Stagger, StaggerItem } from '../components/Reveal.jsx'
-import { GradCapIcon, HeartIcon, SparklesIcon, UsersIcon } from '../components/Icons.jsx'
+import { ArrowIcon, GradCapIcon, HeartIcon, SparklesIcon, UsersIcon } from '../components/Icons.jsx'
+import Button from '../components/Button.jsx'
 import { motion } from 'framer-motion'
 import FinalCTA from '../components/FinalCTA.jsx'
 import ImageCompare from '../components/ImageCompare.jsx'
@@ -71,6 +72,43 @@ export default function SobreJaime() {
                 ))}
               </ul>
             </motion.div>
+          </div>
+        </section>
+      </ScrollSection>
+
+      <ScrollSection effect="zoom">
+        <section className="bg-ink py-24 md:py-32">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16">
+            <Reveal as="div" className="mx-auto grid w-full max-w-md grid-cols-2 gap-3 lg:max-w-none">
+              {[
+                ['/hyrox-cartel.jpg', 'Jaime con el cartel “My first HYROX”'],
+                ['/hyrox-flex.jpg', 'Jaime marcando bíceps delante del panel de HYROX'],
+              ].map(([src, alt], i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={alt}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  className={`aspect-[3/4] w-full rounded-2xl border border-line object-cover ${i === 1 ? 'mt-8' : ''}`}
+                />
+              ))}
+            </Reveal>
+            <Reveal as="div">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">También compito</p>
+              <SectionHeading title="Mi primer HYROX" className="mt-4" />
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-2 md:text-lg">
+                El 14 de noviembre de 2026 hice mi primer HYROX en Barcelona, en dobles mixtos, y el 20 de marzo de 2027
+                vamos a por el siguiente. Lo que enseño lo pruebo yo primero. Y si tú también quieres hacer uno, te
+                preparo para cualquiera, en un gimnasio normal.
+              </p>
+              <div className="mt-8">
+                <Button to="/entrenamiento-hyrox">
+                  Ver el entrenamiento HYROX <ArrowIcon className="h-4 w-4" />
+                </Button>
+              </div>
+            </Reveal>
           </div>
         </section>
       </ScrollSection>

@@ -164,8 +164,17 @@ function PlanCard({ p, yearly }) {
 function HyroxPlanCard() {
   const p = HYROX_PLAN
   return (
-    <div className="mt-8 rounded-3xl border border-accent/50 bg-accent/10 p-6 md:p-10">
-      <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-12">
+    <div className="mt-8 overflow-hidden rounded-3xl border border-accent/50 bg-accent/10">
+      <div className="grid md:grid-cols-[0.55fr_1.45fr]">
+        <img
+          src="/hyrox-cartel.jpg"
+          alt="Jaime con el cartel “My first HYROX” en HYROX Barcelona"
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="h-56 w-full object-cover object-[50%_30%] md:h-full md:min-h-[22rem]"
+        />
+        <div className="grid gap-8 p-6 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-10 md:p-10">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent-ink">Nuevo · 100 % personalizado</p>
           <h3 className="mt-2 font-display text-5xl font-bold leading-none md:text-6xl">{p.name}</h3>
@@ -189,6 +198,7 @@ function HyroxPlanCard() {
               Ver cómo funciona →
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </div>

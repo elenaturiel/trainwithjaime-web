@@ -74,6 +74,7 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
   Plan HYROX" y "Viene de la página HYROX", preselecciona "Entrenar para HYROX", y el email a Jaime llega con asunto
   "Nuevo contacto HYROX", el campo `origen` y el plan marcado como "viene de la página HYROX" (en la hoja de Google queda
   dentro de la columna "Plan").
+- **Fotos de HYROX por la web:** carrusel de la home (3 fotos), bloque HYROX de la home, sección "Mi primer HYROX" de Sobre Jaime, tarjeta del plan en `/precios` y pestaña Comunidad de Servicios.
 - La barra HYROX de arriba (que lleva a la lista de espera `/hyrox`) no se muestra en esta página.
 
 ## Lista de espera HYROX
