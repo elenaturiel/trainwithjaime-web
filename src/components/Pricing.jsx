@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { BILLING_OPTIONS, setBilling, useBilling } from '../lib/billing.js'
 import { AnimatePresence, motion } from 'framer-motion'
-import { PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
+import { HYROX_PLAN, PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
 import { BillingPrice, BillingToggle } from './BillingToggle.jsx'
 import { Stagger, StaggerItem } from './Reveal.jsx'
 import Button from './Button.jsx'
@@ -160,6 +160,41 @@ function PlanCard({ p, yearly }) {
   )
 }
 
+// Plan HYROX: tarjeta ancha bajo los 4 planes, con "A consultar" en lugar de precio (es personalizado).
+function HyroxPlanCard() {
+  const p = HYROX_PLAN
+  return (
+    <div className="mt-8 rounded-3xl border border-accent/50 bg-accent/10 p-6 md:p-10">
+      <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-12">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-accent-ink">Nuevo · 100 % personalizado</p>
+          <h3 className="mt-2 font-display text-5xl font-bold leading-none md:text-6xl">{p.name}</h3>
+          <p className="mt-3 max-w-xl text-base text-fg-2 md:text-lg">{p.tagline}</p>
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Incluye">
+            {p.features.map((f) => (
+              <li key={f} className="rounded-full border border-fg/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-fg-2">
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="border-t border-fg/15 pt-6 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+          <p className="font-display text-4xl font-bold leading-none md:text-5xl">{p.priceLabel}</p>
+          <p className="mt-3 text-sm leading-relaxed text-fg-2">{p.note}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Button to={p.href} className="!px-5">
+              {p.cta} <ArrowIcon className="h-4 w-4 shrink-0" />
+            </Button>
+            <Link to={p.more} className="text-sm font-semibold text-brand underline-offset-4 hover:underline">
+              Ver cómo funciona →
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Fila de precios (móvil y tablet): los 4 precios uno al lado del otro, siempre visibles a la vez; debajo, las tarjetas.
 function PriceStrip({ yearly }) {
   return (
@@ -257,6 +292,30 @@ function PricingList({ yearly, billing }) {
             </li>
           )
         })}
+        <li className="grid items-center gap-x-4 gap-y-3 py-5 sm:grid-cols-[1fr_auto]">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <h4 className="font-display text-2xl font-semibold leading-none md:text-3xl">{HYROX_PLAN.name}</h4>
+              <span className="rounded-full border border-accent/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-accent-ink">
+                Nuevo
+              </span>
+            </div>
+            <p className="mt-1.5 text-sm text-muted">{HYROX_PLAN.summary}</p>
+          </div>
+          <div className="flex items-center justify-between gap-4 sm:justify-end">
+            <div className="text-left sm:text-right">
+              <p className="font-display text-2xl font-bold leading-none md:text-3xl">{HYROX_PLAN.priceLabel}</p>
+              <p className="mt-1 h-4 text-xs text-muted">con Jaime</p>
+            </div>
+            <Link
+              to={HYROX_PLAN.href}
+              aria-label={HYROX_PLAN.cta}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-fg/25 text-fg transition-colors duration-150 hover:border-fg/60 hover:bg-fg/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <ArrowIcon className="h-4 w-4" />
+            </Link>
+          </div>
+        </li>
       </ul>
     </div>
   )
@@ -296,6 +355,7 @@ export default function PricingCards({ compact = false }) {
         </Stagger>
       </div>
       <p className="mt-2 text-center text-xs text-muted lg:hidden">Desliza para ver todos los planes →</p>
+      <HyroxPlanCard />
         </>
       )}
       {/* Descuentos: una sola franja (sin tarjetas), justo debajo de los planes */}

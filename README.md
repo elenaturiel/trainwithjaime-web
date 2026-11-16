@@ -58,6 +58,20 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 > Esta parte usa funciones de Vercel: en Netlify el resto de la web funciona, pero los códigos no.
 
+## Página y plan HYROX (entrenamiento)
+
+- **Página de venta** `/entrenamiento-hyrox` (pestaña "HYROX" del menú, `src/pages/HyroxPlan.jsx`): qué es HYROX, el método de
+  Jaime (se entrena en un gimnasio normal), HYROX Barcelona en dobles mixtos, pasos, para quién, plan y precio, y preguntas.
+  **Todos los textos están en `src/data/hyroxPlan.js`** (busca ⚠️): fecha de la carrera (`HYROX_EVENT.fecha`), fotos
+  (`HYROX_PHOTOS`, ahora provisionales) y el copy del método y de lo que incluye el plan, que Jaime debe revisar.
+- **Plan HYROX** (`HYROX_PLAN` en `src/data/pricing.js`): precio **"A consultar con Jaime"** (es personalizado). Sale como
+  tarjeta ancha bajo los 4 planes de `/precios` y como una fila más en la lista de la home.
+- **Formulario de contacto:** los botones llevan a `/contacto?plan=hyrox&origen=hyrox`. El formulario muestra "Interesado en:
+  Plan HYROX" y "Viene de la página HYROX", preselecciona "Entrenar para HYROX", y el email a Jaime llega con asunto
+  "Nuevo contacto HYROX", el campo `origen` y el plan marcado como "viene de la página HYROX" (en la hoja de Google queda
+  dentro de la columna "Plan").
+- La barra HYROX de arriba (que lleva a la lista de espera `/hyrox`) no se muestra en esta página.
+
 ## Lista de espera HYROX
 
 - **Banner** (`src/components/HyroxBanner.jsx`): barra fina fija arriba, bloque grande en la home, bloque entre los planes

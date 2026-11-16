@@ -9,6 +9,7 @@ const SobreJaime = lazy(() => import('./pages/SobreJaime.jsx'))
 const Precios = lazy(() => import('./pages/Precios.jsx'))
 const Contacto = lazy(() => import('./pages/Contacto.jsx'))
 const Hyrox = lazy(() => import('./pages/Hyrox.jsx'))
+const HyroxPlan = lazy(() => import('./pages/HyroxPlan.jsx'))
 const AdminHyrox = lazy(() => import('./pages/AdminHyrox.jsx'))
 const Resenas = lazy(() => import('./pages/Resenas.jsx'))
 const AdminResenas = lazy(() => import('./pages/AdminResenas.jsx'))
@@ -26,6 +27,7 @@ const PAGES = [
   () => import('./pages/Contacto.jsx'),
   () => import('./pages/Test.jsx'),
   () => import('./pages/Hyrox.jsx'),
+  () => import('./pages/HyroxPlan.jsx'),
   () => import('./pages/Resenas.jsx'),
 ]
 
@@ -51,6 +53,7 @@ export default function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/test" element={<Test />} />
           <Route path="/hyrox" element={<Hyrox />} />
+          <Route path="/entrenamiento-hyrox" element={<HyroxPlan />} />
           <Route path="/resenas" element={<Resenas />} />
           <Route path="/admin/hyrox" element={<AdminHyrox />} />
           <Route path="/admin/resenas" element={<AdminResenas />} />
