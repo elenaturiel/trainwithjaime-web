@@ -44,33 +44,6 @@ export const BEFORE_AFTER = {
   afterAlt: 'Jaime, foto de después',
 }
 
-// ✏️ BANNER HYROX — el texto de los 4 banners (barra de arriba, bloque de la home, bloque entre planes y pie).
-// Para probar otra frase, cambia HYROX_BANNER_ACTIVE por 'b' o 'c' (o escribe la tuya en una variante).
-export const HYROX_BANNER_VARIANTS = {
-  a: {
-    text: '¿Primer HYROX y no sabes cómo entrenar?',
-    cta: 'Quiero más info',
-    // Frase de apoyo (solo en el bloque grande de la home)
-    sub: 'Con Jaime puedes empezar a prepararte desde ya, sin postureo y vengas de donde vengas. Cuéntanos en qué punto estás.',
-  },
-  b: {
-    text: 'Tu primer HYROX no tiene por qué ser un drama.',
-    cta: 'Cuéntame más',
-    sub: 'Entrena con cabeza desde ya y llega a la línea de salida sin sustos. Cuéntanos tu nivel.',
-  },
-  c: {
-    text: 'HYROX sin postureo: entrena con Jaime desde ya.',
-    cta: 'Quiero más info',
-    sub: 'Plan, ritmos y fuerza para tu primer HYROX, empieces en el punto que empieces.',
-  },
-}
-export const HYROX_BANNER_ACTIVE = 'a'
-export const HYROX_BANNER = HYROX_BANNER_VARIANTS[HYROX_BANNER_ACTIVE]
-
-// ✏️ Analítica del formulario HYROX (vistas y pasos). true = solo se registran si la persona ha aceptado la analítica
-// en el aviso de cookies (lo que dice la política de privacidad). Las respuestas del formulario se guardan igualmente.
-export const HYROX_EVENTS_NEED_CONSENT = true
-
 // ⚠️ SUSTITUIR: datos del titular de la web para el aviso legal y la política de privacidad
 // (obligatorios por la LSSI y el RGPD). Mientras estén entre corchetes se ven así en las páginas legales.
 export const LEGAL = {

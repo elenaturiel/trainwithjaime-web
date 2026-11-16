@@ -76,8 +76,8 @@ export default function Privacidad() {
         <li>Solicitudes de contacto que no acaban en contratación: hasta 12 meses.</li>
         <li>Códigos de amigo: mientras la promoción esté activa y, como máximo, 24 meses.</li>
         <li>
-          Lista de espera HYROX: hasta que lances el plan y, como máximo, 12 meses. Las respuestas del formulario sin
-          email son anónimas.
+          Lista de espera HYROX (ya cerrada): como máximo 12 meses desde que se recogieron. Puedes pedir que borremos tus
+          datos cuando quieras. Las respuestas del formulario sin email son anónimas.
         </li>
         <li>
           Reseñas y cambios con foto: mientras estén publicados. Puedes pedir que se retiren en cualquier momento

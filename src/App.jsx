@@ -1,14 +1,12 @@
 import { lazy, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
-import { captureUtm } from './lib/utm.js'
 import Layout from './components/Layout.jsx'
 import Home from './pages/Home.jsx'
 const Servicios = lazy(() => import('./pages/Servicios.jsx'))
 const SobreJaime = lazy(() => import('./pages/SobreJaime.jsx'))
 const Precios = lazy(() => import('./pages/Precios.jsx'))
 const Contacto = lazy(() => import('./pages/Contacto.jsx'))
-const Hyrox = lazy(() => import('./pages/Hyrox.jsx'))
 const HyroxPlan = lazy(() => import('./pages/HyroxPlan.jsx'))
 const AdminHyrox = lazy(() => import('./pages/AdminHyrox.jsx'))
 const Resenas = lazy(() => import('./pages/Resenas.jsx'))
@@ -26,14 +24,11 @@ const PAGES = [
   () => import('./pages/SobreJaime.jsx'),
   () => import('./pages/Contacto.jsx'),
   () => import('./pages/Test.jsx'),
-  () => import('./pages/Hyrox.jsx'),
   () => import('./pages/HyroxPlan.jsx'),
   () => import('./pages/Resenas.jsx'),
 ]
 
 export default function App() {
-  // El origen (utm_*) de la visita se guarda al entrar, para llevarlo al formulario HYROX aunque se navegue antes
-  useEffect(() => captureUtm(), [])
   useEffect(() => {
     const idle = window.requestIdleCallback ?? ((f) => setTimeout(f, 2000))
     const id = idle(() => PAGES.forEach((load) => load()))
@@ -52,7 +47,8 @@ export default function App() {
           <Route path="/sobre-jaime" element={<SobreJaime />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/hyrox" element={<Hyrox />} />
+          {/* La antigua lista de espera ya no existe: los enlaces viejos van a la página del plan */}
+          <Route path="/hyrox" element={<Navigate to="/entrenamiento-hyrox" replace />} />
           <Route path="/entrenamiento-hyrox" element={<HyroxPlan />} />
           <Route path="/resenas" element={<Resenas />} />
           <Route path="/admin/hyrox" element={<AdminHyrox />} />

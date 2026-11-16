@@ -3,15 +3,14 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { handleReferral } from './api/_lib/referral.js'
 import { handleLead } from './api/_lib/lead.js'
-import { handleHyrox, handleHyroxStats } from './api/_lib/hyrox.js'
+import { handleHyroxStats } from './api/_lib/hyrox.js'
 import { getFoto, handleAdmin, listPublic, submitReview } from './api/_lib/resenas.js'
 
 // En local, Vite no ejecuta las funciones de /api (eso lo hace Vercel al desplegar).
-// Este mini-servidor responde a /api/referral, /api/lead, /api/hyrox y /api/hyrox-stats para poder probarlos con `npm run dev`.
+// Este mini-servidor responde a /api/referral, /api/lead y /api/hyrox-stats para poder probarlos con `npm run dev`.
 const LOCAL_API = {
   '/api/referral': (body) => handleReferral(body),
   '/api/lead': (body) => handleLead(body),
-  '/api/hyrox': (body) => handleHyrox(body),
   '/api/hyrox-stats': (_body, req) => handleHyroxStats(req.headers['x-admin-token']),
   '/api/resenas': (body, req) => (req.method === 'GET' ? listPublic() : submitReview(body)),
   '/api/resenas-admin': (body, req) => handleAdmin(req.method, req.headers['x-admin-token'], body),
