@@ -18,7 +18,7 @@ import {
   WHATSAPP_URL,
 } from '../config.js'
 
-const GOALS = ['Entrenamiento + nutrición', 'Solo entrenamiento', 'Solo nutrición', 'No lo tengo claro']
+const GOALS = ['Entrenamiento + nutrición', 'Solo entrenamiento', 'Solo nutrición', 'Entrenar para HYROX', 'No lo tengo claro']
 
 const FAQ = [
   {
@@ -47,8 +47,13 @@ const inputCls =
   'w-full rounded-lg border border-line bg-ink px-4 py-3.5 text-fg placeholder:text-muted-2 transition-colors duration-150 hover:border-muted-2 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand'
 const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-fg-2'
 
-function ContactForm({ plan, weeks, yearly, initialCode, testPlan }) {
-  const planLabel = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}${yearly ? ' · año entero (-20%)' : ''}` : null
+// `fromHyrox`: la persona llega desde la página de HYROX (el botón lleva ?origen=hyrox). Se ve en el aviso del formulario
+// y en el email que recibe Jaime (asunto, plan y campo "origen"); en la hoja de Google queda dentro de la columna "Plan".
+const ORIGIN_HYROX = 'Página HYROX'
+
+function ContactForm({ plan, weeks, yearly, initialCode, testPlan, fromHyrox }) {
+  const basePlan = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}${yearly ? ' · año entero (-20%)' : ''}` : null
+  const planLabel = basePlan && fromHyrox ? `${basePlan} · viene de la página HYROX` : basePlan
   const formRef = useRef(null)
   const codeRef = useRef(null)
   // idle | submitting | success | error
@@ -215,14 +220,26 @@ function ContactForm({ plan, weeks, yearly, initialCode, testPlan }) {
       noValidate={false}
     >
       {plan && (
-        <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
-          Interesado en: {planLabel}
-        </p>
+        <div className="mb-6 flex flex-wrap gap-2">
+          <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
+            Interesado en: {basePlan}
+          </p>
+          {fromHyrox && (
+            <p className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+              Viene de la página HYROX
+            </p>
+          )}
+        </div>
       )}
 
       {/* Campos ocultos para Formspree */}
-      <input type="hidden" name="_subject" value="Nuevo contacto desde la web — Train with Jaime" />
+      <input
+        type="hidden"
+        name="_subject"
+        value={fromHyrox ? 'Nuevo contacto HYROX — Train with Jaime' : 'Nuevo contacto desde la web — Train with Jaime'}
+      />
       {plan && <input type="hidden" name="plan" value={planLabel} />}
+      {fromHyrox && <input type="hidden" name="origen" value={ORIGIN_HYROX} />}
       {testPlan && <input type="hidden" name="recomendacion_test" value={PLANS[testPlan]} />}
       {/* Honeypot anti-spam de Formspree: los humanos no lo ven */}
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
@@ -270,7 +287,7 @@ function ContactForm({ plan, weeks, yearly, initialCode, testPlan }) {
           <select
             id="busca"
             name="que_buscas"
-            defaultValue={GOALS[0]}
+            defaultValue={plan === 'hyrox' ? 'Entrenar para HYROX' : GOALS[0]}
             className={`${inputCls} appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A93A6' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-12`}
           >
             {GOALS.map((g) => (
@@ -548,6 +565,7 @@ export default function Contacto() {
   const initialCode = normalizeCode(params.get('codigo') || '')
   const testParam = params.get('test')
   const testPlan = testParam && PLANS[testParam] ? testParam : null
+  const fromHyrox = plan === 'hyrox' && params.get('origen') === 'hyrox'
 
   return (
     <>
@@ -562,7 +580,7 @@ export default function Contacto() {
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} weeks={weeks} yearly={yearly} initialCode={initialCode} testPlan={testPlan} />
+              <ContactForm plan={plan} weeks={weeks} yearly={yearly} initialCode={initialCode} testPlan={testPlan} fromHyrox={fromHyrox} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">

@@ -27,6 +27,9 @@ export default function Footer() {
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className={link}>
             {INSTAGRAM_HANDLE}
           </a>
+          <Link to="/entrenamiento-hyrox" className={link}>
+            Entrenamiento HYROX
+          </Link>
           <Link to="/resenas" className={link}>
             Reseñas
           </Link>

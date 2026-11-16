@@ -76,6 +76,7 @@ const ITEMS = [
     ],
     feature: { title: 'Hazte el test de estudihambre', description: 'Descubre qué plan te encaja.', to: '/test', image: { src: '/img-37.jpg', alt: '' } },
   },
+  { value: 'hyrox', label: 'HYROX', to: '/entrenamiento-hyrox' },
   {
     value: 'sobre-jaime',
     label: 'Sobre Jaime',
@@ -337,7 +338,7 @@ export default function Nav() {
                   const common = {
                     'data-nav-item': '',
                     'data-open': isOpen ? '' : undefined,
-                    className: `relative flex items-center gap-1 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-150 hover:text-fg ${linkBase} ${
+                    className: `relative flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors xl:px-4 xl:tracking-[0.18em] duration-150 hover:text-fg ${linkBase} ${
                       isCurrent || isOpen ? 'text-fg' : 'text-fg-2'
                     }`,
                     onPointerEnter: (e) => {
@@ -402,7 +403,7 @@ export default function Nav() {
 
           <div className="flex items-center gap-2">
             <div className="hidden lg:block">
-              <Button to="/contacto" className="px-5 py-2.5 text-xs">
+              <Button to="/contacto" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5">
                 Primera asesoría gratis
               </Button>
             </div>

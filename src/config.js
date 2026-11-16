@@ -93,5 +93,6 @@ export const PLANS = {
   allin: 'All In',
   mvp: 'MVP',
   peak: 'Peak',
+  hyrox: 'Plan HYROX (precio a consultar con Jaime)',
   squad: 'Squad discount (Rookie / All In en grupo)',
 }
