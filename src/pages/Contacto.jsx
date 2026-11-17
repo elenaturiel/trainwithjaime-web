@@ -51,8 +51,8 @@ const labelCls = 'mb-2 block text-xs font-semibold uppercase tracking-[0.18em] t
 // y en el email que recibe Jaime (asunto, plan y campo "origen"); en la hoja de Google queda dentro de la columna "Plan".
 const ORIGIN_HYROX = 'Página HYROX'
 
-function ContactForm({ plan, weeks, yearly, initialCode, testPlan, fromHyrox }) {
-  const basePlan = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}${yearly ? ' · año entero (-20%)' : ''}` : null
+function ContactForm({ plan, weeks, initialCode, testPlan, fromHyrox }) {
+  const basePlan = plan ? `${PLANS[plan]}${weeks ? ` · ${weeks} semanas` : ''}` : null
   const planLabel = basePlan && fromHyrox ? `${basePlan} · viene de la página HYROX` : basePlan
   const formRef = useRef(null)
   const codeRef = useRef(null)
@@ -561,7 +561,6 @@ export default function Contacto() {
   const plan = planParam && PLANS[planParam] ? planParam : null
   const weeksParam = params.get('semanas')
   const weeks = plan === 'peak' && ['8', '10', '12'].includes(weeksParam) ? weeksParam : null
-  const yearly = ['rookie', 'allin', 'mvp'].includes(plan) && params.get('periodo') === 'anual'
   const initialCode = normalizeCode(params.get('codigo') || '')
   const testParam = params.get('test')
   const testPlan = testParam && PLANS[testParam] ? testParam : null
@@ -580,7 +579,7 @@ export default function Contacto() {
         <section className="bg-ink py-20 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
             <Reveal as="div">
-              <ContactForm plan={plan} weeks={weeks} yearly={yearly} initialCode={initialCode} testPlan={testPlan} fromHyrox={fromHyrox} />
+              <ContactForm plan={plan} weeks={weeks} initialCode={initialCode} testPlan={testPlan} fromHyrox={fromHyrox} />
             </Reveal>
 
             <Reveal as="aside" className="flex flex-col gap-10">

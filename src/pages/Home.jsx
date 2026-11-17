@@ -182,7 +182,7 @@ function Hero() {
           </Button>
         </motion.div>
         <motion.p {...item(0.35)} className="mt-3 text-sm text-fg-2">
-          {TEST.questions} preguntas, {TEST.duration}: te decimos qué plan te encaja y cuánto puedes ahorrar.
+          {TEST.questions} preguntas, {TEST.duration}: te decimos qué plan te encaja y qué descuentos te tocan.
         </motion.p>
         <motion.div {...item(0.4)} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-fg-2">
           <button
