@@ -469,8 +469,12 @@ function TestPromo() {
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent-ink">
                 {TEST.questions} preguntas · {TEST.duration}
               </p>
-              <h2 className="mt-4 font-display text-[2.1rem] font-bold leading-[1.02] min-[420px]:text-5xl md:text-7xl">
-                ¿Tienes estudihambre?
+              <h2 className="mt-4 pb-3 font-display text-[2.1rem] font-bold leading-[1.02] min-[420px]:text-5xl md:pb-5 md:text-7xl">
+                ¿Eres{' '}
+                <span className="inline-block -rotate-3 rounded-xl bg-accent px-3 py-0.5 text-on-accent shadow-[0_6px_0_rgba(4,16,55,0.14)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-rotate-6 md:px-4">
+                  estudihambre
+                </span>
+                ?
               </h2>
               <p className="mt-5 max-w-xl text-base text-fg-2 md:text-lg">
                 Pasta, pizza y lo que caiga no es un plan. Haz el test y te decimos qué plan te encaja de verdad.
