@@ -2,14 +2,12 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Button from './Button.jsx'
-import { BillingPrice, BillingToggle, Counter } from './BillingToggle.jsx'
+import { Price, Counter } from './Price.jsx'
 import { ArrowIcon, CheckIcon, StarIcon } from './Icons.jsx'
-import { BILLING_OPTIONS, setBilling, useBilling } from '../lib/billing.js'
-import { COMPARE_GROUPS, PRICING, YEARLY_DISCOUNT, num, yearlyMonthly } from '../data/pricing.js'
+import { COMPARE_GROUPS, PRICING, num } from '../data/pricing.js'
 
 /* ══ Plan comparison ══════════════════════════════════════
    The comparison table, as a grid of rows (role="table") so that rows can open and close in height:
-   - Billing switch (shared with the cards above): the prices in the header roll to the new amount.
    - "Solo diferencias": hides the rows that read the same in every plan, with a counter of what is shown.
    - Choosing a plan: tints its column and a rail glides between the headers; a bar below then offers to continue.
    - The "Más popular" column stays framed from top to bottom.
@@ -21,18 +19,17 @@ const EASE_ENTER = [0.16, 0.84, 0.3, 1]
 const COLS = 'grid-cols-[34%_repeat(4,minmax(0,1fr))] md:grid-cols-[30%_repeat(4,minmax(0,1fr))]'
 const money = (v) => `${v.toFixed(2).replace('.', ',')}€`
 
-// Cada plan: precio mensual base y si admite el pago anual (Peak es un pack cerrado)
+// Cada plan: precio mensual (o "desde" en el pack Peak)
 const BASE = Object.fromEntries(
   PRICING.map((p) => [
     p.id,
     p.options
-      ? { amount: Math.min(...p.options.map((o) => num(o.price))), decimals: 0, from: true, period: '/pack', annual: false }
-      : { amount: p.amount, decimals: 2, was: p.oldAmount, period: '/mes', annual: true },
+      ? { amount: Math.min(...p.options.map((o) => num(o.price))), decimals: 0, from: true, period: '/pack' }
+      : { amount: p.amount, decimals: 2, was: p.oldAmount, period: '/mes' },
   ]),
 )
 
-const hrefFor = (id, yearly) =>
-  `/contacto?plan=${id}${id === 'peak' ? '&semanas=10' : ''}${yearly && BASE[id].annual ? '&periodo=anual' : ''}`
+const hrefFor = (id) => `/contacto?plan=${id}${id === 'peak' ? '&semanas=10' : ''}`
 
 function Value({ value }) {
   if (value === true)
@@ -101,8 +98,6 @@ function Switch({ checked, onChange, label }) {
 
 export default function PlanComparison() {
   const reduced = !!useReducedMotion()
-  const billing = useBilling()
-  const yearly = billing === 'yearly'
   const [closed, setClosed] = useState({})
   const [diffOnly, setDiffOnly] = useState(false)
   const [selected, setSelected] = useState(null)
@@ -143,20 +138,12 @@ export default function PlanComparison() {
   }
 
   const chosen = PRICING.find((p) => p.id === selected)
-  const chosenAmount = chosen && (yearly && BASE[chosen.id].annual ? yearlyMonthly(BASE[chosen.id].amount) : BASE[chosen.id].amount)
+  const chosenAmount = chosen && BASE[chosen.id].amount
 
   return (
     <div>
-      {/* billing + filter */}
-      <div className="flex flex-col gap-5 pt-2 md:flex-row md:items-end md:justify-between">
-        <div className="flex flex-col items-start gap-2">
-          <BillingToggle value={billing} onValueChange={setBilling} options={BILLING_OPTIONS} />
-          <p className="text-xs text-muted">
-            {yearly
-              ? `Pago anual: ${Math.round(YEARLY_DISCOUNT * 100)}% menos en Rookie, All In y MVP. Peak es un pack cerrado.`
-              : 'Pago mes a mes.'}
-          </p>
-        </div>
+      {/* filter */}
+      <div className="flex flex-col gap-5 pt-2 md:flex-row md:items-end md:justify-end">
         <div className="flex flex-col items-start gap-2 md:items-end">
           <Switch checked={diffOnly} onChange={setDiffOnly} label="Solo diferencias" />
           <p className="text-xs text-muted" aria-live="polite">
@@ -171,7 +158,6 @@ export default function PlanComparison() {
           <div role="columnheader" className="border-b border-line" />
           {PRICING.map((p) => {
             const b = BASE[p.id]
-            const annual = yearly && b.annual
             const on = selected === p.id
             return (
               <div
@@ -195,11 +181,11 @@ export default function PlanComparison() {
                 >
                   <span className="font-display text-lg leading-none text-fg md:text-3xl">{p.name}</span>
                   <span className="mt-2 text-fg">
-                    <BillingPrice
+                    <Price
                       compact
-                      amount={annual ? yearlyMonthly(b.amount) : b.amount}
+                      amount={b.amount}
                       decimals={b.decimals}
-                      was={annual ? b.amount : b.was}
+                      was={b.was}
                       prefix={b.from ? 'desde' : undefined}
                       period={b.period}
                       periodClass="hidden md:inline"
@@ -291,7 +277,7 @@ export default function PlanComparison() {
         <AnimatePresence initial={false} mode="wait">
           {chosen ? (
             <motion.div
-              key={`${chosen.id}-${yearly}`}
+              key={chosen.id}
               initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduced ? undefined : { opacity: 0, y: -8 }}
@@ -299,13 +285,12 @@ export default function PlanComparison() {
               className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-brand/40 bg-brand/5 p-5 sm:flex-row"
             >
               <p className="text-center text-sm text-fg sm:text-left">
-                Has elegido <strong>{chosen.name}</strong>
-                {yearly && BASE[chosen.id].annual ? ' (pago anual)' : ''} ·{' '}
+                Has elegido <strong>{chosen.name}</strong> ·{' '}
                 {BASE[chosen.id].from ? 'desde ' : ''}
                 {BASE[chosen.id].from ? `${chosenAmount}€` : money(chosenAmount)}
                 {BASE[chosen.id].period}
               </p>
-              <Button to={hrefFor(chosen.id, yearly)} variant={pop(chosen.id) ? 'primary' : 'secondary'} className="shrink-0">
+              <Button to={hrefFor(chosen.id)} variant={pop(chosen.id) ? 'primary' : 'secondary'} className="shrink-0">
                 {chosen.cta} <ArrowIcon className="h-4 w-4" />
               </Button>
             </motion.div>

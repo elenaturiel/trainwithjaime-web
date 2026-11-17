@@ -6,13 +6,8 @@ export const MVP_PRICE = '59,90€'
 export const MVP_PRICE_OLD = '64,90€'
 export const MVP_BADGE = 'Precio fundador · primeras 6 plazas'
 export const EXTRA_SESSION_PRICE = '25 €'
-// ✏️ Descuento por pagar el año entero (Rookie, All In y MVP; Peak es un pack cerrado).
-export const YEARLY_DISCOUNT = 0.2
-
 // '24,90€' → 24.9
 export const num = (s) => parseFloat(String(s).replace(',', '.'))
-// Precio mensual con el descuento anual, a céntimos
-export const yearlyMonthly = (amount) => Math.round(amount * (1 - YEARLY_DISCOUNT) * 100) / 100
 
 export const PRICING = [
   {
