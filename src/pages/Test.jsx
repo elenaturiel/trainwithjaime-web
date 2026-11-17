@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import PageHero from '../components/PageHero.jsx'
 import Button from '../components/Button.jsx'
@@ -14,7 +15,7 @@ const QUESTIONS = [
     options: [
       { v: 'fuerza', label: 'Más peso en la barra', hint: 'Fuerza, músculo, gym' },
       { v: 'running', label: 'Correr más y mejor', hint: 'Bajar tiempos, aguantar más' },
-      { v: 'evento', label: 'Llegar a tope a una prueba', hint: '10K, HYROX, media, trail…' },
+      { v: 'evento', label: 'Llegar a tope a una prueba', hint: '10K, media maratón, trail…' },
       { v: 'forma', label: 'Ponerme en forma', hint: 'Sentirme mejor, coger hábito' },
     ],
   },
@@ -68,7 +69,7 @@ function recommend(a) {
   if (a.prueba === 'pronto') {
     reasons.push('Tienes una prueba con fecha cerca: necesitas un plan cerrado con deadline.')
     if (a.comida !== 'bien') reasons.push('Incluye nutrición durante toda la preparación.')
-    reasons.push('Elige 8, 10 o 12 semanas según tu prueba (10K, HYROX, media maratón, trail corto…).')
+    reasons.push('Elige 8, 10 o 12 semanas según tu prueba (10K, media maratón, trail corto…).')
     return { id: 'peak', reasons }
   }
   let score = 0
@@ -211,6 +212,15 @@ export default function Test() {
                   </p>
                   {answers.prueba === 'lejos' && result.id !== 'peak' && (
                     <p>Cuando se acerque tu prueba, echa un ojo al plan Peak.</p>
+                  )}
+                  {result.id === 'peak' && (
+                    <p>
+                      <strong className="text-fg">¿Tu prueba es un HYROX?</strong> Tiene su propio plan a medida, y el
+                      precio se consulta con Jaime.{' '}
+                      <Link to="/entrenamiento-hyrox" className="font-semibold text-brand underline-offset-4 hover:underline">
+                        Ver el plan HYROX →
+                      </Link>
+                    </p>
                   )}
                   <p>El primer contacto con Jaime es gratis y sin compromiso.</p>
                 </div>

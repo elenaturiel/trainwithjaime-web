@@ -99,9 +99,10 @@ export const PRICING = [
     summary: 'Pack a medida para tu prueba: 8, 10 o 12 semanas.',
     cta: 'Voy a por mi Peak',
     // Pack cerrado: el precio depende de las semanas elegidas.
+    // ⚠️ No pongas HYROX entre las pruebas: HYROX tiene su propio plan y su precio es siempre a consultar.
     options: [
       { weeks: 8, price: '149€', events: '10K' },
-      { weeks: 10, price: '179€', events: 'HYROX, media maratón' },
+      { weeks: 10, price: '179€', events: 'Media maratón' },
       { weeks: 12, price: '209€', events: 'Trail corto' },
     ],
     note: '¿Preparas otra prueba? Consulta con Jaime para entrenamientos de pruebas personalizadas.',
