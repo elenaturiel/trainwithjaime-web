@@ -105,7 +105,7 @@ const ITEMS = [
 
 export function Logo({ className = '' }) {
   return (
-    <Link to="/" className={`whitespace-nowrap font-display text-xl font-bold leading-none tracking-wide text-fg ${className}`}>
+    <Link to="/" className={`whitespace-nowrap font-display text-xl font-bold leading-none tracking-wide text-fg outline-none focus:outline-none focus-visible:outline-none ${className}`}>
       TRAIN WITH <span className="text-brand">JAIME</span>
     </Link>
   )
