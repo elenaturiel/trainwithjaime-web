@@ -317,7 +317,7 @@ export default function Nav() {
   const isSolid = solid || menuOpen || !!open
   // Todas las páginas empiezan con una banda azul marino: sin scroll, el menú va en blanco.
   const overDark = !isSolid
-  const darkPage = ['/', '/precios', '/servicios'].includes(location.pathname) // páginas rediseñadas: todo en azul marino
+  const darkPage = ['/', '/precios', '/servicios', '/sobre-jaime'].includes(location.pathname) // páginas rediseñadas: todo en azul marino
 
   return (
     <header
