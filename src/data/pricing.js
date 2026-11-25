@@ -4,7 +4,7 @@
 // ✏️ Editables: plan MVP (precio fundador) y sesión extra.
 export const MVP_PRICE = '59,90€'
 export const MVP_PRICE_OLD = '64,90€'
-export const MVP_BADGE = 'Precio fundador · primeras 6 plazas'
+export const MVP_BADGE = 'Precio fundador · quedan 3 plazas'
 export const EXTRA_SESSION_PRICE = '25 €'
 // '24,90€' → 24.9
 export const num = (s) => parseFloat(String(s).replace(',', '.'))
