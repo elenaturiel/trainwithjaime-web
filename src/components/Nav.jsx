@@ -321,9 +321,9 @@ export default function Nav() {
   return (
     <header
       ref={rootRef}
-      className={`fixed inset-x-0 top-0 z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
+      className={`fixed inset-x-0 ${location.pathname === '/' ? 'top-9' : 'top-0'} z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
         isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
-      } ${overDark ? 'theme-dark' : ''}`}
+      } ${overDark || location.pathname === '/' ? 'theme-dark' : ''}`}
     >
       <div className="relative mx-auto max-w-7xl" onPointerLeave={onRegionPointerLeave} onPointerEnter={onRegionPointerEnter}>
         <div className="flex h-16 items-center justify-between px-5 md:h-18 md:px-8">
@@ -341,7 +341,7 @@ export default function Nav() {
                     'data-open': isOpen ? '' : undefined,
                     className: `relative flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-xs font-semibold uppercase tracking-[0.1em] transition-colors xl:px-4 xl:tracking-[0.18em] duration-150 hover:text-fg ${linkBase} ${
                       isCurrent || isOpen ? 'text-fg' : 'text-fg-2'
-                    } ${item.highlight ? 'border border-accent bg-accent/15 !text-fg hover:bg-accent/30' : ''}`,
+                    } ${item.highlight ? 'border border-accent bg-accent/15 !text-fg hover:bg-accent/30' : ''} ${item.value === 'hyrox' ? '!text-accent-ink' : ''}`,
                     onPointerEnter: (e) => {
                       if (e.pointerType === 'mouse') setHovered(item.value)
                       if (withPanel) onTriggerPointerEnter(e, item.value)
@@ -579,7 +579,7 @@ export default function Nav() {
                             </AnimatePresence>
                           </>
                         ) : (
-                          <Link to={item.to} aria-current={isCurrent ? 'page' : undefined} className={`flex items-center py-4 font-display text-3xl leading-none text-fg ${linkBase}`}>
+                          <Link to={item.to} aria-current={isCurrent ? 'page' : undefined} className={`flex items-center py-4 font-display text-3xl leading-none ${item.value === 'hyrox' ? 'text-accent-ink' : 'text-fg'} ${linkBase}`}>
                             {item.label}
                             {item.highlight && (
                               <span className="ml-3 rounded-full bg-accent px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-widest text-on-accent">

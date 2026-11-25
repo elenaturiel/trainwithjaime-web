@@ -58,6 +58,13 @@ datos, el formulario se envía igualmente y el email marca el código como "SIN 
 
 > Esta parte usa funciones de Vercel: en Netlify el resto de la web funciona, pero los códigos no.
 
+## Home (rediseño minimalista)
+
+`src/pages/Home.jsx` solo fija el orden; cada sección está en `src/components/HomeSections.jsx` (titulares Outfit variable 300/800,
+fondos `theme-dark` / `theme-blue`, 140 px de aire en escritorio). La barra amarilla superior es `TopBar.jsx` (solo en `/`; el
+menú baja 36 px en la home). Los precios salen de `src/data/pricing.js` (Peak no se muestra en la home). Las respuestas del
+FAQ que empiezan por `[` están pendientes y no se muestran; búscalas con `TODO` en `HomeSections.jsx`.
+
 ## Test de estudihambre
 
 `/test` (`src/pages/Test.jsx`): 6 preguntas → recomienda Rookie, All In o Peak y lleva a `/contacto?plan=…&test=…` con el plan
