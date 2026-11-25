@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import '@fontsource-variable/outfit/wght.css'
 import Button from './Button.jsx'
+import HeroVideo from './HeroVideo.jsx'
 import { Reveal } from './Reveal.jsx'
 import { ArrowIcon } from './Icons.jsx'
 import { Stars } from './Stars.jsx'
@@ -18,14 +18,14 @@ import { HYROX_CONTACT } from '../data/hyroxPlan.js'
    titulares Outfit variable con tracking -0.04em (línea ligera 300 + palabra en 800). Los colores salen de los tokens de
    index.css: `theme-dark` (navy #041037, superficie #091844), `theme-blue` (royal #1646C2) y el amarillo de acento. */
 
-const SECTION = 'py-20 md:py-[140px]'
-const WRAP = 'mx-auto max-w-[1200px] px-5 md:px-8'
-const LIGHT_BLUE = 'text-[#7FA6FF]' // azul claro del prototipo (números 01–06)
-const LINE = 'border-t border-white/25'
+export const SECTION = 'py-20 md:py-[140px]'
+export const WRAP = 'mx-auto max-w-[1200px] px-5 md:px-8'
+export const LIGHT_BLUE = 'text-[#7FA6FF]' // azul claro del prototipo (números 01–06)
+export const LINE = 'border-t border-white/25'
 
 // Botones del prototipo: píldora de 48 px, 13 px en negrita con tracking 1.2 px (se apoyan en el componente Button)
-const BTN = '!min-h-12 !rounded-full !px-7 !py-0 !text-[13px] !font-bold !tracking-[1.2px]'
-const BTN_O = `${BTN} !border-[1.5px] !border-white/55`
+export const BTN = '!min-h-12 !rounded-full !px-7 !py-0 !text-[13px] !font-bold !tracking-[1.2px]'
+export const BTN_O = `${BTN} !border-[1.5px] !border-white/55`
 
 // Tamaños de titular (máx. = valor del prototipo en escritorio; en móvil escalan con clamp)
 const SIZE = {
@@ -34,6 +34,7 @@ const SIZE = {
   md: 'text-[clamp(2.4rem,5vw,72px)]', // 72
   test: 'text-[clamp(2.5rem,6.1vw,88px)]', // 88
   faq: 'text-[clamp(2.3rem,4.4vw,64px)]', // 64
+  p80: 'text-[clamp(2.4rem,5.6vw,80px)]', // 80
   sm: 'text-[clamp(2rem,3.4vw,48px)]', // 48
 }
 
@@ -47,13 +48,13 @@ export function H2({ light, strong, size = 'xl', br = true, className = '' }) {
   )
 }
 
-const Eyebrow = ({ children, className = '' }) => (
+export const Eyebrow = ({ children, className = '' }) => (
   <p className={`text-xs font-bold uppercase tracking-[3px] text-accent-ink ${className}`}>{children}</p>
 )
 
 // Foto con zoom suave al pasar el ratón (el contenedor recorta)
-const ZOOM = 'transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]'
-const Photo = ({ src, alt, className = '', pos }) => (
+export const ZOOM = 'transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]'
+export const Photo = ({ src, alt, className = '', pos }) => (
   <img
     src={src}
     alt={alt}
@@ -68,10 +69,6 @@ const Photo = ({ src, alt, className = '', pos }) => (
 )
 
 /* ── 3 · Hero ───────────────────────────────────────────── */
-// ⚠️ SUSTITUIR VÍDEO DEL HERO: /public/hero.mp4 (H.264, 1080p, < 8 MB, sin audio) y su fotograma /public/hero-poster.jpg.
-const HERO_VIDEO = '/hero.mp4'
-const HERO_POSTER = '/hero-poster.jpg'
-
 const PILLARS = [
   { n: '01', title: 'Un plan hecho para ti', text: 'Alrededor de tus clases, tus exámenes y tu presupuesto real.' },
   { n: '02', title: 'Cero postureo', text: 'Nada de rutinas copiadas de Instagram. Medimos marcas, no likes.' },
@@ -79,18 +76,7 @@ const PILLARS = [
 ]
 
 export function Hero() {
-  const videoRef = useRef(null)
   const reduced = !!useReducedMotion()
-
-  // El vídeo solo se reproduce mientras se ve (no gasta batería fuera de pantalla) y no arranca con "reducir movimiento"
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    if (reduced) return v.pause()
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0.05 })
-    io.observe(v)
-    return () => io.disconnect()
-  }, [reduced])
 
   // Entrada escalonada: fade + translateY(36px)
   const item = (delay) =>
@@ -100,20 +86,7 @@ export function Hero() {
 
   return (
     <section className="theme-dark relative isolate flex min-h-[760px] flex-col justify-end overflow-hidden bg-[radial-gradient(110%_80%_at_78%_8%,#1646C2_0%,#091844_52%,#041037_100%)] pb-12 pt-44 md:pb-[72px]">
-      {/* Vídeo decorativo a pantalla completa (aria-hidden); solo metadatos hasta que se reproduce */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 -z-20 size-full object-cover opacity-55"
-        src={HERO_VIDEO}
-        poster={HERO_POSTER}
-        autoPlay={!reduced}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
+      <HeroVideo />
       {/* Velo navy para que el texto se lea: del prototipo (de arriba abajo) + uno lateral para el contraste AA sobre el vídeo */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(4,16,55,.45)_0%,rgba(4,16,55,.15)_40%,#041037_100%)]" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/70 via-ink/25 to-transparent" />
