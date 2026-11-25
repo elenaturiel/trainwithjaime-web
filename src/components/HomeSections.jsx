@@ -482,11 +482,10 @@ export function ForWho() {
 }
 
 /* ── 10 · Sobre Jaime ───────────────────────────────────── */
-// ⚠️ TODO (Jaime): estos datos NO están en la web, así que no se muestran. Si los confirma, se añaden como estadísticas:
-//   · años entrenando · nº de personas a las que ha entrenado · medias maratones u otras pruebas completadas
-//   · certificación como entrenador (en /sobre-jaime dice "no soy un entrenador certificado (aún)")
+// Datos confirmados por Jaime. Otros (años entrenando, medias maratones, certificación) no constan, así que no se muestran.
 const COACH_FACTS = [
   { value: '4º', label: 'curso de Ciencias de la Actividad Física y del Deporte' },
+  { value: '4', label: 'personas entrenadas: HYROX, carreras, gym y entreno funcional' },
   ...FACTS_HYROX,
 ]
 
@@ -510,7 +509,7 @@ export function Coach() {
             presupuesto justo. No soy entrenador certificado (aún), pero aplico lo que estudio y lo que he vivido en mis
             propias carnes. Y no te mando nada que yo no haga: sin postureo, solo plan.
           </p>
-          <dl className="mt-10 grid gap-6 sm:grid-cols-3">
+          <dl className="mt-10 grid gap-6 sm:grid-cols-2">
             {COACH_FACTS.map((f) => (
               <div key={f.value} className={`${LINE} pt-4`}>
                 <dt className="text-[44px] font-light leading-none tracking-[-0.03em]">{f.value}</dt>
@@ -680,8 +679,7 @@ export function Reviews() {
 }
 
 /* ── 15 · FAQ ───────────────────────────────────────────── */
-// Las respuestas que empiezan por "[" son pendientes y NO se muestran en la web (misma convención que config.js).
-// ⚠️ TODO (Jaime): rellenar las dos respuestas [TU RESPUESTA] (gimnasio y permanencia); no las he inventado.
+// Si una respuesta empieza por "[" se considera pendiente y NO se muestra en la web (misma convención que config.js).
 const FAQ = [
   {
     q: '¿Y si tengo exámenes o una semana complicada?',
@@ -691,8 +689,14 @@ const FAQ = [
     q: '¿Cómo funcionan los descuentos?',
     a: '−10% con carné universitario, que se verifica cuando hablas con Jaime. Y −15% cada uno si os apuntáis 2 amigos, o −25% si sois 3 o más (alta conjunta en Rookie y All In).',
   },
-  { q: '¿Necesito ir al gimnasio?', a: '[TU RESPUESTA]' }, // TODO
-  { q: '¿Hay permanencia?', a: '[TU RESPUESTA]' }, // TODO
+  {
+    q: '¿Necesito ir al gimnasio?',
+    a: 'No. Puedes entrenar en casa o en el gimnasio: Jaime se adapta a tus necesidades, a tu material y a tus rutinas. Lo importante no es dónde entrenas, sino que el plan encaje con tu vida.',
+  },
+  {
+    q: '¿Hay permanencia?',
+    a: 'No, no hay permanencia: te quedas el tiempo que quieras. Eso sí, Jaime te asesora sobre cuánto tiempo te conviene trabajar con él para conseguir los mejores resultados.',
+  },
 ]
 
 export function Faq() {
