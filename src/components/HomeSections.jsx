@@ -53,8 +53,8 @@ export const Eyebrow = ({ children, className = '' }) => (
 )
 
 // Foto con zoom suave al pasar el ratón (el contenedor recorta)
-const ZOOM = 'transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]'
-const Photo = ({ src, alt, className = '', pos }) => (
+export const ZOOM = 'transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]'
+export const Photo = ({ src, alt, className = '', pos }) => (
   <img
     src={src}
     alt={alt}
