@@ -242,8 +242,7 @@ export function Adapts() {
 const ACCOMPANIED = [
   { src: '/img-41.jpg', tag: 'Entrena', text: 'No te mando nada que yo no haga.', alt: 'Jaime haciendo series en el rack de sentadillas del gimnasio' },
   { src: '/img-42.jpg', tag: 'Entrena con gente', text: 'Aquí no entrenas solo.', alt: 'Jaime y un amigo sonriendo en un selfie al aire libre' },
-  // ⚠️ FALTA FOTO: el prototipo pide "Jaime corrigiendo la técnica a alguien o en una videollamada". Provisional: portátil y cuaderno.
-  { src: '/img-45.jpg', tag: 'Te acompaña', text: 'Revisamos tu progreso y ajustamos el plan cuando hace falta.', alt: 'Portátil con un documento abierto y un cuaderno con apuntes' },
+  { src: '/hyrox-juntos.jpg', tag: 'Te acompaña', text: 'Revisamos tu progreso y ajustamos el plan cuando hace falta.', alt: 'Jaime posando abrazado a otra persona delante del panel de HYROX Barcelona' },
   { src: '/img-26.jpg', tag: 'Plan a medida', text: 'Hecho alrededor de tus clases, tus exámenes y tu presupuesto.', alt: 'Portátil con el calendario de entrenos y una libreta delante' },
 ]
 
