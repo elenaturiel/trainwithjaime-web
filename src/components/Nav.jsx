@@ -317,13 +317,14 @@ export default function Nav() {
   const isSolid = solid || menuOpen || !!open
   // Todas las páginas empiezan con una banda azul marino: sin scroll, el menú va en blanco.
   const overDark = !isSolid
+  const darkPage = location.pathname === '/' || location.pathname === '/precios' // páginas rediseñadas: todo en azul marino
 
   return (
     <header
       ref={rootRef}
       className={`fixed inset-x-0 ${location.pathname === '/' ? 'top-9' : 'top-0'} z-40 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
         isSolid ? 'border-line bg-ink/90 backdrop-blur-md' : 'border-transparent bg-transparent'
-      } ${overDark || location.pathname === '/' ? 'theme-dark' : ''}`}
+      } ${overDark || darkPage ? 'theme-dark' : ''}`}
     >
       <div className="relative mx-auto max-w-7xl" onPointerLeave={onRegionPointerLeave} onPointerEnter={onRegionPointerEnter}>
         <div className="flex h-16 items-center justify-between px-5 md:h-18 md:px-8">

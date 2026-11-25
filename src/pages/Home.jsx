@@ -1,4 +1,4 @@
-import FinalCTA from '../components/FinalCTA.jsx'
+import WaveCTA from '../components/WaveCTA.jsx'
 import TopBar from '../components/TopBar.jsx'
 import {
   Accompanied,
@@ -49,9 +49,7 @@ export default function Home() {
       <HowItWorks />
       <Reviews />
       <Faq />
-      <div className="theme-dark">
-        <FinalCTA />
-      </div>
+      <WaveCTA />
     </>
   )
 }

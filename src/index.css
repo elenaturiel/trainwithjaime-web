@@ -186,3 +186,27 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .marquee { animation: none; }
 }
+
+/* ── CTA final "Y tú, ¿quieres ganar?": ola de letras con CSS puro (WaveCTA.jsx) ──
+   La letra bajo el cursor crece (1.45) y se pone amarilla; las dos vecinas crecen menos (1.2 y 1.07). */
+.wave .lt { display: inline-block; transform-origin: 50% 85%; }
+.wave .lt:hover { color: var(--color-accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .wave .lt { transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.28s; }
+  .wave .lt:hover { transform: scale(1.45); }
+  .wave .lt:hover + .lt, .wave .lt:has(+ .lt:hover) { transform: scale(1.2); }
+  .wave .lt:hover + .lt + .lt, .wave .lt:has(+ .lt + .lt:hover) { transform: scale(1.07); }
+}
+
+/* Subrayado amarillo que se dibuja: ligado al scroll donde el navegador lo permite; si no, se dibuja al cargar */
+@keyframes ul-draw { to { background-size: 100% 0.07em; } }
+.ul-draw {
+  background: linear-gradient(var(--color-accent), var(--color-accent)) 0 96% / 0 0.07em no-repeat;
+  animation: ul-draw 1s ease 1s forwards;
+}
+@supports (animation-timeline: view()) {
+  .ul-draw { animation: ul-draw linear both; animation-timeline: view(); animation-range: entry 40% entry 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ul-draw { animation: none; background-size: 100% 0.07em; }
+}
