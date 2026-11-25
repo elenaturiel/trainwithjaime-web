@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button.jsx'
+import HeroWord from './HeroWord.jsx'
 import RollingNumber from './RollingNumber.jsx'
 import { Reveal } from './Reveal.jsx'
 import { BTN, BTN_O, Eyebrow, H2, LINE, Photo, SECTION, WRAP } from './HomeSections.jsx'
@@ -14,7 +15,7 @@ import { EVENT_NOTE, EVENTS, EXTRAS, SERVICES, SPECIALTIES, SQUAD, STEPS, SUPPLE
 const CHIP = 'rounded-full border border-white/35 px-[18px] py-2 text-xs font-semibold uppercase tracking-[2px]'
 const CARD = 'transition-transform duration-[350ms] motion-safe:hover:-translate-y-2'
 
-/* ── 1 · Hero en dos columnas ───────────────────────────── */
+/* ── 1 · Hero: palabra gigante azul de fondo y el contenido encima ─ */
 export function ServiciosHero() {
   const reduced = !!useReducedMotion()
   // Entrada escalonada: fade + translateY(36px)
@@ -24,8 +25,8 @@ export function ServiciosHero() {
       : { initial: { opacity: 0, y: 36 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: [0.2, 0.7, 0.2, 1] } }
 
   return (
-    <section className="theme-dark bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-20 pt-36 md:pb-[110px] md:pt-[130px]">
-      <div className={`${WRAP} grid items-center gap-12 md:grid-cols-[1.25fr_.75fr] md:gap-16`}>
+    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-8 pt-36 md:pb-12 md:pt-[130px]">
+      <div className={`${WRAP} relative z-10`}>
         <div>
           <motion.div {...item(0)}>
             <Eyebrow>Servicios</Eyebrow>
@@ -48,7 +49,7 @@ export function ServiciosHero() {
               </span>
             </motion.span>
           </h1>
-          <motion.p {...item(0.3)} className="mt-8 max-w-[560px] text-lg leading-[1.55] text-white/85 md:text-[21px]">
+          <motion.p {...item(0.3)} className="mt-8 max-w-[560px] text-lg leading-[1.55] text-white md:text-[21px]">
             Entrenamiento, nutrición y seguimiento de verdad, todo online y pensado para universitarios.
           </motion.p>
           <motion.div {...item(0.5)} className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap sm:items-center">
@@ -61,14 +62,8 @@ export function ServiciosHero() {
           </motion.div>
         </div>
 
-        {/* Foto vertical con tratamiento azul navy */}
-        <motion.div {...item(0.5)}>
-          <div className="group relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl border border-white/[.18] md:max-w-none">
-            <Photo src="/img-11.jpg" alt="Jaime entrenando en la máquina Smith del gimnasio" className="absolute inset-0 saturate-[.8]" />
-            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(160deg,rgba(22,70,194,.5)_0%,rgba(4,16,55,.55)_90%)]" />
-          </div>
-        </motion.div>
       </div>
+      <HeroWord size="text-[clamp(2.75rem,15.8vw,228px)]">Servicios</HeroWord>
     </section>
   )
 }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button.jsx'
-import HeroVideo from './HeroVideo.jsx'
+import HeroWord from './HeroWord.jsx'
 import { Reveal } from './Reveal.jsx'
 import { ArrowIcon } from './Icons.jsx'
 import { BTN, BTN_O, Eyebrow, H2, LIGHT_BLUE, LINE, SECTION, WRAP } from './HomeSections.jsx'
@@ -23,7 +23,7 @@ import {
 
 const PLANS = PRICING.filter((p) => p.id !== 'peak')
 
-/* ── 1 · Hero con vídeo ─────────────────────────────────── */
+/* ── 1 · Hero: palabra gigante azul de fondo y el contenido encima ─ */
 const CHIPS = ['Primera asesoría gratis', '−10% con carné universitario', 'Hasta −25% en squad']
 
 export function PreciosHero() {
@@ -35,11 +35,9 @@ export function PreciosHero() {
       : { initial: { opacity: 0, y: 36 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: [0.2, 0.7, 0.2, 1] } }
 
   return (
-    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-20 pt-36 md:pb-[110px] md:pt-[150px]">
-      <HeroVideo className="opacity-40" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(4,16,55,.55)_0%,rgba(4,16,55,.25)_45%,#041037_100%)]" />
+    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-8 pt-36 md:pb-12 md:pt-[124px]">
 
-      <div className={WRAP}>
+      <div className={`${WRAP} relative z-10`}>
         <motion.div {...item(0)}>
           <Eyebrow>Precios</Eyebrow>
         </motion.div>
@@ -63,7 +61,7 @@ export function PreciosHero() {
           </motion.span>
         </h1>
 
-        <motion.p {...item(0.5)} className="mt-9 max-w-[620px] text-lg leading-[1.55] text-white/85 md:text-[21px]">
+        <motion.p {...item(0.5)} className="mt-9 max-w-[620px] text-lg leading-[1.55] text-white md:text-[21px]">
           Elige el plan que encaja contigo. La primera asesoría con Jaime es gratis.
         </motion.p>
 
@@ -84,6 +82,7 @@ export function PreciosHero() {
           ))}
         </motion.ul>
       </div>
+      <HeroWord size="text-[clamp(2.75rem,17vw,245px)]">Precios</HeroWord>
     </section>
   )
 }
