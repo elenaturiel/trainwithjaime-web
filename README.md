@@ -65,6 +65,14 @@ fondos `theme-dark` / `theme-blue`, 140 px de aire en escritorio). La barra amar
 menú baja 36 px en la home). Los precios salen de `src/data/pricing.js` (Peak no se muestra en la home). Las respuestas del
 FAQ que empiezan por `[` están pendientes y no se muestran; búscalas con `TODO` en `HomeSections.jsx`.
 
+## Precios (rediseño minimalista)
+
+`src/pages/Precios.jsx` solo fija el orden; las secciones están en `src/components/PreciosSections.jsx` y reutilizan los helpers de
+`HomeSections.jsx`. Planes, precios, prestaciones y tabla salen de `src/data/pricing.js` (Peak no se muestra; las filas de la tabla
+que eran solo de Peak se descartan solas). Las plazas del precio fundador del MVP se cambian en `MVP_SPOTS` (`pricing.js`): actualizan
+la insignia, la tarjeta y la FAQ. El vídeo del hero está en `HeroVideo.jsx` (`/public/hero.mp4`). El CTA final con la ola de letras
+(`WaveCTA.jsx`, CSS puro en `index.css`) lo usan `/` y `/precios`; el resto de páginas siguen con `FinalCTA.jsx`.
+
 ## Test de estudihambre
 
 `/test` (`src/pages/Test.jsx`): 6 preguntas → recomienda Rookie, All In o Peak y lleva a `/contacto?plan=…&test=…` con el plan
