@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button.jsx'
-import HeroWord from './HeroWord.jsx'
 import { Reveal } from './Reveal.jsx'
 import { ArrowIcon } from './Icons.jsx'
 import { BTN, BTN_O, Eyebrow, H2, LIGHT_BLUE, LINE, SECTION, WRAP } from './HomeSections.jsx'
@@ -23,7 +22,7 @@ import {
 
 const PLANS = PRICING.filter((p) => p.id !== 'peak')
 
-/* ── 1 · Hero: palabra gigante azul de fondo y el contenido encima ─ */
+/* ── 1 · Hero ───────────────────────────────────────────── */
 const CHIPS = ['Primera asesoría gratis', '−10% con carné universitario', 'Hasta −25% en squad']
 
 export function PreciosHero() {
@@ -35,9 +34,9 @@ export function PreciosHero() {
       : { initial: { opacity: 0, y: 36 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: [0.2, 0.7, 0.2, 1] } }
 
   return (
-    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-8 pt-36 md:pb-12 md:pt-[124px]">
+    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-20 pt-36 md:pb-[110px] md:pt-[150px]">
 
-      <div className={`${WRAP} relative z-10`}>
+      <div className={WRAP}>
         <motion.div {...item(0)}>
           <Eyebrow>Precios</Eyebrow>
         </motion.div>
@@ -82,7 +81,6 @@ export function PreciosHero() {
           ))}
         </motion.ul>
       </div>
-      <HeroWord size="text-[clamp(2.75rem,17vw,245px)]">Precios</HeroWord>
     </section>
   )
 }
