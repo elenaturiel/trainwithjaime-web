@@ -423,7 +423,7 @@ export function PricingSection() {
         </Reveal>
 
         {/* Descuentos que quedan + test */}
-        <div className="mt-10 grid items-center gap-6 md:grid-cols-3">
+        <div className="mt-10 grid items-start gap-6 md:grid-cols-3">
           <div className={`${LINE} pt-[18px]`}>
             <p className="text-xl font-bold">−10% con carné universitario</p>
             <p className="mt-1.5 text-[15px] text-white/75">Se verifica cuando hablas con Jaime.</p>
