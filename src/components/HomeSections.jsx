@@ -243,7 +243,7 @@ const ACCOMPANIED = [
   { src: '/img-41.jpg', tag: 'Entrena', text: 'Entrenos personalizados para ganar.', alt: 'Jaime haciendo series en el rack de sentadillas del gimnasio' },
   { src: '/img-42.jpg', tag: 'Entrena con gente', text: 'Aquí no entrenas solo.', alt: 'Jaime y un amigo sonriendo en un selfie al aire libre' },
   { src: '/hyrox-juntos.jpg', tag: 'Te acompaña', text: 'Revisamos tu progreso y ajustamos el plan cuando hace falta.', alt: 'Jaime posando abrazado a otra persona delante del panel de HYROX Barcelona' },
-  { src: '/plan-a-medida.jpg', tag: 'Plan a medida', text: 'Hecho alrededor de tus clases, tus exámenes y tu presupuesto.', alt: 'Jaime sentado en un banco del gimnasio con una mancuerna en la mano' },
+  { src: '/img-26.jpg', tag: 'Plan a medida', text: 'Hecho alrededor de tus clases, tus exámenes y tu presupuesto.', alt: 'Portátil con el calendario de entrenos en pantalla y una libreta delante' },
 ]
 
 export function Accompanied() {
