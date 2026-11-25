@@ -49,7 +49,7 @@ export default function Home() {
       <HowItWorks />
       <Reviews />
       <Faq />
-      <div className="theme-dark border-t border-line">
+      <div className="theme-dark">
         <FinalCTA />
       </div>
     </>

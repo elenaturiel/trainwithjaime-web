@@ -9,8 +9,8 @@ export default function TopBar() {
       to="/entrenamiento-hyrox"
       className="fixed inset-x-0 top-0 z-50 flex h-9 items-center justify-center gap-2 bg-accent px-4 text-xs font-semibold text-on-accent transition-colors hover:bg-[#ffd666] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-on-accent"
     >
-      <span className="min-w-0 truncate">
-        <strong className="font-extrabold uppercase tracking-wider">Nuevo</strong> · Jaime te entrena también para tu HYROX
+      <span className="min-w-0 truncate font-bold uppercase tracking-[1.5px] md:tracking-[2px]">
+        Nuevo · Jaime te entrena también para tu HYROX
       </span>
       <ArrowIcon className="h-3 w-3 shrink-0" />
     </Link>
