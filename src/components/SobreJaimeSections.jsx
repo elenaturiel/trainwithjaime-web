@@ -29,7 +29,7 @@ export function SobreHero() {
   return (
     <section className="theme-dark bg-[radial-gradient(110%_90%_at_20%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-20 pt-36 md:pb-[110px] md:pt-[120px]">
       <div className={`${WRAP} grid items-center gap-12 md:grid-cols-[.9fr_1.1fr] md:gap-[72px]`}>
-        {/* Foto vertical con tratamiento azul navy (es la imagen principal: carga sin lazy) */}
+        {/* Foto vertical sin filtro (es la imagen principal: carga sin lazy) */}
         <motion.div {...item(0.3)}>
           <div className="group relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl border border-white/[.18] md:max-w-none">
             <img
@@ -40,9 +40,8 @@ export function SobreHero() {
               fetchPriority="high"
               decoding="async"
               draggable={false}
-              className="absolute inset-0 size-full object-cover saturate-[.8] transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]"
+              className="absolute inset-0 size-full object-cover transition-transform duration-[900ms] ease-out motion-safe:group-hover:scale-[1.06]"
             />
-            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(160deg,rgba(22,70,194,.45)_0%,rgba(4,16,55,.5)_90%)]" />
           </div>
         </motion.div>
 

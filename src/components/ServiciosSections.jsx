@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button.jsx'
-import HeroWord from './HeroWord.jsx'
 import RollingNumber from './RollingNumber.jsx'
 import { Reveal } from './Reveal.jsx'
 import { BTN, BTN_O, Eyebrow, H2, LINE, Photo, SECTION, WRAP } from './HomeSections.jsx'
@@ -15,7 +14,7 @@ import { EVENT_NOTE, EVENTS, EXTRAS, SERVICES, SPECIALTIES, SQUAD, STEPS, SUPPLE
 const CHIP = 'rounded-full border border-white/35 px-[18px] py-2 text-xs font-semibold uppercase tracking-[2px]'
 const CARD = 'transition-transform duration-[350ms] motion-safe:hover:-translate-y-2'
 
-/* ── 1 · Hero: palabra gigante azul de fondo y el contenido encima ─ */
+/* ── 1 · Hero ───────────────────────────────────────────── */
 export function ServiciosHero() {
   const reduced = !!useReducedMotion()
   // Entrada escalonada: fade + translateY(36px)
@@ -25,8 +24,8 @@ export function ServiciosHero() {
       : { initial: { opacity: 0, y: 36 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay, ease: [0.2, 0.7, 0.2, 1] } }
 
   return (
-    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-8 pt-36 md:pb-12 md:pt-[130px]">
-      <div className={`${WRAP} relative z-10`}>
+    <section className="theme-dark relative isolate overflow-hidden bg-[radial-gradient(110%_90%_at_80%_0%,#1646C2_0%,#091844_50%,#041037_100%)] pb-20 pt-36 md:pb-[110px] md:pt-[130px]">
+      <div className={WRAP}>
         <div>
           <motion.div {...item(0)}>
             <Eyebrow>Servicios</Eyebrow>
@@ -63,7 +62,6 @@ export function ServiciosHero() {
         </div>
 
       </div>
-      <HeroWord size="text-[clamp(2.75rem,15.8vw,228px)]">Servicios</HeroWord>
     </section>
   )
 }
