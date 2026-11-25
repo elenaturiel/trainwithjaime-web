@@ -69,7 +69,7 @@ export const Photo = ({ src, alt, className = '', pos }) => (
 )
 
 /* ── 3 · Hero ───────────────────────────────────────────── */
-const PILLARS = [
+export const PILLARS = [
   { n: '01', title: 'Un plan hecho para ti', text: 'Alrededor de tus clases, tus exámenes y tu presupuesto real.' },
   { n: '02', title: 'Cero postureo', text: 'Nada de rutinas copiadas de Instagram. Medimos marcas, no likes.' },
   { n: '03', title: 'Seguimiento de verdad', text: 'Revisamos tu progreso y ajustamos el plan cada vez que hace falta.' },
@@ -252,7 +252,7 @@ export function Accompanied() {
 }
 
 /* ── 7 · HYROX ──────────────────────────────────────────── */
-const FACTS_HYROX = [
+export const FACTS_HYROX = [
   { value: '1', label: 'HYROX completado: Barcelona, 14 de noviembre de 2026' },
   { value: '20/03', label: 'próximo HYROX, en 2027, y vamos a competir' },
 ]
@@ -455,7 +455,7 @@ export function ForWho() {
 
 /* ── 10 · Sobre Jaime ───────────────────────────────────── */
 // Datos confirmados por Jaime. Otros (años entrenando, medias maratones, certificación) no constan, así que no se muestran.
-const COACH_FACTS = [
+export const COACH_FACTS = [
   { value: '4º', label: 'curso de Ciencias de la Actividad Física y del Deporte' },
   { value: '4', label: 'personas entrenadas: HYROX, carreras, gym y entreno funcional' },
   ...FACTS_HYROX,

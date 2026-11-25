@@ -81,6 +81,14 @@ valor del servicio (`entrenamiento`, `nutricion`, `seguimiento`, `comunidad`), q
 Una descripción de extra que empieza por `[` está pendiente y no se muestra (búscalas con `TODO` en `servicios.js`). El plan Peak ya
 no se vende aquí. El CTA final es `WaveCTA.jsx`, el mismo que la home y `/precios`.
 
+## Sobre Jaime (rediseño minimalista)
+
+`src/pages/SobreJaime.jsx` solo fija el orden; las secciones están en `src/components/SobreJaimeSections.jsx`. Textos propios en
+`src/data/sobreJaime.js` (incluye la frase sensible "No soy un entrenador certificado (aún)…", que no se debe cambiar sin avisar a
+Jaime). Las 3 cifras salen de `COACH_FACTS` (`HomeSections.jsx`), las fechas HYROX de `hyroxPlan.js` y las 9 fotos con su pie de
+`src/data/galeria.js` (la misma galería que usa la home). "Mi cambio" (antes/después) solo aparece si `BEFORE_AFTER` de `config.js`
+tiene fotos.
+
 ## Test de estudihambre
 
 `/test` (`src/pages/Test.jsx`): 6 preguntas → recomienda Rookie, All In o Peak y lleva a `/contacto?plan=…&test=…` con el plan
