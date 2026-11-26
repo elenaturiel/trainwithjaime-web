@@ -226,7 +226,7 @@ export function SquadBand() {
   )
 }
 
-/* ── 7 · Prepárate para tu día + ¿Es un HYROX? ──────────── */
+/* ── 7 · Prepárate para tu día + ¿Quieres hacer un HYROX? ─ */
 export function PrepareDay() {
   return (
     <section id="prueba" className={`theme-dark bg-ink ${SECTION}`}>
@@ -253,7 +253,7 @@ export function PrepareDay() {
 
         <Reveal as="div" className={`rounded-3xl border border-accent px-7 py-9 md:px-9 md:py-10 ${CARD}`}>
           <p className="text-xs font-bold uppercase tracking-[3px] text-accent-ink">Nuevo · plan a medida</p>
-          <h3 className="mt-2.5 font-variable text-[clamp(2.25rem,3.4vw,48px)] font-extrabold leading-[1.1] tracking-[-0.03em]">¿Es un HYROX?</h3>
+          <h3 className="mt-2.5 font-variable text-[clamp(2.25rem,3.4vw,48px)] font-extrabold leading-[1.1] tracking-[-0.03em]">¿Quieres hacer un HYROX?</h3>
           <p className="mt-3 text-[17px] leading-[1.55] text-white/85">
             Jaime te entrena también para tu HYROX: en un gimnasio normal, individual, dobles o mixtos. Tiene su propio plan a medida.
           </p>
